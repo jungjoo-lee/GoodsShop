@@ -12,14 +12,23 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function getPageInfo() {
-	fetch('/GoodsShop/gshop.do?command=pageInfo', {
-		method : 'GET',
+	let param = {
+		"command" : "pageInfo",
+	};
+	
+	fetch('/GoodsShop/gshop.do?command=asyn', {
+		method : 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
-		}})
+		},
+			body: JSON.stringify(param)
+		})
 		.then(response => response.json())
 		.then(jsonResult => {
-			
+			if (jsonResult.status == true) {
+				paging = jsonResult.paging;
+				console.log(paging);
+			}
 	});
 }
 

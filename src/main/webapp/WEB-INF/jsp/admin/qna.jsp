@@ -67,7 +67,7 @@
 					</div>
 					<div class="row w-100">
 						<div class="col d-flex align-items-center"> <!-- page 정보 출력 -->
-							<input class="form-control w-25 me-3" type="text" placeholder="Page Num">
+							<input class="form-control w-25 me-3" type="text" name="quickMove" id="quickMove" placeholder="Page Num">
 							${paging.currentPage} / ${paging.realEnd}
 						</div>
 						<div class="col d-flex justify-content-end"> <!-- paging -->
