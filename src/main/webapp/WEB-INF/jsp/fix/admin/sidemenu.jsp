@@ -39,11 +39,11 @@
                         </a>
                         <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="#">Q&A</a>
+                                <a class="nav-link" href="<c:url value='/gshop.do?command=qna'/>">Q&A</a>
                                 <a class="nav-link" href="#">리뷰</a>
                             </nav>
                         </div>
-	                    <a class="nav-link" href="#">공지사항 작성</a>
+	                    <a class="nav-link" href="#">공지사항</a>
                     </nav>
                 </div>
             </div>
@@ -54,3 +54,4 @@
         </div>
     </nav>
 </div>
+<script type="text/javascript" src="<c:url value='/resources/js/admin/sidemenu.js'/>"></script>

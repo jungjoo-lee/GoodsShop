@@ -28,4 +28,15 @@ public class Env {
     // goods
     
     // admin
+    public static String getQnaList() {
+    	return prop.getProperty("getQnaList");
+    }
+    
+    public static String getQnaTotal() {
+    	return prop.getProperty("getQnaTotal");
+    }
+    
+    public static String getQna() {
+    	return prop.getProperty("getQna");
+    }
 }

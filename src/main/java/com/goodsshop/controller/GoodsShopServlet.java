@@ -3,6 +3,7 @@ package com.goodsshop.controller;
 import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
+import com.goodsshop.controller.action.admin.PageInfoAction;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -37,11 +38,15 @@ public class GoodsShopServlet extends HttpServlet {
 		System.out.println("command : " + command);
 		if(command==null) System.out.println("1. command 값 오류");
 		
-		ActionFactory af = ActionFactory.getInstance();
-		Action ac = af.getAction(command);
-		
-		if( ac == null ) System.out.println("2. Action 조립 오류");
-		else ac.execute(request, response);		
+		if (command.equals("pageInfo")) {
+			new PageInfoAction();
+		} else {
+			ActionFactory af = ActionFactory.getInstance();
+			Action ac = af.getAction(command);
+			
+			if( ac == null ) System.out.println("2. Action 조립 오류");
+			else ac.execute(request, response);
+		}
 	}
 
 	/**

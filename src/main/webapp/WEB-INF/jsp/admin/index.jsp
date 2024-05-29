@@ -17,8 +17,7 @@
         <div id="layoutSidenav">
         	<!-- side -->
         	<jsp:include page="../fix/admin/sidemenu.jsp"/>
-        	
-            
+
         </div>
         <script type="text/javascript" src="<c:url value='/resources/js/admin/admin.js'/>"></script>
     </body>
