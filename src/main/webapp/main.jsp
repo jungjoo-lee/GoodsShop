@@ -12,5 +12,6 @@
 메인페이지입니다.
 <a href="gshop.do?command=loginForm">LOGIN</a>
 <a href="gshop.do?command=logout">LOGOUT</a>
+<a href="gshop.do?command=updateMemberForm">정보 수정</a>
 </body>
 </html>

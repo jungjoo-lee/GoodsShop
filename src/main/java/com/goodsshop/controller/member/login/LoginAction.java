@@ -22,8 +22,6 @@ public class LoginAction implements Action {
 		MemberDao mdao = MemberDao.getInstance();
 		MemberVO mvo = mdao.getMember(userid);
 		
-		System.out.println(mvo.toString());
-		
 		String url="jsp/member/loginForm.jsp";
 		if(mvo==null) 
 			request.setAttribute("message", "아이디 혹은 패스워드가 틀립니다");
