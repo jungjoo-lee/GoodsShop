@@ -1,11 +1,12 @@
 package com.goodsshop.controller.action.goods.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.Data;
 
 @Data
-public class GoodsDTO {
+public class GoodsVO {
 	private int gseq;
 	private String gname;
 	private int category;
@@ -16,8 +17,5 @@ public class GoodsDTO {
 	private boolean bestyn;
 	private boolean useyn;
 	private Date indate;
-	private int giseq;
-	private String oriname;
-	private String realname;
-	private String filesize;
+	private List<GoodsImageVO> imageList;
 }
