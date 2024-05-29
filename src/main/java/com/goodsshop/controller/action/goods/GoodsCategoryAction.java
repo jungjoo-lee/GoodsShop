@@ -1,17 +1,27 @@
-package com.goodsshop.controller.action;
+package com.goodsshop.controller.action.goods;
 
 import java.io.IOException;
+
+import com.goodsshop.controller.action.Action;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class IndexAction implements Action {
+public class GoodsCategoryAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/jsp/main.jsp").forward(request, response);
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		request.getRequestDispatcher("WEB-INF/jsp/goods/GoodsView.jsp").forward(request, response);
 	}
 
 }

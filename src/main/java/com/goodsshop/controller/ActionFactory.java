@@ -2,6 +2,8 @@ package com.goodsshop.controller;
 
 import com.goodsshop.controller.action.Action;
 import com.goodsshop.controller.action.IndexAction;
+import com.goodsshop.controller.action.goods.GoodsCategoryAction;
+
 
 public class ActionFactory {
 	private ActionFactory() {}
@@ -11,7 +13,8 @@ public class ActionFactory {
 	public Action getAction(String command) {
 		Action ac = null;
 		
-		if( command.equals("index") ) ac = new IndexAction();
+		if( command.equals("index") ) ac = new IndexAction();	
+		else if (command.equals("goodsCategory")) ac = new GoodsCategoryAction();
 		
 		return ac;
 	}
