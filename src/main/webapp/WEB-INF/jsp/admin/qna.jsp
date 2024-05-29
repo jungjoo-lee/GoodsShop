@@ -24,7 +24,7 @@
 					<div class="row w-100">
 				    	<div class="col"> <!-- 목록 선택 -->
 				      		<select class="form-select w-25" name="selectAmount" id="selectAmount">
-						  		<option value="0" selected>목록</option>
+						  		<option value=0 selected>목록</option>
 						  		<option value=10>10</option>
 						  		<option value=50>50</option>
 						  		<option value=100>100</option>
@@ -48,7 +48,7 @@
 				  					<th>작성일</th>
 				  				</tr>
 				  			</thead>
-				  			<tbody>
+				  			<tbody id="infoTable">
 				  				<c:forEach var="qna" items="${qnaList}">
 				  					<tr>
 				  						<td class="text-center">
@@ -68,7 +68,7 @@
 					<div class="row w-100">
 						<div class="col d-flex align-items-center"> <!-- page 정보 출력 -->
 							<input class="form-control w-25 me-3" type="text" name="quickMove" id="quickMove" placeholder="Page Num">
-							${paging.currentPage} / ${paging.realEnd}
+							<span id="pagdInfo">${paging.currentPage} / ${paging.realEnd}</span>
 						</div>
 						<div class="col d-flex justify-content-end"> <!-- paging -->
 							<!-- paging -->

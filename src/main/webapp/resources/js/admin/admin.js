@@ -1,10 +1,5 @@
 let selectAmount = document.querySelector("#selectAmount");
-let amount = 10;
-let currentPage = 1;
 let pages = document.querySelectorAll('.page-link');
-let pagination1 = document.querySelector("#pagination");
-let startPage = 1;
-let realEnd;
 let paging;
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -25,50 +20,61 @@ function getPageInfo() {
 		})
 		.then(response => response.json())
 		.then(jsonResult => {
-			if (jsonResult.status == true) {
+			if (jsonResult.status == true)
 				paging = jsonResult.paging;
-				console.log(paging);
-			}
 	});
 }
 
 selectAmount.addEventListener("change", () => {
-	amount = selectAmount.options[selectAmount.selectedIndex].value;
-	currentPage = 1;
+	paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
+	let realEnd = Math.ceil(paging.total / paging.amount);
 	
-	if (amount == 0) {
+	if (realEnd < paging.currentPage)
+		paging.currentPage = realEnd;
+	
+	if (paging.amount == 0) {
 		return;
 	} else {
-		updateContent();
+		asynGetContent();
 	}
 })
 
 function addPagingEvent() {
 	pages = document.querySelectorAll('.page-link');
-	pagination1 = document.querySelector("#pagination");
 	
 	pages.forEach(page => {
 		page.addEventListener("click", (e) => {
 			if (e.target.getAttribute('data-value') == "prev") {
-				currentPage = startPage - 10;
+				paging.currentPage = paging.startPage - 10;
 			} else if (e.target.getAttribute('data-value') == "next") {
-				currentPage = startPage + 10;
+				paging.currentPage = paging.startPage + 10;
 			} else {
-				currentPage = e.target.getAttribute('data-value');
+				paging.currentPage = e.target.getAttribute('data-value');
 			}
-			updateContent();
+			asynGetContent();
 		});
 	});
 }
 addPagingEvent();
 
-function updateContent() {
+let quickMove = document.querySelector("#quickMove");
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}. ${month}. ${day}.`;
+}
+
+function asynGetContent() {
 	let param = {
-		"amount" : amount,
-		"page" : currentPage,
+		"command" : "getContent",
+		"amount" : paging.amount,
+		"page" : paging.currentPage,
 	};
 		
-	fetch('/WEB12_ShoesShop/admin/updateContent.do', {
+	fetch('/GoodsShop/gshop.do?command=asyn', {
 		method : 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
@@ -78,39 +84,29 @@ function updateContent() {
 		.then(response => response.json())
 		.then(jsonResult => {
 			if (jsonResult.status == true) {
-				let memberList = jsonResult.memberList;
+				let contentList = jsonResult.content;
 				let content = '';
 				let i = 0;
 				
-				memberList.forEach(() => {
+				contentList.forEach(() => {
 					content += '<tr>';
-					content += '<td>' + memberList[i].userid + '</td>';
-					content += '<td>' + memberList[i].name + '</td>';
-					content += '<td>' + memberList[i].phone + '</td>';
-					content += '<td>' + memberList[i].email + '</td>';
-					content += '<td>' + memberList[i].zip_num + '</td>';
-					content += '<td>' + memberList[i].address1 + '</td>';
-					content += '<td>' + memberList[i].address2 + '</td>';
-					content += '<td>' + memberList[i].indate + '</td>';
 					content += '<td class="text-center">';
-					if (memberList[i].useyn === 1) {
-						content += 'Y';
-					} else {
-						content += 'N';
-					}
+					if (contentList[i].reply == null)
+						content += '(미처리)';
+					else
+						content += '(답변완료)';
 					content += '</td>';
-					content += '<td class="text-center"><input class="form-check-input" type="checkbox" value="' + memberList[i++].userid + '"></td>';
+					content += '<td><a href="/GoodsShop/gshop.do?command=qnaView&qseq=' + contentList[i].qseq + '">' + contentList[i].subject + '</a></td>';
+					content += '<td class="text-center">' + contentList[i].userid + '</td>';
+					content += '<td class="text-center">' + formatDate(contentList[i++].indate) + '</td>';
 					content += '</tr>';
 				});
-				document.querySelector("#memberList").innerHTML = content;
+				document.querySelector("#infoTable").innerHTML = content;
 				
-				let page = jsonResult.page;
-				startPage = page.startPage;
-				currentPage = page.currentPage;
+				paging = jsonResult.paging;
 				let pagination = '';
-				realEnd = page.realEnd;
 				
-				if (page.prev) {
+				if (paging.prev) {
 					pagination += '<li class="page-item">';
 					pagination += '<a class="page-link" data-value="prev">Prev</a>';
 					pagination += '</li>';
@@ -120,8 +116,8 @@ function updateContent() {
 					pagination += '</li>';
 				}
 				
-				for(let j = startPage; j <= page.endPage; j++) {
-					if(page.currentPage == j) {
+				for(let j = paging.startPage; j <= paging.endPage; j++) {
+					if(paging.currentPage == j) {
 						pagination += '<li class="page-item active">';
 						pagination += '<a class="page-link" data-value="' + j + '">';
 						pagination += j;
@@ -136,7 +132,7 @@ function updateContent() {
 					}
 				}
 				
-				if (page.next) {
+				if (paging.next) {
 					pagination += '<li class="page-item">';
 					pagination += '<a class="page-link" data-value="next">Next</a>';
 					pagination += '</li>';
@@ -145,12 +141,8 @@ function updateContent() {
 					pagination += '<a class="page-link">Next</a>';
 					pagination += '</li>';
 				}
-				pagination += '<li class="list-group-item d-flex align-items-center">';
-				pagination += '<span class="form-text" style="margin-top: 0; margin-left: 20px">';
-				pagination += page.currentPage + '/' + page.realEnd;
-				pagination += '</span>';
-				pagination += '</li>';
-				document.querySelector("#pagination").innerHTML = pagination;
+				document.querySelector("#pagination").innerHTML = pagination;				
+				document.querySelector("#pagdInfo").innerHTML = paging.currentPage + ' / ' + paging.realEnd;
 				
 				addPagingEvent();
 			} else {
@@ -159,15 +151,14 @@ function updateContent() {
 	});
 }
 
-let quickMove = document.querySelector("#quickMove");
 quickMove.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.keyCode === 13) {
         if (quickMove.value !== "" && quickMove.value !== null) {
-			if (quickMove.value > realEnd) {
+			if (quickMove.value > paging.realEnd) {
 				alert("마지막페이지 보다 넘게 이동 할 수 없습니다.");
             } else {
-				currentPage = quickMove.value;
-            	updateContent();
+				paging.currentPage = quickMove.value;
+            	asynGetContent();
             	quickMove.value = '';
 			}
         }
