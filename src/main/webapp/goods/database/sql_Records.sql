@@ -37,29 +37,8 @@ insert into goods (gname, category, o_price, s_price, m_price, content, bestyn)
 
 select*from goods;
 
-insert into goodsimage (gseq, oriname, realname, filesize)
-	values (1, '1', '1', 10);
-insert into goodsimage (gseq, oriname, realname, filesize)
-	values (12, '12', '12', 10);
+select*from goodsimage;
 	
-	
-DELIMITER $$
-create procedure insert_goodsimage()
-begin
-   declare i int default 1;
-    while (i <= 12) do
-      insert into goodsimage (oriname, realname, filesize) 
-      	values(i, i)
-      	where gseq = i;
-      	
-      set i = i + 1;
-    end while;
-end $$
-DELIMITER ;
-
-call insert_goodsimage();
-	
-
 
 
 call insert_member();

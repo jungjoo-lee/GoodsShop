@@ -19,7 +19,7 @@ public class GoodsDAO {
 	
 	
 	
-	public List<GoodsVO> getbestList() {
+	public List<GoodsVO> getBestList() {
 		List<GoodsVO> list = new ArrayList<GoodsVO>();
 		
 		con = Db.getConnection();
@@ -48,22 +48,12 @@ public class GoodsDAO {
 
 		return list;
 	}
-	
-	
-	
-	public List<GoodsVO> newList() {
-		List<GoodsVO> list = null;
-
-		return list;
-	}
-
-
 
 	public List<GoodsImageVO> getImageList(int gseq) {
 		List<GoodsImageVO> list = new ArrayList<GoodsImageVO>();
 		
 		con = Db.getConnection();
-		String sql = "select * from goodsimage where gseq = ?";
+		String sql = "select * from goodsimage where gseq = ? limit 20";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -90,6 +80,36 @@ public class GoodsDAO {
 			Db.close(con, pstmt, rs);
 		}
 		
+		return list;
+	}
+
+
+
+	public List<GoodsVO> getNewList() {
+		List<GoodsVO> list = new ArrayList<GoodsVO>();
+		
+		con = Db.getConnection();
+		String sql = "select * from newlist_view limit 8";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();		
+			
+			while(rs.next()) {
+				GoodsVO gvo = new GoodsVO();
+				gvo.setGseq(rs.getInt("gseq"));
+				gvo.setGname(rs.getString("gname"));
+				gvo.setS_price(rs.getInt("s_price"));
+				
+				list.add(gvo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Db.close(con, pstmt, rs);
+		}
+
 		return list;
 	}
 		

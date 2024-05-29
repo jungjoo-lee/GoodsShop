@@ -204,7 +204,6 @@ ALTER TABLE review
    ON DELETE RESTRICT
 ;
 
-
 ALTER TABLE Member
    ADD FOREIGN KEY (gseq)
    REFERENCES Grade (gseq)

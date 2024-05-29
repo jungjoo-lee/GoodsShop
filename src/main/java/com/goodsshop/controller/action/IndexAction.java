@@ -19,7 +19,7 @@ public class IndexAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		GoodsDAO gdao = new GoodsDAO();	
-		List<GoodsVO> bestlist = gdao.getbestList();
+		List<GoodsVO> bestlist = gdao.getBestList();
 		
 		
 		for(GoodsVO vo : bestlist) {
@@ -30,9 +30,18 @@ public class IndexAction implements Action {
 			System.out.println(vo);
 		}
 		
+		List<GoodsVO> newlist = gdao.getNewList();
+		
+		for(GoodsVO vo : newlist) {
+			GoodsDAO gdao2 = new GoodsDAO();
+			List<GoodsImageVO> newImageList = gdao2.getImageList(vo.getGseq());
+			vo.setImageList(newImageList);
+		}
+		
 		
 		
 		request.setAttribute("bestlist", bestlist);
+		request.setAttribute("newlist", newlist);
 		request.getRequestDispatcher("WEB-INF/jsp/main.jsp").forward(request, response);
 		
 	}
