@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<% response.sendRedirect("gshop.do?command=index"); %>
 </body>
 </html>

@@ -1,16 +1,19 @@
-package com.goodsshop.controller.action;
+package com.goodsshop.controller.member.login;
 
 import java.io.IOException;
+
+import com.goodsshop.controller.action.Action;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class IndexAction implements Action {
+public class LoginFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("main.jsp").forward(request, response); // 경로
+		request.getRequestDispatcher("jsp/member/loginForm.jsp").forward(request, response);
+
 	}
 
 }
