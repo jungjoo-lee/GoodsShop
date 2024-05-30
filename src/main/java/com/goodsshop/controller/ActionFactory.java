@@ -10,6 +10,7 @@ import com.goodsshop.controller.member.login.LoginFormAction;
 import com.goodsshop.controller.member.login.LogoutAction;
 import com.goodsshop.controller.member.update.UpdateMemberAction;
 import com.goodsshop.controller.member.update.UpdateMemberFormAction;
+import com.goodsshop.controller.action.goods.GoodsCategoryAction;
 
 
 public class ActionFactory {
@@ -20,7 +21,8 @@ public class ActionFactory {
 	public Action getAction(String command) {
 		Action ac = null;
 		
-		if( command.equals("index") ) ac = new IndexAction();
+		if( command.equals("index") ) ac = new IndexAction();	
+		else if (command.equals("goodsCategory")) ac = new GoodsCategoryAction();
 		
 		//멤버
 		else if (command.equals("loginForm")) ac = new LoginFormAction();
