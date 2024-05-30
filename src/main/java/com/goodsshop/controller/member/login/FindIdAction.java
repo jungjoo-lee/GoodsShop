@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import com.goodsshop.controller.action.Action;
 import com.mysql.cj.xdevapi.Session;
