@@ -24,6 +24,13 @@ public class Env {
     }
     
     // member
+    public static String getSendEmail() {
+    	return prop.getProperty("getSendEmail");
+    }
+    
+    public static String getEmailPwd() {
+    	return prop.getProperty("getEmailPwd");
+    }
     
     // goods
     
