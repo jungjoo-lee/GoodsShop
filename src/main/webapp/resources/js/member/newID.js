@@ -1,3 +1,7 @@
+
+/* =============회원가입================*/
+
+/* 아이디 중복 확인*/
 function idcheck(){
 	if(document.JoinPage.userid.value==""){
 		alert("아이디를 입력하고 중복체크를 진행해주세요!");
@@ -8,7 +12,7 @@ function idcheck(){
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 	window.open(url, "IDCheck", opt);
 }
-
+/* 약관동의 */
 function go_next(){
 	
 	if( document.JoinPage.okon[1].checked == true){
@@ -17,18 +21,15 @@ function go_next(){
 		document.JoinPage.submit();
 	}
 }
-
-function find_zip(){
-	if(document.JoinPage.zip_code.value==""){
-		alert("주소가 입력되지 않았습니다!!");
-		document.JoinPage.zip_code.focus();
-		return;
-	}
-	var url = "shop.do?command=findZipno";
-	var opt = "menubar=no, scrollbars=no, width=550, height=300, top=300, left=300";
-	window.open(url, "findZipno", opt);
+/* 주소 찾기 창*/
+function post_zip(){
+	 var url = "gshop.do?command=findZipnum";
+  	 var opt = "menubar=no,scrollbars=no,width=550,height=300,top=300,left=300";
+   window.open(url, "findZipNum",opt);
 }
 
+
+/* 회원가입 창 빈칸 채우기 */
 function go_save(){
 	if( document.JoinPage.userid.value == ""){
 		alert("아이디가 입력되지 않았습니다!");
@@ -55,6 +56,7 @@ function go_save(){
 		document.JoinPage.submit();
 	}
 }
+
 function idok(userid){
 	opener.JoinPage.userid.value = userid;
 	opener.JoinPage.reid.value = userid;

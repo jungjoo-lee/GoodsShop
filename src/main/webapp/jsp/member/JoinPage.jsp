@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/header.jsp"%>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
 
 
 <article>
@@ -41,8 +41,8 @@
 			<h3>부가 정보</h3>
 				<div class="field">
 						<label>우편 번호&nbsp;&nbsp;&nbsp;</label>
-						<input type="text" name="zip_code" readonly>
-						<input type="button" value="우편번호 찾기" onClick="find_zip()">
+						<input type="text" name="zip_code value="${loginUser.zip_code}"readonly>
+						<input type="button" value="우편번호 찾기" onClick="post_zip()">
 				</div>
 				<div class="field">
 						<label>주소&nbsp;&nbsp;&nbsp;</label>
@@ -60,5 +60,5 @@
 		</table>
 	</form>
 </article>
-<script src="<c:url value='/resources/js/member.js'/>"></script>
-<%@ include file="/footer.jsp"%>
+<script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>

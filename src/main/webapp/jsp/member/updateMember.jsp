@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="resources/js/member/member.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,15 +40,15 @@
 			<div class="field">
 				<label>우편번호 검색</label>
 				<div>
-					<input type="text" name="zip_code" readonly value="${loginUser.zip_code}" >
+					<input type="text" name="zip_code" readonly " >
 					<input type="button" onClick="post_zip();" value="우편번호 찾기">
 				</div>
 			</div>
 			<div class="field">
-				<label>주소</label><input type="text" name="address" value="${loginUser.address}" readonly>
+				<label>주소</label><input type="text" name="address" value="${loginUser.address},${loginUser.d_address}" readonly>
 			</div>
 			<div class="field">
-				<label>상세 주소</label><input type="text" name="d_address" value="${loginUser.d_address}">
+				<label>상세 주소</label><input type="text" name="d_address" >
 			</div>
 			
 			<div class="btn">
@@ -58,5 +57,7 @@
 		</form>
 		</article>
 </section>
+</article>
+<script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
 </body>
 </html>

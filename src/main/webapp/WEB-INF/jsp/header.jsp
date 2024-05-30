@@ -16,16 +16,16 @@
 
 	<header>
 		<nav id="top_menu">
-			<div id="logo"><img src="images/logo.png" width="180" height="100"></div>
 			<div class="gnb">
 					<c:choose>
 							<c:when test="${empty loginUser}">
-									<a href="shop.do?command=loginForm">Log-In</a>
-									<a href="shop.do?command=JoinForm">Join</a>
+									<a href="gshop.do?command=loginForm">로그인</a>
+									<a href="gshop.do?command=joinPage">회원가입</a>
 							</c:when>
 						<c:otherwise>
 									<a href="#">${loginUser.name}(${loginUser.userid})</a>
-									<a href="shop.do?command=logout">Logout</a>
+									<a href="gshop.do?command=logout">Logout</a>
+									<a href="gshop.do?command=updateMemberForm">정보 수정</a>
 						</c:otherwise>
 					</c:choose>
 					<a href="">장바구니</a>
@@ -38,6 +38,7 @@
 					<div></div>
 			</div>
 		</nav>
+		<div id="logo"><img src="images/main.jpg" width="180" height="100"></div>
 		<nav id="category_menu">
 			
 			<div>1</div>

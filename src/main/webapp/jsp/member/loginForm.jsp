@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script src="resources/js/member/member.js"></script>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
 <section>
 		<article>
 			<form method="post" action="gshop.do?command=login" name="loginForm">
@@ -27,5 +20,5 @@
 			<div style="font-size:80%; font-weight:bold">${message}</div>
 		</article>
 </section>
-</body>
-</html>
+<script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>

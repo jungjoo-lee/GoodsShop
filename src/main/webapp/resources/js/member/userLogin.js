@@ -1,3 +1,4 @@
+/*===========로그인================*/
 /* 로그인 창 입력 확인*/
 function loginCheck(){
 	if(document.loginForm.userid.value==""){
@@ -16,6 +17,7 @@ function loginCheck(){
 function findIdForm(){
 	location.href="gshop.do?command=findIdForm"
 }
+
 /* 아이디찾기 */
 function findId(){
 	if(document.findIdForm.name.value==""){
@@ -27,9 +29,8 @@ function findId(){
 		document.findIdForm.email.focus();
 		return false;
 	}else{
-		document.findIdForm.action = 'gshop.do?command=findId';
+		location.href="gshop.do?command=findId&email="+email.value;
 }
-
 }
 /* 회원 정보 수정 */
 function go_updateMember(){
@@ -52,16 +53,16 @@ function go_updateMember(){
    document.updateMemberForm.submit();
    }
   }
-  
+/* 주소 찾기 창*/
 function post_zip(){
 	 var url = "gshop.do?command=findZipnum";
   	 var opt = "menubar=no,scrollbars=no,width=550,height=300,top=300,left=300";
    window.open(url, "findZipNum",opt);
 }
 
-function addressOK(zip_num , sido, gugun, dong){
-   opener.updateMemberForm.zip_num.value = zip_num;
+/* 주소 찾기*/
+function addressOK(zip_code , sido, gugun, dong){
+   opener.updateMemberForm.zip_code.value =zip_code;
    opener.updateMemberForm.address.value = sido+" " + gugun + " " + dong ;
    self.close();
-   
 }
