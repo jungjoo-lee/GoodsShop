@@ -2,6 +2,10 @@ package com.goodsshop.controller;
 
 import com.goodsshop.controller.action.Action;
 import com.goodsshop.controller.action.IndexAction;
+import com.goodsshop.controller.action.member.IDCheckAction;
+import com.goodsshop.controller.action.member.JoinAction;
+import com.goodsshop.controller.action.member.JoinPageAction;
+import com.goodsshop.controller.action.mypage.DeleteMemberAction;
 import com.goodsshop.controller.member.login.FindIdAction;
 import com.goodsshop.controller.member.login.FindIdFormAction;
 import com.goodsshop.controller.member.login.FindZipnumAction;
@@ -35,6 +39,16 @@ public class ActionFactory {
 		else if (command.equals("updateMemberForm")) ac = new UpdateMemberFormAction();
 		else if (command.equals("updateMember")) ac = new UpdateMemberAction();
 		else if (command.equals("findZipnum")) ac = new FindZipnumAction();
+		//member
+		if( command.equals("join") ) 									ac = new JoinAction();
+		if( command.equals("joinPage") ) 							ac = new JoinPageAction();
+		if( command.equals("IDCheck") ) 							ac = new IDCheckAction();
+		
+		//mypage
+		if( command.equals("deleteMember") ) 					ac = new DeleteMemberAction();
+
+		
+		
 		return ac;
 	}
 }
