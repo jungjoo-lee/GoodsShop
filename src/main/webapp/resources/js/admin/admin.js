@@ -160,16 +160,29 @@ function asynGetContent() {
 }
 
 function numCheck(e) {
-	var code = e.keyCode;
+	var code = e.keyCode || e.which;
 
-	if (code > 47 && code < 58) {
-		return;
-	}
-	if (code === 8 || code === 13 || code === 46) {
-		return;
-	}
-	e.returnValue = false;
+    if ((code >= 48 && code <= 57) || (code >= 96 && code <= 105)) {
+        return;
+    }
+
+    if (code === 8 || code === 9 || code === 13 || code === 46) {
+        return;
+    }
+    
+    if (code >= 37 && code <= 40) {
+        return;
+    }
+
 	e.preventDefault();
+}
+
+function numInputCheck(e) {
+    const value = e.target.value;
+    
+    if (!/^\d*$/.test(value)) {
+        e.target.value = value.replace(/\D/g, '');
+    }
 }
 
 quickMove.addEventListener("keydown", (e) => {
@@ -187,3 +200,16 @@ quickMove.addEventListener("keydown", (e) => {
         }
     }
 });
+quickMove.addEventListener("input", numInputCheck);
+
+document.addEventListener('DOMContentLoaded', () => {
+    let buttons = document.querySelectorAll('.btn-group .btn');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        });
+    });
+});
+
