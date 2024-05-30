@@ -7,9 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.goodsshop.dto.AdminVO;
 import com.goodsshop.dto.QnaVO;
 import com.goodsshop.properties.Env;
-import com.goodsshop.util.Db;
+import com.goodsshop.util.DB;
 
 public class AdminDAO {
 	private AdminDAO() {}
@@ -20,12 +21,39 @@ public class AdminDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
+	public AdminVO getAdmin(String id) {
+		AdminVO vo = null;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.getAdmin());
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				vo = AdminVO.builder()
+						.adminId(rs.getString(1))
+						.pwd(rs.getString(2))
+						.name(rs.getString(3))
+						.phone(rs.getString(4))
+						.email(rs.getString(5))
+						.build();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return vo;
+	}
+	
 	public List<QnaVO> getQnaList(int amount, int currentPage){
 		List<QnaVO> qnaList = new ArrayList<>();
 		int offset = (currentPage - 1) * amount;
 		
 		try {
-			conn = Db.getConnection();
+			conn = DB.getConnection();
 			pstmt = conn.prepareStatement(Env.getQnaList());
 			pstmt.setInt(1, amount);
 			pstmt.setInt(2, offset);
@@ -44,7 +72,7 @@ public class AdminDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Db.close(conn, pstmt, rs);
+			DB.close(conn, pstmt, rs);
 		}
 		
 		return qnaList;
@@ -54,7 +82,7 @@ public class AdminDAO {
 		int total = 0;
 		
 		try {
-			conn = Db.getConnection();
+			conn = DB.getConnection();
 			pstmt = conn.prepareStatement(Env.getQnaTotal());
 			rs = pstmt.executeQuery();
 			
@@ -64,7 +92,7 @@ public class AdminDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Db.close(conn, pstmt, rs);
+			DB.close(conn, pstmt, rs);
 		}
 		
 		return total;
@@ -74,7 +102,7 @@ public class AdminDAO {
 		QnaVO vo = null;
 		
 		try {
-			conn = Db.getConnection();
+			conn = DB.getConnection();
 			pstmt = conn.prepareStatement(Env.getQna());
 			pstmt.setInt(1, qseq);
 			rs = pstmt.executeQuery();
@@ -93,11 +121,23 @@ public class AdminDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Db.close(conn, pstmt, rs);
+			DB.close(conn, pstmt, rs);
 		}
 		
 		return vo;
 	}
 	
-	
+	public void writeReply(String reply, int qseq) {
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.writeReply());
+			pstmt.setString(1, reply);
+			pstmt.setInt(2, qseq);
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+	}
 }

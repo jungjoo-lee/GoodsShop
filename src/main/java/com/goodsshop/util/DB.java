@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 import com.goodsshop.properties.Env;
 
-public class Db {
+public class DB {
 	public static Connection getConnection() {
 		Connection conn = null;
 		

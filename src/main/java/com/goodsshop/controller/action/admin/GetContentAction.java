@@ -12,10 +12,12 @@ import com.goodsshop.util.Paging;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class GetContentAction implements FatchAction {
 	@Override
 	public JSONObject execute(HttpServletRequest request, HttpServletResponse response, JSONObject json) throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		JSONObject jsonResult = new JSONObject();
 		AdminDAO dao = AdminDAO.getInstance();
 
@@ -23,6 +25,9 @@ public class GetContentAction implements FatchAction {
 		int currentPage = json.getInt("page");
 		int amount = json.getInt("amount");
 		Paging paging = new Paging(currentPage, amount, total);
+		
+		session.setAttribute("currentPage", paging.getCurrentPage());
+		session.setAttribute("amount", paging.getAmount());
 		
 		ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(paging);

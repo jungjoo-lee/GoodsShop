@@ -20,13 +20,21 @@ function getPageInfo() {
 		})
 		.then(response => response.json())
 		.then(jsonResult => {
-			if (jsonResult.status == true)
+			if (jsonResult.status == true) {
 				paging = jsonResult.paging;
+				
+				for (let k = 0; k < selectAmount.length; k++){  
+			    	if(selectAmount.options[k].value == jsonResult.paging.amount){
+			    		selectAmount.options[k].selected = true;
+			    	}
+			  	}
+			}
 	});
 }
 
 selectAmount.addEventListener("change", () => {
 	paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
+	
 	let realEnd = Math.ceil(paging.total / paging.amount);
 	
 	if (realEnd < paging.currentPage)
@@ -151,8 +159,23 @@ function asynGetContent() {
 	});
 }
 
+function numCheck(e) {
+	var code = e.keyCode;
+
+	if (code > 47 && code < 58) {
+		return;
+	}
+	if (code === 8 || code === 13 || code === 46) {
+		return;
+	}
+	e.returnValue = false;
+	e.preventDefault();
+}
+
 quickMove.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.keyCode === 13) {
+	numCheck(e);
+	
+    if (e.keyCode === 13) {
         if (quickMove.value !== "" && quickMove.value !== null) {
 			if (quickMove.value > paging.realEnd) {
 				alert("마지막페이지 보다 넘게 이동 할 수 없습니다.");

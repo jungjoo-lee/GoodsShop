@@ -8,7 +8,7 @@
 <title>Q&A</title>
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
-<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 	<body class="sb-nav-fixed">
         <!-- header -->
@@ -22,18 +22,26 @@
         		<div class="container-fluid px-4">
                 	<h1 class="mt-4">Q&A</h1><br/> <!-- 제목 -->
 					<div class="row w-100">
-				    	<div class="col"> <!-- 목록 선택 -->
-				      		<select class="form-select w-25" name="selectAmount" id="selectAmount">
+				    	<div class="col d-flex"> <!-- 목록 선택 -->
+				      		<select class="form-select w-25 me-3" name="selectAmount" id="selectAmount">
 						  		<option value=0 selected>목록</option>
 						  		<option value=10>10</option>
 						  		<option value=50>50</option>
 						  		<option value=100>100</option>
 							</select>
+							<div class="btn-group" role="group" aria-label="Basic outlined example">
+				                <button type="button" class="btn btn-outline-secondary"><i class="bi bi-list"></i></button>
+				                <button type="button" class="btn btn-outline-secondary"><i class="bi bi-check-circle"></i></button>
+				            	<button type="button" class="btn btn-outline-secondary"><i class="bi bi-x-circle"></i></button>
+				            </div>
 				    	</div>
 				    	<div class="col d-flex justify-content-end"> <!-- 검색 폼 -->
+				    		<select class="form-select w-25 me-1" name="selectAmount" id="selectAmount">
+						  		<option value="subject" selected>제목</option>
+						  		<option value="userid">작성자</option>
+							</select>
 				      		<form class="d-flex" role="search">
 					      		<input class="form-control me-2" name="keyword" id="keyword" type="search" placeholder="Search">
-					      		<button class="btn btn-outline-success" type="submit">Search</button>
 					    	</form>
 				    	</div>
 					</div>
@@ -53,7 +61,7 @@
 				  					<tr>
 				  						<td class="text-center">
 				  						<c:choose>
-				  							<c:when test='${empty qnaVO.reply}'>(미처리)</c:when>
+				  							<c:when test='${empty qna.reply}'>(미처리)</c:when>
 				  							<c:otherwise>(답변완료)</c:otherwise>
 				  						</c:choose>
 				  						</td>
