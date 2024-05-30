@@ -6,6 +6,10 @@ import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
 import com.goodsshop.controller.action.member.JoinPageAction;
 import com.goodsshop.controller.action.mypage.DeleteMemberAction;
+import com.goodsshop.controller.cart.InsertCartAction;
+import com.goodsshop.controller.cart.ViewCartAction;
+import com.goodsshop.controller.goods.GoodsCategoryAction;
+import com.goodsshop.controller.goods.GoodsDetailViewAction;
 import com.goodsshop.controller.member.login.FindIdAction;
 import com.goodsshop.controller.member.login.FindIdFormAction;
 import com.goodsshop.controller.member.login.FindZipnumAction;
@@ -14,7 +18,6 @@ import com.goodsshop.controller.member.login.LoginFormAction;
 import com.goodsshop.controller.member.login.LogoutAction;
 import com.goodsshop.controller.member.update.UpdateMemberAction;
 import com.goodsshop.controller.member.update.UpdateMemberFormAction;
-import com.goodsshop.controller.action.goods.GoodsCategoryAction;
 
 
 public class ActionFactory {
@@ -39,6 +42,7 @@ public class ActionFactory {
 		else if (command.equals("updateMemberForm")) ac = new UpdateMemberFormAction();
 		else if (command.equals("updateMember")) ac = new UpdateMemberAction();
 		else if (command.equals("findZipnum")) ac = new FindZipnumAction();
+		
 		//member
 		if( command.equals("join") ) 									ac = new JoinAction();
 		if( command.equals("joinPage") ) 							ac = new JoinPageAction();
@@ -47,6 +51,12 @@ public class ActionFactory {
 		//mypage
 		if( command.equals("deleteMember") ) 					ac = new DeleteMemberAction();
 
+		//goods
+		if(command.equals("goodsDetailView")) ac = new GoodsDetailViewAction();
+		if(command.equals("addCart")) ac = new InsertCartAction();
+		if(command.equals("viewCartlist")) ac = new ViewCartAction();
+		
+		
 		
 		
 		return ac;
