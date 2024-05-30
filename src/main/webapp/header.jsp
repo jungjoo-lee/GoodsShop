@@ -16,16 +16,16 @@
 
 	<header>
 		<nav id="top_menu">
-			<div id="logo"><img src="images/logo.png" width="180" height="100"></div>
+			<div id="logo"><img src="resources/image/0507.jpg" width="270" height="200"></div>
 			<div class="gnb">
 					<c:choose>
 							<c:when test="${empty loginUser}">
-									<a href="shop.do?command=loginForm">Log-In</a>
-									<a href="shop.do?command=JoinForm">Join</a>
+									<a href="gshop.do?command=loginForm">Log-In</a>
+									<a href="gshop.do?command=joinPage">Join</a>
 							</c:when>
 						<c:otherwise>
 									<a href="#">${loginUser.name}(${loginUser.userid})</a>
-									<a href="shop.do?command=logout">Logout</a>
+									<a href="gshop.do?command=logout">Logout</a>
 						</c:otherwise>
 					</c:choose>
 					<a href="">장바구니</a>
@@ -40,11 +40,8 @@
 		</nav>
 		<nav id="category_menu">
 			
-			<div>1</div>
-			<div>2</div>
-			<div>3</div>
-			<div>4</div>
-			<div>5</div>
+			<div>Temporary Space Check</div>
+
 		</nav>
 	</header>
 	

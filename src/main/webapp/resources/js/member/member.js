@@ -63,5 +63,15 @@ function addressOK(zip_num , sido, gugun, dong){
    opener.updateMemberForm.zip_num.value = zip_num;
    opener.updateMemberForm.address.value = sido+" " + gugun + " " + dong ;
    self.close();
-   
 }
+
+function Join(){
+	location.href="gshop.do?command=joinPage";
+}
+
+
+
+
+
+
+

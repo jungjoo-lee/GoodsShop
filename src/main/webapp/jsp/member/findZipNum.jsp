@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<script src="resources/js/member/member.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +14,7 @@
    <form method="post" name="formm" action="gshop.do?command=findZipnum">
       동 이름 : <input name="dong" type="text">
       <input type="submit" value="찾기" class="submit">
+      
    </form>
    
    <table id="zipcode" border="1">
@@ -34,5 +35,6 @@
       </c:forEach>
    </table>
 </div>
+<script src="<c:url value='/resources/js/member.js'/>"></script>
 </body>
 </html>

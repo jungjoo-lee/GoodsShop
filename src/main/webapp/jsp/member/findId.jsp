@@ -11,7 +11,7 @@
 	<form method="post" name="findIdForm" action="gshop.do?command=findId">
 	<h2>아이디 찾기</h2>
 		<div class="field">
-					<label>이름</label><input name="name" type="text"/>
+			<label>이름</label><input name="name" type="text"/>
 		</div>
 	<div class="field">
 			<label>이메일</label><input name="email" type="text"/>

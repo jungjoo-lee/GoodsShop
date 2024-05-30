@@ -9,24 +9,11 @@ function idcheck(){
 	window.open(url, "IDCheck", opt);
 }
 
-function go_next(){
-	
-	if( document.JoinPage.okon[1].checked == true){
-		alert("약관에 동의하지 않으면 가입하실 수 없습니다!!");
-	}else{
-		document.JoinPage.submit();
-	}
-}
 
 function find_zip(){
-	if(document.JoinPage.zip_code.value==""){
-		alert("주소가 입력되지 않았습니다!!");
-		document.JoinPage.zip_code.focus();
-		return;
-	}
-	var url = "shop.do?command=findZipno";
+	var url = "gshop.do?command=findZipnum";
 	var opt = "menubar=no, scrollbars=no, width=550, height=300, top=300, left=300";
-	window.open(url, "findZipno", opt);
+	window.open(url, "findZipnum", opt);
 }
 
 function go_save(){
@@ -51,6 +38,8 @@ function go_save(){
 	}else if( document.JoinPage.email.value == ""){
 		alert("이메일을 입력해주세요.");
 		document.JoinPage.email.focus();
+	}else if( document.JoinPage.yno[1].checked == true){
+		alert("약관 동의를 해주셔야 가입이 가능합니다!");
 	}else{
 		document.JoinPage.submit();
 	}
@@ -60,3 +49,29 @@ function idok(userid){
 	opener.JoinPage.reid.value = userid;
 	self.close();
 }
+
+function addressOK( zip_num, sido, gugun, dong ){
+	opener.document.JoinPage.zip_code.value=zip_num;
+	opener.document.JoinPage.address.value=sido+" "+gugun+" "+dong;
+	self.close();
+}
+function verify(){
+	alert("입력하신 이메일로 인증번호가 전송되었습니다.")
+	var url = "gshop.do?command=getEmail&email="+email.value;
+	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+	window.open(url, "getEmail", opt);
+	
+}
+function send(){
+	opener.document.JoinPage.v_email.value=code;
+	self.close();
+}
+
+function confirm(){
+	// if 이메일로 받은 코드값 != 입력된 코드값 > 인증번호가 일치하지 않습니다
+	// focus
+	// else message : 인증완료
+}
+
+
+

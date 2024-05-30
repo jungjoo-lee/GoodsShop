@@ -39,7 +39,9 @@ public class FindIdAction implements Action {
 		// 이메일 전송 후 작업 수행
 		// 예: 세션에 인증 코드 저장 등
 		HttpSession session = request.getSession();
-		session.setAttribute("verificationCode", verificationCode);
+		session.setAttribute("verificationCode", verificationCode); 
+		
+		System.out.println(verificationCode);
 
 		// 이메일 인증 페이지로 이동
 		response.sendRedirect("emailVerification.jsp");
@@ -57,8 +59,8 @@ public class FindIdAction implements Action {
 		Properties properties = new Properties();
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
-		properties.put("mail.smtp.host", "smtp.example.com"); // SMTP 호스트
-		properties.put("mail.smtp.port", "587"); // SMTP 포트
+		properties.put("mail.smtp.host", "smtp.gmail.com"); // SMTP 호스트
+		properties.put("mail.smtp.port", ""); // SMTP 포트
 
 		Session session = Session.getInstance(properties, new Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -77,8 +79,7 @@ public class FindIdAction implements Action {
 
 			System.out.println("이메일이 성공적으로 전송되었습니다.");
 
-		} catch (MessagingException e) {
-			e.printStackTrace();
+		} catch (MessagingException e) { 	e.printStackTrace();
 		}
 	}
 }

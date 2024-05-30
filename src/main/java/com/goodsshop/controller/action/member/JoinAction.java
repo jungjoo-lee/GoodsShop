@@ -20,7 +20,7 @@ public class JoinAction implements Action {
 		
 		mvo.setUserid(request.getParameter("userid"));
 		mvo.setPwd(request.getParameter("pwd"));
-		mvo.setGseq(Integer.parseInt(request.getParameter("gseq")));
+		//mvo.setGseq(Integer.parseInt(request.getParameter("gseq")));
 		mvo.setName(request.getParameter("name"));
 		mvo.setEmail(request.getParameter("email"));
 		mvo.setZip_code(request.getParameter("zip_code"));
@@ -33,7 +33,7 @@ public class JoinAction implements Action {
 		if( result == 1 ) session.setAttribute("message", "회원가입이 완료되었습니다. 로그인 하세요");
 		else session.setAttribute("message", "관리자에게 문의하세요");
 		
-		response.sendRedirect("shop.do?command=loginForm");
+		response.sendRedirect("gshop.do?command=loginForm");
 	}
 
 }

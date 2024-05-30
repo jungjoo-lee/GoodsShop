@@ -20,7 +20,7 @@
 				</div>
 				<div class="btn">
 					<input type="submit" value="LOGIN" onClick="return loginCheck();">
-					<input type="button" value="JOIN" onClick="">
+					<input type="button" value="JOIN" onClick="return Join();">
 					<input type="button" value="FIND ID" onClick="return findIdForm();">
 				</div>
 			</form>
