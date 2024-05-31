@@ -1,9 +1,9 @@
 function login() {
-	let s = document.querySelector("#login");
+	let login = document.querySelector("#login");
 
-	if (s != null) {
+	if (login != null) {
 
-		s.addEventListener("click", function() {
+		login.addEventListener("click", function() {
 			location.href = "gshop.do?command=login";
 		})
 	}
@@ -12,13 +12,25 @@ login();
 
 
 function gocart() {
-	let g = document.querySelector("#go_cart");
+	let gocart = document.querySelector("#go_cart");
 
-	if (g != null) {
+	if (gocart != null) {
 
-		g.addEventListener("click", function() {
+		gocart.addEventListener("click", function() {
 			location.href = "gshop.do?command=viewCartlist";
 		});
 	}
 }
 gocart();
+
+
+function gowishlist(){
+	let gowish = document.querySelector("#go_wishlist");
+	
+	if (gowish != null) {
+		gowish.addEventListener("click", ()=>{
+			location.href = "gshop.do?command=viewWishlist";
+		})
+	}
+}
+gowishlist();

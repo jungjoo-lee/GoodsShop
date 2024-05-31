@@ -41,7 +41,6 @@ public class GoodsDAO {
 				givo.setFilesize(rs.getLong("filesize"));
 				
 				list.add(givo);
-				System.out.println(givo);
 			}
 			
 		} catch (SQLException e) {
@@ -67,10 +66,7 @@ public class GoodsDAO {
 			
 			if(rs.next()) {
 				thumbnailImage = rs.getString("realname");
-			}
-			
-			
-			
+			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -153,7 +149,7 @@ public class GoodsDAO {
 				gvo = new GoodsVO();
 				gvo.setGseq(rs.getInt("gseq"));
 				gvo.setGname(rs.getString("gname"));
-				gvo.setCategory(rs.getString("category"));
+				gvo.setCgseq(rs.getInt("cgseq"));
 				gvo.setOprice(rs.getInt("o_price"));
 				gvo.setSprice(rs.getInt("s_price"));
 				gvo.setMprice(rs.getInt("m_price"));

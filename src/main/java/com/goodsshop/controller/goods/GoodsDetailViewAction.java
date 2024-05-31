@@ -25,7 +25,6 @@ public class GoodsDetailViewAction implements Action {
 		gvo.setImageList(image);
 		String thum = gdao.getThumbnail(gseq);
 		gvo.setThum(thum);
-		System.out.println("thum : "+thum);
 		
 		
 		request.setAttribute("goodsDetail", gvo);

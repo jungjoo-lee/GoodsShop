@@ -63,7 +63,7 @@
 			</div>
 		</c:forEach>	
 	</div>
-	
+
 	<script type="text/javascript" src='<c:url value = "/resources/js/goods/main.js"/>'></script>
 </body>
 </html>

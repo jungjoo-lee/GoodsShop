@@ -9,7 +9,7 @@ import lombok.Data;
 public class GoodsVO {
 	private int gseq;
 	private String gname;
-	private String category;
+	private int cgseq;
 	private int oprice;
 	private int sprice;
 	private int mprice;

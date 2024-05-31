@@ -6,10 +6,18 @@ import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
 import com.goodsshop.controller.action.member.JoinPageAction;
 import com.goodsshop.controller.action.mypage.DeleteMemberAction;
+import com.goodsshop.controller.cart.DeleteCartAction;
+import com.goodsshop.controller.cart.GetPaymentAction;
+import com.goodsshop.controller.cart.GoOrderAction;
 import com.goodsshop.controller.cart.InsertCartAction;
+import com.goodsshop.controller.cart.InsertWishAction;
+import com.goodsshop.controller.cart.OrderCartAction;
 import com.goodsshop.controller.cart.ViewCartAction;
+import com.goodsshop.controller.cart.ViewWishAction;
+import com.goodsshop.controller.cart.WishToCartAction;
 import com.goodsshop.controller.goods.GoodsCategoryAction;
 import com.goodsshop.controller.goods.GoodsDetailViewAction;
+import com.goodsshop.controller.goods.OrderNowAction;
 import com.goodsshop.controller.member.login.FindIdAction;
 import com.goodsshop.controller.member.login.FindIdFormAction;
 import com.goodsshop.controller.member.login.FindZipnumAction;
@@ -53,8 +61,16 @@ public class ActionFactory {
 
 		//goods
 		if(command.equals("goodsDetailView")) ac = new GoodsDetailViewAction();
-		if(command.equals("addCart")) ac = new InsertCartAction();
 		if(command.equals("viewCartlist")) ac = new ViewCartAction();
+		if(command.equals("viewWishlist")) ac = new ViewWishAction();
+		if(command.equals("addCart")) ac = new InsertCartAction();
+		if(command.equals("addWish")) ac = new InsertWishAction();
+		if(command.equals("wishToCart")) ac = new WishToCartAction();
+		if(command.equals("deleteCart")) ac = new DeleteCartAction();
+		if(command.equals("orderNow")) ac = new OrderNowAction();
+		if(command.equals("orderFromCart")) ac = new OrderCartAction();
+		if(command.equals("getPayment")) ac = new GetPaymentAction();
+		if(command.equals("goOrder")) ac = new GoOrderAction();
 		
 		
 		
