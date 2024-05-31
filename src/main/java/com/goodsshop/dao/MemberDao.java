@@ -63,7 +63,7 @@ public class MemberDao {
 			pstmt.setString(6, mvo.getZip_code());
 			pstmt.setString(7, mvo.getAddress());
 			pstmt.setString(8, mvo.getD_address());
-			pstmt.setInt(9, mvo.getGseq());
+			pstmt.setInt(9, 1);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) { e.printStackTrace();
 		} finally { DB.close(con, pstmt, rs); }

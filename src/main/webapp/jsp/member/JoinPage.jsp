@@ -36,11 +36,11 @@
 							<input type="button" value="인증번호 전송" onClick="verify()">
 						
 				</div>
-				<div class="field">
+				<!-- <div class="field">
 						<label>본인 인증 코드&nbsp;&nbsp;&nbsp;</label>
 						<input type="text" name="v_email" size="14"  placeholder="6자리 코드 입력">
-						<input type="button" value="인증하기" onClick="confirm()" readonly="readonly">
-				</div><hr/>
+						<input type="button" value="인증하기" onClick="m_confirm(${verificationCode})" readonly="readonly">
+				</div> --><hr/>
 
 			<h3>부가 정보</h3>
 				<div class="field">
@@ -64,8 +64,7 @@
 				</p>
 				<div class="btn">
 						<input type="button" value="가입하기" onClick="go_save()">
-						<input type="button" value="메인으로" 
-									onClick="gshop.do?command=main">
+						<input type="button" value="처음으로" onClick="gshop.do?command=loginForm">
 				</div>
 				
 		</table>
