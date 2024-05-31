@@ -31,8 +31,8 @@
 							</select>
 							<div class="btn-group" role="group" aria-label="Basic outlined example">
 				                <button type="button" class="btn btn-outline-secondary active" id="all"><i class="bi bi-list"></i></button>
-				                <button type="button" class="btn btn-outline-secondary" id="incom"><i class="bi bi-check-circle"></i></button>
-				            	<button type="button" class="btn btn-outline-secondary" id="com"><i class="bi bi-x-circle"></i></button>
+				                <button type="button" class="btn btn-outline-secondary" id="null"><i class="bi bi-check-circle"></i></button>
+				            	<button type="button" class="btn btn-outline-secondary" id="notnull"><i class="bi bi-x-circle"></i></button>
 				            </div>
 				    	</div>
 				    	<div class="col d-flex justify-content-end"> <!-- 검색 폼 -->
