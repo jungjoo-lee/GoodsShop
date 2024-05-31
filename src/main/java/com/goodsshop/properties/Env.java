@@ -34,9 +34,9 @@ public class Env {
     
     // goods
     
-    // admin
-    public static String getAdmin() {
-    	return prop.getProperty("getAdmin");
+    // qna
+    public static String getMainQnaList() {
+    	return prop.getProperty("getMainQnaList");
     }
     
     public static String getQnaList() {
@@ -51,15 +51,42 @@ public class Env {
     	return prop.getProperty("getQna");
     }
     
-    public static String writeReply() {
-    	return prop.getProperty("writeReply");
+    // review
+    public static String getMainReviewList() {
+    	return prop.getProperty("getMainReviewList");
     }
     
-    public static String updateReply() {
-    	return prop.getProperty("updateReply");
+    public static String getReviewList() {
+    	return prop.getProperty("getReviewList");
+    }
+    
+    public static String getReviewTotal() {
+    	return prop.getProperty("getReviewTotal");
+    }
+    
+    public static String getReview() {
+    	return prop.getProperty("getReview");
+    }
+    
+    // admin
+    public static String getAdmin() {
+    	return prop.getProperty("getAdmin");
+    }
+    
+    public static String writeUpdateReply() {
+    	return prop.getProperty("writeUpdateReply");
     }
     
     public static String deleteReply() {
     	return prop.getProperty("deleteReply");
+    }
+    
+    // test
+    public static String getQnaTestList() {
+    	return prop.getProperty("getQnaTestList");
+    }
+    
+    public static String getReviewTestList() {
+    	return prop.getProperty("getReviewTestList");
     }
 }

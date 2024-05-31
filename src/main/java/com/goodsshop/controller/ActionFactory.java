@@ -5,16 +5,20 @@ import com.goodsshop.controller.action.IndexAction;
 import com.goodsshop.controller.action.admin.AdminIndexAction;
 import com.goodsshop.controller.action.admin.AdminLoginAction;
 import com.goodsshop.controller.action.admin.AdminLoginFormAction;
-import com.goodsshop.controller.action.admin.QnaAction;
+import com.goodsshop.controller.action.admin.AdminQnaListAction;
 import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
-import com.goodsshop.controller.action.admin.QnaViewAction;
+import com.goodsshop.controller.action.admin.AdminQnaViewAction;
 import com.goodsshop.controller.action.goods.GoodsCategoryAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
 import com.goodsshop.controller.action.member.JoinPageAction;
 import com.goodsshop.controller.action.mypage.DeleteMemberAction;
+import com.goodsshop.controller.action.qna.QnaListAction;
+import com.goodsshop.controller.action.qna.QnaViewAction;
+import com.goodsshop.controller.action.review.ReviewListAction;
+import com.goodsshop.controller.action.review.ReviewViewAction;
 import com.goodsshop.controller.member.login.FindIdAction;
 import com.goodsshop.controller.member.login.FindIdFormAction;
 import com.goodsshop.controller.member.login.FindZipnumAction;
@@ -35,11 +39,20 @@ public class ActionFactory {
 		
 		if( command.equals("index") ) ac = new IndexAction();	
 		else if (command.equals("goodsCategory")) ac = new GoodsCategoryAction();
+		// qna
+		else if (command.equals("qnaList")) ac = new QnaListAction();
+		else if (command.equals("qnaView")) ac = new QnaViewAction();
+		
+		// review
+		else if (command.equals("reviewList")) ac = new ReviewListAction();
+		else if (command.equals("reviewView")) ac = new ReviewViewAction();
+		
+		// admin
 		else if (command.equals("adminLoginForm")) ac = new AdminLoginFormAction();
 		else if (command.equals("adminLogin")) ac = new AdminLoginAction();
 		else if (command.equals("adminIndex")) ac = new AdminIndexAction();
-		else if (command.equals("qna")) ac = new QnaAction();
-		else if (command.equals("qnaView")) ac = new QnaViewAction();
+		else if (command.equals("adminQnaList")) ac = new AdminQnaListAction();
+		else if (command.equals("adminQnaView")) ac = new AdminQnaViewAction();
 		else if (command.equals("qnaReplyWrite")) ac = new QnaReplyWriteAction();
 		else if (command.equals("qnaReplyUpdate")) ac = new QnaReplyUpdateAction();
 		else if (command.equals("qnaReplyDelete")) ac = new QnaReplyDeleteAction();

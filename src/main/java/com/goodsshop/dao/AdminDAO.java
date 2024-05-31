@@ -127,12 +127,25 @@ public class AdminDAO {
 		return vo;
 	}
 	
-	public void writeReply(String reply, int qseq) {
+	public void writeUpdateReply(String reply, int qseq) {
 		try {
 			conn = DB.getConnection();
-			pstmt = conn.prepareStatement(Env.writeReply());
+			pstmt = conn.prepareStatement(Env.writeUpdateReply());
 			pstmt.setString(1, reply);
 			pstmt.setInt(2, qseq);
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+	}
+	
+	public void deleteReply(int qseq) {
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.deleteReply());
+			pstmt.setInt(1, qseq);
 			pstmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class QnaAction implements Action {
+public class AdminQnaListAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
@@ -32,6 +32,6 @@ public class QnaAction implements Action {
 		
 		request.setAttribute("qnaList", dao.getQnaList(paging.getAmount(), paging.getCurrentPage()));
 		request.setAttribute("paging", paging);
-		request.getRequestDispatcher("/WEB-INF/jsp/admin/qna.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/admin/qnaList.jsp").forward(request, response);
 	}
 }

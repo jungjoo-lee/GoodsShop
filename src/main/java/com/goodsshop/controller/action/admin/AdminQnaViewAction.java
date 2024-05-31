@@ -9,14 +9,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class QnaReplyDeleteAction implements Action {
+public class AdminQnaViewAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AdminDAO dao = AdminDAO.getInstance();
-		int qseq = Integer.parseInt(request.getParameter("qseq"));
 		
-		dao.deleteReply(qseq);
-		
-		response.sendRedirect("gshop.do?command=qnaView&qseq=" + qseq);
+		request.setAttribute("vo", dao.getQna(Integer.parseInt(request.getParameter("qseq"))));
+		request.getRequestDispatcher("/WEB-INF/jsp/admin/qnaView.jsp").forward(request, response);
 	}
 }

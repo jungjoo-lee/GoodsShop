@@ -65,7 +65,7 @@
 				  							<c:otherwise>(답변완료)</c:otherwise>
 				  						</c:choose>
 				  						</td>
-				  						<td><a href="<c:url value='/gshop.do?command=qnaView&qseq=${qna.qseq}'/>">${qna.subject}</a></td>
+				  						<td><a href="<c:url value='/gshop.do?command=adminQnaView&qseq=${qna.qseq}'/>">${qna.subject}</a></td>
 				  						<td class="text-center">${qna.userid}</td>
 				  						<td class="text-center"><fmt:formatDate value="${qna.indate}" /></td>
 				  					</tr>

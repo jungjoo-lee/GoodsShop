@@ -16,7 +16,7 @@ public class QnaReplyWriteAction implements Action {
 		int qseq = Integer.parseInt(request.getParameter("qseq"));
 		String reply = request.getParameter("reply");
 		
-		dao.writeReply(reply, qseq);
+		dao.writeUpdateReply(reply, qseq);
 		
 		response.sendRedirect("gshop.do?command=qnaView&qseq=" + qseq);
 	}
