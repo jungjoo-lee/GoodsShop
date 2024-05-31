@@ -2,6 +2,15 @@ package com.goodsshop.controller;
 
 import com.goodsshop.controller.action.Action;
 import com.goodsshop.controller.action.IndexAction;
+import com.goodsshop.controller.action.admin.AdminIndexAction;
+import com.goodsshop.controller.action.admin.AdminLoginAction;
+import com.goodsshop.controller.action.admin.AdminLoginFormAction;
+import com.goodsshop.controller.action.admin.QnaAction;
+import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
+import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
+import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
+import com.goodsshop.controller.action.admin.QnaViewAction;
+import com.goodsshop.controller.action.goods.GoodsCategoryAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
 import com.goodsshop.controller.action.member.JoinPageAction;
@@ -14,7 +23,6 @@ import com.goodsshop.controller.member.login.LoginFormAction;
 import com.goodsshop.controller.member.login.LogoutAction;
 import com.goodsshop.controller.member.update.UpdateMemberAction;
 import com.goodsshop.controller.member.update.UpdateMemberFormAction;
-import com.goodsshop.controller.action.goods.GoodsCategoryAction;
 
 
 public class ActionFactory {

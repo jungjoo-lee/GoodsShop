@@ -9,5 +9,5 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public interface FatchAction {
-	public JSONObject execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException;
+	public JSONObject execute(HttpServletRequest request, HttpServletResponse response, JSONObject jsonObj) throws ServletException, IOException;
 }
