@@ -27,6 +27,14 @@ public class ActionFactory {
 		
 		if( command.equals("index") ) ac = new IndexAction();	
 		else if (command.equals("goodsCategory")) ac = new GoodsCategoryAction();
+		else if (command.equals("adminLoginForm")) ac = new AdminLoginFormAction();
+		else if (command.equals("adminLogin")) ac = new AdminLoginAction();
+		else if (command.equals("adminIndex")) ac = new AdminIndexAction();
+		else if (command.equals("qna")) ac = new QnaAction();
+		else if (command.equals("qnaView")) ac = new QnaViewAction();
+		else if (command.equals("qnaReplyWrite")) ac = new QnaReplyWriteAction();
+		else if (command.equals("qnaReplyUpdate")) ac = new QnaReplyUpdateAction();
+		else if (command.equals("qnaReplyDelete")) ac = new QnaReplyDeleteAction();
 		
 		//멤버
 		else if (command.equals("loginForm")) ac = new LoginFormAction();
