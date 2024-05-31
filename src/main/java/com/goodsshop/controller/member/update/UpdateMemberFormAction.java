@@ -3,7 +3,7 @@ package com.goodsshop.controller.member.update;
 import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.controller.member.MemberVO;
+import com.goodsshop.dto.MemberVO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

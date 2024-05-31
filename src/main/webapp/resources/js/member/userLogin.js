@@ -19,7 +19,9 @@ function findIdForm(){
 }
 
 /* 아이디찾기 */
-function findId(){
+function findId(){ 
+	var name = document.findIdForm.name.value;
+    var email = document.findIdForm.email.value;
 	if(document.findIdForm.name.value==""){
 		alert("이름을 입력하세요");
 		document.findIdForm.name.focus();
@@ -29,9 +31,59 @@ function findId(){
 		document.findIdForm.email.focus();
 		return false;
 	}else{
-		location.href="gshop.do?command=findId&email="+email.value;
+        document.findIdForm.submit();
+    }
 }
+/* 비밀번호 찾기 창으로 이동*/
+function findPwdForm(){
+	location.href="gshop.do?command=findPwdForm"
 }
+
+function findPwd(){
+	var userid = document.findIdForm.userid.value;
+    var email = document.findIdForm.email.value;
+	if(document.findPwdForm.userid.value==""){
+		alert("아이디을 입력하세요");
+		document.findPwdForm.userid.focus();
+		return false;
+	}else if(document.findPwdForm.email.value==""){
+		alert("이메일을 입력하세요");
+		document.findPwdForm.email.focus();
+		return false;
+	}else{
+        document.findPwdForm.submit();
+    }
+}
+
+function PwdCodeOK(){
+	var userid = document.formm.userid.value;
+    var email = document.formm.email.value;
+	var securityCodeInput = document.formm.securityCodeInput.value;
+	if(document.formm.securityCodeInput.value==""){
+		alert("인증코드를 입력하세요");
+		document.formm.securityCodeInput.focus();
+		return false;
+	}else {
+		document.formm.submit();
+	}
+
+}
+
+function codeOK(){
+	var userName = document.formm.name.value;
+    var userEmail = document.formm.email.value;
+	var securityCodeInput = document.formm.securityCodeInput.value;
+	if(document.formm.securityCodeInput.value==""){
+		alert("인증코드를 입력하세요");
+		document.formm.securityCodeInput.focus();
+		return false;
+	}else {
+		document.formm.submit();
+	}
+
+}
+
+
 /* 회원 정보 수정 */
 function go_updateMember(){
 	 if(document.updateMemberForm.pwd.value == "") {

@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
+    
+    
 <div id="popup">
-		<form method="post" name="formm" action="gshop.do?command=searchId">
-		   	<input type="hidden" name="name" value="<%= session.getAttribute("name") %>">
+		<form method="post" name="frm" action="gshop.do?command=searchPwd">
+		   	<input type="hidden" name="userid" value="<%= session.getAttribute("userid") %>">
         	<input type="hidden" name="email" value="<%= session.getAttribute("email") %>">
 						<label>본인 인증 코드&nbsp;&nbsp;&nbsp;</label>
 						<input type="text" name="securityCodeInput" id="securityCodeInput">
-						<input type="submit" value="인증" onClick="return codeOK();"/>
+						<input type="submit" value="인증" onClick="return PwdCodeOK();"/>
 						<div style="font-size:80%; font-weight:bold">${message}</div>
 						<div id="timer"></div>
 		</form>	

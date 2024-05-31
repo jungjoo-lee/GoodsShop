@@ -1,4 +1,4 @@
-package com.goodsshop.controller.action.goods.dto;
+package com.goodsshop.dto;
 
 import java.sql.Date;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.goodsshop.controller.member;
+package com.goodsshop.dto;
 
 import lombok.Data;
 

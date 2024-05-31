@@ -12,9 +12,10 @@
 					<label>비밀번호</label><input name="pwd" type="password"/>
 				</div>
 				<div class="btn">
-					<input type="submit" value="LOGIN" onClick="return loginCheck();">
-					<input type="button" value="JOIN" onClick="">
-					<input type="button" value="FIND ID" onClick="return findIdForm();">
+					<input type="submit" value="로그인" onClick="return loginCheck();">
+					<input type="button" value="회원가입" onClick="">
+					<input type="button" value="아이디 찾기" onClick="return findIdForm();">
+					<input type="button" value="비밀번호 찾기" onClick="return findPwdForm();">
 				</div>
 			</form>
 			<div style="font-size:80%; font-weight:bold">${message}</div>
