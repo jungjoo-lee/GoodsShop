@@ -77,13 +77,60 @@ public class AdminDAO {
 		
 		return qnaList;
 	}
-
+	
+	public List<QnaVO> getQnaList(String sql){
+		List<QnaVO> qnaList = new ArrayList<>();
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				qnaList.add(QnaVO.builder()
+						.qseq(rs.getInt(1))
+						.userid(rs.getString(2))
+						.subject(rs.getString(3))
+						.content(rs.getString(4))
+						.indate(rs.getTimestamp(5))
+						.reply(rs.getString(6))
+						.build());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return qnaList;
+	}
+	
 	public int getTotalQna() {
 		int total = 0;
 		
 		try {
 			conn = DB.getConnection();
 			pstmt = conn.prepareStatement(Env.getQnaTotal());
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return total;
+	}
+
+	public int getTotalQna(String sql) {
+		int total = 0;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {

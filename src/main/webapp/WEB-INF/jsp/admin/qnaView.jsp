@@ -46,7 +46,7 @@
 							</form>
 						</c:otherwise>
 					</c:choose>
-					<a class="btn btn-light" href="<c:url value='/gshop.do?command=qna'/>">목록</a>
+					<a class="btn btn-light" href="<c:url value='/gshop.do?command=adminQnaList'/>">목록</a>
         		</div>
         	</div>
         </div>

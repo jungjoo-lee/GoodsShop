@@ -29,20 +29,20 @@
 						  		<option value=50>50</option>
 						  		<option value=100>100</option>
 							</select>
-							<div class="btn-group" role="group" aria-label="Basic outlined example">
+							<div class="btn-group">
 				                <button type="button" class="btn btn-outline-secondary active" id="all"><i class="bi bi-list"></i></button>
-				                <button type="button" class="btn btn-outline-secondary" id="null"><i class="bi bi-check-circle"></i></button>
-				            	<button type="button" class="btn btn-outline-secondary" id="notnull"><i class="bi bi-x-circle"></i></button>
+				                <button type="button" class="btn btn-outline-secondary" id="notnull"><i class="bi bi-check-circle"></i></button>
+				            	<button type="button" class="btn btn-outline-secondary" id="null"><i class="bi bi-x-circle"></i></button>
 				            </div>
 				    	</div>
 				    	<div class="col d-flex justify-content-end"> <!-- 검색 폼 -->
-				    		<select class="form-select w-25 me-1" name="selectAmount" id="selectAmount">
+				    		<select class="form-select w-25 me-1" name="search" id="search">
 						  		<option value="subject" selected>제목</option>
 						  		<option value="userid">작성자</option>
 							</select>
-				      		<form class="d-flex" role="search">
-					      		<input class="form-control me-2" name="keyword" id="keyword" type="search" placeholder="Search">
-					    	</form>
+				      		<div class="d-flex">
+					      		<input class="form-control me-2" name="keyword" id="keyword" type="text" placeholder="Search">
+					    	</div>
 				    	</div>
 					</div>
 					<br/>

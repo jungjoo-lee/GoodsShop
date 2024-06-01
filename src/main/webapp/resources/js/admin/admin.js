@@ -1,22 +1,23 @@
 let selectAmount = document.querySelector("#selectAmount");
 let pages = document.querySelectorAll('.page-link');
 let paging;
+let reply;
+let searchType = document.querySelector('#search');
+let search = searchType.options[searchType.selectedIndex].value;
+let keywordInput = document.querySelector("#keyword");
+let keyword = '';
 
 document.addEventListener("DOMContentLoaded", function() {
     getPageInfo();
 });
 
-function getPageInfo() {
-	let param = {
-		"command" : "pageInfo",
-	};
-	
+function getPageInfo() {	
 	fetch('/GoodsShop/gshop.do?command=asyn', {
 		method : 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
 		},
-			body: JSON.stringify(param)
+			body: JSON.stringify({"command" : "pageInfo"})
 		})
 		.then(response => response.json())
 		.then(jsonResult => {
@@ -31,6 +32,14 @@ function getPageInfo() {
 			}
 	});
 }
+
+keywordInput.addEventListener("keydown", (e) => {
+	keyword = keywordInput.value;
+	
+	if (e.keyCode === 13) {
+		asynGetContent();
+	}
+});
 
 selectAmount.addEventListener("change", () => {
 	paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
@@ -47,17 +56,21 @@ selectAmount.addEventListener("change", () => {
 	}
 })
 
+searchType.addEventListener("change", () => {
+	search = searchType.options[searchType.selectedIndex].value;
+})
+
 function addPagingEvent() {
 	pages = document.querySelectorAll('.page-link');
 	
 	pages.forEach(page => {
 		page.addEventListener("click", (e) => {
 			if (e.target.getAttribute('data-value') == "prev") {
-				paging.currentPage = paging.startPage - 10;
+				paging.currentPage = parseInt(paging.startPage - 10);
 			} else if (e.target.getAttribute('data-value') == "next") {
-				paging.currentPage = paging.startPage + 10;
+				paging.currentPage = parseInt(paging.startPage + 10);
 			} else {
-				paging.currentPage = e.target.getAttribute('data-value');
+				paging.currentPage = parseInt(e.target.getAttribute('data-value'));
 			}
 			asynGetContent();
 		});
@@ -78,8 +91,12 @@ function formatDate(dateString) {
 function asynGetContent() {
 	let param = {
 		"command" : "getContent",
+		"table" : "qna",
 		"amount" : paging.amount,
 		"page" : paging.currentPage,
+		"reply" : reply,
+		"search" : search,
+		"keyword" : keyword,
 	};
 		
 	fetch('/GoodsShop/gshop.do?command=asyn', {
@@ -104,7 +121,7 @@ function asynGetContent() {
 					else
 						content += '(답변완료)';
 					content += '</td>';
-					content += '<td><a href="/GoodsShop/gshop.do?command=qnaView&qseq=' + contentList[i].qseq + '">' + contentList[i].subject + '</a></td>';
+					content += '<td><a href="/GoodsShop/gshop.do?command=adminQnaView&qseq=' + contentList[i].qseq + '">' + contentList[i].subject + '</a></td>';
 					content += '<td class="text-center">' + contentList[i].userid + '</td>';
 					content += '<td class="text-center">' + formatDate(contentList[i++].indate) + '</td>';
 					content += '</tr>';
@@ -209,6 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             buttons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
+            reply = button.id;
+            asynGetContent()
         });
     });
 });
