@@ -34,6 +34,19 @@ public class Env {
     
     // goods
     
+    // notice
+    public static String getMainNoticeList() {
+    	return prop.getProperty("getMainNoticeList");
+    }
+    
+    public static String getNoticeList() {
+    	return prop.getProperty("getNoticeList");
+    }
+    
+    public static String getNoticeTotal() {
+    	return prop.getProperty("getNoticeTotal");
+	}
+    
     // qna
     public static String getMainQnaList() {
     	return prop.getProperty("getMainQnaList");

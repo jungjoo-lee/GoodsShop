@@ -16,6 +16,7 @@ import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
 import com.goodsshop.controller.action.member.JoinPageAction;
 import com.goodsshop.controller.action.mypage.DeleteMemberAction;
+import com.goodsshop.controller.action.notice.NoticeListAction;
 import com.goodsshop.controller.action.qna.QnaListAction;
 import com.goodsshop.controller.action.qna.QnaViewAction;
 import com.goodsshop.controller.action.review.ReviewListAction;
@@ -40,6 +41,9 @@ public class ActionFactory {
 		
 		if( command.equals("index") ) ac = new IndexAction();	
 		else if (command.equals("goodsCategory")) ac = new GoodsCategoryAction();
+		//notice
+		else if (command.equals("noticeList")) ac = new NoticeListAction();
+		
 		// qna
 		else if (command.equals("qnaList")) ac = new QnaListAction();
 		else if (command.equals("qnaView")) ac = new QnaViewAction();

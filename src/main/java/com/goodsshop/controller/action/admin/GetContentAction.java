@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goodsshop.controller.action.FatchAction;
 import com.goodsshop.dao.AdminDAO;
+import com.goodsshop.dao.NoticeDAO;
 import com.goodsshop.dao.ReviewDAO;
 import com.goodsshop.util.Paging;
 import com.goodsshop.util.SqlBuilder;
@@ -110,14 +111,14 @@ public class GetContentAction implements FatchAction {
 		HttpSession session = request.getSession();
 		JSONObject jsonResult = new JSONObject();
 		SqlBuilder sb = SqlBuilder.getInstance();
-		AdminDAO dao = AdminDAO.getInstance();
+		NoticeDAO dao = NoticeDAO.getInstance();
 		
 		StringBuilder sql = null;
 		String jsonString = null;
 		
 		try {
 			sql = sb.build(0, json);
-			int total = dao.getTotalQna(sql.toString());
+			int total = dao.getTotalNotice(sql.toString());
 			int currentPage = json.getInt("page");
 			int amount = json.getInt("amount");
 			Paging paging = new Paging(currentPage, amount, total);
@@ -133,7 +134,7 @@ public class GetContentAction implements FatchAction {
 	        sql = sb.build(1, json);
 	        
 	        jsonResult.put("status", true);
-			jsonResult.put("content", dao.getQnaList(sql.toString()));
+			jsonResult.put("content", dao.getNoticeList(sql.toString()));
 			jsonResult.put("paging", new JSONObject(jsonString));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();

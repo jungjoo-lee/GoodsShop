@@ -12,8 +12,49 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
+<!-- 공지사항 -->
+<div class="card w-100 ms-3 me-2">
+  <div class="card-header d-flex justify-content-between">
+  	<div>공지사항</div>
+    <div>
+    	<a href="<c:url value='/gshop.do?command=noticeList'/>"><i class="bi bi-plus-circle"></i> 전체보기</a>
+    </div>
+  </div>
+  <ul class="list-group list-group-flush">
+  	<c:forEach var="notice" items="${noticeList}">
+  	<li class="list-group-item list-group-item-action d-flex">
+  		<div>${notice.nseq}</div>
+  		<div>${notice.adminId}</div>
+  		<div>
+	  		<a href="">
+	  		<c:choose>
+		        <c:when test="${fn:length(notice.subject) gt 26}">
+		        	<c:out value="${fn:substring(notice.subject, 0, 25)}">...</c:out>
+		        </c:when>
+		        <c:otherwise>
+		        	<c:out value="${notice.subject}"/>
+		        </c:otherwise>
+			</c:choose>
+			</a>
+		</div>
+		<div>
+			<c:choose>
+		        <c:when test="${fn:length(notice.content) gt 26}">
+		        	<c:out value="${fn:substring(notice.content, 0, 25)}">...</c:out>
+		        </c:when>
+		        <c:otherwise>
+		        	<c:out value="${notice.content}"/>
+		        </c:otherwise>
+			</c:choose>
+		</div>
+		<div><fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" /></div>
+	</li>
+  	</c:forEach>
+  </ul>
+</div>
 
 <div class="d-flex col">
+	<!-- Q&A -->
 	<div class="card w-50 ms-3 me-2">
 	  <div class="card-header d-flex justify-content-between">
 	  	<div>Q&A</div>
@@ -44,7 +85,7 @@
 	  	</c:forEach>
 	  </ul>
 	</div>
-	
+	<!-- review -->
 	<div class="card w-50 ms-2 me-3">
 	  <div class="card-header d-flex justify-content-between">
 	  	<div>Review</div>

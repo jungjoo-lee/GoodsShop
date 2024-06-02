@@ -38,8 +38,9 @@
 							</div>
 							<div class="col d-flex justify-content-end">
 					    		<select class="form-select w-25 me-1" name="search" id="search">
-							  		<option value="category" selected>카테고리</option>
-							  		<option value="gname">굿즈명</option>
+							  		<option value="sc" selected>제목 + 내용</option>
+							  		<option value="subject">제목</option>
+							  		<option value="content">내용</option>
 								</select>
 					      		<div class="d-flex">
 						      		<input class="form-control me-2" name="keyword" id="keyword" type="text" placeholder="Search">
@@ -126,8 +127,9 @@
 							</div>
 							<div class="col d-flex justify-content-end">
 					    		<select class="form-select w-25 me-1" name="mySearch" id="mySearch">
-							  		<option value="category" selected>카테고리</option>
-							  		<option value="gname">굿즈명</option>
+							  		<option value="sc" selected>제목 + 내용</option>
+							  		<option value="subject">제목</option>
+							  		<option value="content">내용</option>
 								</select>
 					      		<div class="d-flex">
 						      		<input class="form-control me-2" name="myKeyword" id="myKeyword" type="text" placeholder="Search">
