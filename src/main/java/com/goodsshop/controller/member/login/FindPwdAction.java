@@ -50,7 +50,6 @@ public class FindPwdAction implements Action {
 			 		request.setAttribute("message", "등록된 회원이 아닙니다");
 			 		 request.getRequestDispatcher("jsp/member/findPwdForm.jsp").forward(request, response);
 			 	}	else if (mvo.getEmail() == null || mvo.getUserid() == null || !mvo.getEmail().equals(email) || !mvo.getUserid().equals(userid)) {
-			 		System.out.println("뭐가null 인데 시발ㄹㄹㄹㄹㄹㄹㄹㄹㄹ");
 			 		System.out.println(userid);
 					System.out.println(email);
 		            request.setAttribute("message", "등록된 회원이 아닙니다");

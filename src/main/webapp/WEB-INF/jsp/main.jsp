@@ -3,17 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="header.jsp" %>
-<!DOCTYPE html>
-<html>
-
-<head>
-<meta charset="UTF-8">
-<title>main</title>
-</head>
 
 
 
-<body>
 메인페이지입니다.
 
 	<h3>하이</h3>
@@ -42,8 +34,8 @@
 			</div>
 		</c:forEach>	
 	</div>
-</body>
+   </div>
+</div>
 
-</html>
 
 <%@ include file="footer.jsp" %>

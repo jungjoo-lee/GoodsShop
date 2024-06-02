@@ -29,10 +29,11 @@
             display.textContent = minutes + ":" + seconds;
 
             if (--timer < 0) {
+            	display.style.display = 'none';
                 clearInterval(intervalId);
                 document.getElementById('securityCodeInput').disabled = true;
                 document.querySelector('input[type="submit"]').disabled = true;
-                document.querySelector('input[type="submit"]').value = "인증번호가 만료 됐습니다";
+                document.querySelector('input[type="submit"]').value = "인증시간 만료";
             }
         }, 1000);
     }

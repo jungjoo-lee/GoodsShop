@@ -8,6 +8,7 @@ import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
 import com.goodsshop.controller.action.member.JoinPageAction;
 import com.goodsshop.controller.action.member.SearchIdAction;
+import com.goodsshop.controller.action.member.SearchPwdAction;
 import com.goodsshop.controller.action.mypage.DeleteMemberAction;
 import com.goodsshop.controller.member.login.FindIdAction;
 import com.goodsshop.controller.member.login.FindIdFormAction;
@@ -42,6 +43,7 @@ public class ActionFactory {
 		else if (command.equals("searchId")) ac = new SearchIdAction();
 		else if (command.equals("findPwdForm")) ac = new FindPwdFormAction();
 		else if (command.equals("findPwd")) ac = new FindPwdAction();
+		else if (command.equals("searchPwd")) ac = new SearchPwdAction();
 
 		// 멤버 페이지
 		else if (command.equals("updateMemberForm")) ac = new UpdateMemberFormAction();

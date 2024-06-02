@@ -155,7 +155,7 @@ public class MemberDao {
 	        List<MemberVO> list = new ArrayList<>();
 	        try {
 	        	con = DB.getConnection();
-	            String sql = "SELECT userid, name, email FROM members WHERE name = ? AND email = ?";
+	            String sql = "select userid, name, email from member where name = ? and email = ?";
 	            pstmt = con.prepareStatement(sql);
 	            pstmt.setString(1, name);
 	            pstmt.setString(2, email);
@@ -176,10 +176,10 @@ public class MemberDao {
 
 
 		public MemberVO checkMembers(String userid, String email) {
-				MemberVO mvo = null;
-			con = DB.getConnection();
-			String sql = "select * from member where userid=? and email=? ";
+			 MemberVO mvo = null;
 			try {
+				con = DB.getConnection();
+				String sql = "select pwd, userid, email from member where userid = ? and email = ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, userid);
 				pstmt.setString(2, email);
@@ -193,6 +193,31 @@ public class MemberDao {
 			}
 			return mvo;
 		}
+
+
+		public List<MemberVO> checkMemberPwd(String userid, String email) {
+			 List<MemberVO> list = new ArrayList<>();
+		        try {
+		        	con = DB.getConnection();
+		        	 String sql = "select pwd, userid, email from member where userid = ? and email = ?";
+		            pstmt = con.prepareStatement(sql);
+		            pstmt.setString(1, userid);
+		            pstmt.setString(2, email);
+		            rs = pstmt.executeQuery();
+
+		            while (rs.next()) {
+		            MemberVO mvo = new MemberVO();
+		            mvo.setUserid(rs.getString("userid"));
+		            mvo.setEmail(rs.getString("email"));
+		            mvo.setPwd(rs.getString("pwd"));
+		            list.add(mvo);
+		            }
+		        } catch (SQLException e) {
+		            e.printStackTrace();
+		        } 
+		        return list;
+		}
+
 }
 
 
