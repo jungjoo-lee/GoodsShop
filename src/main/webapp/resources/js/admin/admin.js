@@ -17,7 +17,7 @@ function getPageInfo() {
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
 		},
-			body: JSON.stringify({"command" : "pageInfo"})
+			body: JSON.stringify({"command" : "pageInfo", "table" : "qna"})
 		})
 		.then(response => response.json())
 		.then(jsonResult => {
@@ -41,13 +41,22 @@ keywordInput.addEventListener("keydown", (e) => {
 	}
 });
 
+keywordInput.addEventListener("input", (e) => {
+	keyword = keywordInput.value;
+});
+
 selectAmount.addEventListener("change", () => {
 	paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
 	
 	let realEnd = Math.ceil(paging.total / paging.amount);
 	
-	if (realEnd < paging.currentPage)
-		paging.currentPage = realEnd;
+	if (realEnd < paging.currentPage) {
+		if (realEnd <= 0) {
+			paging.currentPage = 1;
+		} else {
+			paging.currentPage = realEnd;
+		}
+	}
 	
 	if (paging.amount == 0) {
 		return;
@@ -98,7 +107,7 @@ function asynGetContent() {
 		"search" : search,
 		"keyword" : keyword,
 	};
-		
+
 	fetch('/GoodsShop/gshop.do?command=asyn', {
 		method : 'POST',
 		headers: {

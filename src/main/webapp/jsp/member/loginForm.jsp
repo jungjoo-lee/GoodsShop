@@ -13,10 +13,10 @@
 			<form method="post" action="gshop.do?command=login" name="loginForm">
 				<h2>로그인</h2>
 				<div class="field">
-					<label>아이디</label><input name="userid" type="text"/>
+					<label>아이디</label><input name="userid" type="text" value="hong10"/>
 				</div>
 				<div class="field">
-					<label>비밀번호</label><input name="pwd" type="password"/>
+					<label>비밀번호</label><input name="pwd" type="password" value="10"/>
 				</div>
 				<div class="btn">
 					<input type="submit" value="LOGIN" onClick="return loginCheck();">

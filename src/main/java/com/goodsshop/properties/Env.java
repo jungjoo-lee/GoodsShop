@@ -60,8 +60,16 @@ public class Env {
     	return prop.getProperty("getReviewList");
     }
     
+    public static String getMyReviewList() {
+    	return prop.getProperty("getMyReviewList");
+    }
+    
     public static String getReviewTotal() {
     	return prop.getProperty("getReviewTotal");
+    }
+    
+    public static String getMyReviewTotal() {
+    	return prop.getProperty("getMyReviewTotal");
     }
     
     public static String getReview() {
