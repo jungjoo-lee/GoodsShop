@@ -68,7 +68,7 @@ public class CartDAO {
 		}		
 	}
 
-	public void deleteFromWish(int gseqInt) {
+	public void deleteWish(int gseqInt) {
 		con = DB.getConnection();
 		String sql = "delete from cart where gseq = ?";
 		

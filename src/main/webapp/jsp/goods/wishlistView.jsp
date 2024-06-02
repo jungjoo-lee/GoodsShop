@@ -26,6 +26,7 @@
 
 		<div>
 			<input id="go_main" type="button" value="쇼핑 계속하기"> 
+			<input id="wish_delete" type="button" value="선택상품 삭제">
 			<input id="wish_to_cart" type="button" value="선택상품을 장바구니에 추가">
 		</div>
 		

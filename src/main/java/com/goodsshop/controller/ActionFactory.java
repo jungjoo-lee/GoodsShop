@@ -66,6 +66,7 @@ public class ActionFactory {
 		if(command.equals("addCart")) ac = new InsertCartAction();
 		if(command.equals("addWish")) ac = new InsertWishAction();
 		if(command.equals("wishToCart")) ac = new WishToCartAction();
+		if(command.equals("deleteWish")) ac = new DeleteWishAction();
 		if(command.equals("deleteCart")) ac = new DeleteCartAction();
 		if(command.equals("orderNow")) ac = new OrderNowAction();
 		if(command.equals("orderFromCart")) ac = new OrderCartAction();

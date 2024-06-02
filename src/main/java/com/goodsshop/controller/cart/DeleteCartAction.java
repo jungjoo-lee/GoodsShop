@@ -22,10 +22,6 @@ public class DeleteCartAction implements Action {
 		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
 		List<CartVO> cartlist = (List<CartVO>)session.getAttribute("cartlist");
 		
-		for (CartVO cvo : cartlist) {
-			System.out.println(cvo);
-		}
-		
 		String [] gseqs = request.getParameterValues("gseq");
 		
 		
