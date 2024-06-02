@@ -33,11 +33,10 @@ public class ReviewDAO {
 				list.add(ReviewVO.builder()
 						.rseq(rs.getInt(1))
 						.userid(rs.getString(2))
-						.gseq(rs.getInt(3))
-						.gname(rs.getString(4))
-						.subject(rs.getString(5))
-						.content(rs.getString(6))
-						.indate(rs.getTimestamp(7))
+						.gseq(rs.getInt(4))
+						.gname(rs.getString(6))
+						.subject(rs.getString(7))
+						.indate(rs.getTimestamp(9))
 						.build());
 			}
 		} catch (SQLException e) {
@@ -54,21 +53,23 @@ public class ReviewDAO {
 		
 		try {
 			conn = DB.getConnection();
-			pstmt = conn.prepareStatement(Env.getReviewTestList());
+			pstmt = conn.prepareStatement(Env.getReviewList());
+			pstmt.setInt(1, 10);
+			pstmt.setInt(2, 0);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
 				list.add(ReviewVO.builder()
 						.rseq(rs.getInt(1))
 						.userid(rs.getString(2))
-						.grade(rs.getString(3))
+						.grade(rs.getInt(3))
 						.gseq(rs.getInt(4))
 						.category(rs.getString(5))
 						.gname(rs.getString(6))
 						.subject(rs.getString(7))
-						.content(rs.getString(8))
-						.indate(rs.getTimestamp(9))
-						.giseq(rs.getInt(10))
+						.indate(rs.getTimestamp(8))
+						.giseq(rs.getInt(9))
+						.realName(rs.getString(10))
 						.build());
 			}
 		} catch (SQLException e) {

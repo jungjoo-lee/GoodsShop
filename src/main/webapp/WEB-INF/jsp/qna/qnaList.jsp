@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Q&A</title>
+<link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 </head>
 <body>
 <c:forEach var="qna" items="${qnaList}">

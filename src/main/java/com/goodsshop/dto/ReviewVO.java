@@ -12,7 +12,7 @@ import lombok.Data;
 public class ReviewVO {
 	private int rseq;
 	private String userid;
-	private String grade;
+	private int grade;
 	private int gseq;
 	private String category;
 	private String gname;

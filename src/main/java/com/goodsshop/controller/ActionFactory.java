@@ -1,6 +1,7 @@
 package com.goodsshop.controller;
 
 import com.goodsshop.controller.action.Action;
+import com.goodsshop.controller.action.ImageWriteAction;
 import com.goodsshop.controller.action.IndexAction;
 import com.goodsshop.controller.action.admin.AdminIndexAction;
 import com.goodsshop.controller.action.admin.AdminLoginAction;
@@ -68,6 +69,8 @@ public class ActionFactory {
 		else if (command.equals("updateMemberForm")) ac = new UpdateMemberFormAction();
 		else if (command.equals("updateMember")) ac = new UpdateMemberAction();
 		else if (command.equals("findZipnum")) ac = new FindZipnumAction();
+		
+		else if (command.equals("imageWrite")) ac = new ImageWriteAction();
 		//member
 		if( command.equals("join") ) 									ac = new JoinAction();
 		if( command.equals("joinPage") ) 							ac = new JoinPageAction();

@@ -80,13 +80,4 @@ public class Env {
     public static String deleteReply() {
     	return prop.getProperty("deleteReply");
     }
-    
-    // test
-    public static String getQnaTestList() {
-    	return prop.getProperty("getQnaTestList");
-    }
-    
-    public static String getReviewTestList() {
-    	return prop.getProperty("getReviewTestList");
-    }
 }

@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+ul {
+	list-style-type: none;
+}
+
+.review-header, .review-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.review-header div, .review-item div {
+    flex: 1;
+    text-align: center;
+}
+
+.review-header .small-col, .review-item .small-col {
+    flex: 0.3;
+}
+
+.review-item img {
+    width: 100px;
+    height: auto;
+}
+
+
+#badge {
+	width: 30px;
+	height: auto;
+}

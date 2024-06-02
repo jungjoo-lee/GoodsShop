@@ -51,7 +51,9 @@ public class QnaDAO {
 		
 		try {
 			conn = DB.getConnection();
-			pstmt = conn.prepareStatement(Env.getQnaTestList());
+			pstmt = conn.prepareStatement(Env.getQnaList());
+			pstmt.setInt(1, 10);
+			pstmt.setInt(2, 0);
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
