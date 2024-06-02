@@ -68,7 +68,7 @@
 	               					<div>${rev.gname}</div>
 	               					<div>${rev.subject}</div>
 	               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}</div>
-	               					<div><fmt:formatDate value="${rev.indate}"  type="both" pattern="yyyy-MM-dd" /></div>
+	               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
                					</div>
 							</li>
 							</c:forEach>
@@ -95,7 +95,7 @@
 						  		<c:if test="${num == paging.currentPage}">
 						  			<li class="page-item active"><a class="page-link" data-value="${num}">${num}</a></li>
 						  		</c:if>
-						  		<c:if test="${num != myPaging.currentPage}">
+						  		<c:if test="${num != paging.currentPage}">
 						  			<li class="page-item"><a class="page-link" data-value="${num}">${num}</a></li>
 						  		</c:if>
 						  	</c:forEach>
@@ -158,7 +158,7 @@
 	               					<div>${rev.subject}</div>
 	               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}
 	               					</div>
-	               					<div><fmt:formatDate value="${rev.indate}"  type="both" pattern="yyyy-MM-dd" /></div>
+	               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
                					</div>
 							</li>
 						</c:forEach>

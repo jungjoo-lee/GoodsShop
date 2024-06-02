@@ -139,7 +139,7 @@ public class ReviewDAO {
 	}
 
 	public int getTotalMyReview(String userid) {
-int total = 0;
+		int total = 0;
 		
 		try {
 			conn = DB.getConnection();

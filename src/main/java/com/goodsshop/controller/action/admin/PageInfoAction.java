@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goodsshop.controller.action.FatchAction;
 import com.goodsshop.controller.member.MemberVO;
 import com.goodsshop.dao.AdminDAO;
+import com.goodsshop.dao.QnaDAO;
 import com.goodsshop.dao.ReviewDAO;
 import com.goodsshop.util.Paging;
 
@@ -20,9 +21,7 @@ import jakarta.servlet.http.HttpSession;
 public class PageInfoAction implements FatchAction {
 	@Override
 	public JSONObject execute(HttpServletRequest request, HttpServletResponse response, JSONObject json) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		JSONObject jsonResult = new JSONObject();
-		AdminDAO dao = AdminDAO.getInstance();
 
 		switch ((String)json.getString("table")) {
 			case "qna" -> jsonResult = totalQna(request, jsonResult);
@@ -37,7 +36,7 @@ public class PageInfoAction implements FatchAction {
 	private JSONObject totalQna(HttpServletRequest request, JSONObject json) {
 		HttpSession session = request.getSession();
 		JSONObject jsonResult = new JSONObject();
-		AdminDAO dao = AdminDAO.getInstance();
+		QnaDAO dao = QnaDAO.getInstance();
 
 		try {
 			int total = dao.getTotalQna();
@@ -50,12 +49,21 @@ public class PageInfoAction implements FatchAction {
 			if(session.getAttribute("amount") != null) {
 				amount = (Integer)session.getAttribute("amount");
 			}
-			
 			Paging paging = new Paging(currentPage, amount, total);
-			
 			ObjectMapper mapper = new ObjectMapper();
 	        String jsonString;
 	        
+	        if ((MemberVO)session.getAttribute("loginUser") != null) {
+	        	MemberVO vo = (MemberVO)session.getAttribute("loginUser");
+				int myTotal = dao.getTotalMyQna(vo.getUserid());
+				int myCurrentPage = 1;
+				if(session.getAttribute("myCurrentPage") != null) {
+					myCurrentPage = (Integer)session.getAttribute("myCurrentPage");
+				}
+				Paging myPaging = new Paging(myCurrentPage, amount, myTotal);
+				jsonString = mapper.writeValueAsString(myPaging);
+				jsonResult.put("myPaging", new JSONObject(jsonString));
+	        }
 			jsonString = mapper.writeValueAsString(paging);
 			jsonResult.put("status", true);
 			jsonResult.put("paging", new JSONObject(jsonString));
@@ -72,7 +80,6 @@ public class PageInfoAction implements FatchAction {
 		HttpSession session = request.getSession();
 		JSONObject jsonResult = new JSONObject();
 		ReviewDAO dao = ReviewDAO.getInstance();
-		MemberVO vo = (MemberVO)session.getAttribute("loginUser");
 
 		try {
 			int total = dao.getTotalReview();
@@ -86,22 +93,24 @@ public class PageInfoAction implements FatchAction {
 				amount = (Integer)session.getAttribute("amount");
 			}
 			Paging paging = new Paging(currentPage, amount, total);
-			
-			int myTotal = dao.getTotalMyReview(vo.getUserid());
-			int myCurrentPage = 1;
-			if(session.getAttribute("myCurrentPage") != null) {
-				myCurrentPage = (Integer)session.getAttribute("myCurrentPage");
-			}
-			Paging myPaging = new Paging(myCurrentPage, amount, myTotal);
-			
 			ObjectMapper mapper = new ObjectMapper();
 	        String jsonString;
+	        
+			if ((MemberVO)session.getAttribute("loginUser") != null) {
+				MemberVO vo = (MemberVO)session.getAttribute("loginUser");
+				int myTotal = dao.getTotalMyReview(vo.getUserid());
+				int myCurrentPage = 1;
+				if(session.getAttribute("myCurrentPage") != null) {
+					myCurrentPage = (Integer)session.getAttribute("myCurrentPage");
+				}
+				Paging myPaging = new Paging(myCurrentPage, amount, myTotal);
+				jsonString = mapper.writeValueAsString(myPaging);
+				jsonResult.put("myPaging", new JSONObject(jsonString));
+			}
 	        
 			jsonString = mapper.writeValueAsString(paging);
 			jsonResult.put("status", true);
 			jsonResult.put("paging", new JSONObject(jsonString));
-			jsonString = mapper.writeValueAsString(myPaging);
-			jsonResult.put("myPaging", new JSONObject(jsonString));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 			jsonResult.put("status", false);

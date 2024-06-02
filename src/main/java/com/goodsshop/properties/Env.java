@@ -43,8 +43,16 @@ public class Env {
     	return prop.getProperty("getQnaList");
     }
     
+    public static String getMyQnaList() {
+		return prop.getProperty("getMyQnaList");
+	}
+    
     public static String getQnaTotal() {
     	return prop.getProperty("getQnaTotal");
+    }
+    
+    public static String getMyQnaTotal() {
+    	return prop.getProperty("getMyQnaTotal");
     }
     
     public static String getQna() {
