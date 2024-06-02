@@ -10,3 +10,7 @@ INNER JOIN (
     GROUP BY gseq
 ) AS max_gi ON g.gseq = max_gi.gseq
 INNER JOIN goodsimage gi ON max_gi.max_giseq = gi.giseq;
+
+-member _view-
+create view member_view as
+select m.*, g.gseq as gradeNum, g.gname, g.sale from member m inner join grade g on m.gseq = g.gseq;

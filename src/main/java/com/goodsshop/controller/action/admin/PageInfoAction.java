@@ -27,7 +27,7 @@ public class PageInfoAction implements FatchAction {
 			case "qna" -> jsonResult = totalQna(request, jsonResult);
 			case "review_view" -> jsonResult = totalReview(request, jsonResult);
 			case "notice" -> jsonResult = totalNotice(request, jsonResult);
-			case "member" -> jsonResult = totalMember(request, jsonResult);
+			case "member_view" -> jsonResult = totalMember(request, jsonResult);
 		}
 		
 		return jsonResult;
@@ -160,7 +160,7 @@ public class PageInfoAction implements FatchAction {
 		AdminDAO dao = AdminDAO.getInstance();
 
 		try {
-			int total = dao.getTotalQna();
+			int total = dao.getTotalMember();
 			int currentPage = 1;
 			int amount = 10;
 			

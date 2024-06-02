@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 import com.goodsshop.dto.AdminVO;
+import com.goodsshop.dto.MemberVO;
 import com.goodsshop.dto.QnaVO;
 import com.goodsshop.properties.Env;
 import com.goodsshop.util.DB;
@@ -49,7 +50,118 @@ public class AdminDAO {
 		return vo;
 	}
 	
-	public List<QnaVO> getQnaList(int amount, int currentPage){
+	public List<MemberVO> getMemberList(int amount, int currentPage) {
+		List<MemberVO> memberList = new ArrayList<>();
+		int offset = (currentPage - 1) * amount;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.getMemberList());
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, offset);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				memberList.add(MemberVO.builder()
+						.userid(rs.getString(1))
+						.gseq(rs.getInt(3))
+						.name(rs.getString(4))
+						.email(rs.getString(5))
+						.phone(rs.getString(6))
+						.zip_code(rs.getString(7))
+						.address(rs.getString(8))
+						.d_address(rs.getString(9))
+						.indate(rs.getTimestamp(10))
+						.last_login_time(rs.getTimestamp(11))
+						.is_login(rs.getInt(12))
+						.grade(rs.getString(14))
+						.sale(rs.getInt(15))
+						.build());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return memberList;
+	}
+	
+	public List<MemberVO> getMemberList(String sql) {
+		List<MemberVO> memberList = new ArrayList<>();
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				memberList.add(MemberVO.builder()
+						.userid(rs.getString(1))
+						.gseq(rs.getInt(3))
+						.name(rs.getString(4))
+						.email(rs.getString(5))
+						.phone(rs.getString(6))
+						.zip_code(rs.getString(7))
+						.address(rs.getString(8))
+						.d_address(rs.getString(9))
+						.indate(rs.getTimestamp(10))
+						.last_login_time(rs.getTimestamp(11))
+						.is_login(rs.getInt(12))
+						.grade(rs.getString(14))
+						.sale(rs.getInt(15))
+						.build());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return memberList;
+	}
+	
+	public int getTotalMember() {
+		int total = 0;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.getMemberTotal());
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return total;
+	}
+	
+	public int getTotalMember(String sql) {
+		int total = 0;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return total;
+	}
+	
+	public List<QnaVO> getQnaList(int amount, int currentPage) {
 		List<QnaVO> qnaList = new ArrayList<>();
 		int offset = (currentPage - 1) * amount;
 		
@@ -79,7 +191,7 @@ public class AdminDAO {
 		return qnaList;
 	}
 	
-	public List<QnaVO> getQnaList(String sql){
+	public List<QnaVO> getQnaList(String sql) {
 		List<QnaVO> qnaList = new ArrayList<>();
 		
 		try {

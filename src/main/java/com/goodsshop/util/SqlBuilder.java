@@ -16,7 +16,8 @@ public class SqlBuilder {
     public StringBuilder build(int type, JSONObject json) throws JsonMappingException, JsonProcessingException {
     	System.out.println(json.toString());
         Map<String, Object> map = new ObjectMapper().readValue(json.toString(), Map.class);
-        Map<String, String> validTables = Map.of("qna", "qseq desc", "review_view", "rseq desc", "member", "indate desc", "notice", "nseq desc");
+        Map<String, String> validTables = Map.of("qna", "qseq desc", "review_view", "rseq desc", "member_view", "indate desc",
+        		"notice", "nseq desc", "goods", "gseq desc");
 
         if (!validTables.containsKey(map.get("table"))) {
             throw new IllegalArgumentException("테이블 : " + map.get("table") + "없음");

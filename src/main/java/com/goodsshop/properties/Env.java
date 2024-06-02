@@ -102,6 +102,14 @@ public class Env {
     	return prop.getProperty("getAdmin");
     }
     
+    public static String getMemberList() {
+		return prop.getProperty("getMemberList");
+	}
+    
+    public static String getMemberTotal() {
+		return prop.getProperty("getMemberTotal");
+	}
+    
     public static String writeUpdateReply() {
     	return prop.getProperty("writeUpdateReply");
     }

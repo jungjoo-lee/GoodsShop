@@ -25,7 +25,7 @@ public class GetContentAction implements FatchAction {
 			case "qna" -> jsonResult = returnQna(request, json);
 			case "review_view" -> jsonResult = returnReview(request, json);
 			case "notice" -> jsonResult = returnNotice(request, json);
-			case "member" -> jsonResult = returnMember(request, json);
+			case "member_view" -> jsonResult = returnMember(request, json);
 		}
 		
 		return jsonResult;
@@ -156,7 +156,7 @@ public class GetContentAction implements FatchAction {
 		
 		try {
 			sql = sb.build(0, json);
-			int total = dao.getTotalQna(sql.toString());
+			int total = dao.getTotalMember(sql.toString());
 			int currentPage = json.getInt("page");
 			int amount = json.getInt("amount");
 			Paging paging = new Paging(currentPage, amount, total);
@@ -172,7 +172,7 @@ public class GetContentAction implements FatchAction {
 	        sql = sb.build(1, json);
 	        
 	        jsonResult.put("status", true);
-			jsonResult.put("content", dao.getQnaList(sql.toString()));
+			jsonResult.put("content", dao.getMemberList(sql.toString()));
 			jsonResult.put("paging", new JSONObject(jsonString));
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
