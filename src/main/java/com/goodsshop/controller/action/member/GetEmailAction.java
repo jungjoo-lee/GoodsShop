@@ -73,26 +73,28 @@ public class GetEmailAction implements Action {
          Message message = new MimeMessage(session);
          message.setFrom(new InternetAddress(SENDER_EMAIL));
          // 이메일 주소가 null 이 아닌 경우에만 이메일 주소를 설정합니다.
-           if (email != null && !email.equals("")) {
-               message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-               System.out.println(email);
-               // 이메일 제목 설정
-                message.setSubject("이메일 인증 코드");
 
-                // 이메일 본문 설정
-                String emailContent = "회원 가입 이메일 인증 코드입니다 : " + verificationCode;
-                message.setText(emailContent);
+         			if(email == null || email.equals("")){
+                   System.out.println(email);
+                    // 이메일 주소가 null 이거나 비어있는 경우에 대한 처리를 수행합니다.
+                    System.out.println("이메일 주소가 올바르지 않습니다.");
 
-                // 이메일 전송
-                Transport.send(message);
-                
-              System.out.println("이메일이 성공적으로 전송되었습니다.");
-           } else if(email == null || email.equals("")){
-              System.out.println(email);
-               // 이메일 주소가 null 이거나 비어있는 경우에 대한 처리를 수행합니다.
-               System.out.println("이메일 주소가 올바르지 않습니다.");
-              
-               return; // 메서드 종료
+     	 			}else {
+                    message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
+                    System.out.println(email);
+                    // 이메일 제목 설정
+                     message.setSubject("이메일 인증 코드");
+
+                     // 이메일 본문 설정
+                     String emailContent = "회원 가입 이메일 인증 코드입니다 : " + verificationCode;
+                     message.setText(emailContent);
+
+                     // 이메일 전송
+                     Transport.send(message);
+                     
+                    System.out.println("이메일이 성공적으로 전송되었습니다.");
+                   
+                    return; // 메서드 종료
            }
       } catch (MessagingException e) {e.printStackTrace();}
    }

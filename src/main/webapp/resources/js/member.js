@@ -59,22 +59,22 @@ function verify(){
 	if(document.JoinPage.email.value==""){
 	alert("이메일을 입력하지 않았습니다!!")
 	}
+/*	else if{
+	// 이메일 형식이 아니면 "올바른 이메일 형식이 아니다" 로 표시되게 걸어두기.	
+	}*/
 	else{
 	console.log("check");
 	var ans = confirm("입력하신 이 주소가 맞나요?");
-	if (ans){
-	alert("입력하신 이메일로 인증번호가 전송되었습니다.");
-	var url = "gshop.do?command=getEmail&email="+email.value;
-	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
-	window.open(url, "getEmail", opt);
-	}
+		if (ans){
+		alert("입력하신 이메일로 인증번호가 전송되었습니다.");
+		var url = "gshop.do?command=getEmail&email="+email.value;
+		var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
+		window.open(url, "getEmail", opt);
+		}
 	
 	}
 
 }
-/*function shutPage(){
-	self.close();
-}*/
 
 function m_confirm(verificationCode){
 	var vemail = document.getElementById('vemail').value;		// id가 있어야 그걸 받아오겠지...?
@@ -85,9 +85,6 @@ function m_confirm(verificationCode){
 		alert("인증 성공! 회원가입을 계속 진행해주세요.")
 		self.close();
 	}
-	// if 세션에 저장된 값 != 입력된 코드값 > 인증번호가 일치하지 않습니다. 다시 입력해주세요
-	// focus
-	// else message : 인증 성공!
 }
 
 

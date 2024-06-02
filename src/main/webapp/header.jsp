@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="resources/css/member.css">
 
 
 </head>
@@ -41,7 +42,7 @@
 		<nav id="category_menu">
 			
 			<div>Temporary Space Check</div>
-
+			<hr>
 		</nav>
 	</header>
 	

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="resources/css/member.css">
 <title>Insert title here</title>
 </head>
 <body>
@@ -12,7 +13,7 @@
 <div id="popup">
 		2분 이내에 이메일로 전송된 인증번호를 입력해주세요!!
 		<input type="text" id="vemail" name="vemail" size="14"  placeholder="6자리 코드 입력">
-		<input type="button" value="인증하기" name="submit" onClick="m_confirm(${verificationCode})">
+		<input type="button" value="인증하기"  id="m_confirm" onClick="m_confirm(${verificationCode})">
 		<div id="timer"></div>
 </div>
 <script src="<c:url value='/resources/js/member.js'/>"></script>
@@ -32,15 +33,16 @@ function startTimer(count, display){
 			if(--timer < 0) {
 				clearInterval(intervalid);
 				document.getElementById('vemail'),disabled = true;
-				document.querySelector('input[type="submit"]').disabled = true;
-				document.querySelector('input[type="submit"]').value = 
+				document.querySelector('input[type="button"]').disabled = true;
+				document.querySelector('input[type="button"]').value = 
 					"세션이 만료되었습니다. 다시 진행해주세요!!";
+				style.display=none;
 			}
 		},1000);
 	}
 	// 페이지 로드 시 타이머 시작
 	window.onload = function () {
-	    var twoMins = 60 * 2,
+	    var twoMins = 10,
 	        display = document.querySelector('#timer');
 	    startTimer(twoMins, display);
 	};
