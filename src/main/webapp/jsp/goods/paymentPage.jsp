@@ -14,7 +14,10 @@
 			<h3> Payment Page </h3>
 		</div>
 		
-		<div> 상품 갯수: ${param.numberOfGoods}</div>
+
+		<div>${orderProductList[0].gname} 포함 총 ${param.numberOfGoods} 개의 상품</div>
+
+
 		<div> 상품 총액: ${param.orderTotalPrice}</div>
 		
 		<input id="get_payment" type="button" value="결제하기">

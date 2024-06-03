@@ -65,3 +65,16 @@ function deletewish(){
 }
 
 deletewish();
+
+
+function gomain(){
+	let main = document.querySelector("#go_main");
+	
+	if(main != null){
+		main.addEventListener("click", ()=>{
+			location.href="gshop.do?command=index";
+		})
+	}
+}
+
+gomain();

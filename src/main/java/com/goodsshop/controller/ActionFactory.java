@@ -27,17 +27,19 @@ import com.goodsshop.controller.action.qna.QnaViewAction;
 import com.goodsshop.controller.action.review.ReviewListAction;
 import com.goodsshop.controller.action.review.ReviewViewAction;
 import com.goodsshop.controller.cart.DeleteCartAction;
+import com.goodsshop.controller.cart.DeleteWishAction;
 import com.goodsshop.controller.cart.GetPaymentAction;
 import com.goodsshop.controller.cart.GoOrderAction;
 import com.goodsshop.controller.cart.InsertCartAction;
 import com.goodsshop.controller.cart.InsertWishAction;
 import com.goodsshop.controller.cart.OrderCartAction;
 import com.goodsshop.controller.cart.ViewCartAction;
+import com.goodsshop.controller.cart.ViewOrderAction;
 import com.goodsshop.controller.cart.ViewWishAction;
 import com.goodsshop.controller.cart.WishToCartAction;
 import com.goodsshop.controller.goods.GoodsCategoryAction;
 import com.goodsshop.controller.goods.GoodsDetailViewAction;
-import com.goodsshop.controller.goods.OrderNowAction;
+import com.goodsshop.controller.cart.OrderNowAction;
 import com.goodsshop.controller.member.login.FindIdAction;
 import com.goodsshop.controller.member.login.FindIdFormAction;
 import com.goodsshop.controller.member.login.FindPwdAction;
@@ -115,14 +117,17 @@ public class ActionFactory {
 		//goods
 		if(command.equals("goodsDetailView")) ac = new GoodsDetailViewAction();
 		if(command.equals("viewCartlist")) ac = new ViewCartAction();
-		if(command.equals("viewWishlist")) ac = new ViewWishAction();
 		if(command.equals("addCart")) ac = new InsertCartAction();
+		if(command.equals("deleteCart")) ac = new DeleteCartAction();
+		
+		if(command.equals("viewWishlist")) ac = new ViewWishAction();
 		if(command.equals("addWish")) ac = new InsertWishAction();
 		if(command.equals("wishToCart")) ac = new WishToCartAction();
 		if(command.equals("deleteWish")) ac = new DeleteWishAction();
-		if(command.equals("deleteCart")) ac = new DeleteCartAction();
-		if(command.equals("orderNow")) ac = new OrderNowAction();
+		
+		if(command.equals("viewOrderList")) ac = new ViewOrderAction();
 		if(command.equals("orderFromCart")) ac = new OrderCartAction();
+		if(command.equals("orderNow")) ac = new OrderNowAction();
 		if(command.equals("getPayment")) ac = new GetPaymentAction();
 		if(command.equals("goOrder")) ac = new GoOrderAction();
 		

@@ -1,4 +1,4 @@
-package com.goodsshop.controller.goods;
+package com.goodsshop.controller.cart;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -49,7 +49,7 @@ public class OrderNowAction implements Action {
 		
 		list.add(ovo);
 		
-		request.setAttribute("orderProductList", list);
+		session.setAttribute("orderProductList", list);
 		request.getRequestDispatcher("jsp/goods/orderPage.jsp").forward(request, response);
 	}
 
