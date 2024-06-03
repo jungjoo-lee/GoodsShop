@@ -15,7 +15,7 @@
 					<input type="submit" value="로그인" onClick="return loginCheck();"><br/>
 					<input type="button" value="아이디 찾기" onClick="return findIdForm();">
 					<input type="button" value="비밀번호 찾기" onClick="return findPwdForm();"><br/>
-					<input type="button" value="회원가입" onClick="">
+					<input type="button" value="회원가입" onClick="return Join()">
 				</div>
 			</form>
 			<div style="font-size:80%; font-weight:bold">${message}</div>

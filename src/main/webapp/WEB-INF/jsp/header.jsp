@@ -36,7 +36,7 @@
 				</div>
 			</div>
 		</nav>
-		<div id="logo"><a href="gshop.do?command=loginForm">FLOWER ON YOU</a></div>
+		<div id="logo"><a href="gshop.do?command=index">FLOWER ON YOU</a></div>
 		<nav id="category_menu">
 			<div>BEST50</div>
 			<div>헤어악세서리</div>

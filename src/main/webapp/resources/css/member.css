@@ -19,13 +19,11 @@ a{text-decoration:none;}
 .gnb a{
 	text-decoration : none;
 	margin-left: 20px;
-	font-family: Rockwell;
 	color: #800000;
 	font-weight: bold;
 }
 
 .field{
-	border: 1px dotted black;
 	position:relative;
 	height: 45px;
 	line-height: 45px;
