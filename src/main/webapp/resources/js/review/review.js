@@ -130,7 +130,7 @@ function asynGetContent() {
 					content += '<div class="small-col">[' + contentList[i].category + ']</div>';
 					content += '<div>' + contentList[i].gname + '</div>';
 					content += '<div>' + contentList[i].subject + '</div>';
-					content += '<div><img id="badge" src="/resources/image/badge/' + contentList[i].grade + '.png"> ' + contentList[i].userid + '</div>';
+					content += '<div><img id="badge" src="/GoodsShop/resources/image/badge/' + contentList[i].grade + '.png"> ' + contentList[i].userid + '</div>';
 					content += '<div>' + formatDate(contentList[i++].indate) + '</div>';
 					content += '</div>';
 					content += '</li>';

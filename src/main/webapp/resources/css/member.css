@@ -8,29 +8,6 @@
 }
 a{text-decoration:none;}
 
-.gnb{
-	flex:5;
-	display: flex;
-	background-color : ivory;
-	height: 25px;
-	line-height: 25px;
-	text-align: center;
-}
-.gnb a{
-	text-decoration : none;
-	margin-left: 20px;
-	font-family: Rockwell;
-	color: #800000;
-	font-weight: bold;
-}
-
-.field{
-	border: 1px dotted black;
-	position:relative;
-	height: 45px;
-	line-height: 45px;
-}
-
 label{
 	margin: 10px;
 	font-weight: bold;

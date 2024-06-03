@@ -8,12 +8,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/header.css">
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
-<link rel="stylesheet" href="resources/css/member.css">
+<link rel="stylesheet" href="resources/css/loginForm.css">
 </head>
 <body>
 
 <div id="wrap">
-	<header>
+	<header id="header">
 		<nav id="top_menu">
 			<div class="gnb">
 				<div class="left-links">
