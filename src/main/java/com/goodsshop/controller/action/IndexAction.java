@@ -3,10 +3,10 @@ package com.goodsshop.controller.action;
 import java.io.IOException;
 import java.util.List;
 
-import com.goodsshop.controller.action.goods.dao.GoodsDAO;
-import com.goodsshop.controller.action.goods.dto.GoodsImageVO;
-import com.goodsshop.controller.action.goods.dto.GoodsVO;
 
+import com.goodsshop.dao.GoodsDAO;
+import com.goodsshop.dto.GoodsImageVO;
+import com.goodsshop.dto.GoodsVO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

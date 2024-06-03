@@ -1,6 +1,14 @@
 package com.goodsshop.controller.member.login;
 
 import java.io.IOException;
+
+import com.goodsshop.controller.action.Action;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 import java.util.Properties;
 import java.util.Random;
 
@@ -18,34 +26,35 @@ import com.goodsshop.dao.MemberDao;
 import com.goodsshop.dto.MemberVO;
 import com.goodsshop.properties.Env;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+
 import jakarta.servlet.http.HttpSession;
 
-public class FindIdAction implements Action {
+public class FindPwdAction implements Action {
 
 	private static final String SENDER_EMAIL  =  Env.getSendEmail(); // 보내는 사람 이메일 주소
 	private static final String SENDER_PASSWORD =  Env.getEmailPwd(); // 보내는 사람 이메일 비밀번호
-	private static final long CODE_EXPIRATION_DURATION = 1000;
+	private static final long CODE_EXPIRATION_DURATION = 3 * 60 * 1000;
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 저장된 name 과 email 불러오기
-		String name = request.getParameter("name");
+		// 저장된 userid 과 email 불러오기
+		String userid = request.getParameter("userid");
 		String email = request.getParameter("email");
+		
 		// dao 불러오기
 		MemberDao mdao = MemberDao.getInstance();
-		MemberVO mvo = mdao.checkMember(name, email);
-		String url="jsp/email/emailVerification.jsp";
+		MemberVO mvo = mdao.checkMembers(userid, email);
+		String url="jsp/email/PwdEmail.jsp";
 		 try {
 			 	if(mvo== null){ 
 			 		request.setAttribute("message", "등록된 회원이 아닙니다");
-			 		 request.getRequestDispatcher("jsp/member/findIdForm.jsp").forward(request, response);
-			 	}	else if (mvo.getEmail() == null || mvo.getName() == null || !mvo.getEmail().equals(email) || !mvo.getName().equals(name)) {
+			 		 request.getRequestDispatcher("jsp/member/findPwdForm.jsp").forward(request, response);
+			 	}	else if (mvo.getEmail() == null || mvo.getUserid() == null || !mvo.getEmail().equals(email) || !mvo.getUserid().equals(userid)) {
+			 		System.out.println(userid);
+					System.out.println(email);
 		            request.setAttribute("message", "등록된 회원이 아닙니다");
-		            request.getRequestDispatcher("jsp/member/findIdForm.jsp").forward(request, response);
-		        } else if (mvo.getEmail().equals(email) && mvo.getName().equals(name)) {
+		            request.getRequestDispatcher("jsp/member/findPwdForm.jsp").forward(request, response);
+		        } else if (mvo.getEmail().equals(email) && mvo.getUserid().equals(userid)) {
 		        	request.setAttribute("message", "인증번호가 전송되었습니다");
 		            // 랜덤한 인증 코드 생성
 		            String verificationCode = generateVerificationCode();
@@ -59,7 +68,7 @@ public class FindIdAction implements Action {
 		            HttpSession session = request.getSession();
 	                session.setAttribute("verificationCode", verificationCode);
 	                session.setAttribute("verificationCodeExpiration", System.currentTimeMillis() + CODE_EXPIRATION_DURATION);
-	                session.setAttribute("name", name);
+	                session.setAttribute("userid", userid);
 	                session.setAttribute("email", email);
 	             
 

@@ -8,11 +8,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class FindIdFormAction implements Action {
+public class FindPwdFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("jsp/member/findIdForm.jsp").forward(request, response); // 경로
+		request.getRequestDispatcher("jsp/member/findPwdForm.jsp").forward(request, response); // 경로
+
 	}
 
 }

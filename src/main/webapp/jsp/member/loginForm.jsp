@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script src="resources/js/member/member.js"></script>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
 <section>
 		<article>
 			<form method="post" action="gshop.do?command=login" name="loginForm">
@@ -19,13 +12,14 @@
 					<label>비밀번호</label><input name="pwd" type="password"/>
 				</div>
 				<div class="btn">
-					<input type="submit" value="LOGIN" onClick="return loginCheck();">
-					<input type="button" value="JOIN" onClick="">
-					<input type="button" value="FIND ID" onClick="return findIdForm();">
+					<input type="submit" value="로그인" onClick="return loginCheck();">
+					<input type="button" value="회원가입" onClick="">
+					<input type="button" value="아이디 찾기" onClick="return findIdForm();">
+					<input type="button" value="비밀번호 찾기" onClick="return findPwdForm();">
 				</div>
 			</form>
 			<div style="font-size:80%; font-weight:bold">${message}</div>
 		</article>
 </section>
-</body>
-</html>
+<script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>
