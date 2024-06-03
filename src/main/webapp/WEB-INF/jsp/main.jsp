@@ -5,11 +5,6 @@
 <%@ include file="header.jsp" %>
 
 
-
-메인페이지입니다.
-
-	<h3>하이</h3>
-
 	<div>
 		<div> <h3>베스트 20</h3> </div>
 		<c:forEach items="${bestlist}" var="gvo" varStatus="status">
