@@ -31,6 +31,7 @@
 			<c:set var="numberOfGoods" value="${numberOfGoods + ovo.quantity}"></c:set>
 			<c:set var="orderTotalPrice"
 				value="${orderTotalPrice + ovo.totalprice}"></c:set>
+			<input type="hidden" name="gseq" value="${ovo.gseq}">
 		</c:forEach>
 
 		<div>총 ${numberOfGoods} 개의 상품, 총액 : ${orderTotalPrice}</div>
