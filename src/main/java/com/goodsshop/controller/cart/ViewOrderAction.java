@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.controller.member.MemberVO;
 import com.goodsshop.dao.OrderDAO;
+import com.goodsshop.dto.MemberVO;
 import com.goodsshop.dto.OrderVO;
 
 import jakarta.servlet.ServletException;
@@ -26,5 +26,5 @@ public class ViewOrderAction implements Action {
 		
 		request.setAttribute("orderList", orderList);
 		request.getRequestDispatcher("jsp/mypage/orderlistView.jsp").forward(request, response);
-	}
+	}	
 }

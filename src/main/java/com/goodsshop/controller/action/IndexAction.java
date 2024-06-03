@@ -57,8 +57,6 @@ public class IndexAction implements Action {
 		
 		List<CartVO> cartlist = new ArrayList<CartVO>();
 		
-		
-		
 		request.setAttribute("bestlist", bestlist);
 		request.setAttribute("newlist", newlist);
 		

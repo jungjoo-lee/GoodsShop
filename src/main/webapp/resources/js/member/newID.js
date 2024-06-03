@@ -26,7 +26,7 @@ function post_zip(){
 	 var url = "gshop.do?command=findZipnum";
   	 var opt = "menubar=no,scrollbars=no,width=550,height=300,top=300,left=300";
    window.open(url, "findZipNum",opt);
-
+}
 
 function find_zip(){
 	var url = "gshop.do?command=findZipnum";
@@ -109,6 +109,3 @@ function m_confirm(verificationCode){
 		self.close();
 	}
 }
-
-
-

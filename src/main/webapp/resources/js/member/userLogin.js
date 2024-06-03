@@ -42,11 +42,11 @@ function findPwdForm(){
 function findPwd(){
 	var userid = document.findIdForm.userid.value;
     var email = document.findIdForm.email.value;
-	if(document.findPwdForm.userid.value==""){
+	if(userid==""){
 		alert("아이디을 입력하세요");
 		document.findPwdForm.userid.focus();
 		return false;
-	}else if(document.findPwdForm.email.value==""){
+	}else if(email==""){
 		alert("이메일을 입력하세요");
 		document.findPwdForm.email.focus();
 		return false;
@@ -118,6 +118,7 @@ function addressOK(zip_code , sido, gugun, dong){
    opener.updateMemberForm.address.value = sido+" " + gugun + " " + dong ;
    self.close();
 }
-}
-	location.href="gshop.do?command=joinPage";
+
 function Join(){
+	location.href="gshop.do?command=joinPage";
+}

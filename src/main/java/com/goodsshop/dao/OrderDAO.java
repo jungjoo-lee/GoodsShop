@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.goodsshop.controller.util.Db;
 import com.goodsshop.dto.OrderVO;
 import com.goodsshop.util.DB;
 

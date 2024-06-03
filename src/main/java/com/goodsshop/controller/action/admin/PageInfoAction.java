@@ -6,11 +6,11 @@ import org.json.JSONObject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.goodsshop.controller.action.FatchAction;
-import com.goodsshop.controller.member.MemberVO;
+import com.goodsshop.controller.action.FatchAction;	
 import com.goodsshop.dao.AdminDAO;
 import com.goodsshop.dao.QnaDAO;
 import com.goodsshop.dao.ReviewDAO;
+import com.goodsshop.dto.MemberVO;
 import com.goodsshop.util.Paging;
 
 import jakarta.servlet.ServletException;

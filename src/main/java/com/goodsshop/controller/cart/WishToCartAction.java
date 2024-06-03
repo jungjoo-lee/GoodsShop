@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.controller.member.MemberVO;
 import com.goodsshop.dao.CartDAO;
 import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dto.CartVO;
 import com.goodsshop.dto.GoodsVO;
+import com.goodsshop.dto.MemberVO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

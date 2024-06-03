@@ -12,8 +12,6 @@ import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
 import com.goodsshop.controller.action.admin.AdminQnaViewAction;
-import com.goodsshop.controller.action.admin.QnaViewAction;
-import com.goodsshop.controller.action.goods.GoodsCategoryAction;
 import com.goodsshop.controller.action.email.FindIdOKAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
@@ -37,7 +35,6 @@ import com.goodsshop.controller.cart.ViewCartAction;
 import com.goodsshop.controller.cart.ViewOrderAction;
 import com.goodsshop.controller.cart.ViewWishAction;
 import com.goodsshop.controller.cart.WishToCartAction;
-import com.goodsshop.controller.goods.GoodsCategoryAction;
 import com.goodsshop.controller.goods.GoodsDetailViewAction;
 import com.goodsshop.controller.cart.OrderNowAction;
 import com.goodsshop.controller.member.login.FindIdAction;
@@ -60,8 +57,7 @@ public class ActionFactory {
 	public Action getAction(String command) {
 		Action ac = null;
 		
-		if( command.equals("index") ) ac = new IndexAction();	
-		else if (command.equals("goodsCategory")) ac = new GoodsCategoryAction();
+		if( command.equals("index") ) ac = new IndexAction();
 		//notice
 		else if (command.equals("noticeList")) ac = new NoticeListAction();
 		

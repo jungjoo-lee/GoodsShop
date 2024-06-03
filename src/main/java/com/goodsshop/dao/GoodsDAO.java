@@ -9,10 +9,6 @@ import java.util.List;
 
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
-import com.goodsshop.util.DB;
-import com.goodsshop.controller.goods.Db;
-import com.goodsshop.dto.GoodsImageVO;
-import com.goodsshop.dto.GoodsVO;
 import com.goodsshop.dto.ReviewVO;
 import com.goodsshop.util.DB;
 
@@ -27,7 +23,7 @@ public class GoodsDAO {
 	public List<GoodsImageVO> getImageList(int gseq) {
 		List<GoodsImageVO> list = new ArrayList<GoodsImageVO>();
 		
-		con = Db.getConnection();
+		con = DB.getConnection();
 		String sql = "select * from goodsimage where gseq = ?";
 		
 		try {
@@ -60,7 +56,7 @@ public class GoodsDAO {
 	public String getThumbnail(int gseq) {
 		String thumbnailImage = "";
 		
-		con = Db.getConnection();
+		con = DB.getConnection();
 		String sql = "select * from goodsimage where gseq = ? order by giseq limit 1";
 		
 		try {
@@ -75,7 +71,7 @@ public class GoodsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Db.close(con, pstmt, rs);
+			DB.close(con, pstmt, rs);
 		}
 
 		return thumbnailImage;
@@ -86,7 +82,7 @@ public class GoodsDAO {
 	public List<GoodsVO> getBestList() {
 		List<GoodsVO> list = new ArrayList<GoodsVO>();
 		
-		con = Db.getConnection();
+		con = DB.getConnection();
 		String sql = "select * from bestlist_view limit 20";
 		
 		try {
@@ -141,7 +137,7 @@ public class GoodsDAO {
 
 	public GoodsVO getGoods(int gseq) {
 		GoodsVO gvo = null;
-		con = Db.getConnection();
+		con = DB.getConnection();
 		String sql = "select * from goods where gseq = ?";
 		
 		try {
@@ -166,7 +162,7 @@ public class GoodsDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Db.close(con, pstmt, rs);
+			DB.close(con, pstmt, rs);
 		}
 		
 		

@@ -3,8 +3,8 @@ package com.goodsshop.controller.action.review;
 import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.controller.member.MemberVO;
 import com.goodsshop.dao.ReviewDAO;
+import com.goodsshop.dto.MemberVO;
 import com.goodsshop.util.Paging;
 
 import jakarta.servlet.ServletException;
