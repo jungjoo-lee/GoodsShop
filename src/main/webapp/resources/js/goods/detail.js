@@ -1,6 +1,6 @@
 
 //go_main
-function gomain(){
+function goMain(){
 	let main = document.querySelector("#go_main");
 	
 	if(main != null){
@@ -10,7 +10,7 @@ function gomain(){
 	}
 }
 
-gomain();
+goMain();
 
 //add_cart
 function addCart() {
@@ -48,7 +48,7 @@ addWishlist();
 
 
 
-function goorder() {
+function goOrder() {
 	let ordernow = document.querySelector("#purchase_now");
 
 	if (ordernow != null) {
@@ -60,7 +60,7 @@ function goorder() {
 	}
 }
 
-goorder();
+goOrder();
 
 
 

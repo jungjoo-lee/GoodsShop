@@ -49,8 +49,7 @@
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">1조:</div>
-            조장 곽수아
+            <div class="small">1조</div>
         </div>
     </nav>
 </div>

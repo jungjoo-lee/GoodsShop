@@ -9,21 +9,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div>
+		<input type="button" id="go_main">
+	</div>
 	<c:choose>
 		<c:when test="${empty orderList}">
 			<h3>텅~</h3>
 		</c:when>
 		<c:otherwise>
 			<c:forEach items="${orderList}" var="ovo">
-				<div>주문번호 : ${ovo.oseq}</div>
-				<div>주문상품 : ${ovo.gname} 포함 ${ovo.quantity} 개</div>
-				<div>주문일시 : ${ovo.indate}</div>
-				<div>주문금액 : ${ovo.totalprice}</div>
-				<div>주문상태 : ${ovo.status}</div>
-				<hr>
+				<div id="orderlist_detail">
+					<div>주문번호 : ${ovo.oseq}</div>
+					<div>주문상품 : ${ovo.gname} 포함 ${ovo.quantity} 개</div>
+					<div>주문일시 : ${ovo.indate}</div>
+					<div>주문금액 : ${ovo.totalprice}</div>
+					<div>주문상태 : ${ovo.status}</div>
+					<hr>
+				</div>
 			</c:forEach>
 		</c:otherwise>
-
 	</c:choose>
+	
+<script type="text/javascript" src='<c:url value = "/resources/js/goods/orderlistview.js"/>'></script>
 </body>
 </html>

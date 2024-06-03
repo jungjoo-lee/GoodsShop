@@ -11,7 +11,7 @@ import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dto.CartVO;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
-
+import com.goodsshop.dto.MemberVO;
 import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
@@ -34,16 +34,25 @@ public class IndexAction implements Action {
 		request.setAttribute("reviewList", rDAO.getMainReviewList());
 		
 		HttpSession session = request.getSession();
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
 		List<GoodsVO> bestlist = gdao.getBestList();
 		
 		for(GoodsVO vo : bestlist) {
 			GoodsDAO gdao1 = new GoodsDAO();
+			
 			List<GoodsImageVO> bestImageList = gdao1.getImageList(vo.getGseq());
 			vo.setImageList(bestImageList);
 			String thum = gdao1.getThumbnail(vo.getGseq());
-			vo.setThum(thum);		
+			vo.setThum(thum);
+			int oldPrice = vo.getSprice();		
+			int newPrice = 0;
+			
+			newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
+			
+			vo.setSprice(newPrice);
 		}
+		
 		
 		List<GoodsVO> newlist = gdao.getNewList();
 		
@@ -52,8 +61,17 @@ public class IndexAction implements Action {
 			List<GoodsImageVO> newImageList = gdao1.getImageList(vo.getGseq());
 			vo.setImageList(newImageList);
 			String thum = gdao1.getThumbnail(vo.getGseq());
-			vo.setThum(thum);		
+			vo.setThum(thum);
+			
+			int oldPrice = vo.getSprice();					
+			int newPrice = 0;
+			
+			newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
+			
+			vo.setSprice(newPrice);
+
 		}
+		
 		
 		List<CartVO> cartlist = new ArrayList<CartVO>();
 		

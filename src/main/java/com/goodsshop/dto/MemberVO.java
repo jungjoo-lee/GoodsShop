@@ -14,7 +14,7 @@ public class MemberVO {
 	private String pwd;
 	private int gseq;
 	private String grade;
-	private int sale;
+	private float sale;
 	private String name;
 	private String email;
 	private String phone;

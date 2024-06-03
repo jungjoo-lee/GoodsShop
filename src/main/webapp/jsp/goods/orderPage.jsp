@@ -15,8 +15,8 @@
 	<form method="post" name="orderpageform">
 		<div>목록</div>
 
-		<c:set var="orderTotalPrice" value="0"></c:set>
 		<c:set var="numberOfGoods" value="0"></c:set>
+		<c:set var="orderTotalPrice" value="0"></c:set>
 		<c:forEach items="${orderProductList}" var="ovo" varStatus="ovostat">
 
 			<div>

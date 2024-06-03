@@ -1,4 +1,4 @@
-function goorder (){
+function goOrder (){
 	let go_order = document.querySelector("#go_order")
 	
 	if(go_order!=null){
@@ -19,4 +19,4 @@ function goorder (){
 	}
 }
 
-goorder();
+goOrder();

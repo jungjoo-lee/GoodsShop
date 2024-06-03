@@ -7,16 +7,21 @@ import com.goodsshop.controller.action.Action;
 import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
+import com.goodsshop.dto.MemberVO;
 import com.goodsshop.dto.ReviewVO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 public class GoodsDetailViewAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
 		int gseq = Integer.parseInt(request.getParameter("gseq"));
 		
@@ -26,6 +31,13 @@ public class GoodsDetailViewAction implements Action {
 		gvo.setImageList(image);
 		String thum = gdao.getThumbnail(gseq);
 		gvo.setThum(thum);
+		int oldPrice = gvo.getSprice();		
+		int newPrice = 0;
+		
+		newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
+		
+		gvo.setSprice(newPrice);
+		
 		List<ReviewVO> reviewList =  gdao.getReviewList(gseq);
 		
 		request.setAttribute("goodsDetail", gvo);

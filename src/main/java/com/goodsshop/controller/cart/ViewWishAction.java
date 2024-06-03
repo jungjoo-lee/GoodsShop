@@ -25,9 +25,7 @@ public class ViewWishAction implements Action {
 		CartDAO cdao = new CartDAO();
 
 		if (loginUser == null) {
-			PrintWriter out = response.getWriter();
-			
-			
+			PrintWriter out = response.getWriter();			
 			request.getRequestDispatcher("gshop.do?command=index").forward(request, response);
 		} else {
 			
@@ -40,6 +38,12 @@ public class ViewWishAction implements Action {
 				GoodsDAO gdao = new GoodsDAO();
 				String thum = gdao.getThumbnail(cvo.getGseq());
 				cvo.setThum(thum);
+				
+				int oldPrice = cvo.getSprice();		
+				int newPrice = 0;
+				newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
+				
+				cvo.setSprice(newPrice);
 			}
 			
 			

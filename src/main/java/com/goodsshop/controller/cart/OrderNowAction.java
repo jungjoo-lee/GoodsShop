@@ -43,8 +43,17 @@ public class OrderNowAction implements Action {
 		ovo.setGseq(gseq);
 		ovo.setGname(gvo.getGname());
 		ovo.setQuantity(1);
+		
+		int oldPrice = gvo.getSprice();		
+		int newPrice = 0;
+		
+		newPrice = (int)Math.ceil(oldPrice - (oldPrice * mvo.getSale()));
+		
+		gvo.setSprice(newPrice);
+		
 		ovo.setTotalprice(gvo.getSprice() * 1);
 		ovo.setThum(gdao.getThumbnail(gseq));
+		
 		
 		list.add(ovo);
 		

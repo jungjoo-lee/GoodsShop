@@ -21,6 +21,8 @@ public class InsertCartAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 	
 		HttpSession session = request.getSession();
+		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
+		
 		List<CartVO> cartlist = null;
 		
 		if (session.getAttribute("cartlist") == null) {
@@ -43,7 +45,7 @@ public class InsertCartAction implements Action {
 		cvo.setQuantity(quantity);
 		cvo.setGseq(gvo.getGseq());
 		cvo.setGoodsname(gvo.getGname());
-		cvo.setSprice(gvo.getSprice());
+		cvo.setSprice(gvo.getSprice());		
 		cvo.setTotalprice(gvo.getSprice() * quantity);
 		cvo.setThum(gdao.getThumbnail(gseq));
 		
