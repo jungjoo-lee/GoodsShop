@@ -56,8 +56,10 @@ function addressOK( zip_num, sido, gugun, dong ){
 	self.close();
 }
 function verify(){
-	if(document.JoinPage.email.value==""){
-	alert("이메일을 입력하지 않았습니다!!")
+	var inp = document.JoinPage.email.value;
+	var emform = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+	if(inp==""||emform.test(inp)==false){
+	alert("이메일 형식이 올바르지 않습니다! ")
 	}
 /*	else if{
 	// 이메일 형식이 아니면 "올바른 이메일 형식이 아니다" 로 표시되게 걸어두기.	
@@ -67,7 +69,7 @@ function verify(){
 	var ans = confirm("입력하신 이 주소가 맞나요?");
 		if (ans){
 		alert("입력하신 이메일로 인증번호가 전송되었습니다.");
-		var url = "gshop.do?command=getEmail&email="+email.value;
+		var url = "gshop.do?command=getEmail&email="+inp;
 		var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 		window.open(url, "getEmail", opt);
 		}

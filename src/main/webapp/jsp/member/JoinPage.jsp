@@ -31,7 +31,7 @@
 				</div>
 				<div class="field">
 						<label>이메일&nbsp;&nbsp;&nbsp;</label>
-							<input type="text" name="email"  id="email">
+							<input type="text" name="email"  id="email" placeholder="abc@gmail.com">
 							<input type="button" value="인증번호 전송" onClick="verify()">
 						
 				</div>

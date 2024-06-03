@@ -42,7 +42,7 @@ function startTimer(count, display){
 	}
 	// 페이지 로드 시 타이머 시작
 	window.onload = function () {
-	    var twoMins = 10,
+	    var twoMins = 60*2,
 	        display = document.querySelector('#timer');
 	    startTimer(twoMins, display);
 	};
