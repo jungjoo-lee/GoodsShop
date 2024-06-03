@@ -13,10 +13,10 @@
 <body>
 
 <div id="wrap">
-
 	<header>
 		<nav id="top_menu">
 			<div class="gnb">
+				<div class="left-links">
 					<c:choose>
 							<c:when test="${empty loginUser}">
 									<a href="gshop.do?command=loginForm">로그인</a>
@@ -28,22 +28,25 @@
 									<a href="gshop.do?command=updateMemberForm">정보 수정</a>
 						</c:otherwise>
 					</c:choose>
-					<a href="">CART</a>
-					<a href="">MYPAGE</a>
-					<a href="">Q & A</a>			
-			</div>
-			<div id="logo" style="display: flex; position: relative; justify-content: center;"><img src="resources/image/spadeA.png" width="750"></div>
-			<div class="hmenu">
-					<div></div>
-					<div></div>
-					<div></div>
+				</div>
+				<div class="right-links">
+					<a href="">NOTICE</a>
+					<a href="">Q&A</a>
+					<a href="">REVIEW</a>
+				</div>
 			</div>
 		</nav>
-		<div id="logo"><img src="images/main.jpg" width="180" height="100"></div>
+		<div id="logo"><a href="gshop.do?command=loginForm">FLOWER ON YOU</a></div>
 		<nav id="category_menu">
-			
-			<div style="width: 100%; height: 30px; border: 1px dotted black;">Temporary Space Check</div>
-			<hr>
+			<div>BEST50</div>
+			<div>헤어악세서리</div>
+			<div>반지</div>
+			<div>목걸이</div>
+			<div>귀걸이</div>
+			<div>팔찌</div>
+			<div>브로치</div>
+			<div>모자</div>
+			<div>장갑</div>
 		</nav>
 	</header>
 	
