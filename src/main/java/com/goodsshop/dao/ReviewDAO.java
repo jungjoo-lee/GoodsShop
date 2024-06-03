@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.goodsshop.controller.GoodsShopServlet;
 import com.goodsshop.dto.QnaVO;
 import com.goodsshop.dto.ReviewVO;
 import com.goodsshop.properties.Env;
@@ -37,7 +38,7 @@ public class ReviewDAO {
 						.gseq(rs.getInt(4))
 						.gname(rs.getString(6))
 						.subject(rs.getString(7))
-						.indate(rs.getTimestamp(8))
+						.indate(rs.getTimestamp(9))
 						.build());
 			}
 		} catch (SQLException e) {

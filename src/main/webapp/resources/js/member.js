@@ -55,6 +55,7 @@ function go_save(){
 		document.JoinPage.submit();
 	}
 }
+
 function idok(userid){
 	opener.JoinPage.userid.value = userid;
 	opener.JoinPage.reid.value = userid;

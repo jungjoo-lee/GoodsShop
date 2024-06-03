@@ -62,5 +62,16 @@ function goorder() {
 
 goorder();
 
+let reviewWriteBtn = document.querySelector('#reviewWriteBtn');
+reviewWriteBtn.addEventListener("click", () => {
+	if(confirm("리뷰 작성하시겠습니까?")) {
+		alert("작성되었습니다.");
+	}
+});
 
-
+let reviewDeleteBtn = document.querySelector('#reviewDeleteBtn');
+reviewDeleteBtn.addEventListener("click", () => {
+	if(confirm("정말로 삭제하시겠습니까?")) {
+		alert("삭제되었습니다.");
+	}
+});

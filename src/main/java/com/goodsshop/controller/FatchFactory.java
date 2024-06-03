@@ -12,8 +12,11 @@ public class FatchFactory {
 	public FatchAction getAction(String command) {
 		FatchAction fa = null;
 		
-		if( command.equals("pageInfo") ) fa = new PageInfoAction();
-		else if( command.equals("getContent") ) fa = new GetContentAction();
+		if (command.equals("pageInfo")) fa = new PageInfoAction();
+		else if (command.equals("getContent")) fa = new GetContentAction();
+		else if (command.equals("reviewWrite")) fa = new reviewWriteAction();
+		else if (command.equals("reviewUpdate")) fa = new reviewUpdateAction();
+		else if (command.equals("reviewDelete")) fa = new reviewDeleteAction();
 		
 		return fa;
 	}

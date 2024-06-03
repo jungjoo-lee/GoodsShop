@@ -26,9 +26,11 @@ public class GoodsDetailViewAction implements Action {
 		gvo.setImageList(image);
 		String thum = gdao.getThumbnail(gseq);
 		gvo.setThum(thum);
-		List<ReviewVO> reviewList =  gdao.getReviewList(gseq);
 		
+		List<ReviewVO> reviewList =  gdao.getReviewList(gseq);
+
 		request.setAttribute("goodsDetail", gvo);
+		request.setAttribute("reviewList", reviewList);
 		request.getRequestDispatcher("jsp/goods/goodsDetail.jsp").forward(request, response);
 	}
 

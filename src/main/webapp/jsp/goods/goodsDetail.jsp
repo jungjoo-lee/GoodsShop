@@ -54,6 +54,22 @@
 	<div>
 		
 	</div>
+	<div>
+		<div class="row">
+			<c:if test="${not empty loginUser}">
+				<button type="button" class="btn btn-primary" id="reviewWriteBtn">리뷰 쓰기</button>
+			</c:if>
+			<input type="text" name="subject" id="subject" placeholder="제목">
+			<textarea rows="10" cols="100" name="content" id="content" placeholder="내용">
+		
+			</textarea>
+		</div>
+	<c:forEach var="vo" items="${reviewList}">		
+		${vo.rseq}, ${vo.userid}, ${vo.grade}, ${vo.subject}, ${vo.content}, ${vo.indate}<c:if test="${loginUser.userid eq vo.userid}">
+			<button type="button" class="btn btn-primary" id="reviewUpdateBtn">리뷰 수정</button> <button type="button" class="btn btn-primary" id="reviewDeleteBtn">리뷰 삭제</button>
+		</c:if><br/>
+	</c:forEach>
+	</div>
 	<script type="text/javascript" src='<c:url value = "/resources/js/goods/detail.js"/>'></script>
 </body>
 </html>

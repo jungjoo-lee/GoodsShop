@@ -11,6 +11,7 @@ import com.goodsshop.controller.goods.Db;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
 import com.goodsshop.dto.ReviewVO;
+import com.goodsshop.properties.Env;
 import com.goodsshop.util.DB;
 
 public class GoodsDAO {
@@ -158,7 +159,6 @@ public class GoodsDAO {
 				gvo.setUseyn(rs.getInt("useyn"));
 				gvo.setIndate(rs.getDate("indate"));
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -171,6 +171,29 @@ public class GoodsDAO {
 
 	public List<ReviewVO> getReviewList(int gseq) {
 		List<ReviewVO> reviewList = new ArrayList<>();
+		
+		try {
+			con = DB.getConnection();
+			pstmt = con.prepareStatement(Env.getGoodsReviewList());
+			pstmt.setInt(1, gseq);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				reviewList.add(ReviewVO.builder()
+						.rseq(rs.getInt(1))
+						.userid(rs.getString(2))
+						.grade(rs.getInt(3))
+						.gseq(rs.getInt(4))
+						.subject(rs.getString(7))
+						.content(rs.getString(8))
+						.indate(rs.getTimestamp(9))
+						.build());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}
 		
 		return reviewList;
 	}
