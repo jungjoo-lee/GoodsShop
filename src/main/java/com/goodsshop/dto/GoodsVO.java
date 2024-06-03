@@ -1,4 +1,4 @@
-package com.goodsshop.controller.action.goods.dto;
+package com.goodsshop.dto;
 
 import java.sql.Date;
 import java.util.List;
@@ -9,13 +9,14 @@ import lombok.Data;
 public class GoodsVO {
 	private int gseq;
 	private String gname;
-	private int category;
-	private int o_price;
-	private int s_price;
-	private int m_price;
+	private int cgseq;
+	private int oprice;
+	private int sprice;
+	private int mprice;
 	private String content;
-	private boolean bestyn;
-	private boolean useyn;
+	private int bestyn;
+	private int useyn;
 	private Date indate;
+	private String thum;
 	private List<GoodsImageVO> imageList;
 }

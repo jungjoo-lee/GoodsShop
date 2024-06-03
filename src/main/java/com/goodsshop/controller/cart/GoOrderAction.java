@@ -1,4 +1,4 @@
-package com.goodsshop.controller.action.goods;
+package com.goodsshop.controller.cart;
 
 import java.io.IOException;
 
@@ -8,20 +8,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class GoodsCategoryAction implements Action {
+public class GoOrderAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		request.getRequestDispatcher("WEB-INF/jsp/goods/GoodsView.jsp").forward(request, response);
-	}
 
+	}
 }

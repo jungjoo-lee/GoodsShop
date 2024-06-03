@@ -1,4 +1,4 @@
-package com.goodsshop.controller.action.goods.util;
+package com.goodsshop.controller.goods;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
