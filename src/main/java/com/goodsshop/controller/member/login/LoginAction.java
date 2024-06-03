@@ -24,7 +24,7 @@ public class LoginAction implements Action {
 		MemberDao mdao = MemberDao.getInstance();
 		MemberVO mvo = mdao.getMember(userid);
 		
-		String url="jsp/member/loginForm.jsp";
+		String url="gshop.do?command=loginForm";
 		if(mvo==null) 
 			request.setAttribute("message", "아이디 혹은 패스워드가 틀립니다");
 		else if (!mvo.getPwd().equals(pwd)) {
@@ -40,7 +40,8 @@ public class LoginAction implements Action {
 		 } else {
 			request.setAttribute("message", "관리자에게 문의하세요");	
 		
-		}request.getRequestDispatcher(url).forward(request, response);
+		}
+		response.sendRedirect(url);
 	}
 
 }

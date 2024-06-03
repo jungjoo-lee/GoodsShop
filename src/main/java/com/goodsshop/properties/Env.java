@@ -33,30 +33,88 @@ public class Env {
     }
     
     // goods
+    public static String getGoodsReviewList() {
+    	return prop.getProperty("getGoodsReviewList");
+    }
     
-    // admin
-    public static String getAdmin() {
-    	return prop.getProperty("getAdmin");
+    // notice
+    public static String getMainNoticeList() {
+    	return prop.getProperty("getMainNoticeList");
+    }
+    
+    public static String getNoticeList() {
+    	return prop.getProperty("getNoticeList");
+    }
+    
+    public static String getNoticeTotal() {
+    	return prop.getProperty("getNoticeTotal");
+	}
+    
+    // qna
+    public static String getMainQnaList() {
+    	return prop.getProperty("getMainQnaList");
     }
     
     public static String getQnaList() {
     	return prop.getProperty("getQnaList");
     }
     
+    public static String getMyQnaList() {
+		return prop.getProperty("getMyQnaList");
+	}
+    
     public static String getQnaTotal() {
     	return prop.getProperty("getQnaTotal");
+    }
+    
+    public static String getMyQnaTotal() {
+    	return prop.getProperty("getMyQnaTotal");
     }
     
     public static String getQna() {
     	return prop.getProperty("getQna");
     }
     
-    public static String writeReply() {
-    	return prop.getProperty("writeReply");
+    // review
+    public static String getMainReviewList() {
+    	return prop.getProperty("getMainReviewList");
     }
     
-    public static String updateReply() {
-    	return prop.getProperty("updateReply");
+    public static String getReviewList() {
+    	return prop.getProperty("getReviewList");
+    }
+    
+    public static String getMyReviewList() {
+    	return prop.getProperty("getMyReviewList");
+    }
+    
+    public static String getReviewTotal() {
+    	return prop.getProperty("getReviewTotal");
+    }
+    
+    public static String getMyReviewTotal() {
+    	return prop.getProperty("getMyReviewTotal");
+    }
+    
+    public static String getReview() {
+    	return prop.getProperty("getReview");
+    }
+    
+    // admin
+    public static String getAdmin() {
+    	return prop.getProperty("getAdmin");
+    }
+    
+    public static String getMemberList() {
+		return prop.getProperty("getMemberList");
+	}
+    
+    public static String getMemberTotal() {
+		return prop.getProperty("getMemberTotal");
+	}
+    
+    public static String writeUpdateReply() {
+    	return prop.getProperty("writeUpdateReply");
     }
     
     public static String deleteReply() {
