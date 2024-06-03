@@ -37,7 +37,7 @@ public class ReviewDAO {
 						.gseq(rs.getInt(4))
 						.gname(rs.getString(6))
 						.subject(rs.getString(7))
-						.indate(rs.getTimestamp(8))
+						.indate(rs.getTimestamp(9))
 						.build());
 			}
 		} catch (SQLException e) {

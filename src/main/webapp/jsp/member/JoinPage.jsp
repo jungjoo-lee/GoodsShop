@@ -3,8 +3,8 @@
 
 
 <article>
-			<h2>회원가입</h2>
-			<h3>기본 정보</h3>
+			<h2 style="margin-left: 10px">회원가입</h2>
+			<h3 style="margin-left: 10px">기본 정보</h3>
 	<form method="post" action="gshop.do?command=join"  name="JoinPage">
 		<table>
 				<div class="field" >
@@ -37,7 +37,7 @@
 				</div>
 				<hr/>
 
-			<h3>부가 정보</h3>
+			<h3 style="margin-left: 10px">부가 정보</h3>
 				<div class="field">
 						<label>우편 번호&nbsp;&nbsp;&nbsp;</label>
 						<input type="text" name="zip_code" size="10"  readonly placeholder="123-123">

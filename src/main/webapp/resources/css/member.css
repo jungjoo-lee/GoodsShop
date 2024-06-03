@@ -8,20 +8,8 @@
 }
 a{text-decoration:none;}
 
-.gnb{
-	flex:5;
-	display: flex;
-	background-color : ivory;
-	height: 25px;
-	line-height: 25px;
-	text-align: center;
-}
-.gnb a{
-	text-decoration : none;
-	margin-left: 20px;
-	color: #800000;
-	font-weight: bold;
-}
+
+
 
 .field{
 	position:relative;
@@ -33,7 +21,6 @@ label{
 	margin: 10px;
 	font-weight: bold;
 	flex:3;
-	
 }
 
 #contract{
@@ -44,16 +31,19 @@ label{
 }
 
 #regi {
-	background-color: dodgerblue;
+	background-color: black;
 	color: white;
-	width: 100px;
+	width: 20%;
 	height: 40px;
 	border-radius: 3px 3px 3px 3px;
-	border: 1px dotted dodgerblue;
+	font-size: 105%;
+	padding: 10px;
+	border: none;
+	cursor: pointer;
+	margin-bottom: 20px;
 }
 
 footer{
 	background-color: ivory;
 	color: #d3d3d3;
-	
 }
