@@ -163,4 +163,46 @@ public class OrderDAO {
 			DB.close(con, pstmt, rs);
 		}		
 	}
+
+
+	public List<OrderVO> selectOrderDetail(int oseq) {
+		List<OrderVO> list = new ArrayList<OrderVO>();
+		con = DB.getConnection();
+		String sql = "select * from order_view where oseq = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, oseq);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				OrderVO ovo = new OrderVO();
+				ovo.setOseq(oseq);
+				ovo.setOdseq(rs.getInt("odseq"));
+				ovo.setIndate(rs.getDate("indate"));
+				ovo.setUserid(rs.getString("userid"));
+				ovo.setName(rs.getString("name"));
+				ovo.setZipcode(rs.getString("zip_code"));
+				ovo.setAddress(rs.getString("address"));
+				ovo.setDaddress(rs.getString("d_address"));
+				ovo.setPhone(rs.getString("phone"));
+				ovo.setGseq(rs.getInt("gseq"));
+				ovo.setGname(rs.getString("gname"));
+				ovo.setQuantity(rs.getInt("quantity"));
+				ovo.setTotalprice(rs.getInt("totalprice"));
+				ovo.setOsseq(rs.getInt("osseq"));
+				ovo.setStatus(rs.getString("status"));
+				
+				list.add(ovo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}
+		
+		return list;
+	}
 }

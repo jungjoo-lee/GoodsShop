@@ -23,4 +23,3 @@
 </section>
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
 <script src="<c:url value='/resources/js/member/loginForm.js'/>"></script>
-<%@ include file="/WEB-INF/jsp/footer.jsp"%>
