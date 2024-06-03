@@ -4,8 +4,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.goodsshop.dao.NoticeDAO;
+import com.goodsshop.dao.QnaDAO;
+import com.goodsshop.dao.ReviewDAO;
 import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dto.CartVO;
+import com.goodsshop.dto.GoodsImageVO;
+import com.goodsshop.dto.GoodsVO;
+
+import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
 
@@ -15,16 +22,20 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 public class IndexAction implements Action {
-	
-
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		NoticeDAO nDAO = NoticeDAO.getInstance();
+		QnaDAO qDAO = QnaDAO.getInstance();
+		ReviewDAO rDAO = ReviewDAO.getInstance();
+		GoodsDAO gdao = new GoodsDAO();
 		
-		GoodsDAO gdao = new GoodsDAO();	
-		List<GoodsVO> bestlist = gdao.getBestList();
+		request.setAttribute("noticeList", nDAO.getMainNoticeList());
+		request.setAttribute("qnaList", qDAO.getMainQnaList());
+		request.setAttribute("reviewList", rDAO.getMainReviewList());
 		
 		HttpSession session = request.getSession();
 		
+		List<GoodsVO> bestlist = gdao.getBestList();
 		
 		for(GoodsVO vo : bestlist) {
 			GoodsDAO gdao1 = new GoodsDAO();
@@ -46,17 +57,12 @@ public class IndexAction implements Action {
 		
 		List<CartVO> cartlist = new ArrayList<CartVO>();
 		
-		
-		
 		request.setAttribute("bestlist", bestlist);
 		request.setAttribute("newlist", newlist);
 		
 		if(request.getAttribute("loginUser") != null) {
 			session.setAttribute("cartlist", cartlist);			
 		}
-		
-		request.getRequestDispatcher("jsp/goods/main.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("WEB-INF/jsp/index/index.jsp").forward(request, response);
 	}
-
 }

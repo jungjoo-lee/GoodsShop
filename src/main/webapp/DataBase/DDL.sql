@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS goodsimage;
 DROP TABLE IF EXISTS order_detail;
 DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS goods;
+DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS qna;
 DROP TABLE IF EXISTS Member;
@@ -43,11 +44,19 @@ CREATE TABLE cart
 );
 
 
+CREATE TABLE category
+(
+	cgseq int NOT NULL AUTO_INCREMENT,
+	category varchar(30) NOT NULL,
+	PRIMARY KEY (cgseq)
+);
+
+
 CREATE TABLE goods
 (
 	gseq int NOT NULL AUTO_INCREMENT,
 	gname varchar(50) NOT NULL,
-	category varchar(30) NOT NULL,
+	cgseq int NOT NULL,
 	o_price int NOT NULL,
 	s_price int NOT NULL,
 	m_price int NOT NULL,
@@ -168,6 +177,14 @@ CREATE TABLE review
 ALTER TABLE notice
 	ADD FOREIGN KEY (adminid)
 	REFERENCES admin (adminid)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE goods
+	ADD FOREIGN KEY (cgseq)
+	REFERENCES category (cgseq)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;

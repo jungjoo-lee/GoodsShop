@@ -3,8 +3,10 @@ package com.goodsshop.controller.member.login;
 import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.controller.member.MemberDao;
-import com.goodsshop.controller.member.MemberVO;
+
+
+import com.goodsshop.dao.MemberDao;
+import com.goodsshop.dto.MemberVO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,7 +24,7 @@ public class LoginAction implements Action {
 		MemberDao mdao = MemberDao.getInstance();
 		MemberVO mvo = mdao.getMember(userid);
 		
-		String url="jsp/member/loginForm.jsp";
+		String url="gshop.do?command=loginForm";
 		if(mvo==null) 
 			request.setAttribute("message", "아이디 혹은 패스워드가 틀립니다");
 		else if (!mvo.getPwd().equals(pwd)) {
@@ -38,7 +40,8 @@ public class LoginAction implements Action {
 		 } else {
 			request.setAttribute("message", "관리자에게 문의하세요");	
 		
-		}request.getRequestDispatcher(url).forward(request, response);
+		}
+		response.sendRedirect(url);
 	}
 
 }

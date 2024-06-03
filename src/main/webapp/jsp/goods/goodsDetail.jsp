@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 </head>
 <body>
 
@@ -49,13 +49,11 @@
 					</c:forEach>
 				</div>
 			</div>
-
-
-
 		</div>
 	</form>
-
-	<script type="text/javascript"
-		src='<c:url value = "/resources/js/goods/detail.js"/>'></script>
+	<div>
+		
+	</div>
+	<script type="text/javascript" src='<c:url value = "/resources/js/goods/detail.js"/>'></script>
 </body>
 </html>

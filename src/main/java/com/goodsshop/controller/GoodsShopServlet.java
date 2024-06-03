@@ -23,7 +23,7 @@ import jakarta.servlet.http.HttpServletResponse;
 )
 public class GoodsShopServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     public GoodsShopServlet() {
         super();
     }
@@ -45,11 +45,11 @@ public class GoodsShopServlet extends HttpServlet {
 			String asynCommand = jsonObj.getString("command");
 
 			FatchFactory ff = FatchFactory.getInstance();
-			FatchAction fa = ff.getAction(asynCommand, jsonObj);
+			FatchAction fa = ff.getAction(asynCommand);
 			
 			if( fa == null ) System.out.println("2. FatchAction 조립 오류");
 			else {
-				jsonResult = fa.execute(request, response);
+				jsonResult = fa.execute(request, response, jsonObj);
 				out = response.getWriter();
 				out.println(jsonResult.toString());
 			}
@@ -59,11 +59,10 @@ public class GoodsShopServlet extends HttpServlet {
 			
 			if( ac == null ) System.out.println("2. Action 조립 오류");
 			else ac.execute(request, response);
-		}	
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }

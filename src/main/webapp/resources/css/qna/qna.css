@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+ul {
+	list-style-type: none;
+}
+
+.qna-header, .qna-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.qna-header div, .qna-item div {
+    flex: 1;
+    text-align: center;
+}
+
+.qna-header .small-col, .qna-item .small-col {
+    flex: 0.3;
+}

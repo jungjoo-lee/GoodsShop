@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.controller.member.AddressVO;
-import com.goodsshop.controller.member.MemberDao;
+import com.goodsshop.dao.MemberDao;
+import com.goodsshop.dto.AddressVO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

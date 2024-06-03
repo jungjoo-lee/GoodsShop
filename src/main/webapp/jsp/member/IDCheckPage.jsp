@@ -13,7 +13,7 @@
 		User ID : <input type="text" name="userid" value="${userid}">
 		<input type="submit" value="검색"><br><br><br>
 </form>
-<div>
+<div id="res">
 		<c:if test="${result == 1}">
 				<script type="text/javascript">
 				opener.document.JoinPage.userid.value="";
