@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>M-PROJECT</title>
 <link rel="stylesheet" href="resources/css/member.css">
 
 
@@ -17,22 +17,22 @@
 
 	<header>
 		<nav id="top_menu">
-			<div id="logo"><img src="resources/image/0507.jpg" width="270" height="200"></div>
 			<div class="gnb">
 					<c:choose>
 							<c:when test="${empty loginUser}">
-									<a href="gshop.do?command=loginForm">Log-In</a>
-									<a href="gshop.do?command=joinPage">Join</a>
+									<a href="gshop.do?command=loginForm">LOGIN</a>
+									<a href="gshop.do?command=joinPage">JOIN</a>
 							</c:when>
 						<c:otherwise>
 									<a href="#">${loginUser.name}(${loginUser.userid})</a>
-									<a href="gshop.do?command=logout">Logout</a>
+									<a href="gshop.do?command=logout">LOGOUT</a>
 						</c:otherwise>
 					</c:choose>
-					<a href="">장바구니</a>
-					<a href="">마이페이지</a>
-					<a href="">문의하기</a>			
+					<a href="">CART</a>
+					<a href="">MYPAGE</a>
+					<a href="">Q & A</a>			
 			</div>
+			<div id="logo" style="display: flex; position: relative; justify-content: center;"><img src="resources/image/spadeA.png" width="750"></div>
 			<div class="hmenu">
 					<div></div>
 					<div></div>
@@ -41,7 +41,7 @@
 		</nav>
 		<nav id="category_menu">
 			
-			<div>Temporary Space Check</div>
+			<div style="width: 100%; height: 30px; border: 1px dotted black;">Temporary Space Check</div>
 			<hr>
 		</nav>
 	</header>

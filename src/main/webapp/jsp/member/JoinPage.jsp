@@ -35,11 +35,7 @@
 							<input type="button" value="인증번호 전송" onClick="verify()">
 						
 				</div>
-				<!-- <div class="field">
-						<label>본인 인증 코드&nbsp;&nbsp;&nbsp;</label>
-						<input type="text" name="v_email" size="14"  placeholder="6자리 코드 입력">
-						<input type="button" value="인증하기" onClick="m_confirm(${verificationCode})" readonly="readonly">
-				</div> --><hr/>
+				<hr/>
 
 			<h3>부가 정보</h3>
 				<div class="field">
@@ -55,16 +51,19 @@
 						<label>상세 주소&nbsp;&nbsp;&nbsp;</label>
 						<input type="text" name="d_address">
 				</div><hr/>
-				<h3>약관 동의</h3>
-				<p class="check">
-					<span>약관에 동의하시겠습니까?</span>
-						<input type="radio" name="yno"> 동희  &nbsp; &nbsp; &nbsp;
-						<input type="radio" name="yno" checked> 시러요
-				</p>
-				<div class="btn">
-						<input type="button" value="가입하기" onClick="go_save()">
-						<input type="button" value="처음으로" onClick="gshop.do?command=loginForm">
+				
+				<div id="contract">
+					<h3>약관 동의</h3>
+					<p class="check">
+						<span>약관에 동의하시겠습니까?</span>
+							<input type="radio" name="yno"> 동희  &nbsp; &nbsp; &nbsp;
+							<input type="radio" name="yno" checked> 시러요
+					</p>
 				</div>
+				<div class="btn" style="display: flex; justify-content: center; margin: 20px">
+						<input type="button" id="regi" value="가입하기" onClick="go_save()" >
+				</div>
+			
 				
 		</table>
 	</form>

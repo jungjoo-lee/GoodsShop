@@ -35,7 +35,7 @@ function startTimer(count, display){
 				document.getElementById('vemail'),disabled = true;
 				document.querySelector('input[type="button"]').disabled = true;
 				document.querySelector('input[type="button"]').value = 
-					"세션이 만료되었습니다. 다시 진행해주세요!!";
+					"세션 만료";
 				style.display=none;
 			}
 		},1000);
