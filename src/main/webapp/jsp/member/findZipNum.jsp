@@ -14,6 +14,7 @@
    <form method="post" name="formm" action="gshop.do?command=findZipnum">
       동 이름 : <input name="dong" type="text">
       <input type="submit" value="찾기" class="submit">
+      
    </form>
   <table id="zipcode" border="1">
       <tr><th width="100">우편번호</th><th>주소</th></tr>
@@ -34,5 +35,6 @@
    </table>
 </div>
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
+<script src="<c:url value='/resources/js/member.js'/>"></script>
 </body>
 </html>

@@ -63,7 +63,12 @@ public class FindIdAction implements Action {
 	                session.setAttribute("email", email);
 	             
 
-		            System.out.println(verificationCode);
+		// 이메일 전송 후 작업 수행
+		// 예: 세션에 인증 코드 저장 등
+		HttpSession session = request.getSession();
+		session.setAttribute("verificationCode", verificationCode); 
+		
+		System.out.println(verificationCode);
 
 		            // 이메일 인증 페이지로 이동
 		            request.getRequestDispatcher(url).forward(request, response);

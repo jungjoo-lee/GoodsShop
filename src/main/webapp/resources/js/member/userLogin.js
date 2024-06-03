@@ -118,3 +118,6 @@ function addressOK(zip_code , sido, gugun, dong){
    opener.updateMemberForm.address.value = sido+" " + gugun + " " + dong ;
    self.close();
 }
+}
+	location.href="gshop.do?command=joinPage";
+function Join(){

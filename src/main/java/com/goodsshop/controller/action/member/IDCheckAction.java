@@ -23,7 +23,6 @@ public class IDCheckAction implements Action {
 		
 		request.setAttribute("userid", userid);
 		request.getRequestDispatcher("jsp/member/IDCheckPage.jsp").forward(request, response);
-//		request.getRequestDispatcher("jsp/member/asd.jsp").forward(request, response);
 	}
 
 }

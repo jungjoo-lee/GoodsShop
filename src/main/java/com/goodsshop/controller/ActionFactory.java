@@ -3,6 +3,7 @@ package com.goodsshop.controller;
 import com.goodsshop.controller.action.Action;
 import com.goodsshop.controller.action.ImageWriteAction;
 import com.goodsshop.controller.action.IndexAction;
+import com.goodsshop.controller.action.member.GetEmailAction;
 import com.goodsshop.controller.action.admin.AdminIndexAction;
 import com.goodsshop.controller.action.admin.AdminLoginAction;
 import com.goodsshop.controller.action.admin.AdminLoginFormAction;
@@ -101,9 +102,11 @@ public class ActionFactory {
 		else if (command.equals("findIdOK")) ac = new FindIdOKAction();
 		
 		//member
-		if( command.equals("join") ) ac = new JoinAction();
-		if( command.equals("joinPage") ) 	ac = new JoinPageAction();
-		if( command.equals("IDCheck") ) 	ac = new IDCheckAction();
+		if( command.equals("join") ) 									ac = new JoinAction();
+		if( command.equals("joinPage") ) 							ac = new JoinPageAction();
+		if( command.equals("IDCheck") ) 							ac = new IDCheckAction();
+		if( command.equals("getEmail") ) 							ac = new GetEmailAction();
+		
 		
 		//mypage
 		if( command.equals("deleteMember") ) ac = new DeleteMemberAction();

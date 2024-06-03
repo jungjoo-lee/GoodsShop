@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/header.css">
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
+<link rel="stylesheet" href="resources/css/member.css">
 </head>
 <body>
 
@@ -27,10 +28,11 @@
 									<a href="gshop.do?command=updateMemberForm">정보 수정</a>
 						</c:otherwise>
 					</c:choose>
-					<a href="">장바구니</a>
-					<a href="">마이페이지</a>
-					<a href="">문의하기</a>			
+					<a href="">CART</a>
+					<a href="">MYPAGE</a>
+					<a href="">Q & A</a>			
 			</div>
+			<div id="logo" style="display: flex; position: relative; justify-content: center;"><img src="resources/image/spadeA.png" width="750"></div>
 			<div class="hmenu">
 					<div></div>
 					<div></div>
@@ -40,11 +42,8 @@
 		<div id="logo"><img src="images/main.jpg" width="180" height="100"></div>
 		<nav id="category_menu">
 			
-			<div>1</div>
-			<div>2</div>
-			<div>3</div>
-			<div>4</div>
-			<div>5</div>
+			<div style="width: 100%; height: 30px; border: 1px dotted black;">Temporary Space Check</div>
+			<hr>
 		</nav>
 	</header>
 	

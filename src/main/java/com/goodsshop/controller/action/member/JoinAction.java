@@ -20,7 +20,7 @@ public class JoinAction implements Action {
 		
 		mvo.setUserid(request.getParameter("userid"));
 		mvo.setPwd(request.getParameter("pwd"));
-		mvo.setGseq(Integer.parseInt(request.getParameter("gseq")));
+		//mvo.setGseq(Integer.parseInt(request.getParameter("gseq")));
 		mvo.setName(request.getParameter("name"));
 		mvo.setEmail(request.getParameter("email"));
 		mvo.setZip_code(request.getParameter("zip_code"));
