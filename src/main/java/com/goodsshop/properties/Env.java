@@ -23,6 +23,11 @@ public class Env {
     	return prop.getProperty("DataSource");
     }
     
+    // public
+    public static String getLastInsertID() {
+    	return prop.getProperty("getLastInsertID");
+    }
+    
     // member
     public static String getSendEmail() {
     	return prop.getProperty("getSendEmail");
@@ -99,6 +104,18 @@ public class Env {
     public static String getReview() {
     	return prop.getProperty("getReview");
     }
+    
+    public static String reviewWrite() {
+		return prop.getProperty("reviewWrite");
+	}
+    
+    public static String reviewUpdate() {
+		return prop.getProperty("reviewUpdate");
+	}
+    
+    public static String reviewDelete() {
+		return prop.getProperty("reviewDelete");
+	}
     
     // admin
     public static String getAdmin() {

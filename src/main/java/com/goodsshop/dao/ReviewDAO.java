@@ -210,4 +210,39 @@ public class ReviewDAO {
 		
 		return total;
 	}
+	
+	public int lastID() {
+		int id = 0;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.getLastInsertID());
+			rs = pstmt.executeQuery();
+			
+			if (rs.next())
+				id = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return id;
+	}
+
+	public void reviewWrite(ReviewVO vo) {
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.reviewWrite());
+			pstmt.setString(1, vo.getUserid());
+			pstmt.setInt(2, vo.getGseq());
+			pstmt.setString(3, vo.getSubject());
+			pstmt.setString(4, vo.getContent());
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+	}
 }

@@ -1,6 +1,6 @@
 -review_view-
 create view review_view as
-SELECT r.rseq, m.userid, gr.gseq as grade, g.gseq, cg.category, g.gname, r.subject, r.indate, gi.giseq, gi.realname
+SELECT r.rseq, m.userid, gr.gseq as grade, g.gseq, cg.category, g.gname, r.subject, r.content, r.indate, gi.giseq, gi.realname
 FROM review r INNER JOIN member m ON r.userid = m.userid
 INNER JOIN grade gr ON m.gseq = gr.gseq INNER JOIN goods g ON r.gseq = g.gseq
 INNER JOIN category cg ON g.cgseq = cg.cgseq

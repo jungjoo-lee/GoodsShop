@@ -14,7 +14,7 @@
 	<h1>${goodsDetail.gname}</h1>
 
 	<form method="post" name="goodsform">
-		<input type="hidden" name="gseq" value="${goodsDetail.gseq}">
+		<input type="hidden" name="gseq" id="gseq" value="${goodsDetail.gseq}">
 		<div>
 			<div>
 				<img alt="${goodsDetail.thum}.png"
@@ -64,11 +64,18 @@
 		
 			</textarea>
 		</div>
-	<c:forEach var="vo" items="${reviewList}">		
-		${vo.rseq}, ${vo.userid}, ${vo.grade}, ${vo.subject}, ${vo.content}, ${vo.indate}<c:if test="${loginUser.userid eq vo.userid}">
-			<button type="button" class="btn btn-primary" id="reviewUpdateBtn">리뷰 수정</button> <button type="button" class="btn btn-primary" id="reviewDeleteBtn">리뷰 삭제</button>
-		</c:if><br/>
-	</c:forEach>
+		<div>
+			<ul id="reviewList">
+				<c:forEach var="vo" items="${reviewList}">
+				<li>		
+					${vo.rseq}, ${vo.userid}, ${vo.grade}, ${vo.subject}, ${vo.content}, ${vo.indate}
+					<c:if test="${loginUser.userid eq vo.userid}">
+						<button type="button" class="btn btn-primary btn-sm" id="reviewUpdateBtn">수정</button> <button type="button" class="btn btn-danger btn-sm" id="reviewDeleteBtn">삭제</button>
+					</c:if>
+				</li>
+				</c:forEach>
+			</ul>
+		</div>
 	</div>
 	<script type="text/javascript" src='<c:url value = "/resources/js/goods/detail.js"/>'></script>
 </body>

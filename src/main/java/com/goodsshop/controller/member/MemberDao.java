@@ -21,8 +21,8 @@ public class MemberDao {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	
-	public MemberVO getMember(String userid) {
-		MemberVO mvo = null;
+	public com.goodsshop.dto.MemberVO getMember(String userid) {
+		com.goodsshop.dto.MemberVO mvo = null;
 		con = Db.getConnection();
 		String sql = "select * from member where userid=?";
 		try {
@@ -30,7 +30,7 @@ public class MemberDao {
 			pstmt.setString(1, userid);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-				mvo = new MemberVO();
+				mvo = new com.goodsshop.dto.MemberVO();
 				mvo.setUserid(rs.getString("userid"));
 				mvo.setGseq(rs.getInt("gseq"));
 				mvo.setPwd(rs.getString("pwd"));

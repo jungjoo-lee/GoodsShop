@@ -7,10 +7,10 @@ import com.goodsshop.controller.action.admin.AdminIndexAction;
 import com.goodsshop.controller.action.admin.AdminLoginAction;
 import com.goodsshop.controller.action.admin.AdminLoginFormAction;
 import com.goodsshop.controller.action.admin.AdminQnaListAction;
+import com.goodsshop.controller.action.admin.AdminQnaViewAction;
 import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
-import com.goodsshop.controller.action.admin.AdminQnaViewAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
 import com.goodsshop.controller.action.member.JoinPageAction;
@@ -19,7 +19,6 @@ import com.goodsshop.controller.action.notice.NoticeListAction;
 import com.goodsshop.controller.action.qna.QnaListAction;
 import com.goodsshop.controller.action.qna.QnaViewAction;
 import com.goodsshop.controller.action.review.ReviewListAction;
-import com.goodsshop.controller.action.review.ReviewViewAction;
 import com.goodsshop.controller.cart.DeleteCartAction;
 import com.goodsshop.controller.cart.GetPaymentAction;
 import com.goodsshop.controller.cart.GoOrderAction;
@@ -61,7 +60,6 @@ public class ActionFactory {
 		
 		// review
 		else if (command.equals("reviewList")) ac = new ReviewListAction();
-		else if (command.equals("reviewView")) ac = new ReviewViewAction();
 		
 		// admin
 		else if (command.equals("adminLoginForm")) ac = new AdminLoginFormAction();
