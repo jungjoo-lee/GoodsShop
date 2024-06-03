@@ -22,7 +22,7 @@ public class LoginAction implements Action {
 		MemberDao mdao = MemberDao.getInstance();
 		MemberVO mvo = mdao.getMember(userid);
 		
-		String url="jsp/member/loginForm.jsp";
+		String url="gshop.do?command=loginForm";
 		if(mvo==null) 
 			request.setAttribute("message", "아이디 혹은 패스워드가 틀립니다");
 		else if (!mvo.getPwd().equals(pwd)) {

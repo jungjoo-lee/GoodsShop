@@ -23,6 +23,7 @@ public class IndexAction implements Action {
 		NoticeDAO nDAO = NoticeDAO.getInstance();
 		QnaDAO qDAO = QnaDAO.getInstance();
 		ReviewDAO rDAO = ReviewDAO.getInstance();
+		GoodsDAO gdao = new GoodsDAO();
 		
 		request.setAttribute("noticeList", nDAO.getMainNoticeList());
 		request.setAttribute("qnaList", qDAO.getMainQnaList());
@@ -30,6 +31,7 @@ public class IndexAction implements Action {
 		
 		HttpSession session = request.getSession();
 		
+		List<GoodsVO> bestlist = gdao.getBestList();
 		
 		for(GoodsVO vo : bestlist) {
 			GoodsDAO gdao1 = new GoodsDAO();

@@ -10,6 +10,7 @@ import java.util.List;
 import com.goodsshop.controller.goods.Db;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
+import com.goodsshop.dto.ReviewVO;
 import com.goodsshop.util.DB;
 
 public class GoodsDAO {
@@ -139,7 +140,6 @@ public class GoodsDAO {
 		con = Db.getConnection();
 		String sql = "select * from goods where gseq = ?";
 		
-		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, gseq);
@@ -169,9 +169,9 @@ public class GoodsDAO {
 		return gvo;
 	}
 
-
-
+	public List<ReviewVO> getReviewList(int gseq) {
+		List<ReviewVO> reviewList = new ArrayList<>();
 		
-
-
+		return reviewList;
+	}
 }

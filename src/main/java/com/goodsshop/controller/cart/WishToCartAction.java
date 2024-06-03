@@ -48,7 +48,7 @@ public class WishToCartAction implements Action {
 			cartlist.add(cvo);		
 			
 			CartDAO cdao = new CartDAO();
-			cdao.deleteFromWish(gseqInt);
+			
 			
 		}	
 		

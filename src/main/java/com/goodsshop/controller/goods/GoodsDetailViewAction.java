@@ -7,6 +7,7 @@ import com.goodsshop.controller.action.Action;
 import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
+import com.goodsshop.dto.ReviewVO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,7 +26,7 @@ public class GoodsDetailViewAction implements Action {
 		gvo.setImageList(image);
 		String thum = gdao.getThumbnail(gseq);
 		gvo.setThum(thum);
-		
+		List<ReviewVO> reviewList =  gdao.getReviewList(gseq);
 		
 		request.setAttribute("goodsDetail", gvo);
 		request.getRequestDispatcher("jsp/goods/goodsDetail.jsp").forward(request, response);

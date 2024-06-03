@@ -12,6 +12,57 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
+	<c:choose>
+		<c:when test="${empty loginUser}">
+			<div>
+				<h3>로그인하삼</h3>
+				<button id="login"> 로그인ㄱㄱ </button>
+			</div>
+		</c:when>
+		<c:otherwise>
+			<div> ${loginUser.userid} ㅎㅇ </div>
+			<div> 
+				<button id="go_cart"> 장바구니 보기 </button>
+				<button id="go_wishlist"> 찜목록 보기 </button>
+			</div>
+			<h3>하이</h3>			
+		</c:otherwise>
+	</c:choose>
+
+	<div>
+		<div> <h3>베스트 20</h3> </div>
+		<c:forEach items="${bestlist}" var="gvo" varStatus="status">
+
+			<div>				
+				<div>
+					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
+						<img alt="${gvo.thum}.png" src='<c:url value="/resources/image/goods/${gvo.thum}.png"/>'>	
+					</a>
+					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
+						${gvo.gname} - ${gvo.sprice}					
+					</a>
+				</div>
+			</div>
+		</c:forEach>	
+	</div>
+	<div>
+		<div> <h3>신상품</h3> </div>
+		<c:forEach items="${newlist}" var="gvo" varStatus="status">
+
+			<div>				
+				<div>
+					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
+						<img alt="${gvo.thum}.png" src='<c:url value="/resources/image/goods/${gvo.thum}.png"/>'>	
+					</a>		
+					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
+						${gvo.gname} - ${gvo.sprice}					
+					</a>		
+				</div>
+			</div>
+		</c:forEach>	
+	</div>
+
+	<script type="text/javascript" src='<c:url value = "/resources/js/goods/main.js"/>'></script>
 <!-- 공지사항 -->
 <div class="card w-100 ms-3 me-2">
   <div class="card-header d-flex justify-content-between">

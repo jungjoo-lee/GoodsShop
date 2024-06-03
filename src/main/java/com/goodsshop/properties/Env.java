@@ -33,6 +33,9 @@ public class Env {
     }
     
     // goods
+    public static String getGoodsReviewList() {
+    	return prop.getProperty("getGoodsReviewList");
+    }
     
     // notice
     public static String getMainNoticeList() {

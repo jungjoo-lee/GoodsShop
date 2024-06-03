@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<script src="resources/js/member/member.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,5 +26,6 @@
 			<div style="font-size:80%; font-weight:bold">${message}</div>
 		</article>
 </section>
+<script src="<c:url value='resources/js/member/member.js'/>"></script>
 </body>
 </html>
