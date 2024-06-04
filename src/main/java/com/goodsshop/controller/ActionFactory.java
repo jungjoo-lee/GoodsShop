@@ -7,11 +7,15 @@ import com.goodsshop.controller.action.member.GetEmailAction;
 import com.goodsshop.controller.action.admin.AdminIndexAction;
 import com.goodsshop.controller.action.admin.AdminLoginAction;
 import com.goodsshop.controller.action.admin.AdminLoginFormAction;
+import com.goodsshop.controller.action.admin.AdminNoticeListAction;
+import com.goodsshop.controller.action.admin.AdminNoticeViewAction;
 import com.goodsshop.controller.action.admin.AdminQnaListAction;
 import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
 import com.goodsshop.controller.action.admin.AdminQnaViewAction;
+import com.goodsshop.controller.action.admin.NoticeDeleteAction;
+import com.goodsshop.controller.action.admin.NoticeUpdateAction;
 import com.goodsshop.controller.action.email.FindIdOKAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
@@ -78,7 +82,11 @@ public class ActionFactory {
 		else if (command.equals("qnaReplyWrite")) ac = new QnaReplyWriteAction();
 		else if (command.equals("qnaReplyUpdate")) ac = new QnaReplyUpdateAction();
 		else if (command.equals("qnaReplyDelete")) ac = new QnaReplyDeleteAction();
-		
+		else if (command.equals("adminNoticeList")) ac = new AdminNoticeListAction();
+		else if (command.equals("adminNoticeView")) ac = new AdminNoticeViewAction();
+		else if (command.equals("noticeDelete")) ac = new NoticeDeleteAction();
+		else if (command.equals("noticeUpdate")) ac = new NoticeUpdateAction();
+
 		//멤버 로그인
 		else if (command.equals("loginForm")) ac = new LoginFormAction();
 		else if (command.equals("login")) ac = new LoginAction();

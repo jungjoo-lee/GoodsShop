@@ -3,36 +3,27 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/index/index.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/index/rightSideMenu.css'/>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-</head>
-<body>
-	<div>
-		<div> <h3>베스트 20</h3> </div>
-		<c:forEach items="${bestlist}" var="gvo" varStatus="status">
 
-			<div>				
-				<div>
+
+	<div id="best">
+		<div><h3>BEST ITEMS</h3></div>
+		<div id="bestItems">	
+		<div id="best20">
+		<c:forEach items="${bestlist}" var="gvo" varStatus="status">			
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
 						<img alt="${gvo.thum}.png" src='<c:url value="/resources/image/goods/${gvo.thum}.png"/>'>	
 					</a>
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
 						${gvo.gname} - ${gvo.sprice}					
 					</a>
-				</div>
-			</div>
 		</c:forEach>	
-	</div>
-	<div>
+	<div id="new">
 		<div> <h3>신상품</h3> </div>
 		<c:forEach items="${newlist}" var="gvo" varStatus="status">
-
 			<div>				
 				<div>
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
@@ -43,9 +34,11 @@
 					</a>		
 				</div>
 			</div>
-		</c:forEach>	
+		</c:forEach>
+			</div>	
+		</div>
 	</div>
-
+</div>
 	<script type="text/javascript" src='<c:url value = "/resources/js/goods/main.js"/>'></script>
 <!-- 공지사항 -->
 <div class="card w-100 ms-3 me-2">
@@ -150,7 +143,16 @@
 	  	</c:forEach>
 	  </ul>
 	</div>
+	</div>
+	<div id="side">
+	<div>검색</div>
+	<div>장바구니</div>
+	<div>찜한 상품</div>
+	<div>주문조회</div>
+	<div id="controll">
+		<div>위로</div>
+		<div>아래로</div>
+	</div>
+</div>
 </div>
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>
-</body>
-</html>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
@@ -9,6 +8,8 @@
 <title>공지사항</title>
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/notice/notice.css'/>">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
 </head>
 <body>
 <div class="row d-flex justify-content-center">
@@ -24,6 +25,9 @@
 					  		<option value=30>30</option>
 					  		<option value=50>50</option>
 						</select>
+						<div class="btn-group" >
+				                <input type="submit" value=" 공지사항 등록" onClick="return insertNotice();">
+				            </div>
 					</div>
 					<div class="col d-flex justify-content-end">
 			    		<select class="form-select w-25 me-1" name="search" id="search">
@@ -52,8 +56,8 @@
 						<div class="d-flex justify-content-center align-items-center">
 							<div>${notice.nseq}</div>
           					<div>${notice.adminId}</div>
-          					<div>${notice.subject}</div>
-          					<div>${notice.content}</div>
+          					<div><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>" style="border:none;">${notice.subject}</a></div>
+          					<div><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>" style="border:none;">${notice.content}</a></div>
           					<div><fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" /></div>
        					</div>
 					</li>

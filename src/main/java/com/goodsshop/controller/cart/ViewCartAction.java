@@ -27,7 +27,7 @@ public class ViewCartAction implements Action {
 		} else {
 
 			System.out.println("장바구니 비었음");
-			request.getRequestDispatcher("jsp/goods/cartlistView.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/goods/cartlistView.jsp").forward(request, response);
 
 		}
 	}

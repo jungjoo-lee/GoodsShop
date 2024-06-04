@@ -14,8 +14,14 @@ ul {
 .notice-header div, .notice-item div {
     flex: 1;
     text-align: center;
+    align-items:center;
 }
 
 .notice-header .small-col, .notice-item .small-col {
     flex: 0.3;
+}
+
+a{
+	border:none;
+	
 }

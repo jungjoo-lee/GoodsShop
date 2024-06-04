@@ -37,7 +37,7 @@ public class FindIdAction implements Action {
 		// dao 불러오기
 		MemberDao mdao = MemberDao.getInstance();
 		MemberVO mvo = mdao.checkMember(name, email);
-		String url="jsp/email/emailVerification.jsp";
+		String url="/WEB-INF/jsp/email/emailVerification.jsp";
 		 try {
 			 	if(mvo== null){ 
 			 		request.setAttribute("message", "등록된 회원이 아닙니다");

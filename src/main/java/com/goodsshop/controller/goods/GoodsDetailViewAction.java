@@ -29,7 +29,7 @@ public class GoodsDetailViewAction implements Action {
 		List<ReviewVO> reviewList =  gdao.getReviewList(gseq);
 		
 		request.setAttribute("goodsDetail", gvo);
-		request.getRequestDispatcher("jsp/goods/goodsDetail.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/goods/goodsDetail.jsp").forward(request, response);
 	}
 
 }

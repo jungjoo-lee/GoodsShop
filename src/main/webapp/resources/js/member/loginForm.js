@@ -27,7 +27,6 @@ function setPlaceholder(input, placeholder) {
 window.onload = function() {
     var passwordField = document.getElementById("password");
     // 초기에 입력된 값이 "비밀번호"인 경우에만 클래스를 추가하여 플레이스홀더 텍스트를 보이게 합니다.
-    if (passwordField.value === "비밀번호") {
-        passwordField.classList.add('placeholder-visible');
-    }
+	passwordField.classList.add('placeholder-visible');
+ 
 };     

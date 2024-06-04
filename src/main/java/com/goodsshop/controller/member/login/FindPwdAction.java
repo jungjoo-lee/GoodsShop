@@ -44,7 +44,7 @@ public class FindPwdAction implements Action {
 		// dao 불러오기
 		MemberDao mdao = MemberDao.getInstance();
 		MemberVO mvo = mdao.checkMembers(userid, email);
-		String url="jsp/email/PwdEmail.jsp";
+		String url="/WEB-INF/jsp/email/PwdEmail.jsp";
 		 try {
 			 	if(mvo== null){ 
 			 		request.setAttribute("message", "등록된 회원이 아닙니다");

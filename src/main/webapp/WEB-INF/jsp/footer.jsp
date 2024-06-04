@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <link rel="stylesheet" href="resources/css/footer.css">
 
-		<div class="clear">
+	<div class="clear">
 		<footer id="footer">
 				<div id="leftOne">
 					<div id="copy">CUSTOMER CENTER</div>
@@ -11,7 +11,7 @@
 						<div>평일 오전 11:00 ~ 오후 18:00</div>
 						<div>점심시간 오후 12:00 ~ 오후 13:00</div>
 						<div>토 / 일 / 공휴일 휴무</div>
-					</div>
+				</div>
 				<div id=a></div>
 				<div id="leftTwo">
 					<div id="copy">ACCONT INFO</div>
@@ -22,20 +22,20 @@
 				<div id=a></div>
 				<div id="rightOne">
 					<div id="copy">FAVORITE MENU</div>
-						<div>로그인</div><div>회원가입</div>
-						<div>관심상품</div>
-						<div>장바구니</div>
-						<div>주문조회</div>
-						<div>마이페이지</div>
+						<div><a href="gshop.do?command=loginForm">로그인</a></div>
+						<div><a href="gshop.do?command=joinPage">회원가입</a></div>
+						<div><a href="gshop.do?command=viewWishlist">관심상품</a></div>
+						<div><a href="gshop.do?command=viewCartlist">장바구니</a></div>
+						<div><a href="gshop.do?command=viewOrderList">주문조회</a></div>
+						<div><a href="gshop.do?command=updateMemberForm">마이페이지</a></div>
 				</div>
 				<div id=a></div>
 				<div id="rightTwo">
 					<div id="copy">RETURN/EXCHANGE</div>
 						<div>서울시 은평구 진관동 은평우체국</div>
-						<div>자세한 교환＊반품 절차 안내는 문의란 및 공지사항을 참고해주세요</div>
-				<div id=a></div>
+						<div>자세한 교환＊반품 절차 안내는 문의란 및 공지사항을 참고해주세요</div><br/>
+						<div><a href="gshop.do?command=adminLogin">admin</a></div>
 				</div>
-				<a href="gshop.do?command=adminLogin">admin</a>
 		</footer>
 		</div>
 </div> 
