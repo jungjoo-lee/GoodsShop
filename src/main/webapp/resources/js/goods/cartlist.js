@@ -38,6 +38,7 @@ function deletecart(){
 				alert("삭제할 상품을 선택해주세요");			
 			} else {
 				document.cartlistform.action = "gshop.do?command=deleteCart";
+				document.cartlistform.method = "post";
 				document.cartlistform.submit();
 			}			
 		})
@@ -71,6 +72,7 @@ function goorder(){
 				alert("주문할 상품을 선택하세요");			
 			} else {
 				document.cartlistform.action = "gshop.do?command=orderFromCart";
+				document.cartlistform.method = "post";
 				document.cartlistform.submit();
 			}				
 		})		
@@ -78,3 +80,23 @@ function goorder(){
 }
 
 goorder();
+
+
+function check_all() {
+	let checkAll = document.querySelector("#checkAll");
+
+	if (checkAll != null) {
+		checkAll.addEventListener("click", () => {
+			const checkboxes = document.querySelectorAll("#checkboxes");
+			if (checkboxes.length > 0) {
+				Array.from(checkboxes).forEach((checkbox) => {
+					checkbox.checked = checkAll.checked;
+				});
+			} else {
+				console.log("No checkboxes found with the name 'gseq'");
+			}
+		})
+	}
+}
+
+check_all();

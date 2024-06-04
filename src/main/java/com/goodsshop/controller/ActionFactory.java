@@ -11,6 +11,21 @@ import com.goodsshop.controller.action.admin.AdminQnaListAction;
 import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
+import com.goodsshop.controller.action.admin.goods.AdminDeleteGoodsAction;
+import com.goodsshop.controller.action.admin.goods.AdminGoodsViewAction;
+import com.goodsshop.controller.action.admin.goods.AdminUpdateGoodsAction;
+import com.goodsshop.controller.action.admin.goods.AdminUpdateGoodsFormAction;
+import com.goodsshop.controller.action.cart.DeleteCartAction;
+import com.goodsshop.controller.action.cart.DeleteWishAction;
+import com.goodsshop.controller.action.cart.GetPaymentAction;
+import com.goodsshop.controller.action.cart.GoOrderAction;
+import com.goodsshop.controller.action.cart.InsertCartAction;
+import com.goodsshop.controller.action.cart.InsertWishAction;
+import com.goodsshop.controller.action.cart.OrderCartAction;
+import com.goodsshop.controller.action.cart.OrderNowAction;
+import com.goodsshop.controller.action.cart.ViewCartAction;
+import com.goodsshop.controller.action.cart.ViewWishAction;
+import com.goodsshop.controller.action.cart.WishToCartAction;
 import com.goodsshop.controller.action.admin.AdminQnaViewAction;
 import com.goodsshop.controller.action.email.FindIdOKAction;
 import com.goodsshop.controller.action.goods.GoodsDetailViewAction;
@@ -28,17 +43,6 @@ import com.goodsshop.controller.action.qna.QnaListAction;
 import com.goodsshop.controller.action.qna.QnaViewAction;
 import com.goodsshop.controller.action.review.ReviewListAction;
 import com.goodsshop.controller.action.review.ReviewViewAction;
-import com.goodsshop.controller.cart.DeleteCartAction;
-import com.goodsshop.controller.cart.DeleteWishAction;
-import com.goodsshop.controller.cart.GetPaymentAction;
-import com.goodsshop.controller.cart.GoOrderAction;
-import com.goodsshop.controller.cart.InsertCartAction;
-import com.goodsshop.controller.cart.InsertWishAction;
-import com.goodsshop.controller.cart.OrderCartAction;
-import com.goodsshop.controller.cart.ViewCartAction;
-import com.goodsshop.controller.cart.ViewWishAction;
-import com.goodsshop.controller.cart.WishToCartAction;
-import com.goodsshop.controller.cart.OrderNowAction;
 import com.goodsshop.controller.member.login.FindIdAction;
 import com.goodsshop.controller.member.login.FindIdFormAction;
 import com.goodsshop.controller.member.login.FindPwdAction;
@@ -131,6 +135,15 @@ public class ActionFactory {
 		else if(command.equals("orderDetailView")) ac = new OrderDetailViewAction();
 		
 		else if(command.equals("viewCategory")) ac = new ViewCategoryAction();
+		
+		
+		//admin-goods		
+		else if(command.equals("adminGoodsView")) ac = new AdminGoodsViewAction();
+		else if(command.equals("adminGoodsUpdateForm")) ac = new AdminUpdateGoodsFormAction();
+		else if(command.equals("adminUpdateGoods")) ac = new AdminUpdateGoodsAction();
+		//아직 클래스 작성안함
+		//else if(command.equals("adminInsertGoods")) ac = new AdminInsertGoodsAction();
+		//else if(command.equals("adminGoodsDelete")) ac = new AdminDeleteGoodsAction();
 		
 		
 		

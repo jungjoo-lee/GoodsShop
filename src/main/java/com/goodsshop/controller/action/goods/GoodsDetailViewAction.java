@@ -31,12 +31,15 @@ public class GoodsDetailViewAction implements Action {
 		gvo.setImageList(image);
 		String thum = gdao.getThumbnail(gseq);
 		gvo.setThum(thum);
-		int oldPrice = gvo.getSprice();		
-		int newPrice = 0;
 		
-		newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
-		
-		gvo.setSprice(newPrice);
+		if (loginUser != null) {
+			int oldPrice = gvo.getSprice();		
+			int newPrice = 0;
+			
+			newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
+			
+			gvo.setSprice(newPrice);
+		}
 		
 		List<ReviewVO> reviewList =  gdao.getReviewList(gseq);
 		

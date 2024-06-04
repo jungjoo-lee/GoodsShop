@@ -45,12 +45,15 @@ public class IndexAction implements Action {
 			vo.setImageList(bestImageList);
 			String thum = gdao1.getThumbnail(vo.getGseq());
 			vo.setThum(thum);
-			int oldPrice = vo.getSprice();		
-			int newPrice = 0;
 			
-			newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
-			
-			vo.setSprice(newPrice);
+			if (loginUser != null) {
+				int oldPrice = vo.getSprice();		
+				int newPrice = 0;
+				
+				newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
+				
+				vo.setSprice(newPrice);
+			}		
 		}
 		
 		
@@ -63,12 +66,14 @@ public class IndexAction implements Action {
 			String thum = gdao1.getThumbnail(vo.getGseq());
 			vo.setThum(thum);
 			
-			int oldPrice = vo.getSprice();					
-			int newPrice = 0;
-			
-			newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
-			
-			vo.setSprice(newPrice);
+			if (loginUser != null) {
+				int oldPrice = vo.getSprice();		
+				int newPrice = 0;
+				
+				newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
+				
+				vo.setSprice(newPrice);
+			}
 
 		}
 		

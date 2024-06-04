@@ -1,4 +1,4 @@
-package com.goodsshop.controller.cart;
+package com.goodsshop.controller.action.cart;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,10 +31,8 @@ public class ViewCartAction implements Action {
 			if(cartlist != null) {
 				for(CartVO cvo : cartlist) {
 					int oldPrice = cvo.getSprice();		
-					System.out.println(oldPrice);
 					int newPrice = 0;
 					newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
-					System.out.println(newPrice);
 					
 					cvo.setSprice(newPrice);
 					cvo.setTotalprice(cvo.getQuantity() * cvo.getSprice());

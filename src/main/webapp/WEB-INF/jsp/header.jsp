@@ -38,15 +38,15 @@
 		</nav>
 		<div id="logo"><a href="gshop.do?command=loginForm">FLOWER ON YOU</a></div>
 			<nav>
-				<div id="categories_1">BEST50</div>
-				<div id="categories_2">헤어악세서리</div>
-				<div id="categories_3">반지</div>
-				<div id="categories_4">목걸이</div>
-				<div id="categories_5">귀걸이</div>
-				<div id="categories_6">팔찌</div>
-				<div id="categories_7">브로치</div>
-				<div id="categories_8">모자</div>
-				<div id="categories_9">장갑</div>
+				<div id="categories_0">BEST50</div>
+				<div id="categories_1">헤어악세서리</div>
+				<div id="categories_2">반지</div>
+				<div id="categories_3">목걸이</div>
+				<div id="categories_4">귀걸이</div>
+				<div id="categories_5">팔찌</div>
+				<div id="categories_6">브로치</div>
+				<div id="categories_7">모자</div>
+				<div id="categories_8">장갑</div>
 			</nav>			
 			<script type="text/javascript" src="<c:url value="/resources/js/goods/header.js" />"></script>
 	</header>

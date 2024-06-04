@@ -1,6 +1,7 @@
 package com.goodsshop.controller.action.goods;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.goodsshop.controller.action.Action;
@@ -22,11 +23,16 @@ public class ViewCategoryAction implements Action {
 		int cgseq = Integer.parseInt(request.getParameter("cgseq"));
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		
-
 		GoodsDAO gdao = new GoodsDAO();
-		List<GoodsVO> categoryList = gdao.getCategoryList(cgseq);
+		List<GoodsVO> categoryList = new ArrayList<GoodsVO>();
 		
+		if(cgseq == 0) {
+			//best 50
+			categoryList = gdao.getBestList();					
+		} else {
+			//나머지 카테고리들
+			categoryList = gdao.getCategoryList(cgseq);			
+		}
 		
 		for(GoodsVO vo : categoryList) {
 			GoodsDAO gdao1 = new GoodsDAO();
@@ -42,7 +48,6 @@ public class ViewCategoryAction implements Action {
 			
 			vo.setSprice(newPrice);
 		}
-		
 		
 		request.setAttribute("categoryList", categoryList);
 		request.getRequestDispatcher("WEB-INF/jsp/goods/categoryView.jsp").forward(request, response);

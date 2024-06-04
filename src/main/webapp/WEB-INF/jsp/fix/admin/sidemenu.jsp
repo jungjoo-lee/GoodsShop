@@ -17,8 +17,8 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="#">상품 등록</a>
-                        <a class="nav-link" href="#">상품 목록</a>
+                        <a class="nav-link" href="gshop.do?command=adminGoodsInsert">상품 등록</a>
+                        <a class="nav-link" href="gshop.do?command=adminGoodsView">상품 목록</a>
                     </nav>
                 </div>
                 <a class="nav-link" href="#">

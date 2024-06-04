@@ -20,4 +20,6 @@ public class GoodsVO {
 	private String thum;
 	private List<GoodsImageVO> imageList;
 	private String category;
+	private int giseq;
+	private String realname;
 }
