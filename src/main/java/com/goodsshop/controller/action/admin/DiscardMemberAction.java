@@ -20,7 +20,7 @@ public class DiscardMemberAction implements Action {
 		response.sendRedirect("gshop.do?command=adminIndex");
 		}else {
 		for (String userid : YNlist) {
-			dao.여기 마저 써라(userid);
+			dao.deleteMember(userid);
 		}
 		response.sendRedirect("gshop.do?command=adminIndex");
 		}
