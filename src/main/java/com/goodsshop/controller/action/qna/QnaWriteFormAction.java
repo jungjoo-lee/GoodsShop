@@ -1,4 +1,4 @@
-package com.goodsshop.controller.action.admin;
+package com.goodsshop.controller.action.qna;
 
 import java.io.IOException;
 
@@ -9,12 +9,14 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AdminQnaViewAction implements Action {
+public class QnaWriteFormAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		QnaDAO dao = QnaDAO.getInstance();
+		if (request.getParameterMap().containsKey("qseq")) {
+			QnaDAO dao = QnaDAO.getInstance();
+			request.setAttribute("vo", dao.getQna(Integer.parseInt(request.getParameter("qseq"))));
+		}
 		
-		request.setAttribute("vo", dao.getQna(Integer.parseInt(request.getParameter("qseq"))));
-		request.getRequestDispatcher("/WEB-INF/jsp/admin/qnaView.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/qna/qnaWriteFom.jsp").forward(request, response);
 	}
 }

@@ -38,9 +38,6 @@ public class Env {
     }
     
     // goods
-    public static String getGoodsReviewList() {
-    	return prop.getProperty("getGoodsReviewList");
-    }
     
     // notice
     public static String getMainNoticeList() {
@@ -80,6 +77,18 @@ public class Env {
     	return prop.getProperty("getQna");
     }
     
+    public static String writeQna() {
+    	return prop.getProperty("writeQna");
+    }
+    
+    public static String updateQna() {
+    	return prop.getProperty("updateQna");
+    }
+    
+    public static String deleteQna() {
+    	return prop.getProperty("deleteQna");
+    }
+    
     // review
     public static String getMainReviewList() {
     	return prop.getProperty("getMainReviewList");
@@ -103,6 +112,14 @@ public class Env {
     
     public static String getReview() {
     	return prop.getProperty("getReview");
+    }
+    
+    public static String getGoodsReviewList() {
+    	return prop.getProperty("getGoodsReviewList");
+    }
+    
+    public static String getGoodsReviewTotal() {
+    	return prop.getProperty("getGoodsReviewTotal");
     }
     
     public static String reviewWrite() {

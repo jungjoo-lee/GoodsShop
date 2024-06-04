@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goodsshop.controller.action.FatchAction;
 import com.goodsshop.dao.AdminDAO;
 import com.goodsshop.dao.NoticeDAO;
+import com.goodsshop.dao.QnaDAO;
 import com.goodsshop.dao.ReviewDAO;
 import com.goodsshop.util.Paging;
 import com.goodsshop.util.SqlBuilder;
@@ -35,7 +36,7 @@ public class GetContentAction implements FatchAction {
 		HttpSession session = request.getSession();
 		JSONObject jsonResult = new JSONObject();
 		SqlBuilder sb = SqlBuilder.getInstance();
-		AdminDAO dao = AdminDAO.getInstance();
+		QnaDAO dao = QnaDAO.getInstance();
 		
 		StringBuilder sql = null;
 		String jsonString = null;

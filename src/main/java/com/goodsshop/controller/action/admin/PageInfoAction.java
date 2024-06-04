@@ -7,10 +7,10 @@ import org.json.JSONObject;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goodsshop.controller.action.FatchAction;
-import com.goodsshop.controller.member.MemberVO;
 import com.goodsshop.dao.AdminDAO;
 import com.goodsshop.dao.QnaDAO;
 import com.goodsshop.dao.ReviewDAO;
+import com.goodsshop.dto.MemberVO;
 import com.goodsshop.util.Paging;
 
 import jakarta.servlet.ServletException;
@@ -123,10 +123,10 @@ public class PageInfoAction implements FatchAction {
 	private JSONObject totalNotice(HttpServletRequest request, JSONObject json) {
 		HttpSession session = request.getSession();
 		JSONObject jsonResult = new JSONObject();
-		AdminDAO dao = AdminDAO.getInstance();
+		ReviewDAO dao = ReviewDAO.getInstance();
 
 		try {
-			int total = dao.getTotalQna();
+			int total = dao.getTotalReview();
 			int currentPage = 1;
 			int amount = 10;
 			

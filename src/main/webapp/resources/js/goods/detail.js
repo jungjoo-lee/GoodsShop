@@ -123,8 +123,6 @@ reviewWriteBtn.addEventListener("click", () => {
 					if (reviewList.children.length > 10) {
 					    reviewList.removeChild(reviewList.lastElementChild);
 					}
-					
-					alert(jsonResult.message);
 				} else {
 					alert(jsonResult.message);
 				}
@@ -134,9 +132,47 @@ reviewWriteBtn.addEventListener("click", () => {
 	}
 });
 
+function getRseq(e) {
+	return e.target.parentNode.parentElement.parentElement.firstElementChild.innerHTML;
+}
+
+let textareaUpdated = false;
+function reviewUpdate() {
+	
+}
+
+let reviewUpdateBtn = document.querySelector('#reviewUpdateBtn');
+reviewUpdateBtn.addEventListener("click", () => {
+	if(confirm("리뷰 내욜을 수정하시겠습니까?")) {
+		alert("수정되었습니다.");
+	}
+});
+
+function reviewDelete(rseq) {
+	fetch('/GoodsShop/gshop.do?command=asyn', {
+		method : 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		},
+			body: JSON.stringify({
+				"command" : "reviewDelete",
+				"rseq" : rseq,
+			})
+		})
+		.then(response => response.json())
+		.then(jsonResult => {				
+			if (jsonResult.status == true) {
+				alert(성공);
+			}
+	});
+}
+
 let reviewDeleteBtn = document.querySelector('#reviewDeleteBtn');
-reviewDeleteBtn.addEventListener("click", () => {
+reviewDeleteBtn.addEventListener("click", (e) => {
 	if(confirm("정말로 삭제하시겠습니까?")) {
-		alert("삭제되었습니다.");
+		let rseq = getRseq(e);
+		reviewDelete(rseq);
+	} else {
+		return;
 	}
 });

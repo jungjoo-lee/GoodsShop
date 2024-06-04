@@ -32,7 +32,6 @@ public class ReviewWriteAction implements FatchAction {
 	        String jsonString = mapper.writeValueAsString(rVO);
 	        
 			json.put("status", true);
-			json.put("message", "리뷰 작성 성공");
 			json.put("vo", new JSONObject(jsonString));
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -177,9 +177,9 @@ public class ReviewDAO {
 						.category(rs.getString(5))
 						.gname(rs.getString(6))
 						.subject(rs.getString(7))
-						.indate(rs.getTimestamp(8))
-						.giseq(rs.getInt(9))
-						.realName(rs.getString(10))
+						.indate(rs.getTimestamp(9))
+						.giseq(rs.getInt(10))
+						.realName(rs.getString(11))
 						.build());
 			}
 		} catch (SQLException e) {
@@ -202,6 +202,58 @@ public class ReviewDAO {
 			if (rs.next()) {
 				total = rs.getInt(1);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return total;
+	}
+	
+	public List<ReviewVO> getGoodsReviewList(int gseq, int amount, int currentPage) {
+		List<ReviewVO> reviewList = new ArrayList<>();
+		int offset = (currentPage - 1) * amount;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.getGoodsReviewList());
+			pstmt.setInt(1, gseq);
+			pstmt.setInt(2, amount);
+			pstmt.setInt(3, offset);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				reviewList.add(ReviewVO.builder()
+						.rseq(rs.getInt(1))
+						.userid(rs.getString(2))
+						.grade(rs.getInt(3))
+						.gseq(rs.getInt(4))
+						.subject(rs.getString(7))
+						.content(rs.getString(8))
+						.indate(rs.getTimestamp(9))
+						.build());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return reviewList;
+	}
+	
+	public int getGoodsReviewTotal(int gseq) {
+		int total = 0;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.getGoodsReviewTotal());
+			pstmt.setInt(1, gseq);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next())
+				total = rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -238,6 +290,34 @@ public class ReviewDAO {
 			pstmt.setInt(2, vo.getGseq());
 			pstmt.setString(3, vo.getSubject());
 			pstmt.setString(4, vo.getContent());
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+	}
+
+	public void reviewUpdate(ReviewVO vo) {
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.reviewUpdate());
+			pstmt.setString(1, vo.getSubject());
+			pstmt.setString(2, vo.getContent());
+			pstmt.setInt(3, vo.getRseq());
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+	}
+
+	public void reviewDelete(int rseq) {
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.reviewDelete());
+			pstmt.setInt(1, rseq);
 			pstmt.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();

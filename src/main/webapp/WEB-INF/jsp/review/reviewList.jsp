@@ -46,34 +46,40 @@
 						    	</div>
 					    	</div>
 		            	</div>
-                  		<ul>
-                  			<li class="review-header">
-                  				<div class="d-flex">
-                  					<div class="small-col">번호</div>
-                  					<div>사진</div>
-                  					<div class="small-col">카테고리</div>
-                  					<div>굿즈명</div>
-                  					<div>리뷰제목</div>
-                  					<div>구매자</div>
-                  					<div>리뷰작성일자</div>
-                  				</div>
-                  			</li>
-                  			<div id="review-list">
-							<c:forEach var="rev" items="${reviewList}">
-							<li class="review-item">
-								<div class="d-flex justify-content-center align-items-center">
-									<div class="small-col">${rev.rseq}</div>
-	               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
-	               					<div class="small-col">[${rev.category}]</div>
-	               					<div>${rev.gname}</div>
-	               					<div>${rev.subject}</div>
-	               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}</div>
-	               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-               					</div>
-							</li>
-							</c:forEach>
-							</div>
-						</ul>
+		            	<div>
+	                  		<ul>
+	                  			<li class="review-header">
+	                  				<div class="d-flex">
+	                  					<div class="small-col">번호</div>
+	                  					<div>사진</div>
+	                  					<div class="small-col">카테고리</div>
+	                  					<div>굿즈명</div>
+	                  					<div>리뷰제목</div>
+	                  					<div>구매자</div>
+	                  					<div>리뷰작성일자</div>
+	                  				</div>
+	                  			</li>
+	                  		</ul>
+                  		</div>
+                  		<div>
+	                  		<ul>
+	                  			<div id="review-list">
+								<c:forEach var="rev" items="${reviewList}">
+								<li class="review-item">
+									<div class="d-flex justify-content-center align-items-center">
+										<div class="small-col">${rev.rseq}</div>
+		               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
+		               					<div class="small-col">[${rev.category}]</div>
+		               					<div>${rev.gname}</div>
+		               					<div>${rev.subject}</div>
+		               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}</div>
+		               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
+	               					</div>
+								</li>
+								</c:forEach>
+								</div>
+							</ul>
+						</div>
 						<span id="pagdInfo">${paging.currentPage} / ${paging.realEnd}</span>
 						<nav>
 							<ul class="pagination justify-content-center" id="pagination">
@@ -165,7 +171,7 @@
 						</ul>
 						<span id="pagdInfo">${myPaging.currentPage} / ${myPaging.realEnd}</span>
 						<nav>
-							<ul class="pagination justify-content-center" id="pagination">
+							<ul class="pagination justify-content-center" id="myPagination">
 						  	<!-- 이전 버튼 -->
 						  	<c:choose>
 						  		<c:when test="${myPaging.prev}">

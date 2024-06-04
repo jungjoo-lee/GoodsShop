@@ -47,20 +47,25 @@
 						    	</div>
 					    	</div>
 		            	</div>
-                  		<ul>
-                  			<li class="qna-header">
-                  				<div class="d-flex">
-                  					<div>번호</div>
-                  					<div>제목</div>
-                  					<div>내용</div>
-                  					<div>작성자</div>
-                  					<div>작성일자</div>
-                  					<div>답변일자</div>
-                  				</div>
-                  			</li>
-                  			<div id="qna-list">
+		            	<div>
+	                  		<ul>
+	                  			<li class="qna-header">
+	                  				<div class="d-flex">
+	                  					<div>번호</div>
+	                  					<div>제목</div>
+	                  					<div>내용</div>
+	                  					<div>작성자</div>
+	                  					<div>작성일자</div>
+	                  					<div>답변일자</div>
+	                  				</div>
+	                  			</li>
+                  			</ul>
+                  		</div>
+                  		<div>
+                  			<ul id="qna-list">
 							<c:forEach var="qna" items="${qnaList}">
-							<li class="qna-item">
+							<a class="link" href="<c:url value='/gshop.do?command=qnaView&qseq=${qna.qseq}'/>">
+								<li class="qna-item">
 								<div class="d-flex justify-content-center align-items-center">
 									<div>${qna.qseq}</div>
 	               					<div>${qna.subject}</div>
@@ -69,10 +74,11 @@
 	               					<div><fmt:formatDate value="${qna.indate}" type="both" pattern="yyyy-MM-dd" /></div>
 	               					<div><fmt:formatDate value="${qna.replyDate}" type="both" pattern="yyyy-MM-dd" /></div>
                					</div>
-							</li>
+								</li>
+							</a>
 							</c:forEach>
-							</div>
-						</ul>
+							</ul>
+						</div>
 						<span id="pagdInfo">${paging.currentPage} / ${paging.realEnd}</span>
 						<nav>
 							<ul class="pagination justify-content-center" id="pagination">
@@ -136,74 +142,84 @@
 						    	</div>
 					    	</div>
 		            	</div>
-                		<ul>
-                  			<li class="qna-header">
-                  				<div class="d-flex">
-                  					<div>번호</div>
-                  					<div>제목</div>
-                  					<div>내용</div>
-                  					<div>작성자</div>
-                  					<div>작성일자</div>
-                  					<div>답변일자</div>
-                  				</div>
-                  			</li>
-							<c:forEach var="qna" items="${qnaMyList}">
-							<li class="qna-item">
-								<div class="d-flex justify-content-center align-items-center">
-									<div>${qna.qseq}</div>
-	               					<div>${qna.subject}</div>
-	               					<div>${qna.content}</div>
-	               					<div>${qna.userid}</div>
-	               					<div><fmt:formatDate value="${qna.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-	               					<div><fmt:formatDate value="${qna.replyDate}" type="both" pattern="yyyy-MM-dd" /></div>
-               					</div>
-							</li>
+		            	<div>
+	                		<ul>
+	                  			<li class="qna-header">
+	                  				<div class="d-flex">
+	                  					<div>번호</div>
+	                  					<div>제목</div>
+	                  					<div>내용</div>
+	                  					<div>작성자</div>
+	                  					<div>작성일자</div>
+	                  					<div>답변일자</div>
+	                  				</div>
+	                  			</li>
+	                  		</ul>
+                  		</div>
+                  		<div>
+                  			<ul id="qna-myList">
+								<c:forEach var="qna" items="${qnaMyList}">
+								<a class="link" href="<c:url value='/gshop.do?command=qnaView&qseq=${qna.qseq}'/>">
+								<li class="qna-item">
+									<div class="d-flex justify-content-center align-items-center">
+										<div>${qna.qseq}</div>
+		               					<div>${qna.subject}</div>
+		               					<div>${qna.content}</div>
+		               					<div>${qna.userid}</div>
+		               					<div><fmt:formatDate value="${qna.indate}" type="both" pattern="yyyy-MM-dd" /></div>
+		               					<div><fmt:formatDate value="${qna.replyDate}" type="both" pattern="yyyy-MM-dd" /></div>
+	               					</div>
+								</li>
+							</ul>
+							</a>
 							</c:forEach>
 						</ul>
 						<span id="pagdInfo">${myPaging.currentPage} / ${myPaging.realEnd}</span>
-						<nav>
-							<ul class="pagination justify-content-center" id="pagination">
-						  	<!-- 이전 버튼 -->
-						  	<c:choose>
-						  		<c:when test="${myPaging.prev}">
-						  			<li class="page-item">
-						  				<a class="page-link" data-value="prev">Prev</a>
-						  			</li>
-						  		</c:when>
-						  		<c:otherwise>
-						  			<li class="page-item disabled">
-						  				<a class="page-link">Prev</a>
-						  			</li>
-						  		</c:otherwise>
-						  	</c:choose>
-						  	<!-- 페이지 번호 -->
-						  	<c:forEach var="num" begin="${myPaging.startPage}" end="${myPaging.endPage}">
-						  		<c:if test="${num == myPaging.currentPage}">
-						  			<li class="page-item active"><a class="page-link" data-value="${num}">${num}</a></li>
-						  		</c:if>
-						  		<c:if test="${num != myPaging.currentPage}">
-						  			<li class="page-item"><a class="page-link" data-value="${num}">${num}</a></li>
-						  		</c:if>
-						  	</c:forEach>
-						    <!-- 다음 버튼 -->
-						    <c:choose>
-						  		<c:when test="${myPaging.next}">
-						  			<li class="page-item">
-						  				<a class="page-link" data-value="next">Next</a>
-						  			</li>
-						  		</c:when>
-						  		<c:otherwise>
-						  			<li class="page-item disabled">
-						  				<a class="page-link">Next</a>
-						  			</li>
-						  		</c:otherwise>
-						  	</c:choose>
-						  	</ul>
-						</nav>
-                	</div>
-              	</div>
-            </div>
-    	</div>
+							<nav>
+								<ul class="pagination justify-content-center" id="pagination">
+							  	<!-- 이전 버튼 -->
+							  	<c:choose>
+							  		<c:when test="${myPaging.prev}">
+							  			<li class="page-item">
+							  				<a class="page-link" data-value="prev">Prev</a>
+							  			</li>
+							  		</c:when>
+							  		<c:otherwise>
+							  			<li class="page-item disabled">
+							  				<a class="page-link">Prev</a>
+							  			</li>
+							  		</c:otherwise>
+							  	</c:choose>
+							  	<!-- 페이지 번호 -->
+							  	<c:forEach var="num" begin="${myPaging.startPage}" end="${myPaging.endPage}">
+							  		<c:if test="${num == myPaging.currentPage}">
+							  			<li class="page-item active"><a class="page-link" data-value="${num}">${num}</a></li>
+							  		</c:if>
+							  		<c:if test="${num != myPaging.currentPage}">
+							  			<li class="page-item"><a class="page-link" data-value="${num}">${num}</a></li>
+							  		</c:if>
+							  	</c:forEach>
+							    <!-- 다음 버튼 -->
+							    <c:choose>
+							  		<c:when test="${myPaging.next}">
+							  			<li class="page-item">
+							  				<a class="page-link" data-value="next">Next</a>
+							  			</li>
+							  		</c:when>
+							  		<c:otherwise>
+							  			<li class="page-item disabled">
+							  				<a class="page-link">Next</a>
+							  			</li>
+							  		</c:otherwise>
+							  	</c:choose>
+							  	</ul>
+							</nav>
+	                	</div>
+	              	</div>
+	            </div>
+	            <a class="btn btn-primary" href="<c:url value='gshop.do?command=qnaWriteForm'/>">작성하기</a>
+	    	</div>
+		</div>
 	</div>
 </div>
 <script type="text/javascript" src="<c:url value='/resources/js/qna/qna.js'/>"></script>

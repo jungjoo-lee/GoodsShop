@@ -168,33 +168,4 @@ public class GoodsDAO {
 		
 		return gvo;
 	}
-
-	public List<ReviewVO> getReviewList(int gseq) {
-		List<ReviewVO> reviewList = new ArrayList<>();
-		
-		try {
-			con = DB.getConnection();
-			pstmt = con.prepareStatement(Env.getGoodsReviewList());
-			pstmt.setInt(1, gseq);
-			rs = pstmt.executeQuery();
-			
-			while (rs.next()) {
-				reviewList.add(ReviewVO.builder()
-						.rseq(rs.getInt(1))
-						.userid(rs.getString(2))
-						.grade(rs.getInt(3))
-						.gseq(rs.getInt(4))
-						.subject(rs.getString(7))
-						.content(rs.getString(8))
-						.indate(rs.getTimestamp(9))
-						.build());
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DB.close(con, pstmt, rs);
-		}
-		
-		return reviewList;
-	}
 }
