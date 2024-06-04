@@ -75,7 +75,7 @@ public class GetContentAction implements FatchAction {
 		JSONObject jsonResult = new JSONObject();
 		SqlBuilder sb = SqlBuilder.getInstance();
 		ReviewDAO dao = ReviewDAO.getInstance();
-		
+		System.out.println(json.toString());
 		StringBuilder sql = null;
 		String jsonString = null;
 		

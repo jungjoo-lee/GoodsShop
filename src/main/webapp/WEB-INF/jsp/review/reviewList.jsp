@@ -25,27 +25,27 @@
 	                </li>
 				</ul>
 				<div class="tab-content pt-2">
+					<div class="row w-100">
+             				<div class="col d-flex">
+              				<select class="form-select w-25 me-3" name="selectAmount" id="selectAmount">
+						  		<option value=0 selected>목록</option>
+						  		<option value=5>5</option>
+						  		<option value=10>10</option>
+						  		<option value=20>20</option>
+							</select>
+						</div>
+						<div class="col d-flex justify-content-end">
+				    		<select class="form-select w-25 me-1" name="search" id="search">
+						  		<option value="category" selected>카테고리</option>
+						  		<option value="gname">굿즈명</option>
+							</select>
+				      		<div class="d-flex">
+					      		<input class="form-control me-2" name="keyword" id="keyword" type="text" placeholder="Search">
+					    	</div>
+				    	</div>
+	            	</div>
 					<!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
               		<div class="tab-pane fade show active" id="allReview">
-              			<div class="row w-100">
-              				<div class="col d-flex">
-	              				<select class="form-select w-25 me-3" name="selectAmount" id="selectAmount">
-							  		<option value=0 selected>목록</option>
-							  		<option value=5>5</option>
-							  		<option value=10>10</option>
-							  		<option value=20>20</option>
-								</select>
-							</div>
-							<div class="col d-flex justify-content-end">
-					    		<select class="form-select w-25 me-1" name="search" id="search">
-							  		<option value="category" selected>카테고리</option>
-							  		<option value="gname">굿즈명</option>
-								</select>
-					      		<div class="d-flex">
-						      		<input class="form-control me-2" name="keyword" id="keyword" type="text" placeholder="Search">
-						    	</div>
-					    	</div>
-		            	</div>
 		            	<div>
 	                  		<ul>
 	                  			<li class="review-header">
@@ -123,52 +123,39 @@
                   	</div>
                   	<!-- -------------------------------------------------------------------------------------------------------------------------------------------------- -->
 					<div class="tab-pane fade" id="myReview">
-						<div class="row w-100">
-              				<div class="col d-flex">
-	              				<select class="form-select w-25 me-3" name="mySelectAmount" id="mySelectAmount">
-							  		<option value=0 selected>목록</option>
-							  		<option value=5>5</option>
-							  		<option value=10>10</option>
-							  		<option value=20>20</option>
-								</select>
-							</div>
-							<div class="col d-flex justify-content-end">
-					    		<select class="form-select w-25 me-1" name="mySearch" id="mySearch">
-							  		<option value="category" selected>카테고리</option>
-							  		<option value="gname">굿즈명</option>
-								</select>
-					      		<div class="d-flex">
-						      		<input class="form-control me-2" name="myKeyword" id="myKeyword" type="text" placeholder="Search">
-						    	</div>
-					    	</div>
-		            	</div>
-                		<ul>
-                  			<li class="review-header">
-                  				<div class="d-flex">
-                  					<div class="small-col">번호</div>
-                  					<div>사진</div>
-                  					<div class="small-col">카테고리</div>
-                  					<div>굿즈명</div>
-                  					<div>리뷰제목</div>
-                  					<div>구매자</div>
-                  					<div>리뷰작성일자</div>
-                  				</div>
-                  			</li>
-						<c:forEach var="rev" items="${reviewMyList}">
-							<li class="review-item">
-								<div class="d-flex justify-content-center align-items-center">
-									<div class="small-col">${rev.rseq}</div>
-	               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
-	               					<div class="small-col">[${rev.category}]</div>
-	               					<div>${rev.gname}</div>
-	               					<div>${rev.subject}</div>
-	               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}
+						<div>
+	                		<ul>
+	                  			<li class="review-header">
+	                  				<div class="d-flex">
+	                  					<div class="small-col">번호</div>
+	                  					<div>사진</div>
+	                  					<div class="small-col">카테고리</div>
+	                  					<div>굿즈명</div>
+	                  					<div>리뷰제목</div>
+	                  					<div>구매자</div>
+	                  					<div>리뷰작성일자</div>
+	                  				</div>
+	                  			</li>
+	                  		</ul>
+                  		</div>
+                  		<div>
+	                  		<ul>
+							<c:forEach var="rev" items="${reviewMyList}">
+								<li class="review-item">
+									<div class="d-flex justify-content-center align-items-center">
+										<div class="small-col">${rev.rseq}</div>
+		               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
+		               					<div class="small-col">[${rev.category}]</div>
+		               					<div>${rev.gname}</div>
+		               					<div>${rev.subject}</div>
+		               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}
+		               					</div>
+		               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
 	               					</div>
-	               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-               					</div>
-							</li>
-						</c:forEach>
-						</ul>
+								</li>
+							</c:forEach>
+							</ul>
+						</div>
 						<span id="pagdInfo">${myPaging.currentPage} / ${myPaging.realEnd}</span>
 						<nav>
 							<ul class="pagination justify-content-center" id="myPagination">
@@ -176,34 +163,34 @@
 						  	<c:choose>
 						  		<c:when test="${myPaging.prev}">
 						  			<li class="page-item">
-						  				<a class="page-link" data-value="prev">Prev</a>
+						  				<a class="my-page-link" data-value="prev">Prev</a>
 						  			</li>
 						  		</c:when>
 						  		<c:otherwise>
 						  			<li class="page-item disabled">
-						  				<a class="page-link">Prev</a>
+						  				<a class="my-page-link">Prev</a>
 						  			</li>
 						  		</c:otherwise>
 						  	</c:choose>
 						  	<!-- 페이지 번호 -->
 						  	<c:forEach var="num" begin="${myPaging.startPage}" end="${myPaging.endPage}">
 						  		<c:if test="${num == myPaging.currentPage}">
-						  			<li class="page-item active"><a class="page-link" data-value="${num}">${num}</a></li>
+						  			<li class="page-item active"><a class="my-page-link" data-value="${num}">${num}</a></li>
 						  		</c:if>
 						  		<c:if test="${num != myPaging.currentPage}">
-						  			<li class="page-item"><a class="page-link" data-value="${num}">${num}</a></li>
+						  			<li class="page-item"><a class="my-page-link" data-value="${num}">${num}</a></li>
 						  		</c:if>
 						  	</c:forEach>
 						    <!-- 다음 버튼 -->
 						    <c:choose>
 						  		<c:when test="${myPaging.next}">
 						  			<li class="page-item">
-						  				<a class="page-link" data-value="next">Next</a>
+						  				<a class="my-page-link" data-value="next">Next</a>
 						  			</li>
 						  		</c:when>
 						  		<c:otherwise>
 						  			<li class="page-item disabled">
-						  				<a class="page-link">Next</a>
+						  				<a class="my-page-link">Next</a>
 						  			</li>
 						  		</c:otherwise>
 						  	</c:choose>

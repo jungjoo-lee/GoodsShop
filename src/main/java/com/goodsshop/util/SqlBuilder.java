@@ -61,7 +61,6 @@ public class SqlBuilder {
                     }
                     sql.append(key).append(" IS NOT NULL");
                 } else if (stringValue.equalsIgnoreCase("all")) {
-                    // Remove the existing 'where ' and reset firstCondition
                     int whereIndex = sql.lastIndexOf(" where ");
                     if (whereIndex != -1) {
                         sql.delete(whereIndex, sql.length());
