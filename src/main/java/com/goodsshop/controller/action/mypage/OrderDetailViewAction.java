@@ -23,12 +23,13 @@ public class OrderDetailViewAction implements Action {
 		
 		for (OrderVO ovo : orderDetailList) {
 			GoodsDAO gdao = new GoodsDAO();
-			
 			ovo.setThum(gdao.getThumbnail(ovo.getGseq()));
+			
+			System.out.println(ovo);
 		}
 		
-		request.setAttribute("orderDetailList", orderDetailList);
-		request.getRequestDispatcher("jsp/mypage/orderlistView.jsp").forward(request, response);
+		request.setAttribute("orderDetailList", orderDetailList);	
+		request.getRequestDispatcher("jsp/mypage/orderDetailView.jsp").forward(request, response);
 	}
 
 }

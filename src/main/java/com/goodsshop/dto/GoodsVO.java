@@ -19,4 +19,5 @@ public class GoodsVO {
 	private Date indate;
 	private String thum;
 	private List<GoodsImageVO> imageList;
+	private String category;
 }

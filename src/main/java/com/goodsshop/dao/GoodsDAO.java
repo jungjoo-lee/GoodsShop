@@ -83,7 +83,7 @@ public class GoodsDAO {
 		List<GoodsVO> list = new ArrayList<GoodsVO>();
 		
 		con = DB.getConnection();
-		String sql = "select * from bestlist_view limit 20";
+		String sql = "select * from bestlist_view limit 50";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -138,7 +138,7 @@ public class GoodsDAO {
 	public GoodsVO getGoods(int gseq) {
 		GoodsVO gvo = null;
 		con = DB.getConnection();
-		String sql = "select * from goods where gseq = ?";
+		String sql = "select * from goods_view where gseq = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -168,10 +168,48 @@ public class GoodsDAO {
 		
 		return gvo;
 	}
+	
 
 	public List<ReviewVO> getReviewList(int gseq) {
 		List<ReviewVO> reviewList = new ArrayList<>();
 		
 		return reviewList;
+	}
+	
+
+	public List<GoodsVO> getCategoryList(int cgseq) {
+		List<GoodsVO> list = new ArrayList<GoodsVO>();
+		
+		con = DB.getConnection();
+		String sql = "select * from goods_view where cgseq = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, cgseq);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				GoodsVO gvo = new GoodsVO();
+				gvo.setGseq(rs.getInt("gseq"));
+				gvo.setGname(rs.getString("gname"));
+				gvo.setOprice(rs.getInt("o_price"));
+				gvo.setSprice(rs.getInt("s_price"));
+				gvo.setMprice(rs.getInt("m_price"));
+				gvo.setContent(rs.getString("content"));
+				gvo.setBestyn(rs.getInt("bestyn"));
+				gvo.setUseyn(rs.getInt("useyn"));
+				gvo.setIndate(rs.getDate("indate"));
+				gvo.setCgseq(rs.getInt("cgseq"));
+				gvo.setCategory(rs.getString("category"));
+				
+				list.add(gvo);
+			}	
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}		
+		return list;
 	}
 }

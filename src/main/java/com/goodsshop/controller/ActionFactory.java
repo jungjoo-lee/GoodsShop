@@ -13,6 +13,8 @@ import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
 import com.goodsshop.controller.action.admin.AdminQnaViewAction;
 import com.goodsshop.controller.action.email.FindIdOKAction;
+import com.goodsshop.controller.action.goods.GoodsDetailViewAction;
+import com.goodsshop.controller.action.goods.ViewCategoryAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
 import com.goodsshop.controller.action.member.JoinPageAction;
@@ -36,7 +38,6 @@ import com.goodsshop.controller.cart.OrderCartAction;
 import com.goodsshop.controller.cart.ViewCartAction;
 import com.goodsshop.controller.cart.ViewWishAction;
 import com.goodsshop.controller.cart.WishToCartAction;
-import com.goodsshop.controller.goods.GoodsDetailViewAction;
 import com.goodsshop.controller.cart.OrderNowAction;
 import com.goodsshop.controller.member.login.FindIdAction;
 import com.goodsshop.controller.member.login.FindIdFormAction;
@@ -128,6 +129,8 @@ public class ActionFactory {
 		else if(command.equals("getPayment")) ac = new GetPaymentAction();
 		else if(command.equals("goOrder")) ac = new GoOrderAction();
 		else if(command.equals("orderDetailView")) ac = new OrderDetailViewAction();
+		
+		else if(command.equals("viewCategory")) ac = new ViewCategoryAction();
 		
 		
 		

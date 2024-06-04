@@ -9,15 +9,17 @@
 <title>Order</title>
 </head>
 <body>
+	<hr>
 	<div> 주문자 정보 </div>
 	<div>
-		<div> 주문번호 : ${ovo.oseq}</div>
-		<div>주문자성명: ${ovo.name}</div>
-		<div>주문주소 : ${ovo.address} ${ovo.d_address}</div>
-		<div>주문일시 : ${ovo.indate}</div>
-		<div>주문상태 : ${ovo.status}</div>
+		<div> 주문번호 : ${orderDetailList[0].oseq}</div>
+ 		<div>주문자성명: ${orderDetailList[0].name}</div>
+		<div>주문주소 : ${orderDetailList[0].address} ${orderDetailList[0].daddress}</div>
+		<div>주문일시 : ${orderDetailList[0].indate}</div>
+		<div>주문상태 : ${orderDetailList[0].status}</div> 
 	</div>
-	
+
+	<hr>	
 	<div> 주문 상품 정보 </div>
 	<c:choose>
 			<c:when test="${empty orderDetailList}">
@@ -31,7 +33,7 @@
 								src='<c:url value="/resources/image/goods/${ovo.thum}.png"/>'>
 						</div>
 						<div>상품별 주문번호 : ${ovo.odseq}</div>
-						<div>상품명 : ${ovo.goodsname}</div>
+						<div>상품명 : ${ovo.gname}</div>
 						<div>수량 : ${ovo.quantity} 개</div>
 						<div>금액 : ${ovo.totalprice} 원</div>
 						<hr>

@@ -1,11 +1,10 @@
-function orderDetail (){
-	let od = document.querysquerySelector("#orderlist");
+/*function orderDetail (oseq){
+	let od = document.querySelector("#orderlist");
 	if (od != null){
 		od.addEventListener("click", function(){
-			document.orderlistForm.action = "gshop.do?command=orderDetailView";		
-			document.orderlistForm.submit();			
+			location.href="gshop.do?command=orderDetailView&oseq="+oseq;		
 		})
 	}	
 }
 
-orderDetail();
+orderDetail();*/
