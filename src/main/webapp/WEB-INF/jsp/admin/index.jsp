@@ -47,10 +47,12 @@
 						    	<th scope="col">Detail Address</th>
 						    	<th scope="col">Indate</th>
 						    	<th scope="col">use Y/N</th>
-						    	<th scope="col"><input class="form-check-input" type="checkbox" value="" id="checkAll"></th>
+						    	<th scope="col"><input class="form-check-input" type="checkbox" value="checkAll" id="checkAll"
+						    								name="YN"	onclick="checkAll(this)"></th>
 							</tr>
 						</thead>
 						<tbody id="memberList">
+						<form name="adminList" method="post">
 						<c:forEach var="vo" items="${memberList}">
 							<tr>
 								<td>${vo.userid}</td>
@@ -68,9 +70,11 @@
 										<c:otherwise>N</c:otherwise>
 									</c:choose>
 								</td>
-								<td class="text-center"><input class="form-check-input" type="checkbox" value="${vo.userid}"></td>
+								<td class="text-center">
+								<input class="form-check-input" type="checkbox" 	name="YN"	value="${vo.userid}"></td>
 							</tr>
 						</c:forEach>
+						</form>
 						</tbody>
 					</table>
 					
@@ -114,6 +118,12 @@
 					  	</c:choose>
 					  	<li class="list-group-item d-flex align-items-center"><span class="form-text" style="margin-top: 0; margin-left: 20px">${paging.currentPage} / ${paging.realEnd}</span></li>
 					  </ul>
+						<div>
+							<input type="button" id="switch" value="회원 상태 변경" name="switch" onclick="switchYN()">
+						</div>
+						<div>
+							<input type="button" id="discard" value="탈퇴 처리하기" name="discard" onclick="discard()">
+						</div>
 					</nav>
 				</div>
 			</div>

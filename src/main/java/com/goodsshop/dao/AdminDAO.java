@@ -313,4 +313,26 @@ public class AdminDAO {
 			DB.close(conn, pstmt, rs);
 		}
 	}
+
+	public void switchYN(String userid) {
+		conn = DB.getConnection();
+		String sql = "update `member` set is_login = is_login^1 where userid = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) { 	e.printStackTrace();
+		} finally {	DB.close(conn, pstmt, rs);
+	}
 }
+}
+
+
+
+
+
+
+
+
+
+

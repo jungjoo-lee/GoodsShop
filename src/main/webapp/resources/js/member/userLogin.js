@@ -22,11 +22,11 @@ function findIdForm(){
 function findId(){ 
 	var name = document.findIdForm.name.value;
     var email = document.findIdForm.email.value;
-	if(document.findIdForm.name.value==""){
+	if(name==""){
 		alert("이름을 입력하세요");
 		document.findIdForm.name.focus();
 		return false;
-	}else if(document.findIdForm.email.value==""){
+	}else if(email==""){
 		alert("이메일을 입력하세요");
 		document.findIdForm.email.focus();
 		return false;
@@ -59,7 +59,7 @@ function PwdCodeOK(){
 	var userid = document.formm.userid.value;
     var email = document.formm.email.value;
 	var securityCodeInput = document.formm.securityCodeInput.value;
-	if(document.formm.securityCodeInput.value==""){
+	if(securityCodeInput==""){
 		alert("인증코드를 입력하세요");
 		document.formm.securityCodeInput.focus();
 		return false;
@@ -73,7 +73,7 @@ function codeOK(){
 	var userName = document.formm.name.value;
     var userEmail = document.formm.email.value;
 	var securityCodeInput = document.formm.securityCodeInput.value;
-	if(document.formm.securityCodeInput.value==""){
+	if(securityCodeInput==""){
 		alert("인증코드를 입력하세요");
 		document.formm.securityCodeInput.focus();
 		return false;
@@ -121,4 +121,11 @@ function addressOK(zip_code , sido, gugun, dong){
 
 function Join(){
 	location.href="gshop.do?command=joinPage";
+}
+function goodbye(){
+	var ans = confirm("정말 탈퇴하시겠어요?")
+	if(ans){
+		location.href="gshop.do?command=deleteMember";
+		alert("정상적으로 탈퇴가 완료되었습니다.")
+	}
 }

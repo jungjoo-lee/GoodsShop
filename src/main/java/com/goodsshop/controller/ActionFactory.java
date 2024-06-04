@@ -11,7 +11,9 @@ import com.goodsshop.controller.action.admin.AdminQnaListAction;
 import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
+import com.goodsshop.controller.action.admin.SwitchYNAction;
 import com.goodsshop.controller.action.admin.AdminQnaViewAction;
+import com.goodsshop.controller.action.admin.DiscardMemberAction;
 import com.goodsshop.controller.action.email.FindIdOKAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
@@ -78,6 +80,8 @@ public class ActionFactory {
 		else if (command.equals("qnaReplyWrite")) ac = new QnaReplyWriteAction();
 		else if (command.equals("qnaReplyUpdate")) ac = new QnaReplyUpdateAction();
 		else if (command.equals("qnaReplyDelete")) ac = new QnaReplyDeleteAction();
+		else if (command.equals("switchYN")) ac = new SwitchYNAction();
+		else if (command.equals("discardMember")) ac = new DiscardMemberAction();
 		
 		//멤버
 		else if (command.equals("loginForm")) ac = new LoginFormAction();
@@ -100,14 +104,13 @@ public class ActionFactory {
 		else if (command.equals("findIdOK")) ac = new FindIdOKAction();
 		
 		//member
-		if( command.equals("join") ) 									ac = new JoinAction();
-		if( command.equals("joinPage") ) 							ac = new JoinPageAction();
-		if( command.equals("IDCheck") ) 							ac = new IDCheckAction();
-		if( command.equals("getEmail") ) 							ac = new GetEmailAction();
+		else if( command.equals("join") ) 						ac = new JoinAction();
+		else if( command.equals("joinPage") ) 				ac = new JoinPageAction();
+		else if( command.equals("IDCheck") ) 				ac = new IDCheckAction();
+		else if( command.equals("getEmail") ) 				ac = new GetEmailAction();
+		else if( command.equals("deleteMember") ) 	ac = new DeleteMemberAction();
 		
-		
-		//mypage
-		if( command.equals("deleteMember") ) ac = new DeleteMemberAction();
+
 		
 
 		//goods
