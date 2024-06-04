@@ -8,26 +8,65 @@
 }
 a{text-decoration:none;}
 
-
+#join{
+	width: 100%;
+	text-align: center;
+}
 
 
 .field{
-	position:relative;
 	height: 45px;
 	line-height: 45px;
+	display: flex;
 }
 
-label{
-	margin: 10px;
+input[type="text"], input[type="password"] {
+	width: 30%;
+	height: 20px;
+	padding: 8px;
+	margin-bottom: 10px;
+	border: 1px solid #ddd;
+	border-radius : 3px 3px 3px 3px;
+}
+
+#btnn{
+ 	background-color: ivory;
+	width: 10%;
+	height: 33px;
+	line-height: 33px;
+	border-radius: 3px 3px 3px 3px;
+	border: 1px solid black;
+	font-size: 90%;
 	font-weight: bold;
-	flex:3;
+	margin-left: 40px;
+	margin-top: 3px;
+ }
+
+.label{
+	font-weight: bold;
+	display: flex;
+	flex-direction: flex-start;
+	margin-left: 160px;
+	width: 150px;
 }
 
 #contract{
+	margin-top: 50px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.check{
+	width: 70%;
+	height: 200px;
+	border: 1px solid #c0c0c0;
+	overflow-y: scroll;
+	font-size: 70%;
+	color: gray;
+	background-color: ivory;
+	text-align: left;
 }
 
 #regi {
