@@ -2,13 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
+
 <section>
 
 		<article>
@@ -45,10 +40,10 @@
 				</div>
 			</div>
 			<div class="field">
-				<label>주소</label><input type="text" name="address" value="${loginUser.address},${loginUser.d_address}" readonly>
+				<label>주소</label><input type="text" name="address" value="${loginUser.address}" readonly>
 			</div>
 			<div class="field">
-				<label>상세 주소</label><input type="text" name="d_address" >
+				<label>상세 주소</label><input type="text" name="d_address" value="${loginUser.d_address}">
 			</div>
 			
 			<div class="btn">
@@ -62,5 +57,4 @@
 </section>
 </article>
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
-</body>
-</html>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>

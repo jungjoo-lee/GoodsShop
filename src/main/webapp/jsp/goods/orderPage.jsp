@@ -2,13 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>orderPage</title>
-</head>
-<body>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
+
 
 	<h1>주문페이지~~~</h1>
 
@@ -42,5 +37,4 @@
 
 	</form>
 <script type="text/javascript" src='<c:url value = "/resources/js/goods/order.js"/>'></script>
-</body>
-</html>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>
