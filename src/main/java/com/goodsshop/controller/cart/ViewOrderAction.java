@@ -25,6 +25,6 @@ public class ViewOrderAction implements Action {
 		
 		
 		request.setAttribute("orderList", orderList);
-		request.getRequestDispatcher("jsp/mypage/orderlistView.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/mypage/orderlistView.jsp").forward(request, response);
 	}	
 }

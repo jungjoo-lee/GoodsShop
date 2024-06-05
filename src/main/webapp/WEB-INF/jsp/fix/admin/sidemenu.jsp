@@ -43,7 +43,7 @@
                                 <a class="nav-link" href="<c:url value='/gshop.do?command=adminReviewList'/>">리뷰</a>
                             </nav>
                         </div>
-	                    <a class="nav-link" href="#">공지사항</a>
+	                    <a class="nav-link" href="<c:url value='/gshop.do?command=adminNoticeList'/>">공지사항</a>
                     </nav>
                 </div>
             </div>

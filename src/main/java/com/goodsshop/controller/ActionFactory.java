@@ -7,11 +7,15 @@ import com.goodsshop.controller.action.member.GetEmailAction;
 import com.goodsshop.controller.action.admin.AdminIndexAction;
 import com.goodsshop.controller.action.admin.AdminLoginAction;
 import com.goodsshop.controller.action.admin.AdminLoginFormAction;
+import com.goodsshop.controller.action.admin.AdminNoticeListAction;
+import com.goodsshop.controller.action.admin.AdminNoticeViewAction;
 import com.goodsshop.controller.action.admin.AdminQnaListAction;
 import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
 import com.goodsshop.controller.action.admin.AdminQnaViewAction;
+import com.goodsshop.controller.action.admin.NoticeDeleteAction;
+import com.goodsshop.controller.action.admin.NoticeUpdateAction;
 import com.goodsshop.controller.action.email.FindIdOKAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
@@ -19,7 +23,11 @@ import com.goodsshop.controller.action.member.JoinPageAction;
 import com.goodsshop.controller.action.member.SearchIdAction;
 import com.goodsshop.controller.action.member.SearchPwdAction;
 import com.goodsshop.controller.action.mypage.DeleteMemberAction;
+
+import com.goodsshop.controller.action.notice.NoticeInsertAction;
 import com.goodsshop.controller.action.notice.NoticeListAction;
+import com.goodsshop.controller.action.notice.NoticeUpdateFormAction;
+import com.goodsshop.controller.action.notice.insertNoticeFormAction;
 import com.goodsshop.controller.action.qna.QnaListAction;
 import com.goodsshop.controller.action.qna.QnaViewAction;
 import com.goodsshop.controller.action.review.ReviewListAction;
@@ -59,8 +67,12 @@ public class ActionFactory {
 		
 		if( command.equals("index") ) ac = new IndexAction();
 		//notice
-		else if (command.equals("noticeList")) ac = new NoticeListAction();
-		
+		else if (command.equals("noticeInsert")) ac = new NoticeInsertAction();
+		else if (command.equals("noticeDelete")) ac = new NoticeDeleteAction();
+		else if (command.equals("noticeUpdate")) ac = new NoticeUpdateAction();
+		else if (command.equals("noticeUpdateForm")) ac = new NoticeUpdateFormAction();
+		else if (command.equals("insertNoticeForm")) ac = new insertNoticeFormAction();
+
 		// qna
 		else if (command.equals("qnaList")) ac = new QnaListAction();
 		else if (command.equals("qnaView")) ac = new QnaViewAction();
@@ -78,8 +90,10 @@ public class ActionFactory {
 		else if (command.equals("qnaReplyWrite")) ac = new QnaReplyWriteAction();
 		else if (command.equals("qnaReplyUpdate")) ac = new QnaReplyUpdateAction();
 		else if (command.equals("qnaReplyDelete")) ac = new QnaReplyDeleteAction();
-		
-		//멤버
+		else if (command.equals("adminNoticeList")) ac = new AdminNoticeListAction();
+		else if (command.equals("adminNoticeView")) ac = new AdminNoticeViewAction();
+
+		//멤버 로그인
 		else if (command.equals("loginForm")) ac = new LoginFormAction();
 		else if (command.equals("login")) ac = new LoginAction();
 		else if (command.equals("logout")) ac = new LogoutAction();
@@ -90,42 +104,39 @@ public class ActionFactory {
 		else if (command.equals("findPwd")) ac = new FindPwdAction();
 		else if (command.equals("searchPwd")) ac = new SearchPwdAction();
 
-		// 멤버 페이지
+		//마이페이지
 		else if (command.equals("updateMemberForm")) ac = new UpdateMemberFormAction();
 		else if (command.equals("updateMember")) ac = new UpdateMemberAction();
+		else if( command.equals("deleteMember") ) ac = new DeleteMemberAction();
 		else if (command.equals("findZipnum")) ac = new FindZipnumAction();
-		
+
 		else if (command.equals("imageWrite")) ac = new ImageWriteAction();
+		
 		//email
 		else if (command.equals("findIdOK")) ac = new FindIdOKAction();
 		
-		//member
-		if( command.equals("join") ) 									ac = new JoinAction();
-		if( command.equals("joinPage") ) 							ac = new JoinPageAction();
-		if( command.equals("IDCheck") ) 							ac = new IDCheckAction();
-		if( command.equals("getEmail") ) 							ac = new GetEmailAction();
+		//회원가입
+		else if( command.equals("join") ) ac = new JoinAction();
+		else if( command.equals("joinPage") ) ac = new JoinPageAction();
+		else if( command.equals("IDCheck") ) ac = new IDCheckAction();
+		else if( command.equals("getEmail") ) ac = new GetEmailAction();
 		
-		
-		//mypage
-		if( command.equals("deleteMember") ) ac = new DeleteMemberAction();
-		
-
 		//goods
-		if(command.equals("goodsDetailView")) ac = new GoodsDetailViewAction();
-		if(command.equals("viewCartlist")) ac = new ViewCartAction();
-		if(command.equals("addCart")) ac = new InsertCartAction();
-		if(command.equals("deleteCart")) ac = new DeleteCartAction();
+		else if(command.equals("goodsDetailView")) ac = new GoodsDetailViewAction();
+		else if(command.equals("viewCartlist")) ac = new ViewCartAction();
+		else if(command.equals("addCart")) ac = new InsertCartAction();
+		else if(command.equals("deleteCart")) ac = new DeleteCartAction();
 		
-		if(command.equals("viewWishlist")) ac = new ViewWishAction();
-		if(command.equals("addWish")) ac = new InsertWishAction();
-		if(command.equals("wishToCart")) ac = new WishToCartAction();
-		if(command.equals("deleteWish")) ac = new DeleteWishAction();
+		else if(command.equals("viewWishlist")) ac = new ViewWishAction();
+		else if(command.equals("addWish")) ac = new InsertWishAction();
+		else if(command.equals("wishToCart")) ac = new WishToCartAction();
+		else if(command.equals("deleteWish")) ac = new DeleteWishAction();
 		
-		if(command.equals("viewOrderList")) ac = new ViewOrderAction();
-		if(command.equals("orderFromCart")) ac = new OrderCartAction();
-		if(command.equals("orderNow")) ac = new OrderNowAction();
-		if(command.equals("getPayment")) ac = new GetPaymentAction();
-		if(command.equals("goOrder")) ac = new GoOrderAction();
+		else if(command.equals("viewOrderList")) ac = new ViewOrderAction();
+		else if(command.equals("orderFromCart")) ac = new OrderCartAction();
+		else if(command.equals("orderNow")) ac = new OrderNowAction();
+		else if(command.equals("getPayment")) ac = new GetPaymentAction();
+		else if(command.equals("goOrder")) ac = new GoOrderAction();
 		
 		
 		

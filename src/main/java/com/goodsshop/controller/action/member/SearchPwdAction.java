@@ -40,7 +40,7 @@ public class SearchPwdAction implements Action {
             System.out.println(userid);
             System.out.println(email); 
             String script = "<script>alert( '해당하는 회원을 찾을 수 없습니다.');";
-            request.getRequestDispatcher("jsp/member/loginForm.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/jsp/member/loginForm.jsp").forward(request, response);
         	}
          } else {
             // 인증번호가 일치하지 않는 경우에 대한 처리

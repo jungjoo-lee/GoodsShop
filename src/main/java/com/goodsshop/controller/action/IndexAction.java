@@ -63,6 +63,6 @@ public class IndexAction implements Action {
 		if(request.getAttribute("loginUser") != null) {
 			session.setAttribute("cartlist", cartlist);			
 		}
-		request.getRequestDispatcher("WEB-INF/jsp/index/index.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/index/main.jsp").forward(request, response);
 	}
 }

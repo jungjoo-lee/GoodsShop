@@ -8,12 +8,12 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/header.css">
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
-<link rel="stylesheet" href="resources/css/member.css">
+<link rel="stylesheet" href="resources/css/loginForm.css">
 </head>
 <body>
 
 <div id="wrap">
-	<header>
+	<header id="header">
 		<nav id="top_menu">
 			<div class="gnb">
 				<div class="left-links">
@@ -23,20 +23,20 @@
 									<a href="gshop.do?command=joinPage">회원가입</a>
 							</c:when>
 						<c:otherwise>
-									<a href="#">${loginUser.name}(${loginUser.userid})</a>
+									<a id="user" href="gshop.do?command=updateMemberForm">${loginUser.name}님 환영합니다</a>
 									<a href="gshop.do?command=logout">Logout</a>
-									<a href="gshop.do?command=updateMemberForm">정보 수정</a>
+									<a href="gshop.do?command=viewCartlist">장바구니</a>
 						</c:otherwise>
 					</c:choose>
 				</div>
 				<div class="right-links">
-					<a href="">NOTICE</a>
-					<a href="">Q&A</a>
-					<a href="">REVIEW</a>
+					<a href="gshop.do?command=noticeList">NOTICE</a>
+					<a href="gshop.do?command=qnaList">Q&A</a>
+					<a href="gshop.do?command=reviewList">REVIEW</a>
 				</div>
 			</div>
 		</nav>
-		<div id="logo"><a href="gshop.do?command=loginForm">FLOWER ON YOU</a></div>
+		<div id="logo"><a href="gshop.do?command=index">FLOWER ON YOU</a></div>
 		<nav id="category_menu">
 			<div>BEST50</div>
 			<div>헤어악세서리</div>

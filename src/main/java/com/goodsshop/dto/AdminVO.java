@@ -13,4 +13,6 @@ public class AdminVO {
 	private String name;
 	private String phone;
 	private String email;
+	
+	public AdminVO() {}
 }

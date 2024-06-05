@@ -44,7 +44,7 @@ public class ViewWishAction implements Action {
 			
 			
 			request.setAttribute("wishlist", wishlist);
-			request.getRequestDispatcher("jsp/goods/wishlistView.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/goods/wishlistView.jsp").forward(request, response);
 						
 		}
 

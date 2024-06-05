@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <script src="resources/js/member/member.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +17,7 @@
 			<label>이메일</label><input name="email" type="text"/>
 	</div>
 		<input type="button" value="제출" onClick="return findId();">
+<script src="resources/js/member/userLogin.js"></script>
 </form>
 </body>
 </html>

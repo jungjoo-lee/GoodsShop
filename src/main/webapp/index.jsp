@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% response.sendRedirect("gshop.do?command=loginForm"); %>
+<% response.sendRedirect("gshop.do?command=adminLogin"); %>
 </body>
 </html>

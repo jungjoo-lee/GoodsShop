@@ -44,7 +44,7 @@ public class GetEmailAction implements Action {
       System.out.println(verificationCode);
       
       // 이메일 인증 페이지로 이동
-      request.getRequestDispatcher("jsp/member/emailVFC.jsp").forward(request, response);
+      request.getRequestDispatcher("/WEB-INF/jsp/member/emailVFC.jsp").forward(request, response);
    }
 
    // 랜덤한 6자리 숫자로 인증 코드 생성

@@ -23,7 +23,7 @@ public class FindZipnumAction implements Action {
 				request.setAttribute("addressList", list);
 			}
 		}
-		request.getRequestDispatcher("jsp/member/findZipNum.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/member/findZipNum.jsp").forward(request, response);
 
 	}
 

@@ -12,6 +12,6 @@ public class QnaViewAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
+		
 	}
 }

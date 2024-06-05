@@ -48,7 +48,7 @@ public class SearchIdAction implements Action {
                 // 인증번호가 일치하지 않는 경우에 대한 처리
             	String script = "<script>alert('인증번호가 일치하지 않습니다')";
             	System.out.println("인증번호 불일치");
-                request.getRequestDispatcher("jsp/member/loginForm.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/jsp/member/loginForm.jsp").forward(request, response);
             }
 	}
 }
