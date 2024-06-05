@@ -15,14 +15,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-public class AdminUpdateGoodsAction implements Action {
+public class AdminInsertGoodsAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		GoodsVO gvo = new GoodsVO();
 
-		gvo.setGseq(Integer.parseInt(request.getParameter("gseq")));
 		gvo.setGname(request.getParameter("gname"));
 		gvo.setCgseq(Integer.parseInt(request.getParameter("cgseq")));
 		gvo.setOprice(Integer.parseInt(request.getParameter("oprice")));
@@ -33,26 +32,15 @@ public class AdminUpdateGoodsAction implements Action {
 		gvo.setUseyn(Integer.parseInt(request.getParameter("useyn")));
 
 		GoodsDAO gdao = new GoodsDAO();
-		gdao.updateGoods(gvo);
+		gdao.insertGoods(gvo);
 
-		String[] giseqs = request.getParameterValues("giseq");
+		//직전에 추가한 goods 테이블의 gseq 가져오기
+		int gseq = gdao.lookupMaxGseq();
 		
-		if(giseqs != null) {
-			//체크박스에서 사용에 체크한 이미지가 있다면
-			//해당 giseq들만 빼고 나머지를 gseq로 조회하여 테이블에서 레코드를 삭제
-			//파일도 삭제
-			
-			gdao.deleteGoodsImages(giseqs, gvo.getGseq());							
-		} else {
-			//사용에 체크한 이미지가 없다면
-			//gseq로 조회하여 테이블에서 전체 레코드 삭제
-			
-			gdao.deleteGoodsImages(gvo.getGseq());
-		}
 		
-		//파일업로드
+		// 파일업로드
 
-		String uploadPath = "C:\\upload\\" + gvo.getGseq() + gvo.getGname() + "\\";
+		String uploadPath = "C:\\upload\\" + gseq + gvo.getGname() + "\\";
 		File uploadDir;
 
 		String oriname = "";
@@ -91,25 +79,22 @@ public class AdminUpdateGoodsAction implements Action {
 						System.out.println("File Size: " + fileSize + " bytes");
 
 						// 파일 저장
-
 						p.write(uploadPath + realname);
-						
-						
-						//파일 저장한 정보를 givo 에 담기
-						
+
+						// 파일 저장한 정보를 givo 에 담기
 						GoodsImageVO givo = new GoodsImageVO();
 						givo.setOriname(oriname);
 						givo.setRealname(realname);
 						givo.setFilesize(fileSize);
-						givo.setGseq(gvo.getGseq());
-						
-						gdao.writeGoodsImages(givo, gvo.getGseq());
+						givo.setGseq(gseq);
+
+						//goodsimage 테이블에 새롭게 업로드한 레코드 추가
+						gdao.writeGoodsImages(givo, gseq);
 					}
 				}
-			}		
+			}
 		}
-		
-		response.sendRedirect("gshop.do?command=adminGoodsView");
-		
+
 	}
+
 }

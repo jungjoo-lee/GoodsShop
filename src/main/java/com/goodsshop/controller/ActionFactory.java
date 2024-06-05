@@ -11,10 +11,18 @@ import com.goodsshop.controller.action.admin.AdminQnaListAction;
 import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
+import com.goodsshop.controller.action.admin.goods.AdminBestGoodsAction;
+import com.goodsshop.controller.action.admin.goods.AdminCategoryViewAction;
 import com.goodsshop.controller.action.admin.goods.AdminDeleteGoodsAction;
 import com.goodsshop.controller.action.admin.goods.AdminGoodsViewAction;
+import com.goodsshop.controller.action.admin.goods.AdminInsertGoodsAction;
+import com.goodsshop.controller.action.admin.goods.AdminInsertGoodsFormAction;
 import com.goodsshop.controller.action.admin.goods.AdminUpdateGoodsAction;
 import com.goodsshop.controller.action.admin.goods.AdminUpdateGoodsFormAction;
+import com.goodsshop.controller.action.admin.goods.AdminUseYNGoodsAction;
+import com.goodsshop.controller.action.admin.order.AdminOrderDetailViewAction;
+import com.goodsshop.controller.action.admin.order.AdminOrderListAction;
+import com.goodsshop.controller.action.admin.order.AdminUpdateOrderStatAction;
 import com.goodsshop.controller.action.cart.DeleteCartAction;
 import com.goodsshop.controller.action.cart.DeleteWishAction;
 import com.goodsshop.controller.action.cart.GetPaymentAction;
@@ -141,9 +149,20 @@ public class ActionFactory {
 		else if(command.equals("adminGoodsView")) ac = new AdminGoodsViewAction();
 		else if(command.equals("adminGoodsUpdateForm")) ac = new AdminUpdateGoodsFormAction();
 		else if(command.equals("adminUpdateGoods")) ac = new AdminUpdateGoodsAction();
-		//아직 클래스 작성안함
-		//else if(command.equals("adminInsertGoods")) ac = new AdminInsertGoodsAction();
-		//else if(command.equals("adminGoodsDelete")) ac = new AdminDeleteGoodsAction();
+		else if(command.equals("adminInsertGoodsForm")) ac = new AdminInsertGoodsFormAction();
+		else if(command.equals("adminInsertGoods")) ac = new AdminInsertGoodsAction();
+		else if(command.equals("adminGoodsDelete")) ac = new AdminDeleteGoodsAction();
+		else if(command.equals("adminBestToggle")) ac = new AdminBestGoodsAction();
+		else if(command.equals("adminUseYnToggle")) ac = new AdminUseYNGoodsAction();
+		else if(command.equals("adminCategoryView")) ac = new AdminCategoryViewAction();
+		else if(command.equals("adminGoodsSearch")) ac = new AdminGoodsSearchAction();
+		
+		//admin-order
+		else if(command.equals("adminOrderView")) ac = new AdminOrderListAction();
+		else if(command.equals("adminOrderDetailView")) ac = new AdminOrderDetailViewAction();
+		else if(command.equals("adminUpdateOrderStatus")) ac = new AdminUpdateOrderStatAction();
+
+		
 		
 		
 		

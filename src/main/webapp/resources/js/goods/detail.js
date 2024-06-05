@@ -95,6 +95,19 @@ function update_Goods(){
 	}	
 }
 
+//admin - 상품 추가
+function update_Goods(){
+	let updateGoods = document.querySelector("#update_goods");
+	
+	if(updateGoods != null){
+		updateGoods.addEventListener("click", ()=>{
+			document.goodsform.action = "gshop.do?command=adminGoodsUpdateForm";
+			document.goodsform.method = "post";
+			document.goodsform.submit();
+		})
+	}	
+}
+
 update_Goods();
 
 //admin - 상품 삭제

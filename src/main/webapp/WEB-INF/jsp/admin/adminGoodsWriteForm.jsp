@@ -18,13 +18,13 @@
 			<input type="text" name="gname">
 			
 			<label>원가</label>
-			<input type="text" name="oprice">
+			<input id="prices" type="text" name="oprice">
 			
 			<label>판매가</label>
-			<input type="text" name="sprice">
+			<input id="prices" type="text" name="sprice">
 			
 			<label>마진</label>
-			<input type="text" name="mprice">
+			<input id="prices" type="text" name="mprice">
 			
 			<label>상세설명</label>
 			<input type="text" name="content">
@@ -34,16 +34,9 @@
 			
 			<label>카테고리</label>
 			<select name="cgseq"> 
-				<option> 선택하세요 </option>
+				<option value="0" selected="selected"> 카테고리 선택 </option>
  				<c:forEach items="${categoryList}" var="cate" varStatus="stat">
-					<c:choose>
-						<c:when test="${stat.count == 1}">
-							<option value="${cate.category}" selected="selected"> ${cate.category}
-						</c:when>
-						<c:otherwise>
-							<option value="${cate.category}"> ${cate.category}	
-						</c:otherwise>
-					</c:choose>
+					<option value="${cate.cgseq}"> ${cate.category}	
 				</c:forEach>
 			</select>
 			
@@ -57,10 +50,6 @@
 			
 			<input type="button" id="admingoods_insert" value="상품 등록">
 		</c:when>
-		
-		
-
-
 		<c:otherwise>
 <!-- ----------------------- 상품 수정 페이지 ------------------------ -->
 			<input type="hidden" name="gseq" value="${updateGoods.gseq}">
@@ -95,7 +84,7 @@
 			
 			<label>카테고리</label>
 			<select name="cgseq"> 
-				<option> 선택하세요 </option>
+				<option> 카테고리 선택 </option>
  				<c:forEach items="${categoryList}" var="cate">
 					<c:choose>
 						<c:when test="${cate.cgseq == updateGoods.cgseq}">

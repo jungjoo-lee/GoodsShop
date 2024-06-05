@@ -14,12 +14,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class AdminGoodsViewAction implements Action {
+public class AdminCategoryViewAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		AdminVO loginAdmin = (AdminVO)session.getAttribute("loginAdmin");
+		int cgseq = Integer.parseInt(request.getParameter("selectCategory"));
+		
 		String url = "";
 		
 		if(loginAdmin == null) {
@@ -27,7 +29,7 @@ public class AdminGoodsViewAction implements Action {
 		} else {
 			
 			GoodsDAO gdao = new GoodsDAO();
-			List<GoodsVO> adminGoodsList = gdao.getAllGoods("");
+			List<GoodsVO> adminGoodsList = gdao.getCategoryList(cgseq);
 			
 			for (GoodsVO gvo : adminGoodsList) {
 				GoodsDAO gdao1 = new GoodsDAO();
@@ -38,9 +40,10 @@ public class AdminGoodsViewAction implements Action {
 			request.setAttribute("adminGoodsList", adminGoodsList);	
 			request.setAttribute("loginAdmin", loginAdmin);
 			
-			url = "WEB-INF/jsp/admin/adminGoodsView.jsp";			
+			url = "WEB-INF/jsp/admin/adminGoodsView.jsp";								
 		}
 		
 		request.getRequestDispatcher(url).forward(request, response);
 	}
+
 }

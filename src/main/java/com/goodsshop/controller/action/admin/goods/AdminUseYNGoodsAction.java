@@ -9,18 +9,19 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AdminDeleteGoodsAction implements Action {
+public class AdminUseYNGoodsAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		String[] gseqs = request.getParameterValues("gseq");
 		GoodsDAO gdao = new GoodsDAO();
 		
 		for (String gseq : gseqs) {
-			gdao.deleteGoods(gseq);
+			gdao.useYnToggle(gseq);
 		}
 		
 		response.sendRedirect("gshop.do?command=adminGoodsView");
+
 	}
+
 }

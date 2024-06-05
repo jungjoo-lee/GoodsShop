@@ -1,4 +1,4 @@
-package com.goodsshop.controller.action.mypage;
+package com.goodsshop.controller.action.admin.order;
 
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class OrderDetailViewAction implements Action {
+public class AdminOrderDetailViewAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +27,8 @@ public class OrderDetailViewAction implements Action {
 		}
 		
 		request.setAttribute("orderDetailList", orderDetailList);	
-		request.getRequestDispatcher("jsp/mypage/orderDetailView.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/admin/adminOrderDetail.jsp").forward(request, response);
+		
 	}
 
 }
