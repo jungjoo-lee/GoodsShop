@@ -13,7 +13,7 @@
 			<div>				
 				<div>
 					<a href="gshop.do?command=goodsDetailView&gseq=${categoryList.gseq}">
-						<img alt="${categoryList.thum}.png" src='<c:url value="/resources/image/goods/${categoryList.thum}.png"/>'>	
+						<img src="<c:url value='/gshop.do?command=imageWrite&folder=${categoryList.gseq}${categoryList.gname}&realName=${categoryList.realname}'/>">
 					</a>
 					<a href="gshop.do?command=goodsDetailView&gseq=${categoryList.gseq}">
 						${categoryList.gname} - ${categoryList.sprice}					

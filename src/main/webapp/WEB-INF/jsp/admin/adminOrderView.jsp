@@ -22,6 +22,7 @@
         	
         	<div id="layoutSidenav_content">
         		<div class="container-fluid px-4">
+        		<form name="adminOrderForm" id="adminOrderForm" method="post">
                 	<h1 class="mt-4">  </h1><br/> <!-- 제목 -->
 					<div class="row w-100">
 				    	<div class="col d-flex"> <!-- 목록 선택 -->
@@ -32,18 +33,21 @@
 				            </div>
 				    	</div>
 				    	<div class="col d-flex justify-content-end"> <!-- 검색 폼 -->
-				    		<select class="form-select w-25 me-1" name="searchBy" id="searchBy">
-						  		<option value="userid" selected>주문인 ID</option>
-						  		<option value="username">주문인 성명</option>
-						  		<option value="gname">상품명</option>
+ 				    		<select class="form-select w-25 me-1" name="searchBy" id="searchBy">
+						  		<option value="gname" selected>상품명</option>
+						  		<option value="userid">주문인 ID</option>
+						  		<option value="name">주문인 성명</option>
 							</select>
 				      		<div class="d-flex">
-					      		<input class="form-control me-2" name="searchKey" id="searchKey" type="text" placeholder="Search">
+					      		<input class="form-control me-2" name="searchKey" type="text" placeholder="상품명을 입력하세요">
 					    	</div>
+						<div class="d-flex" id="goSearch">
+							<input type="button" value="검색">
+						</div>					    	
 				    	</div>
 					</div>
 					<br/>
-					<form name="adminOrderForm">
+					
 					<div class="row w-100"> <!--  목록 테이블 -->
 				  		<table class="table table-hover">
 				  			<thead class="text-center table-light">
@@ -95,7 +99,7 @@
 											${ord.status}
 				  						</td>
 										<td>
-											<input type="checkbox" id="checkboxes" name="gseq"
+											<input type="checkbox" id="checkboxes" name="oseq"
 											value="${ord.oseq}" />
 										</td>
 								</tr>
@@ -114,9 +118,46 @@
 					</div>
 				</div>
 				</form>
+				
+				
+				<ul class="pagination justify-content-center" id="pagination">
+					<!-- 이전 버튼 -->
+					<c:choose>
+						<c:when test="${paging.prev}">
+							<li class="page-item"><a class="page-link" data-value="prev">Prev</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item disabled"><a class="page-link">Prev</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+					<!-- 페이지 번호 -->
+					<c:forEach var="num" begin="${paging.startPage}"
+						end="${paging.endPage}">
+						<c:if test="${num == paging.currentPage}">
+							<li class="page-item active"><a class="page-link"
+								data-value="${num}">${num}</a></li>
+						</c:if>
+						<c:if test="${num != paging.currentPage}">
+							<li class="page-item"><a class="page-link"
+								data-value="${num}">${num}</a></li>
+						</c:if>
+					</c:forEach>
+					<!-- 다음 버튼 -->
+					<c:choose>
+						<c:when test="${paging.next}">
+							<li class="page-item"><a class="page-link" data-value="next">Next</a>
+							</li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item disabled"><a class="page-link">Next</a>
+							</li>
+						</c:otherwise>
+					</c:choose>
+				</ul>
 
-
-            	</div>
+			</div>
         	</div>            
         </div>
 	<script type="text/javascript" src="<c:url value='/resources/js/admin/admin.js'/>"></script>

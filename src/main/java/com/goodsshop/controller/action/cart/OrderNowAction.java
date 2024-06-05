@@ -43,6 +43,7 @@ public class OrderNowAction implements Action {
 		ovo.setGseq(gseq);
 		ovo.setGname(gvo.getGname());
 		ovo.setQuantity(1);
+		ovo.setRealname(gvo.getRealname());
 		
 		int oldPrice = gvo.getSprice();		
 		int newPrice = 0;

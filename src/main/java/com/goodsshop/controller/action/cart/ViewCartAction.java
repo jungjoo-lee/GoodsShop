@@ -5,7 +5,9 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import com.goodsshop.controller.action.Action;
+import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dto.CartVO;
+import com.goodsshop.dto.GoodsVO;
 import com.goodsshop.dto.MemberVO;
 
 import jakarta.servlet.ServletException;
@@ -36,6 +38,12 @@ public class ViewCartAction implements Action {
 					
 					cvo.setSprice(newPrice);
 					cvo.setTotalprice(cvo.getQuantity() * cvo.getSprice());
+					
+					GoodsDAO gdao = new GoodsDAO();
+					GoodsVO gvo = gdao.getGoods(cvo.getGseq());
+					
+					cvo.setRealname(gvo.getRealname());
+					
 				}
 
 				session.setAttribute("cartlist", cartlist);			

@@ -20,8 +20,7 @@
 				<c:forEach items="${cartlist}" var="cvo">
 					<div>
 						<div>
-							<img
-								src='<c:url value="/resources/image/goods/${cvo.thum}.png"/>'>
+							<img src="<c:url value='/gshop.do?command=imageWrite&folder=${cvo.gseq}${cvo.goodsname}&realName=${cvo.realname}'/>">
 						</div>
 						<div>상품명 : ${cvo.goodsname}</div>
 						<div>수량 : ${cvo.quantity} 개</div>

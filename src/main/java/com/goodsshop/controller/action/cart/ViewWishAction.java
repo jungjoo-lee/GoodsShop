@@ -34,11 +34,7 @@ public class ViewWishAction implements Action {
 			
 			wishlist = cdao.getWishList(userid);
 			
-			for( CartVO cvo : wishlist) {
-				GoodsDAO gdao = new GoodsDAO();
-				String thum = gdao.getThumbnail(cvo.getGseq());
-				cvo.setThum(thum);
-				
+			for( CartVO cvo : wishlist) {				
 				int oldPrice = cvo.getSprice();		
 				int newPrice = 0;
 				newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));

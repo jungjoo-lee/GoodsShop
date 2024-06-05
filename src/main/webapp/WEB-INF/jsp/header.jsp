@@ -12,8 +12,8 @@
 </head>
 <body>
 
+<header>
 <div id="wrap">
-	<header>
 		<nav id="top_menu">
 			<div class="gnb">
 				<div class="left-links">
@@ -48,8 +48,10 @@
 				<div id="categories_7">모자</div>
 				<div id="categories_8">장갑</div>
 			</nav>			
+
 			<script type="text/javascript" src="<c:url value="/resources/js/goods/header.js" />"></script>
-	</header>
+</div>
+</header>
 	
 	
 	

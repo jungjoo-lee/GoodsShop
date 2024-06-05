@@ -42,6 +42,7 @@ public class DeleteCartAction implements Action {
 			cvo.setSprice(gvo.getSprice());
 			cvo.setTotalprice(gvo.getSprice() * quantity);
 			cvo.setThum(gdao.getThumbnail(gseqInt));
+			cvo.setRealname(gvo.getRealname());
 					
 			cartlist.remove(cvo);		
 		}	

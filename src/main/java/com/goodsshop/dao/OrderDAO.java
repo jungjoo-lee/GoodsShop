@@ -208,14 +208,16 @@ public class OrderDAO {
 	}
 
 
-	public List<OrderVO> getAllOrderList(String searchKeyword) {
+	public List<OrderVO> getAllOrderList(String keyword) {
 		List<OrderVO> list = new ArrayList<OrderVO>();
 		
 		con = DB.getConnection();
-		String sql = "select * from order_view o1 inner join (select oseq, min(odseq) as min_odseq from order_view group by oseq) o2 on o1.oseq = o2.oseq and o1.odseq = o2.min_odseq order by o1.oseq desc";
+		String sql = "select * from order_view o1 inner join (select oseq, min(odseq) as min_odseq from order_view group by oseq) o2 on o1.oseq = o2.oseq and o1.odseq = o2.min_odseq "
+				+ "where gname like concat('%', ?, '%')";
 				
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, keyword);
 			rs = pstmt.executeQuery();
 			
 			System.out.println(rs.getRow());
@@ -249,5 +251,114 @@ public class OrderDAO {
 			DB.close(con, pstmt, rs);
 		}	
 		return list;
+	}
+	
+	public List<OrderVO> getAllOrderListByName(String keyword) {
+		List<OrderVO> list = new ArrayList<OrderVO>();
+		
+		con = DB.getConnection();
+		String sql = "select * from order_view o1 inner join (select oseq, min(odseq) as min_odseq from order_view group by oseq) o2 on o1.oseq = o2.oseq and o1.odseq = o2.min_odseq "
+				+ "where name like concat('%', ?, '%')";
+				
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, keyword);
+			rs = pstmt.executeQuery();
+			
+			System.out.println(rs.getRow());
+			
+			while(rs.next()) {
+				OrderVO ovo = new OrderVO();
+				ovo.setOseq(rs.getInt("oseq"));
+				ovo.setOdseq(rs.getInt("odseq"));
+				ovo.setIndate(rs.getDate("indate"));
+				ovo.setUserid(rs.getString("userid"));
+				ovo.setName(rs.getString("name"));
+				ovo.setZipcode(rs.getString("zip_code"));
+				ovo.setAddress(rs.getString("address"));
+				ovo.setDaddress(rs.getString("d_address"));
+				ovo.setPhone(rs.getString("phone"));
+				ovo.setGseq(rs.getInt("gseq"));
+				ovo.setGname(rs.getString("gname"));
+				ovo.setOsseq(rs.getInt("osseq"));
+				ovo.setStatus(rs.getString("status"));		
+				ovo.setRealname(rs.getString("realname"));
+				
+				
+				ovo.setQuantity(selectOrderRows(rs.getInt("oseq")));
+				ovo.setTotalprice(selectOrderTotalprice(rs.getInt("oseq")));
+				
+				list.add(ovo);				
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}	
+		return list;
+	}
+	
+	public List<OrderVO> getAllOrderListById(String keyword) {
+		List<OrderVO> list = new ArrayList<OrderVO>();
+		
+		con = DB.getConnection();
+		String sql = "select * from order_view o1 inner join (select oseq, min(odseq) as min_odseq from order_view group by oseq) o2 on o1.oseq = o2.oseq and o1.odseq = o2.min_odseq "
+				+ "where userid like concat('%', ?, '%')";
+				
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, keyword);
+			rs = pstmt.executeQuery();
+			
+			System.out.println(rs.getRow());
+			
+			while(rs.next()) {
+				OrderVO ovo = new OrderVO();
+				ovo.setOseq(rs.getInt("oseq"));
+				ovo.setOdseq(rs.getInt("odseq"));
+				ovo.setIndate(rs.getDate("indate"));
+				ovo.setUserid(rs.getString("userid"));
+				ovo.setName(rs.getString("name"));
+				ovo.setZipcode(rs.getString("zip_code"));
+				ovo.setAddress(rs.getString("address"));
+				ovo.setDaddress(rs.getString("d_address"));
+				ovo.setPhone(rs.getString("phone"));
+				ovo.setGseq(rs.getInt("gseq"));
+				ovo.setGname(rs.getString("gname"));
+				ovo.setOsseq(rs.getInt("osseq"));
+				ovo.setStatus(rs.getString("status"));		
+				ovo.setRealname(rs.getString("realname"));
+				
+				
+				ovo.setQuantity(selectOrderRows(rs.getInt("oseq")));
+				ovo.setTotalprice(selectOrderTotalprice(rs.getInt("oseq")));
+				
+				list.add(ovo);				
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}	
+		return list;
+	}	
+
+
+	public void updateOrderStatus(String oseq, String osseq) {
+		con = DB.getConnection();
+		String sql = "update order_detail set osseq = ? where oseq = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, osseq);
+			pstmt.setString(2, oseq);
+			
+			pstmt.executeUpdate();
+						
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}
 	}
 }

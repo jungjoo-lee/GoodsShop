@@ -47,7 +47,7 @@ public class InsertCartAction implements Action {
 		cvo.setGoodsname(gvo.getGname());
 		cvo.setSprice(gvo.getSprice());		
 		cvo.setTotalprice(gvo.getSprice() * quantity);
-		cvo.setThum(gdao.getThumbnail(gseq));
+		cvo.setRealname(gvo.getRealname());
 		
 
 		cartlist.add(cvo);

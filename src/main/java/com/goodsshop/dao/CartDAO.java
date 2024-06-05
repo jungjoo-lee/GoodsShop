@@ -35,6 +35,7 @@ public class CartDAO {
 				cvo.setSprice(rs.getInt("s_price"));
 				cvo.setUserid(userid);
 				cvo.setUsername(rs.getString("name"));
+				cvo.setRealname(rs.getString("realname"));
 				
 				list.add(cvo);
 			}

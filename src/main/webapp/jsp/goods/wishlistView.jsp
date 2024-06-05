@@ -15,7 +15,7 @@
 		<c:forEach items="${wishlist}" var="cvo">
 			<div>
 				<div>
-					<img src='<c:url value="/resources/image/goods/${cvo.thum}.png"/>'>
+					<img src="<c:url value='/gshop.do?command=imageWrite&folder=${cvo.gseq}${cvo.goodsname}&realName=${cvo.realname}'/>">
 				</div>
 				<div>상품명 : ${cvo.goodsname}</div>
 				<div>판매가 : ${cvo.sprice} 원</div>

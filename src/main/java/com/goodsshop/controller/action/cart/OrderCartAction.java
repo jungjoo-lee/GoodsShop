@@ -46,6 +46,7 @@ public class OrderCartAction implements Action {
 			ovo.setGseq(gseqInt);
 			ovo.setGname(gvo.getGname());
 			ovo.setQuantity(Integer.parseInt(quantity[i]));
+			ovo.setRealname(gvo.getRealname());
 			
 			int oldPrice = gvo.getSprice();		
 			int newPrice = 0;

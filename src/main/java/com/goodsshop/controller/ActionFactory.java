@@ -22,6 +22,7 @@ import com.goodsshop.controller.action.admin.goods.AdminUpdateGoodsFormAction;
 import com.goodsshop.controller.action.admin.goods.AdminUseYNGoodsAction;
 import com.goodsshop.controller.action.admin.order.AdminOrderDetailViewAction;
 import com.goodsshop.controller.action.admin.order.AdminOrderListAction;
+import com.goodsshop.controller.action.admin.order.AdminOrderSearchAction;
 import com.goodsshop.controller.action.admin.order.AdminUpdateOrderStatAction;
 import com.goodsshop.controller.action.cart.DeleteCartAction;
 import com.goodsshop.controller.action.cart.DeleteWishAction;
@@ -161,6 +162,7 @@ public class ActionFactory {
 		else if(command.equals("adminOrderView")) ac = new AdminOrderListAction();
 		else if(command.equals("adminOrderDetailView")) ac = new AdminOrderDetailViewAction();
 		else if(command.equals("adminUpdateOrderStatus")) ac = new AdminUpdateOrderStatAction();
+		else if(command.equals("adminSearchOrder")) ac = new AdminOrderSearchAction();
 
 		
 		

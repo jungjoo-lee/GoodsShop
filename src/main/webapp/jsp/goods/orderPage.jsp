@@ -24,7 +24,7 @@
 					<img src='<c:url value="/resources/image/goods/${ovo.thum}.png"/>'>
 				</div>
 				<div>상품명 : ${ovo.gname}</div>
-				<div> <input type="number" value="${ovo.quantity}"> </div>
+				<div> <input type="number" value="${ovo.quantity}" readonly="readonly"> </div>
 				<div>금액 : ${ovo.totalprice} 원</div>
 				<hr>
 			</div>
