@@ -1,7 +1,7 @@
 let paging;
 let myPaging;
 let selectAmount = document.querySelector("#selectAmount");
-let pages = document.querySelectorAll('.page-link');
+let pages = document.querySelectorAll('.all-page-link');
 let myPages = document.querySelectorAll('.my-page-link');
 let searchType = document.querySelector('#search');
 let search = searchType.options[searchType.selectedIndex].value;
@@ -87,7 +87,7 @@ selectAmount.addEventListener("change", () => {
 })
 
 function addPagingEvent() {
-	pages = document.querySelectorAll('.page-link');
+	pages = document.querySelectorAll('.all-page-link');
 	
 	pages.forEach(page => {
 		page.addEventListener("click", (e) => {
@@ -110,9 +110,9 @@ function addMyPagingEvent() {
 	myPages.forEach(page => {
 		page.addEventListener("click", (e) => {
 			if (e.target.getAttribute('data-value') == "prev") {
-				myPaging.currentPage = parseInt(paging.startPage - 10);
+				myPaging.currentPage = parseInt(myPaging.startPage - 10);
 			} else if (e.target.getAttribute('data-value') == "next") {
-				myPaging.currentPage = parseInt(paging.startPage + 10);
+				myPaging.currentPage = parseInt(myPaging.startPage + 10);
 			} else {
 				myPaging.currentPage = parseInt(e.target.getAttribute('data-value'));
 			}
@@ -134,14 +134,93 @@ function asynGetContent(tab) {
 	let param = {
 		"command" : "getContent",
 		"table" : "review_view",
-		"amount" : paging.amount,
-		"page" : paging.currentPage,
 		"search" : search,
 		"keyword" : keyword,
 	};
 		
-	if (tab == "all") {
-		param.tab = "all";
+	if (tab == "my") {
+		param.userid = "";
+		param.amount = myPaging.amount;
+		param.page = myPaging.currentPage;
+		
+		fetch('/GoodsShop/gshop.do?command=asyn', {
+			method : 'POST',
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			},
+				body: JSON.stringify(param)
+			})
+			.then(response => response.json())
+			.then(jsonResult => {
+				if (jsonResult.status == true) {
+					let contentList = jsonResult.content;
+					let content = '';
+					let i = 0;
+					
+					contentList.forEach(() => {
+						content += '<li class="review-item">';
+						content += '<div class="d-flex justify-content-center align-items-center">';
+						content += '<div class="small-col">' + contentList[i].rseq + '</div>';
+						content += '<div><img src="/GoodsShop/gshop.do?command=imageWrite&folder=' + contentList[i].gseq + contentList[i].gname + '&realName=' + contentList[i].realName + '"></div>';
+						content += '<div class="small-col">[' + contentList[i].category + ']</div>';
+						content += '<div>' + contentList[i].gname + '</div>';
+						content += '<div>' + contentList[i].subject + '</div>';
+						content += '<div><img id="badge" src="/GoodsShop/resources/image/badge/' + contentList[i].grade + '.png"> ' + contentList[i].userid + '</div>';
+						content += '<div>' + formatDate(contentList[i++].indate) + '</div>';
+						content += '</div>';
+						content += '</li>';
+					});
+					document.querySelector("#my-review-list").innerHTML = content;
+					
+					myPaging = jsonResult.paging;
+					let pagination = '';
+					
+					if (myPaging.prev) {
+						pagination += '<li class="page-item">';
+						pagination += '<a class="page-link my-page-link" data-value="prev">Prev</a>';
+						pagination += '</li>';
+					} else {
+						pagination += '<li class="page-item disabled">';
+						pagination += '<a class="page-link my-page-link">Prev</a>';
+						pagination += '</li>';
+					}
+					
+					for(let j = myPaging.startPage; j <= myPaging.endPage; j++) {
+						if(myPaging.currentPage == j) {
+							pagination += '<li class="page-item active">';
+							pagination += '<a class="page-link my-page-link" data-value="' + j + '">';
+							pagination += j;
+							pagination += '</a>';
+							pagination += '</li>';
+						} else {
+							pagination += '<li class="page-item">';
+							pagination += '<a class="page-link my-page-link" data-value="' + j + '">';
+							pagination += j;
+							pagination += '</a>';
+							pagination += '</li>';
+						}
+					}
+					
+					if (myPaging.next) {
+						pagination += '<li class="page-item">';
+						pagination += '<a class="page-link .my-page-link" data-value="next">Next</a>';
+						pagination += '</li>';
+					} else {
+						pagination += '<li class="page-item disabled">';
+						pagination += '<a class="page-link my-page-link">Next</a>';
+						pagination += '</li>';
+					}
+					document.querySelector("#myPagination").innerHTML = pagination;				
+					document.querySelector("#pagdInfo").innerHTML = myPaging.currentPage + ' / ' + myPaging.realEnd;
+					
+					addMyPagingEvent();
+				} else {
+					alert(jsonResult.message);
+				}
+		});
+	} else {
+		param.amount = paging.amount;
+		param.page = paging.currentPage;
 		
 		fetch('/GoodsShop/gshop.do?command=asyn', {
 			method : 'POST',
@@ -177,24 +256,24 @@ function asynGetContent(tab) {
 					
 					if (paging.prev) {
 						pagination += '<li class="page-item">';
-						pagination += '<a class="page-link" data-value="prev">Prev</a>';
+						pagination += '<a class="page-link all-page-link" data-value="prev">Prev</a>';
 						pagination += '</li>';
 					} else {
 						pagination += '<li class="page-item disabled">';
-						pagination += '<a class="page-link">Prev</a>';
+						pagination += '<a class="page-link all-page-link">Prev</a>';
 						pagination += '</li>';
 					}
 					
 					for(let j = paging.startPage; j <= paging.endPage; j++) {
 						if(paging.currentPage == j) {
 							pagination += '<li class="page-item active">';
-							pagination += '<a class="page-link" data-value="' + j + '">';
+							pagination += '<a class="page-link all-page-link" data-value="' + j + '">';
 							pagination += j;
 							pagination += '</a>';
 							pagination += '</li>';
 						} else {
 							pagination += '<li class="page-item">';
-							pagination += '<a class="page-link" data-value="' + j + '">';
+							pagination += '<a class="page-link all-page-link" data-value="' + j + '">';
 							pagination += j;
 							pagination += '</a>';
 							pagination += '</li>';
@@ -203,11 +282,11 @@ function asynGetContent(tab) {
 					
 					if (paging.next) {
 						pagination += '<li class="page-item">';
-						pagination += '<a class="page-link" data-value="next">Next</a>';
+						pagination += '<a class="page-link all-page-link" data-value="next">Next</a>';
 						pagination += '</li>';
 					} else {
 						pagination += '<li class="page-item disabled">';
-						pagination += '<a class="page-link">Next</a>';
+						pagination += '<a class="page-link all-page-link">Next</a>';
 						pagination += '</li>';
 					}
 					document.querySelector("#pagination").innerHTML = pagination;				
@@ -218,7 +297,5 @@ function asynGetContent(tab) {
 					alert(jsonResult.message);
 				}
 		});
-	} else {
-		param.tab = "my";
 	}
 }

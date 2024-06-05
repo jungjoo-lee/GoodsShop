@@ -9,6 +9,7 @@ import com.goodsshop.dao.AdminDAO;
 import com.goodsshop.dao.NoticeDAO;
 import com.goodsshop.dao.QnaDAO;
 import com.goodsshop.dao.ReviewDAO;
+import com.goodsshop.dto.MemberVO;
 import com.goodsshop.util.Paging;
 import com.goodsshop.util.SqlBuilder;
 
@@ -75,17 +76,34 @@ public class GetContentAction implements FatchAction {
 		JSONObject jsonResult = new JSONObject();
 		SqlBuilder sb = SqlBuilder.getInstance();
 		ReviewDAO dao = ReviewDAO.getInstance();
-		System.out.println(json.toString());
+		
+		MemberVO vo = (MemberVO)session.getAttribute("loginUser");
+		
 		StringBuilder sql = null;
 		String jsonString = null;
 		
+		int total = 0;
+		int currentPage = 0;
+		int amount = 0;
+		Paging paging = null;
+		
 		try {
-			sql = sb.build(0, json);
-			int total = dao.getTotalReview(sql.toString());
-			int currentPage = json.getInt("page");
-			int amount = json.getInt("amount");
-			Paging paging = new Paging(currentPage, amount, total);
-			
+			if (json.has("userid")) {
+				json.put("userid", vo.getUserid());
+				sql = sb.build(0, json);
+				total = dao.getTotalMyReview(vo.getUserid());
+				currentPage = json.getInt("page");
+				amount = json.getInt("amount");
+				paging = new Paging(currentPage, amount, total);
+				sql = sb.build(1, json);
+			} else {
+				sql = sb.build(0, json);
+				total = dao.getTotalReview(sql.toString());
+				currentPage = json.getInt("page");
+				amount = json.getInt("amount");
+				paging = new Paging(currentPage, amount, total);
+				sql = sb.build(1, json);
+			}			
 			session.setAttribute("currentPage", paging.getCurrentPage());
 			session.setAttribute("amount", paging.getAmount());
 			
