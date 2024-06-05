@@ -2,13 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
+
 	<c:choose>
 		<c:when test="${empty orderList}">
 			<h3>텅~</h3>
@@ -20,10 +15,9 @@
 				<div>주문일시 : ${ovo.indate}</div>
 				<div>주문금액 : ${ovo.totalprice}</div>
 				<div>주문상태 : ${ovo.status}</div>
-				<hr>
+				<hr/>
 			</c:forEach>
 		</c:otherwise>
 
 	</c:choose>
-</body>
-</html>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>

@@ -36,14 +36,17 @@
 					<input type="button" id="address"  onClick="post_zip();" value="우편번호 찾기">
 			</div>
 			<div class="field">
-				<label>주소</label><input type="text" name="address" value="${loginUser.address},${loginUser.d_address}" readonly>
+				<label>주소</label><input type="text" name="address" value="${loginUser.address}" readonly>
 			</div>
 			<div class="field">
-				<label>상세 주소</label><input type="text" name="d_address" >
+				<label>상세 주소</label><input type="text" name="d_address" value="${loginUser.d_address}">
 			</div>
 			
 			<div class="btn1">
 				<input type="button" value="회원정보 수정" onClick="return go_updateMember()"/>
+			</div>
+			<div class="btn">
+				<input type="button" value="회원 탈퇴하기" onClick="goodbye()">
 			</div>
 		</form>
 		</article>

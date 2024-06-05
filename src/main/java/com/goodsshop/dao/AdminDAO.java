@@ -372,5 +372,37 @@ public class AdminDAO {
 		}
 	}
 
+	public void switchYN(String userid) {
+		conn = DB.getConnection();
+		String sql = "update `member` set is_login = is_login^1 where userid = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) { 	e.printStackTrace();
+		} finally {	DB.close(conn, pstmt, rs);
 	}
+}
+
+	public void deleteMember(String userid) {
+		conn = DB.getConnection();
+		String sql = "delete from member where userid=?";
+		conn = DB.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) { e.printStackTrace();
+		} finally { DB.close(conn, pstmt, rs); }
+	}
+}
+
+
+
+
+
+
+
+
+
 

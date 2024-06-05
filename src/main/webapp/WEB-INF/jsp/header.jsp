@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="resources/css/header.css">
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
 <link rel="stylesheet" href="resources/css/loginForm.css">
+<link rel="stylesheet" href="resources/css/member.css">
 </head>
 <body>
 
@@ -25,7 +26,8 @@
 						<c:otherwise>
 									<a id="user" href="gshop.do?command=updateMemberForm">${loginUser.name}님 환영합니다</a>
 									<a href="gshop.do?command=logout">Logout</a>
-									<a href="gshop.do?command=viewCartlist">장바구니</a>
+									<a href="gshop.do?command=viewCartlist">CART</a>
+									<a href="gshop.do?command=updateMemberForm">정보 수정</a>
 						</c:otherwise>
 					</c:choose>
 				</div>

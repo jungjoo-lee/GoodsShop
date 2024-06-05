@@ -11,12 +11,13 @@
 <body>
 
 <div id="popup">
+		<h2>이메일 인증번호 입력</h2>
 		2분 이내에 이메일로 전송된 인증번호를 입력해주세요!!
-		<input type="text" id="vemail" name="vemail" size="14"  placeholder="6자리 코드 입력">
+		<input type="text" id="vemail" name="vemail" size="16"  placeholder="6자리 코드 입력">
 		<input type="button" value="인증하기"  id="m_confirm" onClick="m_confirm(${verificationCode})">
-		<div id="timer"></div>
+		<div id="timer" style="margin-left: 10px; font-weight: bold"></div>		
 </div>
-<script src="<c:url value='/resources/js/member.js'/>"></script>
+<script src="<c:url value='/resources/js/member/newID.js'/>"></script>
 <script>
 
 function startTimer(count, display){

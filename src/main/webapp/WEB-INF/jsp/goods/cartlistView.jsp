@@ -2,13 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>cartlistView</title>
-</head>
-<body>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
+
 	<form name="cartlistform" method="post">
 
 		<c:choose>
@@ -42,5 +37,4 @@
 		</div>
 	</form>
 <script type="text/javascript" src='<c:url value="/resources/js/goods/cartlist.js"/>'></script>
-</body>
-</html>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>

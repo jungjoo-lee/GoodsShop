@@ -3,7 +3,8 @@
 
 /* 아이디 중복 확인*/
 function idcheck(){
-	if(document.JoinPage.userid.value==""){
+	var uid = document.JoinPage.userid.value;
+	if(uid==""){
 		alert("아이디를 입력하고 중복체크를 진행해주세요!");
 		document.JoinPage.userid.focus();
 		return;

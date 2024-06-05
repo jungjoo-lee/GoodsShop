@@ -27,6 +27,33 @@ function getPageInfo() {
 			}
 	});
 }
+function checkAll(checkAll){
+    const checkboxes = document.getElementsByName('YN');
+    if (checkboxes.length > 0) {
+        Array.from(checkboxes).forEach((checkbox) => {
+            checkbox.checked = checkAll.checked;
+        });
+    } else {
+        console.log("No checkboxes found with the name 'YN'");
+    }
+}
+function switchYN(){
+	var ans = confirm("선택한 회원(들)의 상태를 변경할까요?")
+	if(ans){
+		document.adminList.action = "gshop.do?command=switchYN";
+		document.adminList.submit();
+	}
+	alert("처리되었습니다.")
+}
+function discard(){
+	var ans = confirm("선택한 회원(들)을 탈퇴처리합니다. 이 동작은 되돌릴 수 없습니다. 진행할까요?")
+	if(ans){
+		document.adminList.action = "gshop.do?command=discardMember";
+		document.adminList.submit();
+	}
+	alert("처리되었습니다.")
+
+}
 
 // 이 밑으로 다 고쳐야함
 selectAmount.addEventListener("change", () => {

@@ -49,8 +49,8 @@
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">1조:</div>
-            조장 곽수아
+            <div class="small">속보:</div>
+            집에 가고 싶어짐
         </div>
     </nav>
 </div>
