@@ -15,7 +15,10 @@
 		<div id="best20">
 		<c:forEach items="${bestlist}" var="gvo" varStatus="status">			
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-						<img alt="${gvo.thum}.png" src='<c:url value="/resources/image/goods/${gvo.thum}.png"/>'>	
+						<c:forEach var="image" items="${gvo.imageList}">
+							<c:set var="key" value="${gvo.gseq}${gvo.gname}${image.realname}"/>
+            				<img alt="${image.realname}" src="data:image/jpeg;base64,${imageMap[key]}"/>
+						</c:forEach>
 					</a>
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
 						${gvo.gname} - ${gvo.sprice}					
@@ -27,7 +30,10 @@
 			<div>				
 				<div>
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-						<img alt="${gvo.thum}.png" src='<c:url value="/resources/image/goods/${gvo.thum}.png"/>'>	
+						<c:forEach var="image" items="${gvo.imageList}">
+							<c:set var="key" value="${gvo.gseq}${gvo.gname}${image.realname}"/>
+            				<img alt="${image.realname}" src="data:image/jpeg;base64,${imageMap[key]}"/>
+						</c:forEach>	
 					</a>		
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
 						${gvo.gname} - ${gvo.sprice}					

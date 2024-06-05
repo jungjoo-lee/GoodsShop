@@ -11,6 +11,7 @@ import java.util.List;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
 import com.goodsshop.dto.ReviewVO;
+import com.goodsshop.properties.Env;
 import com.goodsshop.util.DB;
 
 
@@ -163,7 +164,6 @@ public class GoodsDAO {
 				gvo.setGiseq(rs.getInt("giseq"));
 				gvo.setRealname(rs.getString("realname"));
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

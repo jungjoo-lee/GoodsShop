@@ -22,11 +22,27 @@ ul {
 
 .review-item img {
     width: 100px;
-    height: auto;
+    height: 100px;
 }
 
 
 #badge {
 	width: 30px;
 	height: auto;
+}
+
+.review-item {
+	position: relative
+}
+
+
+.link {
+	display: block;
+	height: 100%;
+	width:100%;
+	position:absolut;
+	top: 0;
+	left: 0;
+	text-decoration: none;
+	color: black;
 }

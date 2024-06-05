@@ -10,6 +10,8 @@ import com.goodsshop.controller.action.admin.AdminLoginFormAction;
 import com.goodsshop.controller.action.admin.AdminNoticeListAction;
 import com.goodsshop.controller.action.admin.AdminNoticeViewAction;
 import com.goodsshop.controller.action.admin.AdminQnaListAction;
+import com.goodsshop.controller.action.admin.AdminQnaViewAction;
+import com.goodsshop.controller.action.admin.AdminReviewListAction;
 import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
@@ -56,8 +58,21 @@ import com.goodsshop.controller.action.notice.NoticeUpdateFormAction;
 import com.goodsshop.controller.action.notice.insertNoticeFormAction;
 import com.goodsshop.controller.action.qna.QnaListAction;
 import com.goodsshop.controller.action.qna.QnaViewAction;
+import com.goodsshop.controller.action.qna.QnaWriteFormAction;
 import com.goodsshop.controller.action.review.ReviewListAction;
 import com.goodsshop.controller.action.review.ReviewViewAction;
+import com.goodsshop.controller.cart.DeleteCartAction;
+import com.goodsshop.controller.cart.GetPaymentAction;
+import com.goodsshop.controller.cart.GoOrderAction;
+import com.goodsshop.controller.cart.InsertCartAction;
+import com.goodsshop.controller.cart.InsertWishAction;
+import com.goodsshop.controller.cart.OrderCartAction;
+import com.goodsshop.controller.cart.ViewCartAction;
+import com.goodsshop.controller.cart.ViewWishAction;
+import com.goodsshop.controller.cart.WishToCartAction;
+import com.goodsshop.controller.goods.GoodsCategoryAction;
+import com.goodsshop.controller.goods.GoodsDetailViewAction;
+import com.goodsshop.controller.goods.OrderNowAction;
 import com.goodsshop.controller.member.login.FindIdAction;
 import com.goodsshop.controller.member.login.FindIdFormAction;
 import com.goodsshop.controller.member.login.FindPwdAction;
@@ -89,10 +104,10 @@ public class ActionFactory {
 		// qna
 		else if (command.equals("qnaList")) ac = new QnaListAction();
 		else if (command.equals("qnaView")) ac = new QnaViewAction();
+		else if (command.equals("qnaWriteForm")) ac = new QnaWriteFormAction();
 		
 		// review
 		else if (command.equals("reviewList")) ac = new ReviewListAction();
-		else if (command.equals("reviewView")) ac = new ReviewViewAction();
 		
 		// admin
 		else if (command.equals("adminLoginForm")) ac = new AdminLoginFormAction();
@@ -109,6 +124,7 @@ public class ActionFactory {
 		//멤버 로그인
 		else if (command.equals("switchYN")) ac = new SwitchYNAction();
 		else if (command.equals("discardMember")) ac = new DiscardMemberAction();
+		else if (command.equals("adminReviewList")) ac = new AdminReviewListAction();
 		
 		//멤버
 		else if (command.equals("loginForm")) ac = new LoginFormAction();
