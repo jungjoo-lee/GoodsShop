@@ -117,31 +117,31 @@ hr {
 #switch{
 	background-color: black;
 	color: white;
-	width: 10%;
+	width: 120px;
 	height: 40px;
 	border-radius: 3px 3px 3px 3px;
-	display: flex;
+	text-align: center;
 	font-size: 100%;
 	padding: 10px;
 	border: none;
 	cursor: pointer;
-	margin-left: 1150px;
-	margin-top: 10px;
+	margin-left: 5px;
+ 	margin-top: 10px;
 }
 
 #discard{
 	color: crimson;
-	width: 10%;
+	width: 120px;
 	height: 40px;
 	line-height: 20px; 	
+	text-align: center;
 	border : 2px solid crimson;
 	border-radius: 3px 3px 3px 3px;
-	display: flex;
 	font-size: 100%;
 	font-weight: bold;
 	padding: 10px;
 	cursor: pointer;
-	margin-left: 1150px;
+	margin-left: 5px;
 	margin-top: 10px;
 }
 

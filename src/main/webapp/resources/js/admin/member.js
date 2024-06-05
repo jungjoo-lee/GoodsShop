@@ -43,13 +43,16 @@ function switchYN(){
 		document.adminList.action = "gshop.do?command=switchYN";
 		document.adminList.submit();
 	}
+	alert("처리되었습니다.")
 }
 function discard(){
-	var ans = confirm("선택한 회원(들)을 탈퇴처리 할까요?")
+	var ans = confirm("선택한 회원(들)을 탈퇴처리합니다. 이 동작은 되돌릴 수 없습니다. 진행할까요?")
 	if(ans){
-		location.href="gshop.do?command=discardMember";
-		alert("정상적으로 처리가 완료되었습니다.")
+		document.adminList.action = "gshop.do?command=discardMember";
+		document.adminList.submit();
 	}
+	alert("처리되었습니다.")
+
 }
 
 // 이 밑으로 다 고쳐야함

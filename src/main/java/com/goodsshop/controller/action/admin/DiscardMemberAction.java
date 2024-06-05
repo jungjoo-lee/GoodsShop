@@ -15,6 +15,7 @@ public class DiscardMemberAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AdminDAO dao = AdminDAO.getInstance();
 		String [] YNlist = request.getParameterValues("YN");
+		System.out.println(YNlist);
 		
 		if(YNlist==null) {
 		response.sendRedirect("gshop.do?command=adminIndex");

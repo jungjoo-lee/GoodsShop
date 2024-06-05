@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="resources/css/header.css">
-<script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
 <link rel="stylesheet" href="resources/css/member.css">
 </head>
 <body>

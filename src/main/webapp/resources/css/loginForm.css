@@ -3,12 +3,10 @@
 #loginForm {
 	width: 100%;
 	height: 100%;
-	border: 1px solid red;
 }
 
 #login {
 	width: 100%;
-	padding: 20px;
 	text-align: center;
 }
 
@@ -67,11 +65,11 @@ input[type="text"], input[type="password"] {
 	cursor: pointer;
 	margin-bottom: 20px;
 }
-
+/* 
 form {
 	display: block;
 }
-
+ */
 h2 {
 	justify-content: center;
 	align-items: center;

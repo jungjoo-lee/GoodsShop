@@ -7,13 +7,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="resources/css/member.css">
 <title>Insert title here</title>
 </head>
 <body>
 <div id="popup">
+	<h2>주소 검색</h2>
    <form method="post" name="formm" action="gshop.do?command=findZipnum">
-      동 이름 : <input name="dong" type="text">
-      <input type="submit" value="찾기" class="submit">
+      동 이름 입력 : <input name="dong" type="text">
+      <input type="submit" value="찾기" id="search" class="submit">
       
    </form>
   <table id="zipcode" border="1">
@@ -34,7 +36,6 @@
       </c:forEach>
    </table>
 </div>
-<script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
-<script src="<c:url value='/resources/js/member.js'/>"></script>
+<script src="<c:url value='/resources/js/member/newID.js'/>"></script>
 </body>
 </html>

@@ -13,6 +13,31 @@ a{text-decoration:none;}
 	text-align: center;
 }
 
+#popup{
+	   display: flex;
+	   flex-direction: column;
+	   justify-content: center;
+	   text-align: center;
+	   align-items: center;
+}
+#res{
+		display: flex;
+	   flex-direction: column;
+	   justify-content: center;
+	   align-items: center;
+}
+#search, #use{
+	background-color: ivory;
+	width: 15%;
+	height: 33px;
+	line-height: 33px;
+	border-radius: 3px 3px 3px 3px;
+	border: 1px solid black;
+	font-size: 90%;
+	font-weight: bold;
+	margin-top: 3px;
+}
+
 
 .field{
 	height: 45px;
@@ -29,7 +54,7 @@ input[type="text"], input[type="password"] {
 	border-radius : 3px 3px 3px 3px;
 }
 
-#btnn{
+input[type="button"] {
  	background-color: ivory;
 	width: 10%;
 	height: 33px;
@@ -45,7 +70,6 @@ input[type="text"], input[type="password"] {
 .label{
 	font-weight: bold;
 	display: flex;
-	flex-direction: flex-start;
 	margin-left: 160px;
 	width: 150px;
 }
@@ -69,14 +93,29 @@ input[type="text"], input[type="password"] {
 	text-align: left;
 }
 
+#m_confirm{
+	background-color: ivory;
+	width: 15%;
+	height: 35px;
+	line-height: 33px;
+	border-radius: 3px 3px 3px 3px;
+	border: 1px solid black;
+	font-size: 80%;
+	font-weight: bold;
+	margin-left: 10px;
+	margin-top: 5px;
+}
+
 #regi {
 	background-color: black;
 	color: white;
 	width: 20%;
 	height: 40px;
+	line-height: 20px;
 	border-radius: 3px 3px 3px 3px;
 	font-size: 105%;
 	padding: 10px;
+	margin-right: 30px;
 	border: none;
 	cursor: pointer;
 	margin-bottom: 20px;

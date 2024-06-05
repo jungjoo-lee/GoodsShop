@@ -17,6 +17,8 @@ public class SwitchYNAction implements Action {
 		
 		AdminDAO dao = AdminDAO.getInstance();
 		String [] YNlist = request.getParameterValues("YN");
+		System.out.println(YNlist);
+
 		
 		if(YNlist==null) {
 		response.sendRedirect("gshop.do?command=adminIndex");

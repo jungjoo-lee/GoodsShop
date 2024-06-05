@@ -77,9 +77,10 @@
 						</form>
 						</tbody>
 					</table>
+
 					
 		    		<!-- paging -->
-			    	<nav>
+			    	<nav style="display: flex; justify-content: space-between;">
 					  <ul class="pagination justify-content-center" id="pagination">
 					  	<!-- 이전 버튼 -->
 					  	<c:choose>
@@ -116,12 +117,13 @@
 					  			</li>
 					  		</c:otherwise>
 					  	</c:choose>
-					  	<li class="list-group-item d-flex align-items-center"><span class="form-text" style="margin-top: 0; margin-left: 20px">${paging.currentPage} / ${paging.realEnd}</span></li>
+					  	<li class="list-group-item d-flex align-items-center">
+					  	<span class="form-text" style="margin-top: 0; margin-left: 20px">
+					  		${paging.currentPage} / ${paging.realEnd}
+					  	</span></li>
 					  </ul>
-						<div>
+					  	<div>
 							<input type="button" id="switch" value="회원 상태 변경" name="switch" onclick="switchYN()">
-						</div>
-						<div>
 							<input type="button" id="discard" value="탈퇴 처리하기" name="discard" onclick="discard()">
 						</div>
 					</nav>

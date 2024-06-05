@@ -6,12 +6,13 @@
 <article id="join">
 	<h2 >JOIN US</h2>
 	<h3>기본 정보</h3>
+	<form method="post" action="gshop.do?command=join"  name="JoinPage">
 		<table>
 			<div class="field">
 				<div class="label">아이디</div>
-				<input type="text" name="userid">
-				<input type="hidden" name="reid">
-				<input	type="button" value="중복 확인" onClick="idcheck()" id="btnn">
+				<input type="text" name="userid" id="userid">
+				<input type="hidden" name="reid" id="reid">
+				<input	type="button" value="중복 확인" onClick="idcheck()">
 			</div>
 			<div class="field">
 				<div class="label">비밀번호</div>
@@ -32,7 +33,7 @@
 			<div class="field">
 				<div class="label">이메일</div>
 				<input type="text" name="email"	id="email" placeholder="abc@gmail.com">
-				<input	type="button" value="인증번호 전송" onClick="verify()" id="btnn">
+				<input	type="button" value="인증번호 전송" onClick="verify()">
 
 			</div><hr>
 
@@ -41,7 +42,7 @@
 			<div class="field">
 				<div class="label">우편 번호</div>
 				<input type="text"	name="zip_code" id="zipcode" readonly placeholder="123-123">
-				<input type="button" value="우편번호 찾기" onClick="find_zip()" id="btnn">
+				<input type="button" value="우편번호 찾기" onClick="find_zip()">
 			</div>
 			<div class="field">
 				<div class="label">주소</div>
