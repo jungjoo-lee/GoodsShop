@@ -21,7 +21,7 @@ public class OrderDAO {
 		List<OrderVO> list = new ArrayList<OrderVO>();
 		
 		con = DB.getConnection();
-		String sql = "select * from order_view o1 inner join (select oseq, min(odseq) as min_odseq from order_view group by oseq) o2 on o1.oseq = o2.oseq and o1.odseq = o2.min_odseq where userid = ?";
+		String sql = "select * from order_view o1 inner join (select oseq, min(odseq) as min_odseq from order_view group by oseq) o2 on o1.oseq = o2.oseq and o1.odseq = o2.min_odseq where userid = ? order by o1.oseq desc";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -162,5 +162,92 @@ public class OrderDAO {
 		} finally {
 			DB.close(con, pstmt, rs);
 		}		
+	}
+
+
+	public List<OrderVO> selectOrderDetail(int oseq) {
+		List<OrderVO> list = new ArrayList<OrderVO>();
+		con = DB.getConnection();
+		String sql = "select * from order_view where oseq = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, oseq);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				OrderVO ovo = new OrderVO();
+				ovo.setOseq(oseq);
+				ovo.setOdseq(rs.getInt("odseq"));
+				ovo.setIndate(rs.getDate("indate"));
+				ovo.setUserid(rs.getString("userid"));
+				ovo.setName(rs.getString("name"));
+				ovo.setZipcode(rs.getString("zip_code"));
+				ovo.setAddress(rs.getString("address"));
+				ovo.setDaddress(rs.getString("d_address"));
+				ovo.setPhone(rs.getString("phone"));
+				ovo.setGseq(rs.getInt("gseq"));
+				ovo.setGname(rs.getString("gname"));
+				ovo.setQuantity(rs.getInt("quantity"));
+				ovo.setTotalprice(rs.getInt("totalprice"));
+				ovo.setOsseq(rs.getInt("osseq"));
+				ovo.setStatus(rs.getString("status"));
+				ovo.setRealname(rs.getString("realname"));
+				
+				list.add(ovo);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}
+		
+		return list;
+	}
+
+
+	public List<OrderVO> getAllOrderList(String searchKeyword) {
+		List<OrderVO> list = new ArrayList<OrderVO>();
+		
+		con = DB.getConnection();
+		String sql = "select * from order_view o1 inner join (select oseq, min(odseq) as min_odseq from order_view group by oseq) o2 on o1.oseq = o2.oseq and o1.odseq = o2.min_odseq order by o1.oseq desc";
+				
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			System.out.println(rs.getRow());
+			
+			while(rs.next()) {
+				OrderVO ovo = new OrderVO();
+				ovo.setOseq(rs.getInt("oseq"));
+				ovo.setOdseq(rs.getInt("odseq"));
+				ovo.setIndate(rs.getDate("indate"));
+				ovo.setUserid(rs.getString("userid"));
+				ovo.setName(rs.getString("name"));
+				ovo.setZipcode(rs.getString("zip_code"));
+				ovo.setAddress(rs.getString("address"));
+				ovo.setDaddress(rs.getString("d_address"));
+				ovo.setPhone(rs.getString("phone"));
+				ovo.setGseq(rs.getInt("gseq"));
+				ovo.setGname(rs.getString("gname"));
+				ovo.setOsseq(rs.getInt("osseq"));
+				ovo.setStatus(rs.getString("status"));		
+				ovo.setRealname(rs.getString("realname"));
+				
+				
+				ovo.setQuantity(selectOrderRows(rs.getInt("oseq")));
+				ovo.setTotalprice(selectOrderTotalprice(rs.getInt("oseq")));
+				
+				list.add(ovo);				
+			}			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}	
+		return list;
 	}
 }

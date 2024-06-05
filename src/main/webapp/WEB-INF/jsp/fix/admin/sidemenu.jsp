@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
@@ -54,4 +55,5 @@
         </div>
     </nav>
 </div>
-<script type="text/javascript" src="<c:url value='/resources/js/admin/sidemenu.js'/>"></script>
+<script type="text/javascript"
+	src="<c:url value='/resources/js/admin/sidemenu.js'/>"></script>

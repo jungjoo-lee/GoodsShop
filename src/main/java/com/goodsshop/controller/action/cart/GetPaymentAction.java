@@ -1,4 +1,4 @@
-package com.goodsshop.controller.cart;
+package com.goodsshop.controller.action.cart;
 
 import java.io.IOException;
 import java.util.Iterator;

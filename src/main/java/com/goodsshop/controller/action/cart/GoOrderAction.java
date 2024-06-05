@@ -1,4 +1,4 @@
-package com.goodsshop.controller.cart;
+package com.goodsshop.controller.action.cart;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,6 +26,7 @@ public class GoOrderAction implements Action {
 		
 		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
 		OrderDAO odao = new OrderDAO();
+		
 		odao.insertOrder(mvo.getUserid());
 		
 		int oseq = odao.lookupMaxOseq(mvo.getUserid());
@@ -49,6 +50,7 @@ public class GoOrderAction implements Action {
 			if(cartlist != null) {
 				cartlist.remove(cvo);	
 			}
+	
 		}
 		
 

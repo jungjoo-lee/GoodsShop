@@ -24,7 +24,7 @@ public class MemberDao {
 	public MemberVO getMember(String userid) {
 		MemberVO mvo = null;
 		con = DB.getConnection();
-		String sql = "select * from member where userid=?";
+		String sql = "select * from member_view where userid=?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userid);
@@ -41,7 +41,7 @@ public class MemberDao {
 				mvo.setIndate( rs.getTimestamp("indate"));
 				mvo.setLast_login_time( rs.getTimestamp("last_login_time"));
 				mvo.setIs_login(rs.getInt("is_login"));
-
+				mvo.setSale(rs.getFloat("sale"));
 			} 
 		} catch (SQLException e) { e.printStackTrace();
 		} finally { DB.close(con, pstmt, rs); }

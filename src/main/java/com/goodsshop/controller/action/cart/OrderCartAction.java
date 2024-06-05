@@ -1,4 +1,4 @@
-package com.goodsshop.controller.cart;
+package com.goodsshop.controller.action.cart;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,6 +46,14 @@ public class OrderCartAction implements Action {
 			ovo.setGseq(gseqInt);
 			ovo.setGname(gvo.getGname());
 			ovo.setQuantity(Integer.parseInt(quantity[i]));
+			
+			int oldPrice = gvo.getSprice();		
+			int newPrice = 0;
+			
+			newPrice = (int)Math.ceil(oldPrice - (oldPrice * mvo.getSale()));
+			
+			gvo.setSprice(newPrice);
+			
 			ovo.setTotalprice(gvo.getSprice() * 1);
 			ovo.setThum(gdao.getThumbnail(gseqInt));
 			

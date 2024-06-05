@@ -1,6 +1,6 @@
 
 //go_main
-function gomain(){
+function goMain(){
 	let main = document.querySelector("#go_main");
 	
 	if(main != null){
@@ -10,7 +10,7 @@ function gomain(){
 	}
 }
 
-gomain();
+goMain();
 
 //add_cart
 function addCart() {
@@ -24,6 +24,7 @@ function addCart() {
 				alert("수량을 입력하세요");
 			} else {
 				document.goodsform.action = "gshop.do?command=addCart";
+				document.goodsform.method = "post";
 				document.goodsform.submit();
 			}
 		})
@@ -39,6 +40,7 @@ function addWishlist(){
 	if (addwish != null){
 		addwish.addEventListener("click", function(){
 			document.goodsform.action = "gshop.do?command=addWish";
+			document.goodsform.method = "post";
 			document.goodsform.submit();			
 		})			
 	}	
@@ -47,20 +49,78 @@ function addWishlist(){
 addWishlist();
 
 
-
-function goorder() {
+//go_order
+function goOrder() {
 	let ordernow = document.querySelector("#purchase_now");
 
 	if (ordernow != null) {
 		ordernow.addEventListener("click", () => {
 			document.goodsform.action = "gshop.do?command=orderNow";
+			document.goodsform.method = "post";
 			document.goodsform.submit();
 
 		})
 	}
 }
 
-goorder();
+goOrder();
 
 
+//admin - 목록으로
+function viewGoodsList (){
+	let goodslist = document.querySelector("#go_goodslist");
+	
+	if (goodslist != null){
+		goodslist.addEventListener("click", ()=>{
+			document.goodsform.action = "gshop.do?command=adminGoodsView";
+			document.goodsform.method = "post";
+			document.goodsform.submit();
+			
+		})
+	}
+}
 
+viewGoodsList();
+
+//admin - 상품 수정
+function update_Goods(){
+	let updateGoods = document.querySelector("#update_goods");
+	
+	if(updateGoods != null){
+		updateGoods.addEventListener("click", ()=>{
+			document.goodsform.action = "gshop.do?command=adminGoodsUpdateForm";
+			document.goodsform.method = "post";
+			document.goodsform.submit();
+		})
+	}	
+}
+
+//admin - 상품 추가
+function update_Goods(){
+	let updateGoods = document.querySelector("#update_goods");
+	
+	if(updateGoods != null){
+		updateGoods.addEventListener("click", ()=>{
+			document.goodsform.action = "gshop.do?command=adminGoodsUpdateForm";
+			document.goodsform.method = "post";
+			document.goodsform.submit();
+		})
+	}	
+}
+
+update_Goods();
+
+//admin - 상품 삭제
+function delete_Goods(){
+	let deleteGoods = document.querySelector("#delete_goods");
+	
+	if(deleteGoods != null){
+		deleteGoods.addEventListener("click", ()=>{
+			document.goodsform.action = "gshop.do?command=adminGoodsDelete";
+			document.goodsform.method = "post";
+			document.goodsform.submit();
+		})		
+	}
+}
+
+delete_Goods();

@@ -5,7 +5,8 @@
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 
 	<form name="cartlistform" method="post">
-
+		<label> 전체 선택/해제</label>
+		<input type="checkbox" id="checkAll">
 		<c:choose>
 			<c:when test="${empty cartlist}">
 				<h1>텅~</h1>
@@ -21,7 +22,7 @@
 						<div>수량 : ${cvo.quantity} 개</div>
 						<div>금액 : ${cvo.totalprice} 원</div>
 						<div>
-							<input type="checkbox" name="gseq" value="${cvo.gseq}" /> 
+							<input type="checkbox" id="checkboxes" name="gseq" value="${cvo.gseq}" />
 							<input type="hidden" name="quantity" value="${cvo.quantity}">
 						</div>
 						<hr>

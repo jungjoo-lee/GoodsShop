@@ -10,6 +10,8 @@
 </head>
 <body>
 	<form name="wishlistform" method="post">
+		<label> 전체 선택/해제</label>
+		<input type="checkbox" id="checkAll">
 		<c:forEach items="${wishlist}" var="cvo">
 			<div>
 				<div>
@@ -18,7 +20,7 @@
 				<div>상품명 : ${cvo.goodsname}</div>
 				<div>판매가 : ${cvo.sprice} 원</div>
 				<div>
-					<input type="checkbox" name="gseq" value="${cvo.gseq}" />
+					<input type="checkbox" id="checkboxes" name="gseq" value="${cvo.gseq}" />
 				</div>
 				<hr>
 			</div>

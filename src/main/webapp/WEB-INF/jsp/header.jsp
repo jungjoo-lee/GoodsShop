@@ -50,6 +50,7 @@
 			<div>모자</div>
 			<div>장갑</div>
 		</nav>
+			<script type="text/javascript" src="<c:url value="/resources/js/goods/header.js" />"></script>
 	</header>
 	
 	
