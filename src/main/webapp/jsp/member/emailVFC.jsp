@@ -16,7 +16,6 @@
 		<input type="button" value="인증하기"  id="m_confirm" onClick="m_confirm(${verificationCode})">
 		<div id="timer"></div>
 </div>
-<script src="<c:url value='/resources/js/member.js'/>"></script>
 <script>
 
 function startTimer(count, display){
@@ -48,5 +47,6 @@ function startTimer(count, display){
 	};
 
 </script>
+<script src="<c:url value='/resources/js/member/newID.js'/>"></script>
 </body>
 </html>

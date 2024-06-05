@@ -133,15 +133,22 @@
 						</c:otherwise>
 					</c:choose>
 					<!-- 페이지 번호 -->
-					<c:forEach var="num" begin="${paging.startPage}"
+					<c:forEach var="num" begin="${paging.beginPage}"
 						end="${paging.endPage}">
-						<c:if test="${num == paging.currentPage}">
-							<li class="page-item active"><a class="page-link"
-								data-value="${num}">${num}</a></li>
+						
+						<c:if test="${num == paging.page}">
+							<li class="page-item active">
+								<a class="page-link" href="gshop.do?command=adminOrderView&page=${num}" data-value="${num}">
+									${num}
+								</a>
+							</li>
 						</c:if>
-						<c:if test="${num != paging.currentPage}">
-							<li class="page-item"><a class="page-link"
-								data-value="${num}">${num}</a></li>
+						<c:if test="${num != paging.page}">
+							<li class="page-item">
+								<a class="page-link" href="gshop.do?command=adminOrderView&page=${num}" data-value="${num}">
+									${num}
+								</a>
+							</li>
 						</c:if>
 					</c:forEach>
 					<!-- 다음 버튼 -->

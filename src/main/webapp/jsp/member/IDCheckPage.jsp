@@ -26,6 +26,6 @@
 				<input type="submit" value="쓸게요" onClick="idok('${userid}')">
 		</c:if>
 </div>
-<script type="text/javascript" src="<c:url value='resources/js/member.js' />"></script>
+<script src="<c:url value='/resources/js/member/newID.js'/>"></script>
 </body>
 </html>

@@ -476,5 +476,7 @@ public class GoodsDAO {
 			DB.close(con, pstmt, rs);
 		}
 		
-	}		
+	}
+
+	
 }

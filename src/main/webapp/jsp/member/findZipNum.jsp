@@ -35,6 +35,6 @@
    </table>
 </div>
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
-<script src="<c:url value='/resources/js/member.js'/>"></script>
+<script src="<c:url value='/resources/js/member/newID.js'/>"></script>
 </body>
 </html>

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dao.OrderDAO;
 import com.goodsshop.dto.OrderVO;
 

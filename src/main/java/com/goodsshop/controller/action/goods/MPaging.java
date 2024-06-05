@@ -88,5 +88,14 @@ public class MPaging {
 	}
 	public void setEndNum(int endNum) {
 		this.endNum = endNum;
+	}
+
+	@Override
+	public String toString() {
+		return "MPaging [page=" + page + ", totalCount=" + totalCount + ", displayRow=" + displayRow + ", displayPage="
+				+ displayPage + ", beginPage=" + beginPage + ", endPage=" + endPage + ", prev=" + prev + ", next="
+				+ next + ", startNum=" + startNum + ", endNum=" + endNum + "]";
 	}  
+	
+	
 }
