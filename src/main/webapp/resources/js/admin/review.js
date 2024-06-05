@@ -1,14 +1,30 @@
-/*let selectAmount = document.querySelector("#selectAmount");*/
-let pages = document.querySelectorAll('.page-link');
 let paging;
-/*let searchType = document.querySelector('#search');
+let selectAmount = document.querySelector("#selectAmount");
+let pages = document.querySelectorAll('.page-link');
+let searchType = document.querySelector('#search');
 let search = searchType.options[searchType.selectedIndex].value;
 let keywordInput = document.querySelector("#keyword");
-let keyword = '';*/
+let keyword = '';
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener('DOMContentLoaded', () => {
     getPageInfo();
 });
+
+keywordInput.addEventListener("keydown", (e) => {
+	keyword = keywordInput.value;
+	
+	if (e.keyCode === 13) {
+		asynGetContent();
+	}
+});
+
+keywordInput.addEventListener("input", (e) => {
+	keyword = keywordInput.value;
+});
+
+searchType.addEventListener("change", () => {
+	search = searchType.options[searchType.selectedIndex].value;
+})
 
 function getPageInfo() {	
 	fetch('/GoodsShop/gshop.do?command=asyn', {
@@ -23,26 +39,14 @@ function getPageInfo() {
 			if (jsonResult.status == true) {
 				paging = jsonResult.paging;
 				
-				/*for (let k = 0; k < selectAmount.length; k++){  
+				for (let k = 0; k < selectAmount.length; k++){  
 			    	if(selectAmount.options[k].value == jsonResult.paging.amount){
 			    		selectAmount.options[k].selected = true;
 			    	}
-			  	}*/
+			  	}
 			}
 	});
 }
-
-/*keywordInput.addEventListener("keydown", (e) => {
-	keyword = keywordInput.value;
-	
-	if (e.keyCode === 13) {
-		asynGetContent();
-	}
-});
-
-keywordInput.addEventListener("input", (e) => {
-	keyword = keywordInput.value;
-});
 
 selectAmount.addEventListener("change", () => {
 	paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
@@ -60,13 +64,9 @@ selectAmount.addEventListener("change", () => {
 	if (paging.amount == 0) {
 		return;
 	} else {
-		asynGetContent();
+		asynGetContent("all");
 	}
 })
-
-searchType.addEventListener("change", () => {
-	search = searchType.options[searchType.selectedIndex].value;
-})*/
 
 function addPagingEvent() {
 	pages = document.querySelectorAll('.page-link');
@@ -86,26 +86,25 @@ function addPagingEvent() {
 }
 addPagingEvent();
 
-/*let quickMove = document.querySelector("#quickMove");*/
-
 function formatDate(dateString) {
     const date = new Date(dateString);
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-    return `${year}. ${month}. ${day}.`;
+    return `${year}-${month}-${day}`;
 }
 
 function asynGetContent() {
 	let param = {
 		"command" : "getContent",
 		"table" : "review_view",
-		"amount" : paging.amount,
-		"page" : paging.currentPage,
-		/*"search" : search,
-		"keyword" : keyword,*/
+		"search" : search,
+		"keyword" : keyword,
 	};
 
+	param.amount = paging.amount;
+	param.page = paging.currentPage;
+		
 	fetch('/GoodsShop/gshop.do?command=asyn', {
 		method : 'POST',
 		headers: {
@@ -121,11 +120,21 @@ function asynGetContent() {
 				let i = 0;
 				
 				contentList.forEach(() => {
-					content += '<span>';
-					content += contentList[i++].rseq;
-					content += '</span>';
+					content += '<a class="link" href="/GoodsShop/gshop.do?command=goodsDetailView&gseq=' + contentList[i].gseq + '">';
+					content += '<li class="review-item">';
+					content += '<div class="d-flex justify-content-center align-items-center">';
+					content += '<div class="small-col">' + contentList[i].rseq + '</div>';
+					content += '<div><img src="/GoodsShop/gshop.do?command=imageWrite&folder=' + contentList[i].gseq + contentList[i].gname + '&realName=' + contentList[i].realName + '"></div>';
+					content += '<div class="small-col">[' + contentList[i].category + ']</div>';
+					content += '<div>' + contentList[i].gname + '</div>';
+					content += '<div>' + contentList[i].subject + '</div>';
+					content += '<div><img id="badge" src="/GoodsShop/resources/image/badge/' + contentList[i].grade + '.png"> ' + contentList[i].userid + '</div>';
+					content += '<div>' + formatDate(contentList[i++].indate) + '</div>';
+					content += '</div>';
+					content += '</li>';
+					content += '</a>';
 				});
-				document.querySelector("body").innerHTML = content;
+				document.querySelector("#review-list").innerHTML = content;
 				
 				paging = jsonResult.paging;
 				let pagination = '';
@@ -165,7 +174,7 @@ function asynGetContent() {
 					pagination += '<a class="page-link">Next</a>';
 					pagination += '</li>';
 				}
-				document.querySelector("#pagination").innerHTML = pagination;
+				document.querySelector("#pagination").innerHTML = pagination;				
 				/*document.querySelector("#pagdInfo").innerHTML = paging.currentPage + ' / ' + paging.realEnd;*/
 				
 				addPagingEvent();
@@ -174,59 +183,3 @@ function asynGetContent() {
 			}
 	});
 }
-
-/*function numCheck(e) {
-	var code = e.keyCode || e.which;
-
-    if ((code >= 48 && code <= 57) || (code >= 96 && code <= 105)) {
-        return;
-    }
-
-    if (code === 8 || code === 9 || code === 13 || code === 46) {
-        return;
-    }
-    
-    if (code >= 37 && code <= 40) {
-        return;
-    }
-
-	e.preventDefault();
-}
-
-function numInputCheck(e) {
-    const value = e.target.value;
-    
-    if (!/^\d*$/.test(value)) {
-        e.target.value = value.replace(/\D/g, '');
-    }
-}
-
-quickMove.addEventListener("keydown", (e) => {
-	numCheck(e);
-	
-    if (e.keyCode === 13) {
-        if (quickMove.value !== "" && quickMove.value !== null) {
-			if (quickMove.value > paging.realEnd) {
-				alert("마지막페이지 보다 넘게 이동 할 수 없습니다.");
-            } else {
-				paging.currentPage = quickMove.value;
-            	asynGetContent();
-            	quickMove.value = '';
-			}
-        }
-    }
-});
-quickMove.addEventListener("input", numInputCheck);
-
-document.addEventListener('DOMContentLoaded', () => {
-    let buttons = document.querySelectorAll('.btn-group .btn');
-
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            buttons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-            reply = button.id;
-            asynGetContent()
-        });
-    });
-});*/

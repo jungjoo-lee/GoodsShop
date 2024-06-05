@@ -158,9 +158,15 @@ function asynGetContent(tab) {
 	let param = {
 		"command" : "getContent",
 		"table" : "qna",
-		"search" : search,
-		"keyword" : keyword,
 	};
+	
+	if (search == "sc") {
+		param.subject = keyword;
+		param.content = keyword;
+	} else if (search == "subject")
+		param.subject = keyword;
+	else
+		param.content = keyword;
 
 	if (tab == "my") {
 		param.userid = "";
