@@ -23,7 +23,11 @@ import com.goodsshop.controller.action.member.JoinPageAction;
 import com.goodsshop.controller.action.member.SearchIdAction;
 import com.goodsshop.controller.action.member.SearchPwdAction;
 import com.goodsshop.controller.action.mypage.DeleteMemberAction;
+
+import com.goodsshop.controller.action.notice.NoticeInsertAction;
 import com.goodsshop.controller.action.notice.NoticeListAction;
+import com.goodsshop.controller.action.notice.NoticeUpdateFormAction;
+import com.goodsshop.controller.action.notice.insertNoticeFormAction;
 import com.goodsshop.controller.action.qna.QnaListAction;
 import com.goodsshop.controller.action.qna.QnaViewAction;
 import com.goodsshop.controller.action.review.ReviewListAction;
@@ -63,8 +67,12 @@ public class ActionFactory {
 		
 		if( command.equals("index") ) ac = new IndexAction();
 		//notice
-		else if (command.equals("noticeList")) ac = new NoticeListAction();
-		
+		else if (command.equals("noticeInsert")) ac = new NoticeInsertAction();
+		else if (command.equals("noticeDelete")) ac = new NoticeDeleteAction();
+		else if (command.equals("noticeUpdate")) ac = new NoticeUpdateAction();
+		else if (command.equals("noticeUpdateForm")) ac = new NoticeUpdateFormAction();
+		else if (command.equals("insertNoticeForm")) ac = new insertNoticeFormAction();
+
 		// qna
 		else if (command.equals("qnaList")) ac = new QnaListAction();
 		else if (command.equals("qnaView")) ac = new QnaViewAction();
@@ -84,8 +92,6 @@ public class ActionFactory {
 		else if (command.equals("qnaReplyDelete")) ac = new QnaReplyDeleteAction();
 		else if (command.equals("adminNoticeList")) ac = new AdminNoticeListAction();
 		else if (command.equals("adminNoticeView")) ac = new AdminNoticeViewAction();
-		else if (command.equals("noticeDelete")) ac = new NoticeDeleteAction();
-		else if (command.equals("noticeUpdate")) ac = new NoticeUpdateAction();
 
 		//멤버 로그인
 		else if (command.equals("loginForm")) ac = new LoginFormAction();

@@ -359,32 +359,6 @@ public class AdminDAO {
 		}
 		return noticeList;
 	}
-
-	public Object getNotice(int nseq) {
-		NoticeVO vo = null;
-		try {
-			conn = DB.getConnection();
-			pstmt = conn.prepareStatement(Env.getNotice());
-			pstmt.setInt(1, nseq);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				vo = NoticeVO.builder()
-						.nseq(rs.getInt(1))
-						.adminId(rs.getString(2))
-						.subject(rs.getString(3))
-						.content(rs.getString(4))
-						.indate(rs.getTimestamp(5))
-						.build();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DB.close(conn, pstmt, rs);
-		}
-		
-		return vo;
-	}
-
 	public void deleteNotice(int nseq) {
 		try {
 			conn = DB.getConnection();
@@ -398,17 +372,5 @@ public class AdminDAO {
 		}
 	}
 
-	public void updateNotice(NoticeVO vo) {
-		try {
-			conn = DB.getConnection();
-			pstmt = conn.prepareStatement(Env.getupdateNotice());
-			pstmt.setString(1,vo.getSubject());
-			pstmt.setString(2,vo.getContent());
-			pstmt.execute();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			DB.close(conn, pstmt, rs);
-		}
 	}
-}
+

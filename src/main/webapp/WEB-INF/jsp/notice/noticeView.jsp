@@ -17,22 +17,20 @@
         <div id="layoutSidenav">
         	<!-- side -->
         	<jsp:include page="../fix/admin/sidemenu.jsp"/>
-        	
-        	<div id="layoutSidenav_content">
+        	<form id="layoutSidenav_content"  method="post" >
         		<div class="container-fluid px-4">
         			번호 : ${vo.nseq}<br/>
 					작성자 : ${vo.adminId}<br/>
-					제목 : <input type="text"><br/>
-					내용 : <input type="text"><br/>
+					제목 : ${vo.subject}<br/>
+					내용 : ${vo.content}<br/>
 					작성일자 : <fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:SS" /><br/>
-								<a class="btn btn-light" href="<c:url value='/gshop.do?command=noticeUpdate'/>">수정</a>
-							<form id="deleteForm" method="post" action="<c:url value='/gshop.do?command=noticeDelete&nseq=${vo.nseq}'/>">
-								<input class="btn btn-danger" id="deleteBtn" value="삭제"/>
-							</form>
+					<a class="btn btn-light" href="<c:url value='/gshop.do?command=noticeUpdateForm&nseq=${vo.nseq}'/>">수정</a>
+					<a class="btn btn-light" href="<c:url value='/gshop.do?command=noticeDelete&nseq=${vo.nseq}'/>">삭제</a>
 					<a class="btn btn-light" href="<c:url value='/gshop.do?command=adminNoticeList'/>">목록</a>
         		</div>
-        	</div>
+        	</form>
         </div>
+
     <script type="text/javascript" src="<c:url value='/resources/js/admin/qnaView.js'/>"></script>
 	</body>
 </html>

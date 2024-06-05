@@ -58,6 +58,9 @@ public class Env {
     public static String getupdateNotice() {
     	return prop.getProperty("updateNotice");
     }
+    public static String getinsertNotice() {
+    	return prop.getProperty("insertNotice");
+    }
     
     // qna
     public static String getMainQnaList() {
