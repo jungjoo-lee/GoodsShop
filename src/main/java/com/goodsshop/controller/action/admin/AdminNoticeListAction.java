@@ -18,7 +18,7 @@ public class AdminNoticeListAction implements Action {
 		HttpSession session = request.getSession();
 		AdminDAO dao = AdminDAO.getInstance();
 		
-		int total = dao.getTotalQna();
+		int total = dao.getTotalNotice();
 		int currentPage = 1;
 		int amount = 10;
 		

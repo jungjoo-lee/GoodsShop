@@ -41,10 +41,7 @@ public class GoodsDetailViewAction implements Action {
 			newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
 			
 			gvo.setSprice(newPrice);
-		}
-		
-		List<ReviewVO> reviewList =  gdao.getReviewList(gseq);
-		
+		}	
 		
 		ReviewDAO  rDAO = ReviewDAO.getInstance();
 		int total = rDAO.getGoodsReviewTotal(gseq);

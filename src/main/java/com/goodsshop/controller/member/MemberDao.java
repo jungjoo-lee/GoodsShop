@@ -6,7 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.goodsshop.controller.util.Db;
+import com.goodsshop.dto.AddressVO;
+import com.goodsshop.dto.MemberVO;
+import com.goodsshop.util.DB;
 
 
 
@@ -23,7 +25,7 @@ public class MemberDao {
 	
 	public com.goodsshop.dto.MemberVO getMember(String userid) {
 		com.goodsshop.dto.MemberVO mvo = null;
-		con = Db.getConnection();
+		con = DB.getConnection();
 		String sql = "select * from member where userid=?";
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -46,13 +48,13 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			Db.close(con, pstmt, rs);
+			DB.close(con, pstmt, rs);
 		}
 		return mvo;
 	}
 
 	public void updateMember(MemberVO mvo) {
-	     con = Db.getConnection();
+	     con = DB.getConnection();
 	      String sql = "update member set pwd=?, name=?, zip_code=?, address=?, "
 	      		+ "d_address=?, email=?, phone=? where userid=?";
 	      try {
@@ -67,13 +69,13 @@ public class MemberDao {
 	         pstmt.setString(8, mvo.getUserid());
 	         pstmt.executeUpdate();
 	      } catch (SQLException e) { e.printStackTrace();
-	      } finally {Db.close(con, pstmt, rs);
+	      } finally {DB.close(con, pstmt, rs);
 	      }
 	}
 
 	public ArrayList<AddressVO> selectAddressByDong(String dong) {
 		ArrayList<AddressVO> list = new ArrayList<AddressVO>();
-		con = Db.getConnection();
+		con = DB.getConnection();
 		String sql = "select*from address where dong like concat('%', ?, '%')";
 		
 		try {
@@ -93,7 +95,7 @@ public class MemberDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
-			Db.close(con, pstmt, rs);
+			DB.close(con, pstmt, rs);
 		}
 		return list;
 	}

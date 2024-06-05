@@ -4,8 +4,6 @@
 
 <!DOCTYPE html>
 <html>
-
-<%@include file="../../WEB-INF/jsp/header.jsp" %>
 <head>
 <meta charset="UTF-8">
 <title>main</title>

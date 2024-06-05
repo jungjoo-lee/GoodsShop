@@ -63,8 +63,6 @@ public class IndexAction implements Action {
 			}		
 		}
 		
-		List<GoodsVO> newlist = gdao.getNewList();
-		
 		for(GoodsVO vo : newlist) {
 			GoodsDAO gdao1 = new GoodsDAO();
 			List<GoodsImageVO> newImageList = gdao1.getImageList(vo.getGseq());

@@ -189,7 +189,7 @@ public class AdminDAO {
 		}
 	}
 	
-	public int getTotalNotice(String sql) {
+	public int getTotalNotice() {
 		int total = 0;
 		
 		try {
