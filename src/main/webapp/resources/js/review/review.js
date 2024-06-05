@@ -33,6 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
     getPageInfo();
 });
 
+keywordInput.addEventListener("keydown", (e) => {
+	keyword = keywordInput.value;
+	
+	if (e.keyCode === 13) {
+		asynGetContent("my");
+		asynGetContent("all");
+	}
+});
+
+keywordInput.addEventListener("input", (e) => {
+	keyword = keywordInput.value;
+});
+
+searchType.addEventListener("change", () => {
+	search = searchType.options[searchType.selectedIndex].value;
+})
+
 function getPageInfo() {	
 	fetch('/GoodsShop/gshop.do?command=asyn', {
 		method : 'POST',
@@ -45,7 +62,7 @@ function getPageInfo() {
 		.then(jsonResult => {
 			if (jsonResult.status == true) {
 				paging = jsonResult.paging;
-				myPaging = jsonResult.paging;
+				myPaging = jsonResult.myPaging;
 				
 				for (let k = 0; k < selectAmount.length; k++){  
 			    	if(selectAmount.options[k].value == jsonResult.paging.amount){
@@ -58,6 +75,7 @@ function getPageInfo() {
 
 selectAmount.addEventListener("change", () => {
 	paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
+	myPaging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
 	
 	let realEnd = Math.ceil(paging.total / paging.amount);
 	let myRealEnd = Math.ceil(myPaging.total / myPaging.amount);
@@ -82,6 +100,10 @@ selectAmount.addEventListener("change", () => {
 		return;
 	} else {
 		asynGetContent("all");
+	}
+	if (myPaging.amount == 0) {
+		return;
+	} else {
 		asynGetContent("my");
 	}
 })
@@ -158,6 +180,7 @@ function asynGetContent(tab) {
 					let i = 0;
 					
 					contentList.forEach(() => {
+						content += '<a class="link" href="/GoodsShop/gshop.do?command=goodsDetailView&gseq=' + contentList[i].gseq + '">';
 						content += '<li class="review-item">';
 						content += '<div class="d-flex justify-content-center align-items-center">';
 						content += '<div class="small-col">' + contentList[i].rseq + '</div>';
@@ -169,6 +192,7 @@ function asynGetContent(tab) {
 						content += '<div>' + formatDate(contentList[i++].indate) + '</div>';
 						content += '</div>';
 						content += '</li>';
+						content += '</a>';
 					});
 					document.querySelector("#my-review-list").innerHTML = content;
 					
@@ -203,7 +227,7 @@ function asynGetContent(tab) {
 					
 					if (myPaging.next) {
 						pagination += '<li class="page-item">';
-						pagination += '<a class="page-link .my-page-link" data-value="next">Next</a>';
+						pagination += '<a class="page-link my-page-link" data-value="next">Next</a>';
 						pagination += '</li>';
 					} else {
 						pagination += '<li class="page-item disabled">';
@@ -211,7 +235,7 @@ function asynGetContent(tab) {
 						pagination += '</li>';
 					}
 					document.querySelector("#myPagination").innerHTML = pagination;				
-					document.querySelector("#pagdInfo").innerHTML = myPaging.currentPage + ' / ' + myPaging.realEnd;
+					document.querySelector("#myPagdInfo").innerHTML = myPaging.currentPage + ' / ' + myPaging.realEnd;
 					
 					addMyPagingEvent();
 				} else {
@@ -237,6 +261,7 @@ function asynGetContent(tab) {
 					let i = 0;
 					
 					contentList.forEach(() => {
+						content += '<a class="link" href="/GoodsShop/gshop.do?command=goodsDetailView&gseq=' + contentList[i].gseq + '">';
 						content += '<li class="review-item">';
 						content += '<div class="d-flex justify-content-center align-items-center">';
 						content += '<div class="small-col">' + contentList[i].rseq + '</div>';
@@ -248,6 +273,7 @@ function asynGetContent(tab) {
 						content += '<div>' + formatDate(contentList[i++].indate) + '</div>';
 						content += '</div>';
 						content += '</li>';
+						content += '</a>';
 					});
 					document.querySelector("#review-list").innerHTML = content;
 					

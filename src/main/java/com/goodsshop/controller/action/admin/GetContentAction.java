@@ -37,18 +37,35 @@ public class GetContentAction implements FatchAction {
 		HttpSession session = request.getSession();
 		JSONObject jsonResult = new JSONObject();
 		SqlBuilder sb = SqlBuilder.getInstance();
-		QnaDAO dao = QnaDAO.getInstance();
+		QnaDAO dao = new QnaDAO();
+		
+		MemberVO vo = (MemberVO)session.getAttribute("loginUser");
 		
 		StringBuilder sql = null;
 		String jsonString = null;
 		
+		int total = 0;
+		int currentPage = 0;
+		int amount = 0;
+		Paging paging = null;
+		
 		try {
-			sql = sb.build(0, json);
-			int total = dao.getTotalQna(sql.toString());
-			int currentPage = json.getInt("page");
-			int amount = json.getInt("amount");
-			Paging paging = new Paging(currentPage, amount, total);
-			
+			if (json.has("userid")) {
+				json.put("userid", vo.getUserid());
+				sql = sb.build(0, json);
+				total = dao.getTotalMyQna(sql);
+				currentPage = json.getInt("page");
+				amount = json.getInt("amount");
+				paging = new Paging(currentPage, amount, total);
+				sql = sb.build(1, json);
+			} else {
+				sql = sb.build(0, json);
+				total = dao.getTotalQna(sql.toString());
+				currentPage = json.getInt("page");
+				amount = json.getInt("amount");
+				paging = new Paging(currentPage, amount, total);
+				sql = sb.build(1, json);
+			}			
 			session.setAttribute("currentPage", paging.getCurrentPage());
 			session.setAttribute("amount", paging.getAmount());
 			
@@ -75,7 +92,7 @@ public class GetContentAction implements FatchAction {
 		HttpSession session = request.getSession();
 		JSONObject jsonResult = new JSONObject();
 		SqlBuilder sb = SqlBuilder.getInstance();
-		ReviewDAO dao = ReviewDAO.getInstance();
+		ReviewDAO dao = new ReviewDAO();
 		
 		MemberVO vo = (MemberVO)session.getAttribute("loginUser");
 		
@@ -91,7 +108,7 @@ public class GetContentAction implements FatchAction {
 			if (json.has("userid")) {
 				json.put("userid", vo.getUserid());
 				sql = sb.build(0, json);
-				total = dao.getTotalMyReview(vo.getUserid());
+				total = dao.getTotalMyReview(sql);
 				currentPage = json.getInt("page");
 				amount = json.getInt("amount");
 				paging = new Paging(currentPage, amount, total);

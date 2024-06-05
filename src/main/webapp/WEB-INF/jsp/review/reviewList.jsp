@@ -26,7 +26,7 @@
 				</ul>
 				<div class="tab-content pt-2">
 					<div class="row w-100">
-             				<div class="col d-flex">
+           				<div class="col d-flex">
               				<select class="form-select w-25 me-3" name="selectAmount" id="selectAmount">
 						  		<option value=0 selected>목록</option>
 						  		<option value=5>5</option>
@@ -64,17 +64,19 @@
                   		<div>
 	                  		<ul id="review-list">
 								<c:forEach var="rev" items="${reviewList}">
-								<li class="review-item">
-									<div class="d-flex justify-content-center align-items-center">
-										<div class="small-col">${rev.rseq}</div>
-		               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
-		               					<div class="small-col">[${rev.category}]</div>
-		               					<div>${rev.gname}</div>
-		               					<div>${rev.subject}</div>
-		               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}</div>
-		               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-	               					</div>
-								</li>
+								<a class="link" href="<c:url value='/gshop.do?command=goodsDetailView&gseq=${rev.gseq}'/>">
+									<li class="review-item">
+										<div class="d-flex justify-content-center align-items-center">
+											<div class="small-col">${rev.rseq}</div>
+			               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
+			               					<div class="small-col">[${rev.category}]</div>
+			               					<div>${rev.gname}</div>
+			               					<div>${rev.subject}</div>
+			               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}</div>
+			               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
+		               					</div>
+									</li>
+								</a>
 								</c:forEach>
 							</ul>
 						</div>
@@ -138,23 +140,25 @@
                   		</div>
                   		<div>
 	                  		<ul id="my-review-list">
-							<c:forEach var="rev" items="${reviewMyList}">
-								<li class="review-item">
-									<div class="d-flex justify-content-center align-items-center">
-										<div class="small-col">${rev.rseq}</div>
-		               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
-		               					<div class="small-col">[${rev.category}]</div>
-		               					<div>${rev.gname}</div>
-		               					<div>${rev.subject}</div>
-		               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}
+								<c:forEach var="rev" items="${reviewMyList}">
+								<a class="link" href="<c:url value='/gshop.do?command=goodsDetailView&gseq=${rev.gseq}'/>">
+									<li class="review-item">
+										<div class="d-flex justify-content-center align-items-center">
+											<div class="small-col">${rev.rseq}</div>
+			               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
+			               					<div class="small-col">[${rev.category}]</div>
+			               					<div>${rev.gname}</div>
+			               					<div>${rev.subject}</div>
+			               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}
+			               					</div>
+			               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
 		               					</div>
-		               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-	               					</div>
-								</li>
-							</c:forEach>
+									</li>
+								</a>
+								</c:forEach>
 							</ul>
 						</div>
-						<span id="pagdInfo">${myPaging.currentPage} / ${myPaging.realEnd}</span>
+						<span id="myPagdInfo">${myPaging.currentPage} / ${myPaging.realEnd}</span>
 						<nav>
 							<ul class="pagination justify-content-center" id="myPagination">
 						  	<!-- 이전 버튼 -->

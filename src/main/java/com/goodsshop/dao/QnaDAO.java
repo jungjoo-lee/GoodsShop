@@ -13,7 +13,7 @@ import com.goodsshop.properties.Env;
 import com.goodsshop.util.DB;
 
 public class QnaDAO {
-	private QnaDAO() {}
+	public QnaDAO() {}
 	private static QnaDAO instance = new QnaDAO();
 	public static QnaDAO getInstance() { return instance;}
 	
@@ -163,6 +163,26 @@ public class QnaDAO {
 			conn = DB.getConnection();
 			pstmt = conn.prepareStatement(Env.getMyQnaTotal());
 			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return total;
+	}
+	
+	public int getTotalMyQna(StringBuilder sql) {
+		int total = 0;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {

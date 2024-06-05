@@ -15,7 +15,7 @@ import com.goodsshop.properties.Env;
 import com.goodsshop.util.DB;
 
 public class ReviewDAO {
-	private ReviewDAO() {}
+	public ReviewDAO() {}
 	private static ReviewDAO instance = new ReviewDAO();
 	public static ReviewDAO getInstance() { return instance;}
 	
@@ -146,6 +146,26 @@ public class ReviewDAO {
 			conn = DB.getConnection();
 			pstmt = conn.prepareStatement(Env.getMyReviewTotal());
 			pstmt.setString(1, userid);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return total;
+	}
+	
+	public int getTotalMyReview(StringBuilder sql) {
+		int total = 0;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
 			rs = pstmt.executeQuery();
 			
 			if (rs.next()) {
