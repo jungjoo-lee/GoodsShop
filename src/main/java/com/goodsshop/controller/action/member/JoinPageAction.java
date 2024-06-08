@@ -12,7 +12,6 @@ public class JoinPageAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("jsp/member/JoinPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/member/JoinPage.jsp").forward(request, response);
 	}
-
 }

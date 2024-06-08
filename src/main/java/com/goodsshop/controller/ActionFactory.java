@@ -6,35 +6,64 @@ import com.goodsshop.controller.action.IndexAction;
 import com.goodsshop.controller.action.admin.AdminIndexAction;
 import com.goodsshop.controller.action.admin.AdminLoginAction;
 import com.goodsshop.controller.action.admin.AdminLoginFormAction;
+import com.goodsshop.controller.action.admin.AdminNoticeListAction;
+import com.goodsshop.controller.action.admin.AdminNoticeViewAction;
 import com.goodsshop.controller.action.admin.AdminQnaListAction;
 import com.goodsshop.controller.action.admin.AdminQnaViewAction;
 import com.goodsshop.controller.action.admin.AdminReviewListAction;
+import com.goodsshop.controller.action.admin.DiscardMemberAction;
+import com.goodsshop.controller.action.admin.NoticeDeleteAction;
+import com.goodsshop.controller.action.admin.NoticeUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
+import com.goodsshop.controller.action.admin.SwitchYNAction;
+import com.goodsshop.controller.action.admin.goods.AdminBestGoodsAction;
+import com.goodsshop.controller.action.admin.goods.AdminCategoryViewAction;
+import com.goodsshop.controller.action.admin.goods.AdminDeleteGoodsAction;
+import com.goodsshop.controller.action.admin.goods.AdminGoodsViewAction;
+import com.goodsshop.controller.action.admin.goods.AdminInsertGoodsAction;
+import com.goodsshop.controller.action.admin.goods.AdminInsertGoodsFormAction;
+import com.goodsshop.controller.action.admin.goods.AdminUpdateGoodsAction;
+import com.goodsshop.controller.action.admin.goods.AdminUpdateGoodsFormAction;
+import com.goodsshop.controller.action.admin.goods.AdminUseYNGoodsAction;
+import com.goodsshop.controller.action.admin.order.AdminOrderDetailViewAction;
+import com.goodsshop.controller.action.admin.order.AdminOrderListAction;
+import com.goodsshop.controller.action.admin.order.AdminUpdateOrderStatAction;
+import com.goodsshop.controller.action.cart.DeleteCartAction;
+import com.goodsshop.controller.action.cart.DeleteWishAction;
+import com.goodsshop.controller.action.cart.GetPaymentAction;
+import com.goodsshop.controller.action.cart.GoOrderAction;
+import com.goodsshop.controller.action.cart.InsertCartAction;
+import com.goodsshop.controller.action.cart.InsertWishAction;
+import com.goodsshop.controller.action.cart.OrderCartAction;
+import com.goodsshop.controller.action.cart.OrderNowAction;
+import com.goodsshop.controller.action.cart.ViewCartAction;
+import com.goodsshop.controller.action.cart.ViewWishAction;
+import com.goodsshop.controller.action.cart.WishToCartAction;
+import com.goodsshop.controller.action.email.FindIdOKAction;
+import com.goodsshop.controller.action.goods.GoodsDetailViewAction;
+import com.goodsshop.controller.action.goods.ViewCategoryAction;
+import com.goodsshop.controller.action.member.GetEmailAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
 import com.goodsshop.controller.action.member.JoinPageAction;
+import com.goodsshop.controller.action.member.SearchIdAction;
+import com.goodsshop.controller.action.member.SearchPwdAction;
 import com.goodsshop.controller.action.mypage.DeleteMemberAction;
-import com.goodsshop.controller.action.notice.NoticeListAction;
+import com.goodsshop.controller.action.mypage.OrderDetailViewAction;
+import com.goodsshop.controller.action.mypage.ViewOrderAction;
+import com.goodsshop.controller.action.notice.NoticeInsertAction;
+import com.goodsshop.controller.action.notice.NoticeUpdateFormAction;
+import com.goodsshop.controller.action.notice.insertNoticeFormAction;
 import com.goodsshop.controller.action.qna.QnaListAction;
 import com.goodsshop.controller.action.qna.QnaViewAction;
 import com.goodsshop.controller.action.qna.QnaWriteFormAction;
 import com.goodsshop.controller.action.review.ReviewListAction;
-import com.goodsshop.controller.cart.DeleteCartAction;
-import com.goodsshop.controller.cart.GetPaymentAction;
-import com.goodsshop.controller.cart.GoOrderAction;
-import com.goodsshop.controller.cart.InsertCartAction;
-import com.goodsshop.controller.cart.InsertWishAction;
-import com.goodsshop.controller.cart.OrderCartAction;
-import com.goodsshop.controller.cart.ViewCartAction;
-import com.goodsshop.controller.cart.ViewWishAction;
-import com.goodsshop.controller.cart.WishToCartAction;
-import com.goodsshop.controller.goods.GoodsCategoryAction;
-import com.goodsshop.controller.goods.GoodsDetailViewAction;
-import com.goodsshop.controller.goods.OrderNowAction;
 import com.goodsshop.controller.member.login.FindIdAction;
 import com.goodsshop.controller.member.login.FindIdFormAction;
+import com.goodsshop.controller.member.login.FindPwdAction;
+import com.goodsshop.controller.member.login.FindPwdFormAction;
 import com.goodsshop.controller.member.login.FindZipnumAction;
 import com.goodsshop.controller.member.login.LoginAction;
 import com.goodsshop.controller.member.login.LoginFormAction;
@@ -51,11 +80,14 @@ public class ActionFactory {
 	public Action getAction(String command) {
 		Action ac = null;
 		
-		if( command.equals("index") ) ac = new IndexAction();	
-		else if (command.equals("goodsCategory")) ac = new GoodsCategoryAction();
+		if( command.equals("index") ) ac = new IndexAction();
 		//notice
-		else if (command.equals("noticeList")) ac = new NoticeListAction();
-		
+		else if (command.equals("noticeInsert")) ac = new NoticeInsertAction();
+		else if (command.equals("noticeDelete")) ac = new NoticeDeleteAction();
+		else if (command.equals("noticeUpdate")) ac = new NoticeUpdateAction();
+		else if (command.equals("noticeUpdateForm")) ac = new NoticeUpdateFormAction();
+		else if (command.equals("insertNoticeForm")) ac = new insertNoticeFormAction();
+
 		// qna
 		else if (command.equals("qnaList")) ac = new QnaListAction();
 		else if (command.equals("qnaView")) ac = new QnaViewAction();
@@ -73,6 +105,12 @@ public class ActionFactory {
 		else if (command.equals("qnaReplyWrite")) ac = new QnaReplyWriteAction();
 		else if (command.equals("qnaReplyUpdate")) ac = new QnaReplyUpdateAction();
 		else if (command.equals("qnaReplyDelete")) ac = new QnaReplyDeleteAction();
+		else if (command.equals("adminNoticeList")) ac = new AdminNoticeListAction();
+		else if (command.equals("adminNoticeView")) ac = new AdminNoticeViewAction();
+
+		//멤버 로그인
+		else if (command.equals("switchYN")) ac = new SwitchYNAction();
+		else if (command.equals("discardMember")) ac = new DiscardMemberAction();
 		else if (command.equals("adminReviewList")) ac = new AdminReviewListAction();
 		
 		//멤버
@@ -81,34 +119,72 @@ public class ActionFactory {
 		else if (command.equals("logout")) ac = new LogoutAction();
 		else if (command.equals("findIdForm")) ac = new FindIdFormAction();
 		else if (command.equals("findId")) ac = new FindIdAction();
-		
-		// 멤버 페이지
+		else if (command.equals("searchId")) ac = new SearchIdAction();
+		else if (command.equals("findPwdForm")) ac = new FindPwdFormAction();
+		else if (command.equals("findPwd")) ac = new FindPwdAction();
+		else if (command.equals("searchPwd")) ac = new SearchPwdAction();
+
+		//마이페이지
 		else if (command.equals("updateMemberForm")) ac = new UpdateMemberFormAction();
 		else if (command.equals("updateMember")) ac = new UpdateMemberAction();
+		else if( command.equals("deleteMember") ) ac = new DeleteMemberAction();
 		else if (command.equals("findZipnum")) ac = new FindZipnumAction();
-		
+
 		else if (command.equals("imageWrite")) ac = new ImageWriteAction();
+		
+		//email
+		else if (command.equals("findIdOK")) ac = new FindIdOKAction();
+		
 		//member
-		if( command.equals("join") ) 									ac = new JoinAction();
-		if( command.equals("joinPage") ) 							ac = new JoinPageAction();
-		if( command.equals("IDCheck") ) 							ac = new IDCheckAction();
+		else if( command.equals("join") ) 									ac = new JoinAction();
+		else if( command.equals("joinPage") ) 							ac = new JoinPageAction();
+		else if( command.equals("IDCheck") ) 							ac = new IDCheckAction();
+		else if( command.equals("getEmail") ) 							ac = new GetEmailAction();
+		
 		
 		//mypage
-		if( command.equals("deleteMember") ) 					ac = new DeleteMemberAction();
+		else if( command.equals("deleteMember") ) ac = new DeleteMemberAction();
+		
 
 		//goods
-		if(command.equals("goodsDetailView")) ac = new GoodsDetailViewAction();
-		if(command.equals("viewCartlist")) ac = new ViewCartAction();
-		if(command.equals("viewWishlist")) ac = new ViewWishAction();
-		if(command.equals("addCart")) ac = new InsertCartAction();
-		if(command.equals("addWish")) ac = new InsertWishAction();
-		if(command.equals("wishToCart")) ac = new WishToCartAction();
-		if(command.equals("deleteWish")) ac = new DeleteWishAction();
-		if(command.equals("deleteCart")) ac = new DeleteCartAction();
-		if(command.equals("orderNow")) ac = new OrderNowAction();
-		if(command.equals("orderFromCart")) ac = new OrderCartAction();
-		if(command.equals("getPayment")) ac = new GetPaymentAction();
-		if(command.equals("goOrder")) ac = new GoOrderAction();
+		else if(command.equals("goodsDetailView")) ac = new GoodsDetailViewAction();
+		else if(command.equals("viewCartlist")) ac = new ViewCartAction();
+		else if(command.equals("addCart")) ac = new InsertCartAction();
+		else if(command.equals("deleteCart")) ac = new DeleteCartAction();
+		
+		else if(command.equals("viewWishlist")) ac = new ViewWishAction();
+		else if(command.equals("addWish")) ac = new InsertWishAction();
+		else if(command.equals("wishToCart")) ac = new WishToCartAction();
+		else if(command.equals("deleteWish")) ac = new DeleteWishAction();
+		
+		else if(command.equals("viewOrderList")) ac = new ViewOrderAction();
+		else if(command.equals("orderFromCart")) ac = new OrderCartAction();
+		else if(command.equals("orderNow")) ac = new OrderNowAction();
+		else if(command.equals("getPayment")) ac = new GetPaymentAction();
+		else if(command.equals("goOrder")) ac = new GoOrderAction();
+		else if(command.equals("orderDetailView")) ac = new OrderDetailViewAction();
+		
+		else if(command.equals("viewCategory")) ac = new ViewCategoryAction();
+		
+		
+		//admin-goods		
+		else if(command.equals("adminGoodsView")) ac = new AdminGoodsViewAction();
+		else if(command.equals("adminGoodsUpdateForm")) ac = new AdminUpdateGoodsFormAction();
+		else if(command.equals("adminUpdateGoods")) ac = new AdminUpdateGoodsAction();
+		else if(command.equals("adminInsertGoodsForm")) ac = new AdminInsertGoodsFormAction();
+		else if(command.equals("adminInsertGoods")) ac = new AdminInsertGoodsAction();
+		else if(command.equals("adminGoodsDelete")) ac = new AdminDeleteGoodsAction();
+		else if(command.equals("adminBestToggle")) ac = new AdminBestGoodsAction();
+		else if(command.equals("adminUseYnToggle")) ac = new AdminUseYNGoodsAction();
+		else if(command.equals("adminCategoryView")) ac = new AdminCategoryViewAction();
+		else if(command.equals("adminGoodsSearch")) ac = new AdminGoodsSearchAction();
+		
+		//admin-order
+		else if(command.equals("adminOrderView")) ac = new AdminOrderListAction();
+		else if(command.equals("adminOrderDetailView")) ac = new AdminOrderDetailViewAction();
+		else if(command.equals("adminUpdateOrderStatus")) ac = new AdminUpdateOrderStatAction();
+
+		
 		
 		
 		

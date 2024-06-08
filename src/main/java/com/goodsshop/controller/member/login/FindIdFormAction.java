@@ -12,7 +12,7 @@ public class FindIdFormAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("jsp/member/findId.jsp").forward(request, response); // 경로
+		request.getRequestDispatcher("/WEB-INF/jsp/member/findIdForm.jsp").forward(request, response); // 경로
 	}
 
 }

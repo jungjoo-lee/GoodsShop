@@ -19,15 +19,15 @@ public class DeleteMemberAction implements Action {
 		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
 		
 		if( mvo==null ) {
-			response.sendRedirect("shop.do?command=loginForm");
+			response.sendRedirect("gshop.do?command=loginForm");
 		}else {
 			MemberDao mdao = MemberDao.getInstance();
 			mdao.deleteMember(mvo.getUserid());
 			
 			session.removeAttribute("loginUser");
 			
-			session.setAttribute("message", "정상 탈퇴 처리되었습니다.");
-			response.sendRedirect("shop.do?command=loginForm");
+			//session.setAttribute("message", "정상 탈퇴 처리되었습니다.");
+			response.sendRedirect("gshop.do?command=loginForm");
 		}
 
 	}

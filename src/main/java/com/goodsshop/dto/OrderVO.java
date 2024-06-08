@@ -21,4 +21,7 @@ public class OrderVO {
 	private int totalprice;
 	private String status;
 	private String thum;
+	private int osseq;
+	private float sale;
+	private String realname;
 }

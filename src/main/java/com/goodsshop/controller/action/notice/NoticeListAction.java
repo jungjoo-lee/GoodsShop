@@ -3,9 +3,7 @@ package com.goodsshop.controller.action.notice;
 import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.controller.member.MemberVO;
 import com.goodsshop.dao.NoticeDAO;
-import com.goodsshop.dao.QnaDAO;
 import com.goodsshop.util.Paging;
 
 import jakarta.servlet.ServletException;

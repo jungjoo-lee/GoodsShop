@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.goodsshop.dto.AdminVO;
 import com.goodsshop.dto.MemberVO;
+import com.goodsshop.dto.NoticeVO;
 import com.goodsshop.dto.QnaVO;
 import com.goodsshop.properties.Env;
 import com.goodsshop.util.DB;
@@ -187,4 +188,95 @@ public class AdminDAO {
 			DB.close(conn, pstmt, rs);
 		}
 	}
+	
+	public int getTotalNotice() {
+		int total = 0;
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.getNoticeTotal());
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return total;
+	}
+	public Object getNoticeList(int amount, int currentPage) {
+		List<NoticeVO> noticeList = new ArrayList<>();
+		int offset = (currentPage - 1) * amount;
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.getNoticeList());
+			pstmt.setInt(1, amount);
+			pstmt.setInt(2, offset);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+						noticeList.add(NoticeVO.builder()
+						.nseq(rs.getInt(1))
+						.adminId(rs.getString(2))
+						.subject(rs.getString(3))
+						.content(rs.getString(4))
+						.indate(rs.getTimestamp(5))
+						.build());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		return noticeList;
+	}
+	public void deleteNotice(int nseq) {
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.getdeleteNotice());
+			pstmt.setInt(1, nseq);
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+	}
+
+	public void switchYN(String userid) {
+		conn = DB.getConnection();
+		String sql = "update `member` set is_login = is_login^1 where userid = ?";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) { 	e.printStackTrace();
+		} finally {	DB.close(conn, pstmt, rs);
+	}
 }
+
+	public void deleteMember(String userid) {
+		conn = DB.getConnection();
+		String sql = "delete from member where userid=?";
+		conn = DB.getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			pstmt.executeUpdate();
+		} catch (SQLException e) { e.printStackTrace();
+		} finally { DB.close(conn, pstmt, rs); }
+	}
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-light" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
@@ -43,15 +44,16 @@
                                 <a class="nav-link" href="<c:url value='/gshop.do?command=adminReviewList'/>">리뷰</a>
                             </nav>
                         </div>
-	                    <a class="nav-link" href="#">공지사항</a>
+	                    <a class="nav-link" href="<c:url value='/gshop.do?command=adminNoticeList'/>">공지사항</a>
                     </nav>
                 </div>
             </div>
         </div>
         <div class="sb-sidenav-footer">
-            <div class="small">1조:</div>
-            조장 곽수아
+            <div class="small">속보:</div>
+            집에 가고 싶어짐
         </div>
     </nav>
 </div>
-<script type="text/javascript" src="<c:url value='/resources/js/admin/sidemenu.js'/>"></script>
+<script type="text/javascript"
+	src="<c:url value='/resources/js/admin/sidemenu.js'/>"></script>

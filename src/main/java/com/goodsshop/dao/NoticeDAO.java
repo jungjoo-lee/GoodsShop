@@ -13,6 +13,7 @@ import com.goodsshop.dto.QnaVO;
 import com.goodsshop.properties.Env;
 import com.goodsshop.util.DB;
 
+
 public class NoticeDAO {
 	private NoticeDAO() {}
 	private static NoticeDAO instance = new NoticeDAO();
@@ -142,4 +143,58 @@ public class NoticeDAO {
 		
 		return total;
 	}
-}
+
+	public NoticeVO getNotice(int nseq) {
+		NoticeVO vo = null;
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(Env.getNotice());
+			pstmt.setInt(1, nseq);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				vo = NoticeVO.builder()
+						.nseq(rs.getInt(1))
+						.adminId(rs.getString(2))
+						.subject(rs.getString(3))
+						.content(rs.getString(4))
+						.indate(rs.getTimestamp(5))
+						.build();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+		
+		return vo;
+	}
+	public void updateNotice(NoticeVO vo) {
+	    try {
+	        conn = DB.getConnection();
+	        pstmt = conn.prepareStatement(Env.getupdateNotice());
+	        pstmt.setString(1, vo.getSubject());
+	        pstmt.setString(2, vo.getContent());
+	        pstmt.setInt(3, vo.getNseq());
+	        pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        DB.close(conn, pstmt, rs);
+	    }
+	}
+
+	public void insertNotice(NoticeVO vo) {
+		conn = DB.getConnection();
+		try {
+			pstmt = conn.prepareStatement(Env.getinsertNotice());
+			pstmt.setString(1, vo.getAdminId());
+			pstmt.setString(2, vo.getSubject());
+			pstmt.setString(3, vo.getContent());
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DB.close(conn, pstmt, rs);
+		}	
+	}}

@@ -16,7 +16,7 @@ public class LogoutAction implements Action {
 		
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginUser");
-		request.getRequestDispatcher("main.jsp").forward(request, response); // 경로
+		request.getRequestDispatcher("jsp/member/loginForm.jsp").forward(request, response); // 경로
 
 	}
 

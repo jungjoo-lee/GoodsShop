@@ -25,6 +25,7 @@ function wishtocart(){
 				alert("장바구니에 추가할 상품을 선택하세요");			
 			} else {
 				document.wishlistform.action = "gshop.do?command=wishToCart";
+				document.wishlistform.method = "post";
 				document.wishlistform.submit();
 			}			
 		})
@@ -57,6 +58,7 @@ function deletewish(){
 				alert("찜목록에서 삭제할 상품을 선택하세요");			
 			} else {
 				document.wishlistform.action = "gshop.do?command=deleteWish";
+				document.wishlistform.method = "post";
 				document.wishlistform.submit();
 			}				
 			
@@ -65,3 +67,35 @@ function deletewish(){
 }
 
 deletewish();
+
+
+function gomain(){
+	let main = document.querySelector("#go_main");
+	
+	if(main != null){
+		main.addEventListener("click", ()=>{
+			location.href="gshop.do?command=index";
+		})
+	}
+}
+
+gomain();
+
+function check_all() {
+	let checkAll = document.querySelector("#checkAll");
+
+	if (checkAll != null) {
+		checkAll.addEventListener("click", () => {
+			const checkboxes = document.querySelectorAll("#checkboxes");
+			if (checkboxes.length > 0) {
+				Array.from(checkboxes).forEach((checkbox) => {
+					checkbox.checked = checkAll.checked;
+				});
+			} else {
+				console.log("No checkboxes found with the name 'gseq'");
+			}
+		})
+	}
+}
+
+check_all();

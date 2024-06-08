@@ -27,7 +27,6 @@ public class AdminLoginAction implements Action {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginAdmin", vo);
 		}
-		
 		request.getRequestDispatcher(url).forward(request, response);;
 	}
 }

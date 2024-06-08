@@ -4,6 +4,7 @@ function payment(){
 	if(pay != null){
 		pay.addEventListener("click", function(){
 			document.paymentform.action = "gshop.do?command=goOrder";
+			document.paymentform.method = "post";
 			document.paymentform.submit();
 		})
 	}	

@@ -3,7 +3,7 @@ package com.goodsshop.controller.member.update;
 import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.controller.member.MemberVO;
+import com.goodsshop.dto.MemberVO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,9 +19,9 @@ public class UpdateMemberFormAction implements Action {
 		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
 		
 		if(mvo!=null){
-			request.getRequestDispatcher("jsp/member/updateMember.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/member/updateMember.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher("jsp/member/loginForm.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/jsp/member/loginForm.jsp").forward(request, response);
 	}
 
 	}
