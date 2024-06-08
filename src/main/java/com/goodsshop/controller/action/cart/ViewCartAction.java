@@ -26,8 +26,8 @@ public class ViewCartAction implements Action {
 		PrintWriter out = response.getWriter();
 
 		if (loginUser == null) {		
-			out.print("<script>alert('로그인을 먼저 진행해주세요')</script>");
-			request.getRequestDispatcher("gshop.do?command=index").forward(request, response);
+			out.print("<script>alert('로그인을 먼저 진행해주세요');</script>");
+			out.print("<script>location.href='gshop.do?command=loginForm';</script>");
 		} else {
 			
 			if(cartlist != null) {
@@ -47,9 +47,9 @@ public class ViewCartAction implements Action {
 				}
 
 				session.setAttribute("cartlist", cartlist);			
+				request.getRequestDispatcher("jsp/goods/cartlistView.jsp").forward(request, response);
 			}
 	
-			request.getRequestDispatcher("jsp/goods/cartlistView.jsp").forward(request, response);
 
 		}
 	}

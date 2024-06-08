@@ -19,15 +19,17 @@ public class OrderDAO {
 	ResultSet rs = null;
 	
 	
-	public List<OrderVO> selectOrderList(String userid) {
+	public List<OrderVO> selectOrderList(String userid, MPaging paging) {
 		List<OrderVO> list = new ArrayList<OrderVO>();
 		
 		con = DB.getConnection();
-		String sql = "select * from order_view o1 inner join (select oseq, min(odseq) as min_odseq from order_view group by oseq) o2 on o1.oseq = o2.oseq and o1.odseq = o2.min_odseq where userid = ? order by o1.oseq desc";
+		String sql = "select * from order_view o1 inner join (select oseq, min(odseq) as min_odseq from order_view group by oseq) o2 on o1.oseq = o2.oseq and o1.odseq = o2.min_odseq where userid = ? order by o1.oseq desc  limit ? offset ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userid);		
+			pstmt.setInt(2, paging.getDisplayRow());
+			pstmt.setInt(3, paging.getStartNum() - 1);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -307,6 +309,9 @@ public class OrderDAO {
 	}
 	
 	public List<OrderVO> getAllOrderListById(String keyword, MPaging paging) {
+		
+		System.out.println("key : "+keyword);
+		
 		List<OrderVO> list = new ArrayList<OrderVO>();
 		
 		con = DB.getConnection();
@@ -378,7 +383,7 @@ public class OrderDAO {
 		
 		con = DB.getConnection();
 		String sql = "select count(*) as cnt from order_view o1 inner join (select oseq, min(odseq) as min_odseq from order_view group by oseq) o2 on o1.oseq = o2.oseq and o1.odseq = o2.min_odseq "
-				+ " where " + fieldName + " like concat('%', ?, '%')";
+				+ " where o1." + fieldName + " like concat('%', ?, '%')";
 		
 		try {
 			pstmt = con.prepareStatement(sql);

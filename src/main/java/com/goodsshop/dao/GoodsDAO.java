@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.goodsshop.controller.action.goods.MPaging;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
 import com.goodsshop.dto.ReviewVO;
 import com.goodsshop.util.DB;
+import com.goodsshop.util.Paging;
 
 
 public class GoodsDAO {
@@ -182,15 +184,18 @@ public class GoodsDAO {
 	}
 	
 
-	public List<GoodsVO> getCategoryList(int cgseq) {
+	public List<GoodsVO> getCategoryList(String cgseq, MPaging paging) {
 		List<GoodsVO> list = new ArrayList<GoodsVO>();
 		
 		con = DB.getConnection();
-		String sql = "select * from goods_view where cgseq = ?";
+		String sql = "select * from goods_view where cgseq = ? limit ? offset ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, cgseq);
+			pstmt.setString(1, cgseq);
+			pstmt.setInt(2, paging.getDisplayRow());
+			pstmt.setInt(3, paging.getStartNum() - 1);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -221,7 +226,7 @@ public class GoodsDAO {
 	}
 	
 
-	public List<GoodsVO> getAllGoods(String keyword) {
+	public List<GoodsVO> getAllGoods(String keyword, MPaging paging) {
 		List<GoodsVO> list = new ArrayList<GoodsVO>();
 		
 		con = DB.getConnection();
@@ -229,11 +234,13 @@ public class GoodsDAO {
 				+ "inner join "
 				+ "(select gseq, min(giseq) as min_giseq from goods_view group by gseq) g2 "
 				+ "on g1.gseq = g2.gseq and g1.giseq = g2.min_giseq "
-				+ "where gname like concat('%', ?, '%') order by g1.gseq";
+				+ "where gname like concat('%', ?, '%') order by g1.gseq limit ? offset ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, keyword);
+			pstmt.setInt(2, paging.getDisplayRow());
+			pstmt.setInt(3, paging.getStartNum() - 1);
 			
 			rs = pstmt.executeQuery();
 			
@@ -477,6 +484,33 @@ public class GoodsDAO {
 		}
 		
 	}
+		
+	
+	public int getAllCount(String key, String fieldName) {
+		int count = 0;
+		
+		con = DB.getConnection();
+		String sql = "select count(*) as cnt from goods_view g1 inner join (select gseq, min(giseq) as min_giseq from goods_view group by gseq) g2 on g1.gseq = g2.gseq and g1.giseq = g2.min_giseq "
+				+ "where " + fieldName + " like concat('%', ?, '%') order by g1.gseq ";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, key);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}
+		
+		return count;
+	}		
 
 	
 }

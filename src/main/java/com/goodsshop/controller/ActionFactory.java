@@ -14,6 +14,7 @@ import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
 import com.goodsshop.controller.action.admin.goods.AdminBestGoodsAction;
 import com.goodsshop.controller.action.admin.goods.AdminCategoryViewAction;
 import com.goodsshop.controller.action.admin.goods.AdminDeleteGoodsAction;
+import com.goodsshop.controller.action.admin.goods.AdminGoodsSearchAction;
 import com.goodsshop.controller.action.admin.goods.AdminGoodsViewAction;
 import com.goodsshop.controller.action.admin.goods.AdminInsertGoodsAction;
 import com.goodsshop.controller.action.admin.goods.AdminInsertGoodsFormAction;

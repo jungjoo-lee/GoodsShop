@@ -54,7 +54,8 @@ public class AdminOrderListAction implements Action {
 		
 		
 		request.setAttribute("orderList", orderList);
-		request.setAttribute("paging", paging);
+		request.setAttribute("url", "gshop.do?command=adminOrderView");		
+		request.setAttribute("paging", paging);		
 		request.getRequestDispatcher("WEB-INF/jsp/admin/adminOrderView.jsp").forward(request, response);
 
 	}

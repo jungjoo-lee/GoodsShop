@@ -21,5 +21,6 @@
 			<div style="font-size:80%; font-weight:bold">${message}</div>
 		</article>
 </section>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
 <script src="<c:url value='/resources/js/member/loginForm.js'/>"></script>

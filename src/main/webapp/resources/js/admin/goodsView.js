@@ -13,14 +13,13 @@ function check_all() {
 				Array.from(checkboxes).forEach((checkbox) => {
 					checkbox.checked = checkAll.checked;
 				});
-			} else {
-				console.log("No checkboxes found with the name 'gseq'");
 			}
 		})
 	}
 }
 
 check_all();
+
 
 function toggle_best() {
 	let best = document.querySelector("#bestToggle");
@@ -125,30 +124,31 @@ function category_view() {
 	let cate = document.querySelector("#selectCategory");
 
 	if (cate != null) {
-		cate.addEventListener("click", () => {
-			if (cate.value != "0") {
-				document.goodsViewForm.action = "gshop.do?command=adminCategoryView"
+		cate.addEventListener("change", () => {
+			if (cate.value != 0) {
+				document.goodsViewForm.action = "gshop.do?command=adminCategoryView";
+
+			} else {
+				document.goodsViewForm.action = "gshop.do?command=adminGoodsView";
+
+			}
 				document.goodsViewForm.method = "post";
 				document.goodsViewForm.submit();
-			}
 		})
 	}
 }
 
 category_view();
 
-function go_Search() {
-	let goSearch = document.querySelector("#goSearch");
 
-	if (goSearch != null) {
-		goSearch.addEventListener("click", () => {
-			document.goodsViewForm.action = "gshop.do?command=adminGoodsSearch"
-			document.goodsViewForm.method = "post";
-			document.goodsViewForm.submit();
-		})
 
+
+function pageClick(num, url) {
+	if(document.goodsViewForm.searchKey.value == ''){
+		document.goodsViewForm.searchKey.value = document.goodsViewForm.searchKeySave.value
 	}
-
+	
+	document.goodsViewForm.action = url + "&page=" + num;
+	document.goodsViewForm.method = "post";
+	document.goodsViewForm.submit();
 }
-
-go_Search();

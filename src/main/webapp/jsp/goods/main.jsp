@@ -66,4 +66,5 @@
 
 	<script type="text/javascript" src='<c:url value = "/resources/js/goods/main.js"/>'></script>
 </body>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
 </html>

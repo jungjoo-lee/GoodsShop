@@ -43,23 +43,33 @@ public class AdminOrderSearchAction implements Action {
 
 		int count = 0;
 		
-		if (searchBy.equals("gname")) {
+		String url = "gshop.do?command=adminSearchOrder";
+		
+		 if (searchBy.equals("gname")) {
+			
 			count = odao.getAllCount(key, "gname");
 			paging.setTotalCount(count);
 			orderList = odao.getAllOrderList(key, paging);
+			
 		} else if (searchBy.equals("userid")) {
+			
 			count = odao.getAllCount(key, "userid");
 			paging.setTotalCount(count);
 			orderList = odao.getAllOrderListById(key, paging);		
+			
 		} else if (searchBy.equals("name")) {
+			
 			count = odao.getAllCount(key, "name");
 			paging.setTotalCount(count);			
 			orderList = odao.getAllOrderListByName(key, paging);
+			
 		}
-
 		
 
 		request.setAttribute("orderList", orderList);
+		request.setAttribute("searchBy", searchBy);
+		request.setAttribute("key", key);
+		request.setAttribute("url", url);
 		request.setAttribute("paging", paging);		
 		request.getRequestDispatcher("WEB-INF/jsp/admin/adminOrderView.jsp").forward(request, response);		
 	}

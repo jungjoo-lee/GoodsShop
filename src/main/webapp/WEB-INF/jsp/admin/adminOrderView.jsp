@@ -20,26 +20,51 @@
         	<!-- side -->
         	<jsp:include page="../fix/admin/sidemenu.jsp"/>
         	
+	      	<form name="adminOrderForm" id="adminOrderForm" method="post">
         	<div id="layoutSidenav_content">
         		<div class="container-fluid px-4">
-        		<form name="adminOrderForm" id="adminOrderForm" method="post">
                 	<h1 class="mt-4">  </h1><br/> <!-- 제목 -->
 					<div class="row w-100">
-				    	<div class="col d-flex"> <!-- 목록 선택 -->
-							<div class="btn-group">
-				                <button type="button" class="btn btn-outline-secondary active" id="all"><i class="bi bi-list"></i></button>
-				                <button type="button" class="btn btn-outline-secondary" id="notnull"><i class="bi bi-check-circle"></i></button>
-				            	<button type="button" class="btn btn-outline-secondary" id="null"><i class="bi bi-x-circle"></i></button>
-				            </div>
-				    	</div>
 				    	<div class="col d-flex justify-content-end"> <!-- 검색 폼 -->
+				    	
  				    		<select class="form-select w-25 me-1" name="searchBy" id="searchBy">
-						  		<option value="gname" selected>상품명</option>
-						  		<option value="userid">주문인 ID</option>
-						  		<option value="name">주문인 성명</option>
+ 				    		
+				      			<c:choose>
+				      				<c:when test="${not empty searchBy}">
+											<c:choose>
+												<c:when test="${searchBy == 'gname'}">
+											  		<option value="gname" selected>상품명</option>
+											  		<option value="userid">주문인 ID</option>
+											  		<option value="name">주문인 성명</option>											  		
+												</c:when>
+												<c:when test="${searchBy == 'userid'}">
+											  		<option value="gname" >상품명</option>
+											  		<option value="userid" selected>주문인 ID</option>
+											  		<option value="name">주문인 성명</option>											  		
+												</c:when>												
+												<c:otherwise>
+											  		<option value="gname" >상품명</option>
+											  		<option value="userid" >주문인 ID</option>
+											  		<option value="name" selected>주문인 성명</option>		
+												</c:otherwise>
+											</c:choose>
+									</c:when>
+									<c:otherwise>
+							  		<option value="gname" selected>상품명</option>
+							  		<option value="userid">주문인 ID</option>
+							  		<option value="name">주문인 성명</option>	
+									</c:otherwise>
+								</c:choose> 				    		
 							</select>
 				      		<div class="d-flex">
-					      		<input class="form-control me-2" name="searchKey" type="text" placeholder="상품명을 입력하세요">
+					      		<c:choose>
+						      		<c:when test="${not empty key}">
+						      			<input class="form-control me-2" name="searchKey" type="text" value="${key}">
+						      		</c:when>
+						      		<c:otherwise>					      		
+										<input class="form-control me-2" name="searchKey" type="text" placeholder="search">						      		
+						      		</c:otherwise>
+						      	</c:choose>
 					    	</div>
 						<div class="d-flex" id="goSearch">
 							<input type="button" value="검색">
@@ -117,56 +142,50 @@
 						</select> <input type="button" id="changeStat" value="변경"> 
 					</div>
 				</div>
-				</form>
+
+
 				
-				
+			<c:if test="${paging.totalCount > paging.displayRow}">				
 				<ul class="pagination justify-content-center" id="pagination">
 					<!-- 이전 버튼 -->
-					<c:choose>
-						<c:when test="${paging.prev}">
-							<li class="page-item"><a class="page-link" data-value="prev">Prev</a>
+						<c:if test="${paging.prev}">
+							<li class="page-item">
+								<div class="page-link" onclick="pageClick(${paging.beginPage-1}, ${url})">prev</div>
 							</li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item disabled"><a class="page-link">Prev</a>
-							</li>
-						</c:otherwise>
-					</c:choose>
+						</c:if>
 					<!-- 페이지 번호 -->
 					<c:forEach var="num" begin="${paging.beginPage}"
 						end="${paging.endPage}">
 						
 						<c:if test="${num == paging.page}">
 							<li class="page-item active">
-								<a class="page-link" href="gshop.do?command=adminOrderView&page=${num}" data-value="${num}">
+								<div class="page-link" onclick="pageClick(${num}, '${url}')" data-value="${num}">
 									${num}
-								</a>
+								</div>
 							</li>
 						</c:if>
 						<c:if test="${num != paging.page}">
-							<li class="page-item">
-								<a class="page-link" href="gshop.do?command=adminOrderView&page=${num}" data-value="${num}">
+							<li class="page-item" id="nextbtn">
+								<div class="page-link" onclick="pageClick(${num}, '${url}')" data-value="${num}">
 									${num}
-								</a>
+								</div>
 							</li>
 						</c:if>
 					</c:forEach>
 					<!-- 다음 버튼 -->
-					<c:choose>
-						<c:when test="${paging.next}">
-							<li class="page-item"><a class="page-link" data-value="next">Next</a>
+						<c:if test="${paging.next}">
+							<li class="page-item">
+								<div class="page-link" onclick="pageClick(${paging.endPage+1}, ${url})">next</div>
 							</li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item disabled"><a class="page-link">Next</a>
-							</li>
-						</c:otherwise>
-					</c:choose>
+						</c:if>
 				</ul>
+			</c:if>
 
 			</div>
-        	</div>            
+        	</div>   
+        	 </form>         
         </div>
+       
 	<script type="text/javascript" src="<c:url value='/resources/js/admin/admin.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/resources/js/admin/adminOrder.js'/>"></script>
     </body>

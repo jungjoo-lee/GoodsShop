@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,4 +70,5 @@
 	</div>
 	<script type="text/javascript" src='<c:url value = "/resources/js/goods/detail.js"/>'></script>
 </body>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>
 </html>

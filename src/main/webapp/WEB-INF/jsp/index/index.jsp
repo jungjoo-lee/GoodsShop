@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ include file="/WEB-INF/jsp/header.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,23 +13,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-	<c:choose>
-		<c:when test="${empty loginUser}">
-			<div>
-				<h3>로그인하삼</h3>
-				<button id="login"> 로그인ㄱㄱ </button>
-			</div>
-		</c:when>
-		<c:otherwise>
-			<div> ${loginUser.userid} ㅎㅇ </div>
-			<div> 
-				<button id="go_cart"> 장바구니 보기 </button>
-				<button id="go_wishlist"> 찜목록 보기 </button>
-			</div>
-			<h3>하이</h3>			
-		</c:otherwise>
-	</c:choose>
-
 	<div>
 		<div> <h3>베스트 20</h3> </div>
 		<c:forEach items="${bestlist}" var="gvo" varStatus="status">
@@ -36,7 +20,7 @@
 			<div>				
 				<div>
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-						<img alt="${gvo.thum}.png" src='<c:url value="/resources/image/goods/${gvo.thum}.png"/>'>	
+						<img alt="${gvo.thum}.png" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.realname}'/>">	
 					</a>
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
 						${gvo.gname} - ${gvo.sprice}					
@@ -52,7 +36,7 @@
 			<div>				
 				<div>
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-						<img alt="${gvo.thum}.png" src='<c:url value="/resources/image/goods/${gvo.thum}.png"/>'>	
+						<img alt="${gvo.thum}.png" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.realname}'/>">	
 					</a>		
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
 						${gvo.gname} - ${gvo.sprice}					
@@ -168,4 +152,5 @@
 	</div>
 </div>
 </body>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>
 </html>
