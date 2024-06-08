@@ -124,6 +124,6 @@
             	</div>
         	</div>            
         </div>
-	<script type="text/javascript" src="<c:url value='/resources/js/admin/admin.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/resources/js/admin/qna.js'/>"></script>
     </body>
 </html>

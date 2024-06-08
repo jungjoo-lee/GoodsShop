@@ -1,6 +1,4 @@
 @charset "UTF-8";
-
-@charset "UTF-8";
 /*!
 * Start Bootstrap - SB Admin v7.0.7 (https://startbootstrap.com/template/sb-admin)
 * Copyright 2013-2023 Start Bootstrap
@@ -114,7 +112,7 @@ hr {
   opacity: 0.25;
 }
 
-#switch{
+#switchBtn {
 	background-color: black;
 	color: white;
 	width: 120px;
@@ -129,7 +127,7 @@ hr {
  	margin-top: 10px;
 }
 
-#discard{
+#discardBtn {
 	color: crimson;
 	width: 120px;
 	height: 40px;

@@ -5,13 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.goodsshop.dto.AdminVO;
 import com.goodsshop.dto.MemberVO;
 import com.goodsshop.dto.NoticeVO;
-import com.goodsshop.dto.QnaVO;
 import com.goodsshop.properties.Env;
 import com.goodsshop.util.DB;
 
@@ -208,6 +206,7 @@ public class AdminDAO {
 		
 		return total;
 	}
+	
 	public Object getNoticeList(int amount, int currentPage) {
 		List<NoticeVO> noticeList = new ArrayList<>();
 		int offset = (currentPage - 1) * amount;
@@ -246,37 +245,37 @@ public class AdminDAO {
 		}
 	}
 
-	public void switchYN(String userid) {
-		conn = DB.getConnection();
+	public void switchYN(List<String> userids) {
 		String sql = "update `member` set is_login = is_login^1 where userid = ?";
+		
 		try {
+			conn = DB.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userid);
-			pstmt.executeUpdate();
-		} catch (SQLException e) { 	e.printStackTrace();
-		} finally {	DB.close(conn, pstmt, rs);
+			for (String userid : userids) {
+				pstmt.setString(1, userid);
+				pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
 	}
-}
 
-	public void deleteMember(String userid) {
-		conn = DB.getConnection();
+	public void deleteMember(List<String> userids) {
 		String sql = "delete from member where userid=?";
-		conn = DB.getConnection();
+		
 		try {
+			conn = DB.getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userid);
-			pstmt.executeUpdate();
-		} catch (SQLException e) { e.printStackTrace();
-		} finally { DB.close(conn, pstmt, rs); }
+			for (String userid : userids) {
+				pstmt.setString(1, userid);
+				pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
 	}
 }
-
-
-
-
-
-
-
-
-
-
