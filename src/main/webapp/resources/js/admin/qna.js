@@ -1,188 +1,60 @@
-let selectAmount = document.querySelector("#selectAmount");
-let pages = document.querySelectorAll('.page-link');
-let paging;
-let reply;
-let searchType = document.querySelector('#search');
-let search = searchType.options[searchType.selectedIndex].value;
-let keywordInput = document.querySelector("#keyword");
-let keyword = '';
+let param = {
+    table: "qna",
+};
 
-document.addEventListener("DOMContentLoaded", function() {
-    getPageInfo();
-});
-
-function getPageInfo() {	
-	fetch('/GoodsShop/gshop.do?command=asyn', {
-		method : 'POST',
-		headers: {
-			'Content-Type': 'application/json;charset=utf-8'
-		},
-			body: JSON.stringify({"command" : "pageInfo", "table" : "qna"})
-		})
-		.then(response => response.json())
-		.then(jsonResult => {
-			if (jsonResult.status == true) {
-				paging = jsonResult.paging;
-				
-				for (let k = 0; k < selectAmount.length; k++){  
-			    	if(selectAmount.options[k].value == jsonResult.paging.amount){
-			    		selectAmount.options[k].selected = true;
-			    	}
-			  	}
-			}
-	});
-}
-
-keywordInput.addEventListener("keydown", (e) => {
-	keyword = keywordInput.value;
-	
-	if (e.keyCode === 13) {
-		asynGetContent();
-	}
-});
-
-keywordInput.addEventListener("input", (e) => {
-	keyword = keywordInput.value;
-});
-
-selectAmount.addEventListener("change", () => {
-	paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
-	
-	let realEnd = Math.ceil(paging.total / paging.amount);
-	
-	if (realEnd < paging.currentPage) {
-		if (realEnd <= 0) {
-			paging.currentPage = 1;
-		} else {
-			paging.currentPage = realEnd;
-		}
-	}
-	
-	if (paging.amount == 0) {
-		return;
-	} else {
-		asynGetContent();
-	}
-})
-
-searchType.addEventListener("change", () => {
-	search = searchType.options[searchType.selectedIndex].value;
-})
-
-function addPagingEvent() {
-	pages = document.querySelectorAll('.page-link');
-	
-	pages.forEach(page => {
-		page.addEventListener("click", (e) => {
-			if (e.target.getAttribute('data-value') == "prev") {
-				paging.currentPage = parseInt(paging.startPage - 10);
-			} else if (e.target.getAttribute('data-value') == "next") {
-				paging.currentPage = parseInt(paging.startPage + 10);
-			} else {
-				paging.currentPage = parseInt(e.target.getAttribute('data-value'));
-			}
-			asynGetContent();
+let deleteBtn = document.querySelector("#deleteBtn");
+deleteBtn.addEventListener("click", () => {
+	if (confirm("삭제하시겠습니까?")) {
+		param.command = "checkDelete";
+		param.checkList = checkBoxChecked();
+		
+		fetch('/GoodsShop/gshop.do?command=asyn', {
+			method : 'POST',
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			},
+				body: JSON.stringify(param)
+			})
+			.then(response => response.json())
+			.then(jsonResult => {
+				if (jsonResult.status == true) {
+					delete param.command;
+					delete param.checkList;
+					asynGetContent();
+					alert(jsonResult.message);
+					checkAll.checked = false;
+				} else {
+					alert(jsonResult.message);
+					checkAll.checked = false;
+				}
 		});
+	} else {
+		return;
+	}
+});
+
+function contentList(qnaList) {
+	let content = '';
+	let i = 0;
+	
+	qnaList.forEach(() => {
+		content += '<li class="li-item">';
+		content += '<div class="d-flex justify-content-center align-items-center">';
+		content += '<div class="small-col">';
+		if (qnaList[i].reply == null)
+			content += '(미처리)';
+		else
+			content += '(답변완료)';
+		content += '</div>';
+		content += '<div><a href="/GoodsShop/gshop.do?command=adminQnaView&qseq=' + qnaList[i].qseq + '">' + qnaList[i].subject + '</a></div>';
+		content += '<div>' + qnaList[i].content + '</div>';
+		content += '<div class="small-col">' + qnaList[i].userid + '</div>';
+		content += '<div class="small-col">' + formatDate(qnaList[i].indate) + '</div>';
+		content += '<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="' + qnaList[i++].qseq + '"></div>';
+		content += '</div>';
+		content += '</li>';
 	});
-}
-addPagingEvent();
-
-let quickMove = document.querySelector("#quickMove");
-
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}. ${month}. ${day}.`;
-}
-
-function asynGetContent() {
-	let param = {
-		"command" : "getContent",
-		"table" : "qna",
-		"amount" : paging.amount,
-		"page" : paging.currentPage,
-		"reply" : reply,
-		"search" : search,
-		"keyword" : keyword,
-	};
-
-	fetch('/GoodsShop/gshop.do?command=asyn', {
-		method : 'POST',
-		headers: {
-			'Content-Type': 'application/json;charset=utf-8'
-		},
-			body: JSON.stringify(param)
-		})
-		.then(response => response.json())
-		.then(jsonResult => {
-			if (jsonResult.status == true) {
-				let contentList = jsonResult.content;
-				let content = '';
-				let i = 0;
-				
-				contentList.forEach(() => {
-					content += '<tr>';
-					content += '<td class="text-center">';
-					if (contentList[i].reply == null)
-						content += '(미처리)';
-					else
-						content += '(답변완료)';
-					content += '</td>';
-					content += '<td><a href="/GoodsShop/gshop.do?command=adminQnaView&qseq=' + contentList[i].qseq + '">' + contentList[i].subject + '</a></td>';
-					content += '<td class="text-center">' + contentList[i].userid + '</td>';
-					content += '<td class="text-center">' + formatDate(contentList[i++].indate) + '</td>';
-					content += '</tr>';
-				});
-				document.querySelector("#infoTable").innerHTML = content;
-				
-				paging = jsonResult.paging;
-				let pagination = '';
-				
-				if (paging.prev) {
-					pagination += '<li class="page-item">';
-					pagination += '<a class="page-link" data-value="prev">Prev</a>';
-					pagination += '</li>';
-				} else {
-					pagination += '<li class="page-item disabled">';
-					pagination += '<a class="page-link">Prev</a>';
-					pagination += '</li>';
-				}
-				
-				for(let j = paging.startPage; j <= paging.endPage; j++) {
-					if(paging.currentPage == j) {
-						pagination += '<li class="page-item active">';
-						pagination += '<a class="page-link" data-value="' + j + '">';
-						pagination += j;
-						pagination += '</a>';
-						pagination += '</li>';
-					} else {
-						pagination += '<li class="page-item">';
-						pagination += '<a class="page-link" data-value="' + j + '">';
-						pagination += j;
-						pagination += '</a>';
-						pagination += '</li>';
-					}
-				}
-				
-				if (paging.next) {
-					pagination += '<li class="page-item">';
-					pagination += '<a class="page-link" data-value="next">Next</a>';
-					pagination += '</li>';
-				} else {
-					pagination += '<li class="page-item disabled">';
-					pagination += '<a class="page-link">Next</a>';
-					pagination += '</li>';
-				}
-				document.querySelector("#pagination").innerHTML = pagination;				
-				document.querySelector("#pagdInfo").innerHTML = paging.currentPage + ' / ' + paging.realEnd;
-				
-				addPagingEvent();
-			} else {
-				alert(jsonResult.message);
-			}
-	});
+	document.querySelector("#qna-list").innerHTML = content;	
 }
 
 function numCheck(e) {
@@ -211,6 +83,7 @@ function numInputCheck(e) {
     }
 }
 
+let quickMove = document.querySelector("#quickMove");
 quickMove.addEventListener("keydown", (e) => {
 	numCheck(e);
 	
@@ -235,9 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
         button.addEventListener('click', () => {
             buttons.forEach(btn => btn.classList.remove('active'));
             button.classList.add('active');
-            reply = button.id;
+            param.reply = button.id;
             asynGetContent()
         });
     });
 });
-

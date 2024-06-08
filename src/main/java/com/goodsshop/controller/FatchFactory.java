@@ -1,6 +1,7 @@
 package com.goodsshop.controller;
 
 import com.goodsshop.controller.action.FatchAction;
+import com.goodsshop.controller.action.admin.CheckDeleteAction;
 import com.goodsshop.controller.action.admin.DiscardMemberAction;
 import com.goodsshop.controller.action.admin.GetContentAction;
 import com.goodsshop.controller.action.admin.PageInfoAction;
@@ -24,6 +25,7 @@ public class FatchFactory {
 		else if (command.equals("getContent")) fa = new GetContentAction();
 		else if (command.equals("switchYN")) fa = new SwitchYNAction();
 		else if (command.equals("discardMember")) fa = new DiscardMemberAction();
+		else if (command.equals("checkDelete")) fa = new CheckDeleteAction();
 		else if (command.equals("qnaWrite")) fa = new QnaWriteAction();
 		else if (command.equals("qnaUpdate")) fa = new QnaUpdateAction();
 		else if (command.equals("qnaDelete")) fa = new QnaDeleteAction();

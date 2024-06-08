@@ -36,8 +36,8 @@ public class SqlBuilder {
             String key = entry.getKey();
             Object value = entry.getValue();
 
-            if (key.equalsIgnoreCase("limit") || key.equalsIgnoreCase("offset") || key.equalsIgnoreCase("type") || key.equalsIgnoreCase("keyword") || key.equalsIgnoreCase("sc")
-                    || key.equalsIgnoreCase("table") || key.equalsIgnoreCase("search") || key.equalsIgnoreCase("page") || key.equalsIgnoreCase("amount")) {
+            if (key.equalsIgnoreCase("type") || key.equalsIgnoreCase("keyword")
+                    || key.equalsIgnoreCase("table") || key.equalsIgnoreCase("page") || key.equalsIgnoreCase("amount")) {
                 continue;
             }
 

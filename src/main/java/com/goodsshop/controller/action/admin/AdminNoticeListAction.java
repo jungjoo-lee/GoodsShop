@@ -33,7 +33,7 @@ public class AdminNoticeListAction implements Action {
 		
 		request.setAttribute("noticeList", dao.getNoticeList(paging.getAmount(), paging.getCurrentPage()));
 		request.setAttribute("paging", paging);
-		request.getRequestDispatcher("/WEB-INF/jsp/notice/noticeList.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/admin/noticeList.jsp").forward(request, response);
 
 	}
 

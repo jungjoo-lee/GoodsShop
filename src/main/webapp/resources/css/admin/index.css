@@ -3,25 +3,38 @@
 ul {
 	list-style-type: none;
 	margin-bottom: 0;
+	padding-left: 0;
 }
 
-.member-header, .member-item {
+.li-header, .li-item {
     display: flex;
     justify-content: space-between;
     padding: 10px 0;
     border-bottom: 1px solid #dee2e6;
 }
 
-.member-header div {
+.li-header {
+	background-color: #f0f0f0;
+}
+
+.li-header div {
 	font-weight: bold;
 }
 
-.member-header div, .member-item div {
+.li-item {
+    background-color: #ffffff;
+}
+
+.li-item:hover {
+    background-color: #d0d0d0;
+}
+
+.li-header div, .li-item div {
     flex: 1;
     text-align: center;
 }
 
-.member-header .small-col, .member-item .small-col {
+.li-header .small-col, .li-item .small-col {
     flex: 0.3;
 }
 

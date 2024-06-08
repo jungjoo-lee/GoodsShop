@@ -19,4 +19,15 @@ public class ParseList {
 		
 		return resultList;
 	}
+	
+	public List<Integer> parseIntList(JSONObject jsonObj) {
+		JSONArray checkList = jsonObj.getJSONArray("checkList");
+		List<Integer> resultList = new ArrayList<>();
+		
+		for (int i = 0; i < checkList.length(); i++) {
+			resultList.add(checkList.getInt(i));
+		}
+		
+		return resultList;
+	}
 }

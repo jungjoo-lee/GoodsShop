@@ -22,6 +22,7 @@
 
 			<div id="layoutSidenav_content">
 				<div class="container-fluid">
+					<h1 class="mt-4">회원목록</h1><br/>
 			    	<!-- 목록 select -->
 		    		<div class="row">
 					    <div class="col">
@@ -44,11 +45,12 @@
 					    	</div>
 					    </div>
 					</div>
+					<br/>
 					<!-- memberList -->
 					<div>
 						<div>
 							<ul>
-		               			<li class="member-header">
+		               			<li class="li-header">
 		               				<div class="d-flex">
 		               					<div>userID</div>
 		               					<div>Grade</div>
@@ -68,7 +70,7 @@
 		               	<div>
 		               		<ul id="member-list">
 								<c:forEach var="vo" items="${memberList}">
-									<li class="member-item">
+									<li class="li-item">
 										<div class="d-flex justify-content-center align-items-center">
 											<div>${vo.userid}</div>
 			               					<div>${vo.grade}</div>
@@ -85,65 +87,28 @@
 													<c:otherwise>N</c:otherwise>
 												</c:choose>
 			               					</div>
-			               					<div class="small-col"><input class="form-check-input" type="checkbox" name="YN" value="${vo.userid}"></div>
+			               					<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${vo.userid}"></div>
 		               					</div>
 									</li>
 								</c:forEach>
 							</ul>
 		               	</div>
                		</div>
-		    		<!-- paging -->
-			    	<nav style="display: flex; justify-content: space-between;">
-					  <ul class="pagination justify-content-center" id="pagination">
-					  	<!-- 이전 버튼 -->
-					  	<c:choose>
-					  		<c:when test="${paging.prev}">
-					  			<li class="page-item">
-					  				<a class="page-link" data-value="prev">Prev</a>
-					  			</li>
-					  		</c:when>
-					  		<c:otherwise>
-					  			<li class="page-item disabled">
-					  				<a class="page-link">Prev</a>
-					  			</li>
-					  		</c:otherwise>
-					  	</c:choose>
-					  	<!-- 페이지 번호 -->
-					  	<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
-					  		<c:if test="${num == paging.currentPage}">
-					  			<li class="page-item active"><a class="page-link" data-value="${num}">${num}</a></li>
-					  		</c:if>
-					  		<c:if test="${num != paging.currentPage}">
-					  			<li class="page-item"><a class="page-link" data-value="${num}">${num}</a></li>
-					  		</c:if>
-					  	</c:forEach>
-					    <!-- 다음 버튼 -->
-					    <c:choose>
-					  		<c:when test="${paging.next}">
-					  			<li class="page-item">
-					  				<a class="page-link" data-value="next">Next</a>
-					  			</li>
-					  		</c:when>
-					  		<c:otherwise>
-					  			<li class="page-item disabled">
-					  				<a class="page-link">Next</a>
-					  			</li>
-					  		</c:otherwise>
-					  	</c:choose>
-					  	<li class="list-group-item d-flex align-items-center">
-						  	<span class="form-text">
-						  		${paging.currentPage} / ${paging.realEnd}
-					  		</span>
-					  	</li>
-					  </ul>
-					  	<div>
+               		<div class="d-flex col w-100 align-items-center">
+		    			<!-- paging -->
+				    	<jsp:include page="paging.jsp">
+				    		<jsp:param value="${paging}" name=""/>
+				    	</jsp:include>
+				    	<span id="pageInfo">${paging.currentPage} / ${paging.realEnd}</span>
+				    	<div class="d-flex col justify-content-end">
 							<input type="button" name="switchBtn" id="switchBtn" value="회원 상태 변경"/>
 							<input type="button" name="discardBtn" id="discardBtn" value="탈퇴 처리하기"/>
 						</div>
-					</nav>
+					</div>
 				</div>
 			</div>
         </div>
         <script type="text/javascript" src="<c:url value='/resources/js/admin/member.js'/>"></script>
+        <script type="text/javascript" src="<c:url value='/resources/js/admin/fix.js'/>"></script>
     </body>
 </html>

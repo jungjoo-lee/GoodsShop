@@ -210,6 +210,7 @@ public class AdminDAO {
 	public Object getNoticeList(int amount, int currentPage) {
 		List<NoticeVO> noticeList = new ArrayList<>();
 		int offset = (currentPage - 1) * amount;
+		
 		try {
 			conn = DB.getConnection();
 			pstmt = conn.prepareStatement(Env.getNoticeList());
@@ -230,8 +231,10 @@ public class AdminDAO {
 		} finally {
 			DB.close(conn, pstmt, rs);
 		}
+		
 		return noticeList;
 	}
+	
 	public void deleteNotice(int nseq) {
 		try {
 			conn = DB.getConnection();
@@ -263,7 +266,7 @@ public class AdminDAO {
 	}
 
 	public void deleteMember(List<String> userids) {
-		String sql = "delete from member where userid=?";
+		String sql = "delete from member where userid = ?";
 		
 		try {
 			conn = DB.getConnection();
@@ -271,6 +274,57 @@ public class AdminDAO {
 			for (String userid : userids) {
 				pstmt.setString(1, userid);
 				pstmt.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+	}
+	
+	public void deleteQna(List<Integer> seqList) {
+		String sql = "delete from qna where qseq = ?";
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			for (int seq : seqList) {
+				pstmt.setInt(1, seq);
+				pstmt.execute();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+	}
+	
+	public void deleteReview(List<Integer> seqList) {
+		String sql = "delete from review where rseq = ?";
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			for (int seq : seqList) {
+				pstmt.setInt(1, seq);
+				pstmt.execute();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(conn, pstmt, rs);
+		}
+	}
+	
+	public void deleteNotice(List<Integer> seqList) {
+		String sql = "delete from notice where nseq = ?";
+		
+		try {
+			conn = DB.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			for (int seq : seqList) {
+				pstmt.setInt(1, seq);
+				pstmt.execute();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

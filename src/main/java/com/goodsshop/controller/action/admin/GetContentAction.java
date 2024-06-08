@@ -22,7 +22,7 @@ public class GetContentAction implements FatchAction {
 	public JSONObject execute(HttpServletRequest request, HttpServletResponse response, JSONObject json) {
 		json.remove("command");
 		JSONObject jsonResult = new JSONObject();
-		
+		System.out.println(json.toString());
 		switch ((String)json.get("table")) {
 			case "qna" -> jsonResult = returnQna(request, json);
 			case "review_view" -> jsonResult = returnReview(request, json);
@@ -50,7 +50,8 @@ public class GetContentAction implements FatchAction {
 		Paging paging = null;
 		
 		try {
-			if (json.has("userid")) {
+			if (json.has("my")) {
+				json.remove("my");
 				json.put("userid", vo.getUserid());
 				sql = sb.build(0, json);
 				total = dao.getTotalMyQna(sql);
@@ -105,7 +106,8 @@ public class GetContentAction implements FatchAction {
 		Paging paging = null;
 		
 		try {
-			if (json.has("userid")) {
+			if (json.has("my")) {
+				json.remove("my");
 				json.put("userid", vo.getUserid());
 				sql = sb.build(0, json);
 				total = dao.getTotalMyReview(sql);
