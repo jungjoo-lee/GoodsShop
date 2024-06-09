@@ -18,25 +18,25 @@
 				<div class="left-links">
 					<c:choose>
 							<c:when test="${empty loginUser}">
-									<a href="gshop.do?command=loginForm">로그인</a>
-									<a href="gshop.do?command=joinPage">회원가입</a>
+									<a href="<c:url value='/loginForm.do'/>">로그인</a>
+									<a href="<c:url value='/joinPage.do'/>">회원가입</a>
 							</c:when>
 						<c:otherwise>
-									<a id="user" href="gshop.do?command=updateMemberForm">${loginUser.name}님 환영합니다</a>
-									<a href="gshop.do?command=logout">Logout</a>
-									<a href="gshop.do?command=viewCartlist">CART</a>
-									<a href="gshop.do?command=updateMemberForm">정보 수정</a>
+									<a id="user" href="<c:url value='/updateMemberForm.do'/>">${loginUser.name}님 환영합니다</a>
+									<a href="<c:url value='/logout.do'/>">Logout</a>
+									<a href="<c:url value='/viewCartlist.do'/>gshop.do?command=viewCartlist">CART</a>
+									<a href="<c:url value='/updateMemberForm.do'/>">정보 수정</a>
 						</c:otherwise>
 					</c:choose>
 				</div>
 				<div class="right-links">
-					<a href="gshop.do?command=noticeList">NOTICE</a>
-					<a href="gshop.do?command=qnaList">Q&A</a>
-					<a href="gshop.do?command=reviewList">REVIEW</a>
+					<a href="<c:url value='/noticeList.do'/>">NOTICE</a>
+					<a href="<c:url value='/qnaList.do'/>">Q&A</a>
+					<a href="<c:url value='/reviewList.do'/>">REVIEW</a>
 				</div>
 			</div>
 		</nav>
-		<div id="logo"><a href="gshop.do?command=index">FLOWER ON YOU</a></div>
+		<div id="logo"><a href="<c:url value='/main.do'/>">FLOWER ON YOU</a></div>
 		<nav id="category_menu">
 			<div>BEST50</div>
 			<div>헤어악세서리</div>

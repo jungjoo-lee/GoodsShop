@@ -23,6 +23,10 @@ public class Env {
     	return prop.getProperty("DataSource");
     }
     
+    public static String getInitPath() {
+    	return prop.getProperty("InitPath");
+    }
+    
     // public
     public static String getLastInsertID() {
     	return prop.getProperty("getLastInsertID");
