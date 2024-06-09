@@ -53,6 +53,6 @@ public class GoodsDetailViewAction implements Action {
 		request.setAttribute("goodsDetail", gvo);
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("paging", paging);
-		request.getRequestDispatcher("jsp/goods/goodsDetail.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/goods/goodsDetail.jsp").forward(request, response);
 	}
 }

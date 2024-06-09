@@ -22,9 +22,11 @@ public class ReviewDeleteAction implements FatchAction {
 		try {
 			dao.reviewDelete(rseq);
 			jsonResult.put("status", true);
+			jsonResult.put("message", "삭제되었습니다.");
 		} catch (Exception e) {
 			e.printStackTrace();
 			jsonResult.put("status", false);
+			jsonResult.put("message", "오류");
 		}
 		
 		return jsonResult;

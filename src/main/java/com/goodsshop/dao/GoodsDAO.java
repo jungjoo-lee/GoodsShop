@@ -159,8 +159,8 @@ public class GoodsDAO {
 				gvo.setBestyn(rs.getInt("bestyn"));
 				gvo.setUseyn(rs.getInt("useyn"));
 				gvo.setIndate(rs.getDate("indate"));
-				gvo.setCgseq(rs.getInt("cgseq"));
-				gvo.setCategory(rs.getString("category"));
+//				gvo.setCgseq(rs.getInt("cgseq"));
+//				gvo.setCategory(rs.getString("category"));
 				gvo.setGiseq(rs.getInt("giseq"));
 				gvo.setRealname(rs.getString("realname"));
 			}

@@ -68,7 +68,7 @@
 		
 	</div>
 	<div class="row d-flex justify-content-center">
-		<div class="col-lg-6 w-75">
+		<div class="col-lg-6 w-100">
 			<div class="card">
 	        	<div class="card-body">
 	            	<h5 class="card-title">리뷰</h5>
@@ -79,40 +79,29 @@
 						<input type="text" name="subject" id="subject" placeholder="제목">
 						<textarea rows="10" cols="100" name="content" id="content" placeholder="내용"></textarea>
 					</div>
+					<br/>
 					<div>
-						<ul>
-							<li class="review-header">
-								<div class="d-flex">
-									<div class="small-col">번호</div>
-									<div class="small-col">작성자</div>
-									<div>리뷰제목</div>
-									<div>내용</div>
-									<div>리뷰작성일자</div>
-									<div class="small-col"></div>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div>
-						<ul id="reviewList">
+						<ul class="list-group" id="reviewList">
 							<c:forEach var="vo" items="${reviewList}">
-							<li class="review-item">
-								<div class="d-flex">
-									<div class="small-col">${vo.rseq}</div>
-									<div class="small-col">${vo.grade}, ${vo.userid}</div>
-									<div class="left">${vo.subject}</div>
-									<div class="left">${vo.content}</div>
-									<div><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:SS" /></div>
-									<div class="small-col">
-										<c:if test="${loginUser.userid eq vo.userid}">
-											<button type="button" class="btn btn-primary btn-sm" id="reviewUpdateBtn"><i class="bi bi-pen-fill"></i></button><button type="button" class="btn btn-danger btn-sm" id="reviewDeleteBtn"><i class="bi bi-x-square-fill"></i></button>
-										</c:if>
-									</div>
-								</div>
-							</li>
-							</c:forEach>
-						</ul>
+					        <li class="list-item">
+					            <div class="item-header">
+					                <div class="num"><span class="item-num">no.${vo.rseq}</span></div>
+					                <div class="subject"><span class="item-subject">${vo.subject}</span></div>
+					                <div class="author"><span class="item-author">${vo.grade}, ${vo.userid}</span></div>
+					                <div class="time"><span class="item-time"><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:SS" /></span></div>
+					                <div class="buttons">
+					                	<c:if test="${loginUser.userid eq vo.userid}">
+					                    <button type="button" class="btn btn-primary btn-sm reviewUpdateBtn"><i class="bi bi-pen-fill"></i></button>
+					                    <button type="button" class="btn btn-danger btn-sm reviewDeleteBtn"><i class="bi bi-x-square-fill"></i></button>
+					                    </c:if>
+					                </div>
+					            </div>
+					            <div class="item-content"><span class="item-content-text">${vo.content}</span></div>
+					        </li>
+					        </c:forEach>
+					    </ul>
 					</div>
+					<br/>
 					<nav>
 						<ul class="pagination justify-content-center" id="pagination">
 					  	<!-- 이전 버튼 -->
