@@ -7,42 +7,68 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>orderPage</title>
+<link rel="stylesheet" href="<c:url value='/resources/css/listView.css'/>">
 </head>
 <body>
+<c:set var="numberOfGoods" value="0"></c:set>
+<c:set var="orderTotalPrice" value="0"></c:set>
 
-	<h1>주문페이지~~~</h1>
+	<div class="view-container">
+		<div class="container-title"> 주문하기 </div>
+		<form method="post" name="orderpageform">
 
-	<form method="post" name="orderpageform">
-		<div>목록</div>
-
-		<c:set var="numberOfGoods" value="0"></c:set>
-		<c:set var="orderTotalPrice" value="0"></c:set>
-		<c:forEach items="${orderProductList}" var="ovo" varStatus="ovostat">
-
-			<div>
-				<div>
-					<img src='<c:url value="/resources/image/goods/${ovo.thum}.png"/>'>
+			<div class="titlerow">
+				<div class="titlefield">상품</div>
+				<div class="titlefield">상품명</div>
+				<div class="titlefield">수량</div>
+				<div class="titlefield">금액</div>
+				<div class="titlefield">
+					<input type="checkbox" id="checkAll">
 				</div>
-				<div>상품명 : ${ovo.gname}</div>
-				<div> <input type="number" value="${ovo.quantity}" readonly="readonly"> </div>
-				<div>금액 : ${ovo.totalprice} 원</div>
-				<hr>
 			</div>
-			<c:set var="numberOfGoods" value="${numberOfGoods + ovo.quantity}"></c:set>
-			<c:set var="orderTotalPrice"
-				value="${orderTotalPrice + ovo.totalprice}"></c:set>
-			<input type="hidden" name="gseq" value="${ovo.gseq}">
-		</c:forEach>
+			
 
-		<div>총 ${numberOfGoods} 개의 상품, 총액 : ${orderTotalPrice}</div>
-		
-		<input type="button" id="go_order" value="주문하기">
-		<input type="hidden" name="numberOfGoods" value="${numberOfGoods}">
-		<input type="hidden" name="orderTotalPrice" value="${orderTotalPrice}">
+			<c:choose>
+				<c:when test="${empty orderProductList}">
+					<div>
+						상품이 존재하지 않습니다.
+					</div>
+				</c:when>
+				<c:otherwise>
+					<ul class="listbox">
+						<c:forEach items="${orderProductList}" var="ovo">
+							<li class="list-row">
+								<div class="list-imgbox">
+									<img src="<c:url value='/gshop.do?command=imageWrite&folder=${ovo.gseq}${ovo.gname}&realName=${ovo.realname}'/>">
+								</div>
+								<div class="listfield">${ovo.gname}</div>
+								<div class="listfield">${ovo.quantity} 개</div>
+								<div class="listfield">${ovo.totalprice} 원</div>
+								<div class="listfield">
+									<input type="checkbox" id="checkboxes" name="gseq" value="${ovo.gseq}" />
+									<input type="hidden" name="quantity" value="${ovo.quantity}">
+								</div>
+							</li>
+							<c:set var="numberOfGoods"
+								value="${numberOfGoods + ovo.quantity}"></c:set>
+							<c:set var="orderTotalPrice"
+								value="${orderTotalPrice + ovo.totalprice}"></c:set>
+							<input type="hidden" name="gseq" value="${ovo.gseq}">
+						</c:forEach>
+					</ul>
+				</c:otherwise>
+			</c:choose>
 
-	</form>
-<script type="text/javascript" src='<c:url value = "/resources/js/goods/order.js"/>'></script>
+			<div class="input-button">
+				<input type="button" id="go_order" value="주문하기">
+				<input type="hidden" name="numberOfGoods" value="${numberOfGoods}">
+				<input type="hidden" name="orderTotalPrice" value="${orderTotalPrice}">
+			</div>
+		</form>
+	</div>	
+	
+	<script type="text/javascript" src='<c:url value="/resources/js/goods/order.js"/>'></script>
 </body>
+
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>
 </html>

@@ -39,6 +39,8 @@ public class InsertCartAction implements Action {
 		GoodsDAO gdao = new GoodsDAO();
 		GoodsVO gvo = gdao.getGoods(gseq);
 
+		CartVO result = cartlist.stream().filter(obj -> obj.getGseq() == gseq).findFirst().orElse(null);
+			
 		CartVO cvo = new CartVO();
 		cvo.setUserid(mvo.getUserid());
 		cvo.setUsername(mvo.getName());
@@ -49,11 +51,23 @@ public class InsertCartAction implements Action {
 		cvo.setTotalprice(gvo.getSprice() * quantity);
 		cvo.setRealname(gvo.getRealname());
 		
+		
+		if(result != null) {
+			int oldQuantity = result.getQuantity();
+			result.setQuantity(oldQuantity + quantity);
+		} else {
+			cartlist.add(cvo);
+		}
+		
+		
+		
+		
+		
 
-		cartlist.add(cvo);
+		
 
 		session.setAttribute("cartlist", cartlist);
 		
-		response.sendRedirect("gshop.do?command=index");
+		response.sendRedirect("gshop.do?command=viewCartlist");
 	}
 }

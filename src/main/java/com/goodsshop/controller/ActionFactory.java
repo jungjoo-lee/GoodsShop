@@ -39,6 +39,7 @@ import com.goodsshop.controller.action.cart.WishToCartAction;
 import com.goodsshop.controller.action.admin.AdminQnaViewAction;
 import com.goodsshop.controller.action.email.FindIdOKAction;
 import com.goodsshop.controller.action.goods.GoodsDetailViewAction;
+import com.goodsshop.controller.action.goods.SearchGoodsAction;
 import com.goodsshop.controller.action.goods.ViewCategoryAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
 import com.goodsshop.controller.action.member.JoinAction;
@@ -145,6 +146,7 @@ public class ActionFactory {
 		else if(command.equals("orderDetailView")) ac = new OrderDetailViewAction();
 		
 		else if(command.equals("viewCategory")) ac = new ViewCategoryAction();
+		else if(command.equals("searchGoods")) ac = new SearchGoodsAction();
 		
 		
 		//admin-goods		

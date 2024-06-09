@@ -272,6 +272,52 @@ public class GoodsDAO {
 		return list;
 	}
 	
+	
+	public List<GoodsVO> getAllGoods(String keyword) {
+		List<GoodsVO> list = new ArrayList<GoodsVO>();
+		
+		con = DB.getConnection();
+		String sql = "select * from goods_view g1 "
+				+ "inner join "
+				+ "(select gseq, min(giseq) as min_giseq from goods_view group by gseq) g2 "
+				+ "on g1.gseq = g2.gseq and g1.giseq = g2.min_giseq "
+				+ "where gname like concat('%', ?, '%') order by g1.gseq";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, keyword);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				GoodsVO gvo = new GoodsVO();
+				gvo.setGseq(rs.getInt("gseq"));
+				gvo.setGname(rs.getString("gname"));
+				gvo.setOprice(rs.getInt("o_price"));
+				gvo.setSprice(rs.getInt("s_price"));
+				gvo.setMprice(rs.getInt("m_price"));
+				gvo.setContent(rs.getString("content"));
+				gvo.setBestyn(rs.getInt("bestyn"));
+				gvo.setUseyn(rs.getInt("useyn"));
+				gvo.setIndate(rs.getDate("indate"));
+				gvo.setCgseq(rs.getInt("cgseq"));
+				gvo.setCategory(rs.getString("category"));
+				gvo.setGiseq(rs.getInt("giseq"));
+				gvo.setRealname(rs.getString("realname"));
+				
+				list.add(gvo);
+
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}
+		
+		return list;
+	}
+	
+	
 	public List<GoodsVO> getAllCategories(){
 		List<GoodsVO> list = new ArrayList<GoodsVO>();
 		

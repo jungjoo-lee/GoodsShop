@@ -7,34 +7,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>주문목록</title>
+<link rel="stylesheet" href="<c:url value='/resources/css/listView.css'/>">
 </head>
 <body>
+	<div class="view-container">
+		<div class="container-title"> 주문내역 </div>
 
-	<div>
-		<input type="button" id="go_main">
-	</div>
-	<c:choose>
-		<c:when test="${empty orderList}">
-			<h3>텅~</h3>
-		</c:when>
-		<c:otherwise>
-			<c:forEach items="${orderList}" var="ovo">
-				<a href="gshop.do?command=orderDetailView&oseq=${ovo.oseq}">				
-					<div id="orderlist">
-					<div>주문번호 : ${ovo.oseq}</div>
-					<div>주문상품 : ${ovo.gname} 포함 ${ovo.quantity} 개</div>
-					<div>주문일시 : ${ovo.indate}</div>
-					<div>주문금액 : ${ovo.totalprice}</div>
-					<div>주문상태 : ${ovo.status}</div>
 
-					<input type="hidden" name="oseq" value="${ovo.oseq}">
-					<hr>
+		<c:choose>
+			<c:when test="${empty orderList}">
+				<div>
+					상품이 존재하지 않습니다.
 				</div>
-				</a>
-			</c:forEach>
-		</c:otherwise>
-	</c:choose>
+			</c:when>
+			<c:otherwise>
+				<div class="titlerow">
+					<div class="titlefield">주문번호</div>
+					<div class="titlefield">주문상품</div>
+					<div class="titlefield">주문일시</div>
+					<div class="titlefield">주문금액</div>
+					<div class="titlefield">주문상태</div>
+				</div>
+
+				<ul class="listbox">			
+					<c:forEach items="${orderList}" var="ovo">
+						<a href="gshop.do?command=orderDetailView&oseq=${ovo.oseq}">
+							<li class="list-row">
+									<div class="listfield">${ovo.oseq}</div>
+									<div class="listfield">${ovo.gname} 포함 ${ovo.quantity} 개</div>
+									<div class="listfield">${ovo.indate}</div>
+									<div class="listfield">${ovo.totalprice}</div>
+									<div class="listfield">${ovo.status}</div>
+
+									<input type="hidden" name="oseq" value="${ovo.oseq}">
+							</li>
+						</a>
+					</c:forEach>
+				</ul>
+			</c:otherwise>
+		</c:choose>
+	</div>
 	
 	<ul class="pagination justify-content-center" id="pagination">
 		<!-- 이전 버튼 -->

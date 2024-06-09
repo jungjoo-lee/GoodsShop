@@ -8,20 +8,36 @@
 <head>
 <meta charset="UTF-8">
 <title>category</title>
+<link rel="stylesheet" href="<c:url value='/resources/css/index/index.css'/>">
 </head>
 <body>
-	<c:forEach items="${categoryList}" var="categoryList">
-			<div>				
-				<div>
-					<a href="gshop.do?command=goodsDetailView&gseq=${categoryList.gseq}">
-						<img src="<c:url value='/gshop.do?command=imageWrite&folder=${categoryList.gseq}${categoryList.gname}&realname=${categoryList.realname}'/>">
-					</a>
-					<a href="gshop.do?command=goodsDetailView&gseq=${categoryList.gseq}">
-						${categoryList.gname} - ${categoryList.sprice}					
-					</a>
-				</div>
+
+	<div id="container">
+		<div class="section">
+			<div class="product-row">
+				<c:forEach items="${categoryList}" var="categoryList">
+					<div class="product-box">			
+						<div class="product-info">
+							<a href="gshop.do?command=goodsDetailView&gseq=${categoryList.gseq}">
+								<div class="product-image">					
+									<c:choose>
+									<c:when test="${cgseq eq 0}">
+										<img alt="조건식먹히는거임?" src="<c:url value='/gshop.do?command=imageWrite&folder=${categoryList.gseq}${categoryList.gname}&realName=${categoryList.imageList[0].realname}'/>">
+									</c:when>
+									<c:otherwise>
+										<img alt="${categoryList.realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${categoryList.gseq}${categoryList.gname}&realName=${categoryList.realname}'/>">
+									</c:otherwise>
+									</c:choose>
+								</div>
+							${categoryList.gname} - ${categoryList.sprice}					
+							</a>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
-	</c:forEach>
+		</div>
+	</div>
+
 	
 	<ul class="pagination justify-content-center" id="pagination">
 		<!-- 이전 버튼 -->
