@@ -20,9 +20,11 @@
 					<li class="nav-item">
 						<button class="nav-link active" id="all-tab">전체보기</button>
                 	</li>
+                	<c:if test="${not empty loginUser}">
 	                <li class="nav-item">
 	                	<button class="nav-link" id="my-tab">내 Q&A</button>
 	                </li>
+	                </c:if>
 				</ul>
 				<div class="tab-content pt-2">
 					<div class="row w-100">

@@ -17,7 +17,6 @@ public class QnaListAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		QnaDAO dao = QnaDAO.getInstance();
-		MemberVO vo = (MemberVO)session.getAttribute("loginUser");
 		
 		int total = dao.getTotalQna();
 		int currentPage = 1;
@@ -32,14 +31,18 @@ public class QnaListAction implements Action {
 		request.setAttribute("qnaList", dao.getQnaList(paging.getAmount(), paging.getCurrentPage()));
 		request.setAttribute("paging", paging);
 		
-		int myCurrentPage = 1;
-		int myTotal = dao.getTotalMyQna(vo.getUserid());
-		if(session.getAttribute("currentPage") != null) {
-			currentPage = (Integer)session.getAttribute("currentPage");
+		if (session.getAttribute("loginUser") != null) {
+			MemberVO vo = (MemberVO)session.getAttribute("loginUser");
+			
+			int myCurrentPage = 1;
+			int myTotal = dao.getTotalMyQna(vo.getUserid());
+			if(session.getAttribute("currentPage") != null) {
+				currentPage = (Integer)session.getAttribute("currentPage");
+			}
+			Paging myPaging = new Paging(myCurrentPage, amount, myTotal);
+			request.setAttribute("qnaMyList", dao.getMyQnaList(myPaging.getAmount(), myPaging.getCurrentPage(), vo.getUserid()));
+			request.setAttribute("myPaging", myPaging);
 		}
-		Paging myPaging = new Paging(myCurrentPage, amount, myTotal);
-		request.setAttribute("qnaMyList", dao.getMyQnaList(myPaging.getAmount(), myPaging.getCurrentPage(), vo.getUserid()));
-		request.setAttribute("myPaging", myPaging);
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/qna/qnaList.jsp").forward(request, response);
 	}

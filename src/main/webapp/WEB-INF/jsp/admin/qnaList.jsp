@@ -68,9 +68,10 @@
 								<c:forEach var="qna" items="${qnaList}">
 									<li class="li-item">
 										<div class="d-flex justify-content-center align-items-center">
+											${qna.reply}
 											<div class="small-col">
 												<c:choose>
-						  							<c:when test='${empty qna.reply}'>(미처리)</c:when>
+						  							<c:when test="${empty qna.replyDate}">(미처리)</c:when>
 						  							<c:otherwise>(답변완료)</c:otherwise>
 						  						</c:choose>
 											</div>
