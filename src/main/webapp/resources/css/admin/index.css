@@ -23,6 +23,12 @@ ul {
 
 .li-item {
     background-color: #ffffff;
+    position: relative
+}
+
+.li-item img {
+    width: 100px;
+    height: 100px;
 }
 
 .li-item:hover {
@@ -41,4 +47,15 @@ ul {
 #badge {
 	width: 30px;
 	height: auto;
+}
+
+.link {
+	display: block;
+	height: 100%;
+	width:100%;
+	position:absolut;
+	top: 0;
+	left: 0;
+	text-decoration: none;
+	color: black;
 }

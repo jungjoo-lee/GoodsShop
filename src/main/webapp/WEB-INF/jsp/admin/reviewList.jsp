@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>리뷰</title>
-<link rel="stylesheet" href="<c:url value='/resources/css/review/review.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/admin/index.css'/>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body class="sb-nav-fixed">
@@ -33,20 +33,20 @@
 			    	</div>
 			    	<div class="col d-flex">
 				    	<div class="btn-group">
-							<input type="checkbox" class="btn-check" id="btncheck1">
-							<label class="btn btn-outline-primary" for="btncheck1">목걸이</label>
-							<input type="checkbox" class="btn-check" id="btncheck2">
-							<label class="btn btn-outline-primary" for="btncheck2">반지</label>
-							<input type="checkbox" class="btn-check" id="btncheck3">
-							<label class="btn btn-outline-primary" for="btncheck3">팔찌</label>
-							<input type="checkbox" class="btn-check" id="btncheck4">
-							<label class="btn btn-outline-primary" for="btncheck4">귀걸이</label>
-							<input type="checkbox" class="btn-check" id="btncheck5">
-							<label class="btn btn-outline-primary" for="btncheck5">키링</label>
-							<input type="checkbox" class="btn-check" id="btncheck6">
-							<label class="btn btn-outline-primary" for="btncheck6">인형</label>
-							<input type="checkbox" class="btn-check" id="btncheck7">
-							<label class="btn btn-outline-primary" for="btncheck7">기타</label>
+							<input type="checkbox" class="btn-check" id="목걸이">
+							<label class="btn btn-outline-secondary" for="목걸이">목걸이</label>
+							<input type="checkbox" class="btn-check" id="반지">
+							<label class="btn btn-outline-secondary" for="반지">반지</label>
+							<input type="checkbox" class="btn-check" id="팔찌">
+							<label class="btn btn-outline-secondary" for="팔찌">팔찌</label>
+							<input type="checkbox" class="btn-check" id="귀걸이">
+							<label class="btn btn-outline-secondary" for="귀걸이">귀걸이</label>
+							<input type="checkbox" class="btn-check" id="키링">
+							<label class="btn btn-outline-secondary" for="키링">키링</label>
+							<input type="checkbox" class="btn-check" id="인형">
+							<label class="btn btn-outline-secondary" for="인형">인형</label>
+							<input type="checkbox" class="btn-check" id="기타">
+							<label class="btn btn-outline-secondary" for="기타">기타</label>
 						</div>
 					</div>
 			    	<div class="col d-flex justify-content-end"> <!-- 검색 폼 -->
@@ -62,7 +62,7 @@
        			<div class="row w-100">
        				<div>
 						<ul>
-							<li class="review-header">
+							<li class="li-header">
 								<div class="d-flex">
 									<div class="small-col">번호</div>
 									<div>사진</div>
@@ -71,6 +71,7 @@
 									<div>리뷰제목</div>
 									<div>구매자</div>
 									<div>리뷰작성일자</div>
+									<div class="small-col"><input class="form-check-input" type="checkbox" id="checkAll"></div>
 								</div>
 							</li>
 						</ul>
@@ -79,7 +80,7 @@
 						<ul id="review-list">
 							<c:forEach var="rev" items="${reviewList}">
 							<a class="link" href="<c:url value='/gshop.do?command=goodsDetailView&gseq=${rev.gseq}'/>">
-								<li class="review-item">
+								<li class="li-item">
 									<div class="d-flex justify-content-center align-items-center">
 										<div class="small-col">${rev.rseq}</div>
 		               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
@@ -88,6 +89,7 @@
 		               					<div>${rev.subject}</div>
 		               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}</div>
 		               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
+		               					<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${rev.rseq}"></div>
 	               					</div>
 								</li>
 							</a>
@@ -95,48 +97,19 @@
 						</ul>
 					</div>
        			</div>
-       			<nav>
-					<ul class="pagination justify-content-center" id="pagination">
-				  	<!-- 이전 버튼 -->
-				  	<c:choose>
-				  		<c:when test="${paging.prev}">
-				  			<li class="page-item">
-				  				<a class="page-link" data-value="prev">Prev</a>
-				  			</li>
-				  		</c:when>
-				  		<c:otherwise>
-				  			<li class="page-item disabled">
-				  				<a class="page-link">Prev</a>
-				  			</li>
-				  		</c:otherwise>
-				  	</c:choose>
-				  	<!-- 페이지 번호 -->
-				  	<c:forEach var="num" begin="${paging.startPage}" end="${paging.endPage}">
-				  		<c:if test="${num == paging.currentPage}">
-				  			<li class="page-item active"><a class="page-link" data-value="${num}">${num}</a></li>
-				  		</c:if>
-				  		<c:if test="${num != paging.currentPage}">
-				  			<li class="page-item"><a class="page-link" data-value="${num}">${num}</a></li>
-				  		</c:if>
-				  	</c:forEach>
-				    <!-- 다음 버튼 -->
-				    <c:choose>
-				  		<c:when test="${paging.next}">
-				  			<li class="page-item">
-				  				<a class="page-link" data-value="next">Next</a>
-				  			</li>
-				  		</c:when>
-				  		<c:otherwise>
-				  			<li class="page-item disabled">
-				  				<a class="page-link">Next</a>
-				  			</li>
-				  		</c:otherwise>
-				  	</c:choose>
-				  	</ul>
-				</nav>
+       			<div class="d-flex col align-items-center">
+               		<jsp:include page="paging.jsp">
+			    		<jsp:param value="${paging}" name=""/>
+			    	</jsp:include>
+			    	<span id="pageInfo">${paging.currentPage} / ${paging.realEnd}</span>
+			    	<div class="col d-flex justify-content-end">
+				    	<input type="button" id="deleteBtn" value="삭제"/>
+			    	</div>
+               	</div>
 			</div>
        	</div>
 	</div>
 <script type="text/javascript" src="<c:url value='/resources/js/admin/review.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/admin/fix.js'/>"></script>
 </body>
 </html>

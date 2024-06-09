@@ -15,20 +15,30 @@ document.querySelector("#keyword").addEventListener("keydown", (e) => {
 	}
 });
 
-document.querySelector("#keyword").addEventListener("input", () => {
-	keyword = document.querySelector("#keyword").value;
-	
+function searchKeyword() {
 	Object.keys(param).forEach(key => {
-        if (key !== 'table') {
+        if (key !== 'table' && key !== 'category') {
             delete param[key];
         }
     });
+    
 	if (searchValue === "sc") {
         param.subject = keyword;
         param.content = keyword;
     } else if (searchValue) {
         param[searchValue] = keyword;
     }
+    console.log(param);
+}
+
+document.getElementById('search').addEventListener('change', () => {
+	searchValue = search.value;
+	searchKeyword();
+});
+
+document.querySelector("#keyword").addEventListener("input", () => {
+	keyword = document.querySelector("#keyword").value;
+	searchKeyword();
 });
 
 checkAll.addEventListener("change", function() {
@@ -132,10 +142,6 @@ function formatDate(dateString) {
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
 }
-
-document.getElementById('search').addEventListener('change', () => {
-	searchValue = search.value;
-});
 
 function asynGetContent() {
 	param.command = "getContent";
