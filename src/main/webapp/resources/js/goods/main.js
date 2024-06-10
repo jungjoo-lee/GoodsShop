@@ -35,6 +35,7 @@ function gowishlist(){
 }
 gowishlist();
 
+
 // main 이미지
 document.addEventListener('DOMContentLoaded', () => {
     let containers = document.querySelectorAll('.image-container');

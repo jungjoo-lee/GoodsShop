@@ -38,37 +38,45 @@
 		</div>
 	</div>
 
-	
-	<ul class="pagination justify-content-center" id="pagination">
-		<!-- 이전 버튼 -->
-		<c:if test="${paging.prev}">
-			<li class="page-item">
-				<a class="page-link" data-value="prev" href="gshop.do?command=viewCategory&cgseq=${categoryList.cgseq}&page=${num}">Prev</a>
-			</li>
-		</c:if>
-		<!-- 페이지 번호 -->
-		<c:forEach var="num" begin="${paging.beginPage}"
-			end="${paging.endPage}">
 
-			<c:if test="${num == paging.page}">
-				<li class="page-item active"><a class="page-link"
-					href="gshop.do?command=viewCategory&cgseq=${categoryList.cgseq}&page=${num}"
-					data-value="${num}"> ${num} </a></li>
+	<div class="page-container" id="pagination">
+		<div class="page-row">
+		<c:if test="${paging.totalCount > paging.displayRow}">
+			<!-- 이전 버튼 -->
+			<c:if test="${paging.prev}">
+				<div class="page-item">
+					<div class="page-link"
+						onclick="pageClick(${paging.beginPage-1}, ${url})">prev</div>
+				</div>
 			</c:if>
-			<c:if test="${num != paging.page}">
-				<li class="page-item"><a class="page-link"
-					href="gshop.do?command=viewCategory&cgseq=${categoryList.cgseq}&page=${num}"
-					data-value="${num}"> ${num} </a></li>
+			<!-- 페이지 번호 -->
+			<c:forEach var="num" begin="${paging.beginPage}"
+				end="${paging.endPage}">
+
+				<c:if test="${num == paging.page}">
+					<div class="page-item-active">
+						<div class="page-link" onclick="pageClick(${num}, '${url}')"
+							data-value="${num}">${num}</div>
+					</div>
+				</c:if>
+				<c:if test="${num != paging.page}">
+					<div class="page-item" id="nextbtn">
+						<div class="page-link" onclick="pageClick(${num}, '${url}')"
+							data-value="${num}">${num}</div>
+					</div>
+				</c:if>
+			</c:forEach>
+			<!-- 다음 버튼 -->
+			<c:if test="${paging.next}">
+				<div class="page-item">
+					<div class="page-link"
+						onclick="pageClick(${paging.endPage+1}, ${url})">next</div>
+				</div>
 			</c:if>
-		</c:forEach>
-		<!-- 다음 버튼 -->
-		<c:if test="${paging.next}">
-			<li class="page-item">
-				<a class="page-link" href="gshop.do?command=viewCategory&cgseq=${categoryList.cgseq}&page=${num}" data-value="prev">Prev</a>
-			</li>
 		</c:if>
-	</ul>	
-	
+		</div>
+	</div>
+
 </body>
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>
 </html>

@@ -69,7 +69,7 @@ public class OrderCartAction implements Action {
 			}
 		
 			session.setAttribute("orderProductList", list);
-			request.getRequestDispatcher("jsp/goods/orderPage.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/jsp/goods/orderPage.jsp").forward(request, response);
 		
 		}
 	}

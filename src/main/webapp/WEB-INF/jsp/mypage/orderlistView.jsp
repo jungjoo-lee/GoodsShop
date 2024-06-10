@@ -48,43 +48,47 @@
 		</c:choose>
 	</div>
 	
-	<ul class="pagination justify-content-center" id="pagination">
-		<!-- 이전 버튼 -->
-		<c:choose>
-			<c:when test="${paging.prev}">
-				<li class="page-item"><a class="page-link" data-value="prev">Prev</a>
-				</li>
-			</c:when>
-			<c:otherwise>
-				<li class="page-item disabled"><a class="page-link">Prev</a></li>
-			</c:otherwise>
-		</c:choose>
-		<!-- 페이지 번호 -->
-		<c:forEach var="num" begin="${paging.beginPage}"
-			end="${paging.endPage}">
+	<div class="page-container" id="pagination">
+		<div class="page-row">
+		<c:if test="${paging.totalCount > paging.displayRow}">
+			<!-- 이전 버튼 -->
+			<c:if test="${paging.prev}">
+				<div class="page-item">
+					<a href="gshop.do?command=viewOrderList&page=${paging.beginPage-1}">
+						prev
+					</a>
+				</div>
+			</c:if>
+			<!-- 페이지 번호 -->
+			<c:forEach var="num" begin="${paging.beginPage}"
+				end="${paging.endPage}">
 
-			<c:if test="${num == paging.page}">
-				<li class="page-item active"><a class="page-link"
-					href="gshop.do?command=viewOrderList&page=${num}"
-					data-value="${num}"> ${num} </a></li>
+				<c:if test="${num == paging.page}">
+					<div class="page-item-active">
+						<a href="gshop.do?command=viewOrderList&page=${num}">
+							${num}
+						</a>
+					</div>
+				</c:if>
+				<c:if test="${num != paging.page}">
+					<div class="page-item">
+						<a href="gshop.do?command=viewOrderList&page=${num}">
+							${num}
+						</a>
+					</div>
+				</c:if>
+			</c:forEach>
+			<!-- 다음 버튼 -->
+			<c:if test="${paging.next}">
+				<div class="page-item">
+					<a href="gshop.do?command=viewOrderList&page=${paging.endPage+1}">
+							next
+					</a>
+				</div>
 			</c:if>
-			<c:if test="${num != paging.page}">
-				<li class="page-item"><a class="page-link"
-					href="gshop.do?command=viewOrderList&page=${num}"
-					data-value="${num}"> ${num} </a></li>
-			</c:if>
-		</c:forEach>
-		<!-- 다음 버튼 -->
-		<c:choose>
-			<c:when test="${paging.next}">
-				<li class="page-item"><a class="page-link" data-value="next">Next</a>
-				</li>
-			</c:when>
-			<c:otherwise>
-				<li class="page-item disabled"><a class="page-link">Next</a></li>
-			</c:otherwise>
-		</c:choose>
-	</ul>
+		</c:if>
+		</div>
+	</div>
 	<script type="text/javascript"
 		src='<c:url value = "/resources/js/goods/orderlistview.js"/>'></script>
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>

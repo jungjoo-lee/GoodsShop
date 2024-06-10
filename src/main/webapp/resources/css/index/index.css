@@ -92,8 +92,43 @@
 
 
 
+/* 페이징 */
 
+.page-container{
+    font-family: "Noto Sans KR", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 50px;
+}
 
+.page-row{
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.page-item{
+    cursor: pointer;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: #656565;
+}
+
+.page-item-active{
+    cursor: pointer;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: #919191;	
+}
 
 
 
@@ -129,6 +164,11 @@
 		padding: 20px;
 		background-color: #ffffff;
 	}
+}
+
+
+
+
 
 
 #new {

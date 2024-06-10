@@ -10,8 +10,6 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/listView.css'/>">
 </head>
 <body>
-<c:set var="numberOfGoods" value="0"></c:set>
-<c:set var="orderTotalPrice" value="0"></c:set>
 
 	<div class="view-container">
 		<div class="container-title"> 주문하기 </div>
@@ -47,12 +45,9 @@
 								<div class="listfield">
 									<input type="checkbox" id="checkboxes" name="gseq" value="${ovo.gseq}" />
 									<input type="hidden" name="quantity" value="${ovo.quantity}">
+									<input type="hidden" name="totalprice" value="${ovo.totalprice}">
 								</div>
 							</li>
-							<c:set var="numberOfGoods"
-								value="${numberOfGoods + ovo.quantity}"></c:set>
-							<c:set var="orderTotalPrice"
-								value="${orderTotalPrice + ovo.totalprice}"></c:set>
 							<input type="hidden" name="gseq" value="${ovo.gseq}">
 						</c:forEach>
 					</ul>
@@ -61,8 +56,8 @@
 
 			<div class="input-button">
 				<input type="button" id="go_order" value="주문하기">
-				<input type="hidden" name="numberOfGoods" value="${numberOfGoods}">
-				<input type="hidden" name="orderTotalPrice" value="${orderTotalPrice}">
+				<input type="hidden" name="numberOfGoods">
+				<input type="hidden" name="orderTotalPrice">
 			</div>
 		</form>
 	</div>	

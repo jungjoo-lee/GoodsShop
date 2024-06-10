@@ -13,9 +13,7 @@
             			<li><a class="dropdown-item" href="gshop.do?command=adminLoginForm">로그인</a></li>
             		</c:when>
             		<c:otherwise>
-            			<li><a class="dropdown-item" href="gshop.do?command=adminLoginForm">정보수정</a></li>
-            			<li><hr class="dropdown-divider"/></li>
-                		<li><a class="dropdown-item" href="gshop.do?command=adminLoginForm">로그아웃</a></li>
+                		<li><a class="dropdown-item" href="gshop.do?command=adminLogout">로그아웃</a></li>
             		</c:otherwise>
             	</c:choose>
             </ul>
