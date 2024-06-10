@@ -7,7 +7,7 @@
     background-color: #ffffff;
 }
 
-<<<<<<< HEAD
+/* HEAD */
 #container a {
     text-decoration: none;
     margin: 35px auto;
@@ -130,7 +130,7 @@
 		background-color: #ffffff;
 	}
 
-=======
+
 #new {
 	display: flex;
 }
@@ -205,5 +205,4 @@ h3 {
 
 .item-info {
     text-align: center;
->>>>>>> qna&review
 }

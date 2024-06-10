@@ -6,127 +6,198 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Goods</title>
+<link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/admin/admingoods.css'/>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 </head>
-<body>
-	<form name="goodsWriteForm" method="post" enctype="multipart/form-data">
-	
-	<c:choose>
-		<c:when test="${empty updateGoods}">
-<!-- ----------------------- 상품 등록 페이지 ------------------------ -->
-			<label>상품명</label>
-			<input type="text" name="gname">
-			
-			<label>원가</label>
-			<input id="prices" type="text" name="oprice">
-			
-			<label>판매가</label>
-			<input id="prices" type="text" name="sprice">
-			
-			<label>마진</label>
-			<input id="prices" type="text" name="mprice">
-			
-			<label>상세설명</label>
-			<input type="text" name="content">
-			
-			<label>상품이미지</label>
-			<input type="file" name="image" multiple="multiple">
-			
-			<label>카테고리</label>
-			<select name="cgseq"> 
-				<option value="0" selected="selected"> 카테고리 선택 </option>
- 				<c:forEach items="${categoryList}" var="cate" varStatus="stat">
-					<option value="${cate.cgseq}"> ${cate.category}	
-				</c:forEach>
-			</select>
-			
-			<label>베스트상품여부</label>
-			<input type="radio" name="bestyn" value="1" checked="checked">사용
-			<input type="radio" name="bestyn" value="0">미사용
-			
-			<label>상품 판매여부</label>
-			<input type="radio" name="useyn" value="1" checked="checked">판매
-			<input type="radio" name="useyn" value="0">미판매
-			
-			<input type="button" id="admingoods_insert" value="상품 등록">
-		</c:when>
-		<c:otherwise>
-<!-- ----------------------- 상품 수정 페이지 ------------------------ -->
-			<input type="hidden" name="gseq" value="${updateGoods.gseq}">
+<body class="sb-nav-fixed">
+	<!-- header -->
+	<jsp:include page="../fix/admin/header.jsp" />
 
+	<div id="layoutSidenav">
+		<!-- side -->
+		<jsp:include page="../fix/admin/sidemenu.jsp" />
+		<div id="layoutSidenav_content">
+			<form name="goodsWriteForm" method="post" enctype="multipart/form-data">
+			<div class="admin-goods-write-container">
+				
+				<c:choose>
+					<c:when test="${empty updateGoods}">
+				<!-- ----------------------- 상품 등록 페이지 ------------------------ -->
+					<div class="admin-container-title">
+						상품 등록 페이지
+					</div>
+						<div class="admin-goods-inner-container">
+							<div class="input-label">
+								<div class="labelfield">상품명</div>
+								<div class="labelfield">원가</div>
+								<div class="labelfield">판매가</div>
+								<div class="labelfield">마진</div>
+								<div class="labelfield">상세설명</div>
+								<div class="labelfield">상품이미지</div>
+								<!-- <div class="labelfield">
+									<input type="checkbox" id="checkAll">
+								</div> -->
+								<div class="labelfield">카테고리</div>
+								<div class="labelfield">베스트YN</div>
+								<div class="labelfield">판매중YN</div>
+							</div>
 
-			<label>상품명</label>
-			<input type="text" name="gname" value="${updateGoods.gname}">
-			
-			<label>원가</label>
-			<input id="prices" type="text" name="oprice" value="${updateGoods.oprice}">
-			
-			<label>판매가</label>
-			<input id="prices" type="text" name="sprice" value="${updateGoods.sprice}">
-			
-			<label>마진</label>
-			<input id="prices" type="text" name="mprice" value="${updateGoods.mprice}">
-			
-			<label>상세설명</label>
-			<input type="text" name="content" value="${updateGoods.content}">
-			
-			<label>상품이미지</label>
-			<input type="file" name="image" multiple="multiple">
-			
-			<label>기존이미지</label>
-			<div>		
-			<c:set var="imgcnt" value=""></c:set>
-			<c:forEach items="${updateGoods.imageList}" var="img" varStatus="imgIdx">				
-				<img src='<c:url value = "/resources/image/goods/${img.realname}.png"/>'>
-				<input type="checkbox" name="giseq" value="${img.giseq}"> 	
-			</c:forEach>
+							<div class="input-container">
+								<div class="input-inner-container">
+									<div class="inputfield">
+										<input type="text" name="gname">
+									</div>
+									<div class="inputfield">
+										<input id="prices" type="text" name="oprice">
+									</div>
+									<div class="inputfield">
+										<input id="prices" type="text" name="sprice">
+									</div>
+									<div class="inputfield">
+										<input id="prices" type="text" name="mprice">
+									</div>
+									<div class="inputfield">
+										<input type="text" name="content">
+									</div>
+									<div class="inputfield">
+										<input type="file" name="image" multiple="multiple">
+									</div>
+									<div class="inputfield">
+										<select name="cgseq"> 
+											<option value="0" selected="selected"> 카테고리 선택 </option>
+											<c:forEach items="${categoryList}" var="cate" varStatus="stat">
+												<option value="${cate.cgseq}"> ${cate.category}	
+											</c:forEach>
+										</select>
+									</div>
+									<div class="inputfield">
+										<input type="radio" name="bestyn" value="1" checked="checked">&nbsp; 사용 &nbsp;&nbsp;
+										<input type="radio" name="bestyn" value="0">&nbsp;미사용
+									</div>
+									<div class="inputfield">
+										<input type="radio" name="useyn" value="1" checked="checked">&nbsp;판매 &nbsp;&nbsp;
+										<input type="radio" name="useyn" value="0">&nbsp;미판매
+									</div>
+								</div>
+							</div>	
+						</div>
+					</div>					
+					<div class="admin-btn">
+						<input type="button" id="admingoods_insert" value="상품 등록">
+					</div>
+					</c:when>
+					<c:otherwise>
+				<!-- ----------------------- 상품 수정 페이지 ------------------------ -->
+						<input type="hidden" name="gseq" value="${updateGoods.gseq}">
+						<div class="admin-container-title">
+							상품 등록 페이지
+						</div>
+						<div class="admin-goods-inner-container">
+							<div class="input-label">
+								<div class="labelfield">상품명</div>
+								<div class="labelfield">원가</div>
+								<div class="labelfield">판매가</div>
+								<div class="labelfield">마진</div>
+								<div class="labelfield">상세설명</div>
+								<!-- <div class="labelfield">
+									<input type="checkbox" id="checkAll">
+								</div> -->
+								<div class="labelfield">카테고리</div>
+								<div class="labelfield">베스트YN</div>
+								<div class="labelfield">판매중YN</div>
+								<div class="labelfield">상품이미지</div>
+								<div class="labelfield">기존이미지</div>
+							</div>
+
+							<div class="input-container">
+								<div class="input-inner-container">
+									<div class="inputfield">
+										<input type="text" name="gname" value="${updateGoods.gname}">
+									</div>
+									<div class="inputfield">
+										<input id="prices" type="text" name="oprice" value="${updateGoods.oprice}">
+									</div>
+									<div class="inputfield">
+										<input id="prices" type="text" name="sprice" value="${updateGoods.sprice}">
+									</div>
+									<div class="inputfield">
+										<input id="prices" type="text" name="mprice" value="${updateGoods.mprice}">
+									</div>
+									<div class="inputfield">
+										<input type="text" name="content" value="${updateGoods.content}">
+									</div>
+									<div class="inputfield">
+										<select name="cgseq"> 
+											<c:forEach items="${categoryList}" var="cate">
+												<c:choose>
+													<c:when test="${cate.cgseq == updateGoods.cgseq}">
+														<option value="${cate.cgseq}" selected="selected"> ${cate.category}
+													</c:when>
+													<c:otherwise>
+														<option value="${cate.cgseq}"> ${cate.category}	
+													</c:otherwise>
+												</c:choose>
+											</c:forEach>
+										</select>
+									</div>
+									<div class="inputfield">
+										<c:choose>
+											<c:when test='${updateGoods.bestyn==1}'>
+												<input type="radio" name="bestyn" value="1" checked="checked">&nbsp;사용&nbsp;&nbsp;
+												<input type="radio" name="bestyn" value="0">&nbsp;미사용&nbsp;&nbsp;
+											</c:when>
+											<c:otherwise>
+												<input type="radio" name="bestyn" value="1">&nbsp;사용&nbsp;&nbsp;
+												<input type="radio" name="bestyn" value="0" checked="checked">&nbsp;미사용&nbsp;&nbsp;
+											</c:otherwise>
+										</c:choose>
+									</div>
+									<div class="inputfield">
+										<c:choose>
+											<c:when test='${updateGoods.useyn==1}'>
+												<input type="radio" name="useyn" value="1" checked="checked">&nbsp;판매&nbsp;&nbsp;
+												<input type="radio" name="useyn" value="0">&nbsp;미판매&nbsp;&nbsp;
+											</c:when>
+											<c:otherwise>
+												<input type="radio" name="useyn" value="1">&nbsp;판매&nbsp;&nbsp;
+												<input type="radio" name="useyn" value="0" checked="checked">&nbsp;미판매&nbsp;&nbsp;
+											</c:otherwise>
+										</c:choose>
+									</div>
+									<div class="inputfield">
+										<input type="file" name="image" multiple="multiple">
+									</div>
+									<div class="imgfield">	
+										<c:set var="imgcnt" value=""></c:set>
+										<c:forEach items="${updateGoods.imageList}" var="img" varStatus="imgIdx">				
+											<div class="update-imgbox">
+												<img src="<c:url value='/gshop.do?command=imageWrite&folder=${updateGoods.gseq}${updateGoods.gname}&realName=${img.realname}'/>">
+											</div>
+											<div class="update-checkbox">
+												<input type="checkbox" name="giseq" value="${img.giseq}"> 	
+												&nbsp; 사용하기 
+											</div>
+										</c:forEach>
+									</div>
+								</div>
+							</div>	
+						</div>
+					
+					<div class="admin-btn">
+						<input type="button" id="admingoods_update" value="상품 수정">
+					</div>
+					</c:otherwise>
+				</c:choose>	
+			</div>	
+			</form>	
 			</div>
-			
-			<label>카테고리</label>
-			<select name="cgseq"> 
-				<option> 카테고리 선택 </option>
- 				<c:forEach items="${categoryList}" var="cate">
-					<c:choose>
-						<c:when test="${cate.cgseq == updateGoods.cgseq}">
-							<option value="${cate.cgseq}" selected="selected"> ${cate.category}
-						</c:when>
-						<c:otherwise>
-							<option value="${cate.cgseq}"> ${cate.category}	
-						</c:otherwise>
-					</c:choose>
-				</c:forEach>
-				
-				
-			</select>
-			
-			<label>베스트상품여부</label>
-				<c:choose>
-					<c:when test='${updateGoods.bestyn==1}'>
-						<input type="radio" name="bestyn" value="1" checked="checked">사용
-						<input type="radio" name="bestyn" value="0">미사용
-					</c:when>
-					<c:otherwise>
-						<input type="radio" name="bestyn" value="1">사용
-						<input type="radio" name="bestyn" value="0" checked="checked">미사용
-					</c:otherwise>
-				</c:choose>
-
-			<label>상품 판매여부</label>
-				<c:choose>
-					<c:when test='${updateGoods.useyn==1}'>
-						<input type="radio" name="useyn" value="1" checked="checked">판매
-						<input type="radio" name="useyn" value="0">미판매
-					</c:when>
-					<c:otherwise>
-						<input type="radio" name="useyn" value="1">판매
-						<input type="radio" name="useyn" value="0" checked="checked">미판매
-					</c:otherwise>
-				</c:choose>
-			
-			<input type="button" id="admingoods_update" value="상품 수정">
-		</c:otherwise>
-	</c:choose>
-	</form>	
+		</div>
+	</div>
 <script type="text/javascript" src='<c:url value="/resources/js/admin/goodsWrite.js"/>'></script>	
 </body>
 </html>

@@ -8,9 +8,13 @@
 <meta charset="UTF-8">
 <title>Goods</title>
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/goods.css'/>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/admin/admingoods.css'/>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+
 </head>
 <body class="sb-nav-fixed">
 
@@ -22,10 +26,12 @@
 		<jsp:include page="../fix/admin/sidemenu.jsp" />
 	<form name="goodsViewForm">
 		<div id="layoutSidenav_content">
-			<div class="container">
-				<h1 class="mt-4">상품목록</h1><!-- title -->
+			<div class="admin-goods-container">
+				<div class="container-title">
+					상품 목록
+				</div>
 				
-				
+
 				<div class="row w-100">
 					<div class="col d-flex"> <!-- 목록 선택 -->
 				      		<select class="form-select w-50 me-3" name="selectCategory" id="selectCategory">
@@ -63,14 +69,18 @@
 						<div class="d-flex">
 							<c:choose>
 								<c:when test="${not empty key}">
-									<input class="form-control me-2" name="searchKey" id="searchKey"
-										type="text" placeholder="상품명을 입력하세요">
-									<input type="hidden" name="searchKeySave" value="${key}">								
+									<div class="input-button">
+										<input class="form-control me-2" name="searchKey" id="searchKey"
+											type="text" placeholder="상품명을 입력하세요">
+										<input type="hidden" name="searchKeySave" value="${key}">								
+									</div>
 								</c:when>
 								<c:otherwise>
-									<input class="form-control me-2" name="searchKey" id="searchKey"
-										type="text" placeholder="상품명을 입력하세요">
-									<input type="hidden" name="searchKeySave" value="">																
+									<div class="input-button">
+										<input class="form-control me-2" name="searchKey" id="searchKey"
+											type="text" placeholder="상품명을 입력하세요">
+										<input type="hidden" name="searchKeySave" value="">
+									</div>														
 								</c:otherwise>
 							</c:choose>
 						
@@ -82,75 +92,72 @@
 				</div>
 
 
-				<div class="row w-100">
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th>상품번호</th>
-							<th>상품명</th>
-							<th>이미지</th>
-							<th>원가</th>
-							<th>판매가</th>
-							<th>마진</th>
-							<th>등록일</th>
-							<th>카테고리</th>
-							<th>베스트YN</th>
-							<th>판매중YN</th>
-							<th> <input type="checkbox" id=checkAll> </th>
-						</tr>
-					</thead>
-					<tbody>
+				<div class="admin-goods-box">
+					<div class="titlerow">
+						<div class="titlefield">상품번호</div>
+						<div class="titlefield">상품명</div>
+						<div class="titlefield">이미지</div>
+						<div class="titlefield">원가</div>
+						<div class="titlefield">판매가</div>
+						<div class="titlefield">마진</div>
+						<div class="titlefield">등록일</div>
+						<div class="titlefield">카테고리</div>
+						<div class="titlefield">베스트YN</div>
+						<div class="titlefield">판매중YN</div>
+						<div class="titlefield"> <input type="checkbox" id=checkAll> </div>
+					</div>
+
+					<div class="listbox">
 						<c:choose>
 							<c:when test="${empty adminGoodsList}">
-								<tr>
-									<td>등록된 상품이 없습니다</td>
-								</tr>
+								<div class="list-row">
+									<div>등록된 상품이 없습니다</div>
+								</div>
 							</c:when>
 							<c:otherwise>
 								<c:forEach items="${adminGoodsList}" var="agvo">
-										<tr>					
-											<td onclick="viewGoodsDetail(${agvo.gseq})">${agvo.gseq}</td>
-											<td onclick="viewGoodsDetail(${agvo.gseq})">${agvo.gname}</td>
-											<td onclick="viewGoodsDetail(${agvo.gseq})" class="thumbnail">
-												<img src="<c:url value='/gshop.do?command=imageWrite&folder=${agvo.gseq}${agvo.gname}&realName=${agvo.realname}'/>">
-											</td>
-											<td onclick="viewGoodsDetail(${agvo.gseq})">${agvo.oprice}</td>
-											<td onclick="viewGoodsDetail(${agvo.gseq})">${agvo.sprice}</td>
-											<td onclick="viewGoodsDetail(${agvo.gseq})">${agvo.mprice}</td>
-											<td onclick="viewGoodsDetail(${agvo.gseq})">${agvo.indate}</td>
-											<td onclick="viewGoodsDetail(${agvo.gseq})">${agvo.category}</td>
-											<c:choose>
-												<c:when test="${agvo.bestyn == 1}">
-													<td>Y</td>
-												</c:when>
-												<c:otherwise>
-													<td>N</td>
-												</c:otherwise>
-											</c:choose>
-											<c:choose>
-												<c:when test="${agvo.useyn == 1}">
-													<td>Y</td>
-												</c:when>
-												<c:otherwise>
-													<td>N</td>
-												</c:otherwise>
-											</c:choose>
-											<td> 
-												<input type="checkbox" id="checkboxes" name="gseq" value="${agvo.gseq}" />
-											</td>
-										</tr>
+									<div class="list-row">					
+										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.gseq}</div>
+										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.gname}</div>
+										<div class="admin-goods-thumbnail" onclick="viewGoodsDetail(${agvo.gseq})" >
+											<img src="<c:url value='/gshop.do?command=imageWrite&folder=${agvo.gseq}${agvo.gname}&realName=${agvo.realname}'/>">
+										</div>
+										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.oprice}</div>
+										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.sprice}</div>
+										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.mprice}</div>
+										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.indate}</div>
+										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.category}</div>
+										<c:choose>
+											<c:when test="${agvo.bestyn == 1}">
+												<div class="listfield">Y</div>
+											</c:when>
+											<c:otherwise>
+												<div class="listfield">N</div>
+											</c:otherwise>
+										</c:choose>
+										<c:choose>
+											<c:when test="${agvo.useyn == 1}">
+												<div class="listfield">Y</div>
+											</c:when>
+											<c:otherwise>
+												<div class="listfield">N</div>
+											</c:otherwise>
+										</c:choose>
+										<div class="listfield"> 
+											<input type="checkbox" id="checkboxes" name="gseq" value="${agvo.gseq}" />
+										</div>
+									</div>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
-					</tbody>
-				</table>
-			</div>
+					</div>
+				</div>
 			
-			<div>
-				<input type="button" id="bestToggle" value="베스트 상품 변경">
-				<input type="button" id="useynToggle" value="상품 판매여부 변경">
-				<input type="button" id="deleteGoods" value="상품 삭제">
-			</div>
+				<div class="input-button">
+					<input type="button" id="bestToggle" value="베스트 상품 변경">
+					<input type="button" id="useynToggle" value="상품 판매여부 변경">
+					<input type="button" id="deleteGoods" value="상품 삭제">
+				</div>
 			
 
 				<ul class="pagination justify-content-center" id="pagination">
@@ -190,9 +197,9 @@
 				
 				
 				
-			<script type="text/javascript" src="<c:url value='/resources/js/admin/admin.js'/>"></script>
-			<script type="text/javascript" src="<c:url value='/resources/js/admin/goodsView.js'/>"></script>	
-		</div>
+				<script type="text/javascript" src="<c:url value='/resources/js/admin/admin.js'/>"></script>
+				<script type="text/javascript" src="<c:url value='/resources/js/admin/goodsView.js'/>"></script>	
+			</div>
 		</div>
 	</form>
 	</div>
