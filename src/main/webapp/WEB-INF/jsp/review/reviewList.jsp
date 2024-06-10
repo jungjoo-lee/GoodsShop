@@ -41,7 +41,6 @@
 				    		<select class="form-select w-25 me-1" name="search" id="search">
 						  		<option value="gname" selected>굿즈명</option>
 						  		<option value="subject">제목</option>
-						  		<option value="userid">구매자</option>
 							</select>
 				      		<div class="d-flex">
 					      		<input class="form-control me-2" name="keyword" id="keyword" type="text" placeholder="Search">
