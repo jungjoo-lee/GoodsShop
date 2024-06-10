@@ -18,8 +18,8 @@
  		<!-- side -->
  		<jsp:include page="../fix/admin/sidemenu.jsp"/>
  	
- 		<div id="layoutSidenav_content">
- 			<div class="container-fluid px-4">
+ 		<div id="layoutSidenav_content"   style="width:100%; align-items:center; justify-content:center;">
+ 			<div class="container-fluid px-4"   style="width:100%; align-items:center; justify-content:center;">
          		<h1 class="mt-4">공지사항</h1><br/> <!-- 제목 -->
             	<div class="row w-100">
 					<div class="col d-flex">
@@ -64,10 +64,10 @@
 						<c:forEach var="notice" items="${noticeList}">
 							<li class="li-item">
 								<div class="d-flex justify-content-center align-items-center">
-									<div class="small-col">${notice.nseq}</div>
-			                        <div class="small-col">${notice.adminId}</div>
+									<div class="small-col"><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">${notice.nseq}</a></div>
+			                        <div class="small-col"><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">${notice.adminId}</a></div>
 			                        <div><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">${notice.subject}</a></div>
-			                        <div>${notice.content}</div>
+			                        <div><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">${notice.content}</a></div>
 									<div class="small-col"><fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" /></div>
 									<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${notice.nseq}"></div>
 		                      </div>
@@ -75,12 +75,12 @@
 						</c:forEach>
                		</ul>
                	</div>
-               	<div class="d-flex col align-items-center">
+               	<div class="d-flex col align-items-center"   style="width:100%; align-items:center; justify-content:center;">
                		<jsp:include page="paging.jsp">
 			    		<jsp:param value="${paging}" name=""/>
 			    	</jsp:include><br/>
 			    	<span id="pageInfo">${paging.currentPage} / ${paging.realEnd}</span>
-			    	<div class="col d-flex justify-content-end">
+			    	<div class="col d-flex justify-content-end" style="width:50px;">
 				    	<input type="button" id="deleteBtn" value="삭제"/>
 			    	</div>
                	</div>

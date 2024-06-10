@@ -12,9 +12,9 @@
 <body>
 
 <div class="product-detail">
-
+<input type="hidden" name="userid" id="userid" value="${loginUser.userid}">
 	<form method="post" name="goodsform">
-		<input type="hidden" name="gseq" value="${goodsDetail.gseq}">
+		<input type="hidden" name="gseq" id="gseq" value="${goodsDetail.gseq}">
 		<div class="detail-container">
 			
 			<div class="detail-imagebox">
