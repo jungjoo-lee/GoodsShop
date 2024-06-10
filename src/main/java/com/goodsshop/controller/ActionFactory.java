@@ -87,6 +87,7 @@ public class ActionFactory {
 		if( command.equals("index") ) ac = new IndexAction();
 		//notice
 		else if (command.equals("noticeInsert")) ac = new NoticeInsertAction();
+		else if (command.equals("noticeList")) ac = new NoticeListAction();
 		else if (command.equals("noticeDelete")) ac = new NoticeDeleteAction();
 		else if (command.equals("noticeUpdate")) ac = new NoticeUpdateAction();
 		else if (command.equals("noticeList")) ac = new NoticeListAction();

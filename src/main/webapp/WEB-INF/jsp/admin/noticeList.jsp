@@ -29,6 +29,7 @@
 							<option value=30>30</option>
 							<option value=50>50</option>
 						</select>
+						<input type="button" name="noticeInsert" value="공지사항 등록" onClick="return insertNotice();"/>
 					</div>
 					<div class="col d-flex justify-content-end">
 						<select class="form-select w-25 me-1" name="search" id="search">
@@ -77,10 +78,9 @@
                	<div class="d-flex col align-items-center">
                		<jsp:include page="paging.jsp">
 			    		<jsp:param value="${paging}" name=""/>
-			    	</jsp:include>
+			    	</jsp:include><br/>
 			    	<span id="pageInfo">${paging.currentPage} / ${paging.realEnd}</span>
 			    	<div class="col d-flex justify-content-end">
-				    	<input type="button" name="noticeInsert" value="등록" onClick="return insertNotice();"/>
 				    	<input type="button" id="deleteBtn" value="삭제"/>
 			    	</div>
                	</div>
