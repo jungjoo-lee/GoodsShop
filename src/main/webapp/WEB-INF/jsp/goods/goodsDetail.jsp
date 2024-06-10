@@ -83,7 +83,6 @@
 						<input type="text" name="subject" id="subject" placeholder="제목">
 						<textarea rows="10" cols="100" name="content" id="content" placeholder="내용"></textarea>
 					</div>
-					<br/>
 					<div>
 						<ul class="list-group" id="reviewList">
 							<c:forEach var="vo" items="${reviewList}">
@@ -100,7 +99,7 @@
 					                    </c:if>
 					                </div>
 					            </div>
-					            <div class="item-content"><span class="item-content-text">${vo.content}</span></div>
+					            <div class="item-content"><pre><span class="item-content-text">${vo.content}</span></pre></div>
 					        </li>
 					        </c:forEach>
 					    </ul>

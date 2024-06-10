@@ -78,7 +78,7 @@
                	<div class="d-flex col align-items-center"   style="width:100%; align-items:center; justify-content:center;">
                		<jsp:include page="paging.jsp">
 			    		<jsp:param value="${paging}" name=""/>
-			    	</jsp:include><br/>
+			    	</jsp:include>
 			    	<span id="pageInfo">${paging.currentPage} / ${paging.realEnd}</span>
 			    	<div class="col d-flex justify-content-end" style="width:50px;">
 				    	<input type="button" id="deleteBtn" value="삭제"/>
