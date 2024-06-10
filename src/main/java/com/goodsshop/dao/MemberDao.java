@@ -79,7 +79,7 @@ public class MemberDao {
 		con = DB.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, "userid");
+			pstmt.setString(1, userid);
 			pstmt.executeUpdate();
 		} catch (SQLException e) { e.printStackTrace();
 		} finally { DB.close(con, pstmt, rs); }

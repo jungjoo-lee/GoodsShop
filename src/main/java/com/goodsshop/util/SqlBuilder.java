@@ -1,5 +1,6 @@
 package com.goodsshop.util;
 
+import java.util.List;
 import java.util.Map;
 
 import org.json.JSONObject;
@@ -32,12 +33,32 @@ public class SqlBuilder {
         }
 
         boolean firstCondition = true;
+        
+        if (map.containsKey("category")) {
+            List<String> categories = (List<String>) map.get("category");
+            if (!categories.isEmpty()) {
+                if (firstCondition) {
+                    sql.append(" where ");
+                    firstCondition = false;
+                } else {
+                    sql.append(" and ");
+                }
+                sql.append("(");
+                for (int i = 0; i < categories.size(); i++) {
+                    if (i > 0) {
+                        sql.append(" or ");
+                    }
+                    sql.append("category = '").append(categories.get(i)).append("'");
+                }
+                sql.append(")");
+            }
+        }
+        
         for (Map.Entry<String, ?> entry : map.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
 
-            if (key.equalsIgnoreCase("limit") || key.equalsIgnoreCase("offset") || key.equalsIgnoreCase("type") || key.equalsIgnoreCase("keyword")
-                    || key.equalsIgnoreCase("table") || key.equalsIgnoreCase("search") || key.equalsIgnoreCase("page") || key.equalsIgnoreCase("amount")) {
+            if (/*key.equalsIgnoreCase("type") || */key.equalsIgnoreCase("table") || key.equalsIgnoreCase("page") || key.equalsIgnoreCase("amount") || key.equalsIgnoreCase("category")) {
                 continue;
             }
 
@@ -61,7 +82,6 @@ public class SqlBuilder {
                     }
                     sql.append(key).append(" IS NOT NULL");
                 } else if (stringValue.equalsIgnoreCase("all")) {
-                    // Remove the existing 'where ' and reset firstCondition
                     int whereIndex = sql.lastIndexOf(" where ");
                     if (whereIndex != -1) {
                         sql.delete(whereIndex, sql.length());
@@ -87,17 +107,17 @@ public class SqlBuilder {
             }
         }
 
-        String keyword = (String) map.get("keyword");
-        if (keyword != null && !keyword.isEmpty()) {
-            String searchColumn = (String) map.get("search");
-            if (firstCondition) {
-                sql.append(" where ");
-                firstCondition = false;
-            } else {
-                sql.append(" and ");
-            }
-            sql.append(searchColumn).append(" LIKE CONCAT('%', '").append(keyword).append("', '%')");
-        }
+//        String keyword = (String) map.get("keyword");
+//        if (keyword != null && !keyword.isEmpty()) {
+//            String searchColumn = (String) map.get("search");
+//            if (firstCondition) {
+//                sql.append(" where ");
+//                firstCondition = false;
+//            } else {
+//                sql.append(" and ");
+//            }
+//            sql.append(searchColumn).append(" LIKE CONCAT('%', '").append(keyword).append("', '%')");
+//        }
 
         if (type == 1) {
             String orderBy = validTables.get(map.get("table"));

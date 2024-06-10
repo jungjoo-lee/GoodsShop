@@ -3,7 +3,7 @@ package com.goodsshop.controller.action.admin;
 import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.dao.AdminDAO;
+import com.goodsshop.dao.QnaDAO;
 import com.goodsshop.util.Paging;
 
 import jakarta.servlet.ServletException;
@@ -15,7 +15,7 @@ public class AdminQnaListAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		AdminDAO dao = AdminDAO.getInstance();
+		QnaDAO dao = QnaDAO.getInstance();
 		
 		int total = dao.getTotalQna();
 		int currentPage = 1;

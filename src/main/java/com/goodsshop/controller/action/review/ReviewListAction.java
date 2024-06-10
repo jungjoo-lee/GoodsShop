@@ -17,7 +17,6 @@ public class ReviewListAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		ReviewDAO dao = ReviewDAO.getInstance();
-		MemberVO vo = (MemberVO)session.getAttribute("loginUser");
 		
 		int total = dao.getTotalReview();
 		int currentPage = 1;
@@ -32,14 +31,18 @@ public class ReviewListAction implements Action {
 		request.setAttribute("reviewList", dao.getReviewList(paging.getAmount(), paging.getCurrentPage()));
 		request.setAttribute("paging", paging);
 		
-		int myTotal = dao.getTotalMyReview(vo.getUserid());
-		int myCurrentPage = 1;
-		if(session.getAttribute("myCurrentPage") != null) {
-			myCurrentPage = (Integer)session.getAttribute("myCurrentPage");
+		if (session.getAttribute("loginUser") != null) {
+			MemberVO vo = (MemberVO)session.getAttribute("loginUser");
+			
+			int myTotal = dao.getTotalMyReview(vo.getUserid());
+			int myCurrentPage = 1;
+			if(session.getAttribute("myCurrentPage") != null) {
+				myCurrentPage = (Integer)session.getAttribute("myCurrentPage");
+			}
+			Paging myPaging = new Paging(myCurrentPage, amount, myTotal);
+			request.setAttribute("reviewMyList", dao.getReviewMyList(myPaging.getAmount(), myPaging.getCurrentPage(), vo.getUserid()));
+			request.setAttribute("myPaging", myPaging);
 		}
-		Paging myPaging = new Paging(myCurrentPage, amount, myTotal);
-		request.setAttribute("reviewMyList", dao.getReviewMyList(myPaging.getAmount(), myPaging.getCurrentPage(), vo.getUserid()));
-		request.setAttribute("myPaging", myPaging);
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/review/reviewList.jsp").forward(request, response);
 	}

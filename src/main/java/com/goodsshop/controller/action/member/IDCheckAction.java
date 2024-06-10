@@ -22,7 +22,7 @@ public class IDCheckAction implements Action {
 		else request.setAttribute("result", 1); 							// 사용 중
 		
 		request.setAttribute("userid", userid);
-		request.getRequestDispatcher("jsp/member/IDCheckPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/member/IDCheckPage.jsp").forward(request, response);
 	}
 
 }

@@ -123,10 +123,10 @@ public class PageInfoAction implements FatchAction {
 	private JSONObject totalNotice(HttpServletRequest request, JSONObject json) {
 		HttpSession session = request.getSession();
 		JSONObject jsonResult = new JSONObject();
-		AdminDAO dao = AdminDAO.getInstance();
+		ReviewDAO dao = ReviewDAO.getInstance();
 
 		try {
-			int total = dao.getTotalQna();
+			int total = dao.getTotalReview();
 			int currentPage = 1;
 			int amount = 10;
 			

@@ -3,9 +3,7 @@ package com.goodsshop.controller.member.login;
 import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
-
-
-import com.goodsshop.dao.MemberDao;
+import com.goodsshop.controller.member.MemberDao;
 import com.goodsshop.dto.MemberVO;
 
 import jakarta.servlet.ServletException;

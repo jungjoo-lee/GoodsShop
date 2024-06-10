@@ -1,0 +1,210 @@
+let paging;
+let selectAmount = document.querySelector("#selectAmount");
+let pages = document.querySelectorAll('.page-link');
+let search = document.querySelector('#search');
+let searchValue = search.value;
+let keyword = '';
+let checkAll = document.querySelector("#checkAll");
+let checkBoxes = document.querySelectorAll("div.small-col input[type='checkbox'][name='check']");
+
+document.querySelector("#keyword").addEventListener("keydown", (e) => {
+	keyword = document.querySelector("#keyword").value;
+	
+	if (e.keyCode === 13) {
+		asynGetContent();
+	}
+});
+
+function searchKeyword() {
+	Object.keys(param).forEach(key => {
+        if (key !== 'table' && key !== 'category') {
+            delete param[key];
+        }
+    });
+    
+	if (searchValue === "sc") {
+        param.subject = keyword;
+        param.content = keyword;
+    } else if (searchValue) {
+        param[searchValue] = keyword;
+    }
+    console.log(param);
+}
+
+document.getElementById('search').addEventListener('change', () => {
+	searchValue = search.value;
+	searchKeyword();
+});
+
+document.querySelector("#keyword").addEventListener("input", () => {
+	keyword = document.querySelector("#keyword").value;
+	searchKeyword();
+});
+
+checkAll.addEventListener("change", function() {
+	let isChecked = checkAll.checked;
+	checkBoxes = document.querySelectorAll("div.small-col input[type='checkbox'][name='check']");
+	
+	if(isChecked){
+		for(let checkBox of checkBoxes) {
+			checkBox.checked = true;
+		}
+	} else {
+		for(let checkBox of checkBoxes) {
+			checkBox.checked = false;
+		}
+	}
+});
+
+function checkBoxChecked() {
+	let checkList = [];
+	checkBoxes = document.querySelectorAll("div.small-col input[type='checkbox'][name='check']");
+	
+	for (let i = 0; i < checkBoxes.length; i++) {
+		if (checkBoxes[i].checked == true) {
+			checkList.push(checkBoxes[i].value);
+		}
+	}
+
+	return checkList;
+}
+
+selectAmount.addEventListener("change", () => {
+	paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
+	
+	let realEnd = Math.ceil(paging.total / paging.amount);
+	
+	if (realEnd < paging.currentPage) {
+		if (realEnd <= 0) {
+			paging.currentPage = 1;
+		} else {
+			paging.currentPage = realEnd;
+		}
+	}
+	
+	if (paging.amount == 0) {
+		return;
+	} else {
+		asynGetContent();
+	}
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+	param['command'] = "pageInfo";
+    getPageInfo();
+    delete param['command'];
+});
+
+function getPageInfo() {	
+	fetch('/GoodsShop/gshop.do?command=asyn', {
+		method : 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		},
+			body: JSON.stringify(param)
+		})
+		.then(response => response.json())
+		.then(jsonResult => {
+			if (jsonResult.status == true) {
+				paging = jsonResult.paging;
+				
+				for (let k = 0; k < selectAmount.length; k++){  
+			    	if(selectAmount.options[k].value == jsonResult.paging.amount){
+			    		selectAmount.options[k].selected = true;
+			    	}
+			  	}
+			}
+	});
+}
+
+function addPagingEvent() {
+	pages = document.querySelectorAll('.page-link');
+	
+	pages.forEach(page => {
+		page.addEventListener("click", (e) => {
+			if (e.target.getAttribute('data-value') == "prev") {
+				paging.currentPage = parseInt(paging.startPage - 10);
+			} else if (e.target.getAttribute('data-value') == "next") {
+				paging.currentPage = parseInt(paging.startPage + 10);
+			} else {
+				paging.currentPage = parseInt(e.target.getAttribute('data-value'));
+			}
+			asynGetContent();
+		});
+	});
+}
+addPagingEvent();
+
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+function asynGetContent() {
+	param.command = "getContent";
+	param.amount = paging.amount;
+	param.page = paging.currentPage;
+
+	fetch('/GoodsShop/gshop.do?command=asyn', {
+		method : 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		},
+			body: JSON.stringify(param)
+		})
+		.then(response => response.json())
+		.then(jsonResult => {
+			if (jsonResult.status == true) {
+				contentList(jsonResult.content);
+				
+				paging = jsonResult.paging;
+				let pagination = '';
+				
+				if (paging.prev) {
+					pagination += '<li class="page-item">';
+					pagination += '<a class="page-link" data-value="prev">Prev</a>';
+					pagination += '</li>';
+				} else {
+					pagination += '<li class="page-item disabled">';
+					pagination += '<a class="page-link">Prev</a>';
+					pagination += '</li>';
+				}
+				
+				for(let j = paging.startPage; j <= paging.endPage; j++) {
+					if(paging.currentPage == j) {
+						pagination += '<li class="page-item active">';
+						pagination += '<a class="page-link" data-value="' + j + '">';
+						pagination += j;
+						pagination += '</a>';
+						pagination += '</li>';
+					} else {
+						pagination += '<li class="page-item">';
+						pagination += '<a class="page-link" data-value="' + j + '">';
+						pagination += j;
+						pagination += '</a>';
+						pagination += '</li>';
+					}
+				}
+				
+				if (paging.next) {
+					pagination += '<li class="page-item">';
+					pagination += '<a class="page-link" data-value="next">Next</a>';
+					pagination += '</li>';
+				} else {
+					pagination += '<li class="page-item disabled">';
+					pagination += '<a class="page-link">Next</a>';
+					pagination += '</li>';
+				}
+				document.querySelector("#pagination").innerHTML = pagination;				
+				document.querySelector("#pageInfo").innerHTML = paging.currentPage + ' / ' + paging.realEnd;
+				
+				addPagingEvent();
+			} else {
+				alert(jsonResult.message);
+			}
+	});
+	checkAll.checked = false;
+}

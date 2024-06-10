@@ -34,3 +34,25 @@ function gowishlist(){
 	}
 }
 gowishlist();
+
+// main 이미지
+document.addEventListener('DOMContentLoaded', () => {
+    let containers = document.querySelectorAll('.image-container');
+
+    containers.forEach(container => {
+        let images = container.querySelectorAll('img');
+        let currentIndex = 0;
+
+        if (images.length > 1) {
+            images[currentIndex].classList.add('active');
+
+            setInterval(() => {
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+            }, 2000);
+        } else if (images.length === 1) {
+            images[0].classList.add('active');
+        }
+    });
+});

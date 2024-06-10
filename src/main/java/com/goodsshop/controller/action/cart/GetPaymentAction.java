@@ -18,6 +18,6 @@ public class GetPaymentAction implements Action {
 		int numberOfGoods = Integer.parseInt(request.getParameter("numberOfGoods"));
 		int totalPrice = Integer.parseInt(request.getParameter("orderTotalPrice"));
 		
-		request.getRequestDispatcher("jsp/goods/paymentPage.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/goods/paymentPage.jsp").forward(request, response);
 	}
 }

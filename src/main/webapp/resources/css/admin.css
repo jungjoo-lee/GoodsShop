@@ -1,6 +1,4 @@
 @charset "UTF-8";
-
-@charset "UTF-8";
 /*!
 * Start Bootstrap - SB Admin v7.0.7 (https://startbootstrap.com/template/sb-admin)
 * Copyright 2013-2023 Start Bootstrap
@@ -112,6 +110,37 @@ hr {
   border: 0;
   border-top: 1px solid;
   opacity: 0.25;
+}
+
+#switchBtn {
+	background-color: black;
+	color: white;
+	width: 120px;
+	height: 40px;
+	border-radius: 3px 3px 3px 3px;
+	text-align: center;
+	font-size: 100%;
+	padding: 10px;
+	border: none;
+	cursor: pointer;
+	margin-left: 5px;
+ 	margin-top: 10px;
+}
+
+#discardBtn {
+	color: crimson;
+	width: 120px;
+	height: 40px;
+	line-height: 20px; 	
+	text-align: center;
+	border : 2px solid crimson;
+	border-radius: 3px 3px 3px 3px;
+	font-size: 100%;
+	font-weight: bold;
+	padding: 10px;
+	cursor: pointer;
+	margin-left: 5px;
+	margin-top: 10px;
 }
 
 h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {

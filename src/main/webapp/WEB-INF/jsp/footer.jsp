@@ -61,3 +61,4 @@
 			</body>
 
 			</html>
+						<div><a href="gshop.do?command=adminLogin">admin</a></div>
