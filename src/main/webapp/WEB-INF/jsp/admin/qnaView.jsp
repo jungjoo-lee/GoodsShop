@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/admin/qnaView.css'/>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
 </head>
 	<body class="sb-nav-fixed">
         <!-- header -->
@@ -33,14 +34,14 @@
 					            <strong>제목:</strong><span>${vo.subject}</span>
 					        </div>
 					        <div class="card-item">
-					            <strong>내용:</strong><pre><span>${vo.content}</span></pre>
+					            <strong>내용:</strong><pre class="pre-styled"><span>${vo.content}</span></pre>
 					        </div>
 					        <div class="card-item">
 					            <strong>작성일자:</strong><span><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 					        </div>
 					        <c:if test="${not empty vo.reply}">
 					            <div class="card-item" id="replytext">
-					                <strong>답변:</strong> <span id="replySpan">${vo.reply}</span>
+					                <strong>답변:</strong><span id="replySpan">${vo.reply}</span>
 					            </div>
 					            <div class="card-item" id="replydate">
 					                <strong>답변일자:</strong> <span><fmt:formatDate value="${vo.replyDate}" type="both" pattern="yyyy-MM-dd HH:mm:ss" /></span>

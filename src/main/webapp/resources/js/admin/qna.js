@@ -47,8 +47,8 @@ function contentList(qnaList) {
 		else
 			content += '(답변완료)';
 		content += '</div>';
-		content += '<div>' + qnaList[i].subject + '</div>';
-		content += '<div>' + qnaList[i].content + '</div>';
+		content += '<div>' + truncateText(qnaList[i].subject, 30) + '</div>';
+		content += '<div>' + truncateText(qnaList[i].content, 30) + '</div>';
 		content += '<div class="small-col">' + qnaList[i].userid + '</div>';
 		content += '<div class="small-col">' + formatDate(qnaList[i].indate) + '</div>';
 		content += '<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="' + qnaList[i++].qseq + '"></div>';

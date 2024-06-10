@@ -85,8 +85,26 @@
 										<div class="small-col">${rev.rseq}</div>
 		               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
 		               					<div class="small-col">[${rev.category}]</div>
-		               					<div>${rev.gname}</div>
-		               					<div>${rev.subject}</div>
+		               					<div>
+		               						<c:choose>
+												<c:when test="${fn:length(rev.gname) gt 18}">
+													<c:out value="${fn:substring(rev.gname, 0, 17)}"/>...
+												</c:when>
+												<c:otherwise>
+													<c:out value="${rev.gname}"/>
+												</c:otherwise>
+											</c:choose>
+										</div>
+		               					<div>
+		               						<c:choose>
+												<c:when test="${fn:length(rev.subject) gt 18}">
+													<c:out value="${fn:substring(rev.subject, 0, 17)}"/>...
+												</c:when>
+												<c:otherwise>
+													<c:out value="${rev.subject}"/>
+												</c:otherwise>
+											</c:choose>
+										</div>
 		               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}</div>
 		               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
 		               					<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${rev.rseq}"></div>

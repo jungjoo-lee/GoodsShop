@@ -75,8 +75,26 @@
 							  							<c:otherwise>(답변완료)</c:otherwise>
 							  						</c:choose>
 												</div>
-				               					<div>${qna.subject}</div>
-				               					<div>${qna.content}</div>
+				               					<div>
+				               						<c:choose>
+														<c:when test="${fn:length(qna.subject) gt 30}">
+															<c:out value="${fn:substring(qna.subject, 0, 29)}"/>...
+														</c:when>
+														<c:otherwise>
+															<c:out value="${qna.subject}"/>
+														</c:otherwise>
+													</c:choose>
+												</div>
+				               					<div>
+				               						<c:choose>
+														<c:when test="${fn:length(qna.content) gt 30}">
+															<c:out value="${fn:substring(qna.content, 0, 29)}"/>...
+														</c:when>
+														<c:otherwise>
+															<c:out value="${qna.content}"/>
+														</c:otherwise>
+													</c:choose>
+												</div>
 				               					<div class="small-col">${qna.userid}</div>
 												<div class="small-col"><fmt:formatDate value="${qna.indate}" type="both" pattern="yyyy-MM-dd" /></div>
 				               					<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${qna.qseq}"></div>

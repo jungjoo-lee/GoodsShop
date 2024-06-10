@@ -8,24 +8,37 @@
 <meta charset="UTF-8">
 <title>공지사항 상세보기</title>
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/notice/noticeView.css'/>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-	<body class="sb-nav-fixed">
-        	<form id="layoutSidenav_content"  method="post" >
-        		<div class="container-fluid px-4">
-        		<h1>공지사항</h1>
-        			번호 : ${vo.nseq}<br/>
-					작성자 : ${vo.adminId}<br/>
-					제목 : ${vo.subject}<br/>
-					내용 : ${vo.content}<br/>
-					작성일자 : <fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:SS" /><br/>
-        		</div>
-        		<a class="btn btn-light" href="<c:url value='/gshop.do?command=noticeList'/>">목록</a>
-        	</form>
-        </div>
-
-    <script type="text/javascript" src="<c:url value='/resources/js/admin/qnaView.js'/>"></script>
-	</body>
-	<%@ include file="/WEB-INF/jsp/footer.jsp"%>
+<body>
+	<div class="card">
+	    <div class="card-header">
+	        번호: <span>${vo.nseq}</span>
+	    </div>
+	    <div class="card-body">
+	    	<div class="d-flex justify-content-between">
+		    	<div class="card-item">
+		            <strong>제목</strong><span>${vo.subject}</span>
+		        </div>
+		        <div class="card-item">
+		            <strong>작성자</strong><span>${vo.adminId}</span>
+		        </div>
+	        </div>
+	        <div class="card-item">
+	            <strong>작성일자</strong><span><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:SS" /></span>
+	        </div>
+	        
+	        <div class="card-item">
+            	<strong>내용</strong>
+	            <div class="content-box">
+	            	<pre class="pre-styled"><span>${vo.content}</span></pre>
+	            </div>
+	        </div>
+	        
+	    </div>
+	</div>
+<script type="text/javascript" src="<c:url value='/resources/js/admin/qnaView.js'/>"></script>
+</body>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>
 </html>

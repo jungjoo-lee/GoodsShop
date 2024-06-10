@@ -82,7 +82,7 @@
 				        	<div>
 				           		<c:choose>
 									<c:when test="${fn:length(notice.subject) gt 26}">
-										<c:out value="${fn:substring(notice.subject, 0, 25)}">...</c:out>
+										<c:out value="${fn:substring(notice.subject, 0, 25)}"/>...
 									</c:when>
 									<c:otherwise>
 										<c:out value="${notice.subject}"/>
@@ -92,7 +92,7 @@
 							<div>
 				         		<c:choose>
 				              		<c:when test="${fn:length(notice.content) gt 26}">
-				                 		<c:out value="${fn:substring(notice.content, 0, 25)}">...</c:out>
+				                 		<c:out value="${fn:substring(notice.content, 0, 25)}"/>...
 				              		</c:when>
 				              		<c:otherwise>
 				                 		<c:out value="${notice.content}"/>
@@ -123,7 +123,7 @@
 					  			<div>
 						  				<c:choose>
 							        		<c:when test="${fn:length(qna.subject) gt 26}">
-							        			<c:out value="${fn:substring(qna.subject, 0, 25)}">...</c:out>
+							        			<c:out value="${fn:substring(qna.subject, 0, 25)}"/>...
 							        		</c:when>
 							        		<c:otherwise>
 							        			<c:out value="${qna.subject}"/>
@@ -164,7 +164,7 @@
 								<div>
 									<c:choose>
 							        	<c:when test="${fn:length(rev.subject) gt 18}">
-							        		<c:out value="${fn:substring(rev.subject, 0, 17)}">...</c:out>
+							        		<c:out value="${fn:substring(rev.subject, 0, 17)}"/>...
 							        	</c:when>
 							        	<c:otherwise>
 							        		<c:out value="${rev.subject}"/>

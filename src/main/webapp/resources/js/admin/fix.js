@@ -7,6 +7,14 @@ let keyword = '';
 let checkAll = document.querySelector("#checkAll");
 let checkBoxes = document.querySelectorAll("div.small-col input[type='checkbox'][name='check']");
 
+function truncateText(text, maxLength) {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength - 1) + "...";
+    } else {
+        return text;
+    }
+}
+
 document.querySelector("#keyword").addEventListener("keydown", (e) => {
 	keyword = document.querySelector("#keyword").value;
 	
