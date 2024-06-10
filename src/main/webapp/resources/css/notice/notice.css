@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+ul {
+	list-style-type: none;
+	margin-bottom: 0;
+	padding-left: 0;
+}
+
+.notice-header, .notice-item {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px 0;
+	border-bottom: 1px solid #dee2e6;
+}
+
+.notice-header div, .notice-item div {
+	flex: 1;
+	text-align: center;
+}
+
+.notice-header .small-col, .notice-item .small-col {
+	flex: 0.3;
+}
+
+.notice-item {
+	position: relative
+}
+
+.link {
+	display: block;
+	height: 100%;
+	width:100%;
+	position:absolut;
+	top: 0;
+	left: 0;
+	text-decoration: none;
+	color: black;
+}
