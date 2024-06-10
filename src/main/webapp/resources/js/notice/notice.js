@@ -1,9 +1,18 @@
+let param = {
+    table: "notice",
+};
 let paging;
 let selectAmount = document.querySelector("#selectAmount");
 let pages = document.querySelectorAll('.page-link');
+let search = document.querySelector('#search');
+let searchValue = search.value;
+let keywordInput = document.querySelector("#keyword");
+let keyword = '';
 
 document.addEventListener('DOMContentLoaded', () => {   
+    param['command'] = "pageInfo";
     getPageInfo();
+    delete param['command'];
 });
 
 function getPageInfo() {   
@@ -12,7 +21,7 @@ function getPageInfo() {
       headers: {
          'Content-Type': 'application/json;charset=utf-8'
       },
-         body: JSON.stringify({"command" : "pageInfo", "table" : "notice"})
+         body: JSON.stringify(param)
       })
       .then(response => response.json())
       .then(jsonResult => {
@@ -28,7 +37,6 @@ function getPageInfo() {
    });
 }
 
-// 이 밑으로 다 고쳐야함
 selectAmount.addEventListener("change", () => {
    paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
    
@@ -48,6 +56,40 @@ selectAmount.addEventListener("change", () => {
       asynGetContent();
    }
 })
+
+function searchKeyword() {
+	Object.keys(param).forEach(key => {
+        if (key !== 'table') {
+            delete param[key];
+        }
+    });
+    
+	if (searchValue === "sc") {
+        param.subject = keyword;
+        param.content = keyword;
+    } else if (searchValue) {
+        param[searchValue] = keyword;
+    }
+}
+
+keywordInput.addEventListener("keydown", (e) => {
+	keyword = keywordInput.value;
+	
+	if (e.keyCode === 13) {
+		searchKeyword();
+		asynGetContent();
+	}
+});
+
+keywordInput.addEventListener("input", () => {
+	keyword = document.querySelector("#keyword").value;
+});
+
+document.getElementById('search').addEventListener('change', () => {
+	searchKeyword();
+	searchValue = search.value;
+});
+
 
 function addPagingEvent() {
    pages = document.querySelectorAll('.page-link');
@@ -76,14 +118,9 @@ function formatDate(dateString) {
 }
 
 function asynGetContent() {
-   let param = {
-      "command" : "getContent",
-      "table" : "notice",
-      "amount" : paging.amount,
-      "page" : paging.currentPage,
-/*      "search" : search,
-      "keyword" : keyword,*/
-   };
+	param.command = "getContent";
+	param.amount = paging.amount;
+	param.page = paging.currentPage;
 
    fetch('/GoodsShop/gshop.do?command=asyn', {
       method : 'POST',
@@ -100,15 +137,17 @@ function asynGetContent() {
             let i = 0;
             
             contentList.forEach(() => {
-               content += '<li class="notice-item">';
-               content += '<div class="d-flex justify-content-center align-items-center">';
-               content += '<div>' + contentList[i].nseq + '</div>';
-               content += '<div>' + contentList[i].adminId + '</div>';
-               content += '<div>' + contentList[i].subject + '</div>';
-               content += '<div>' + contentList[i].content + '</div>';
-               content += '<div>' + formatDate(contentList[i++].indate) + '</div>';
-               content += '</div>';
-               content += '</li>';
+				content += '<a class="link" href="/GoodsShop/gshop.do?command=noticeView&nseq=' + contentList[i].nseq + '">';
+               	content += '<li class="notice-item">';
+               	content += '<div class="d-flex justify-content-center align-items-center">';
+               	content += '<div class="small-col">' + contentList[i].nseq + '</div>';
+               	content += '<div class="small-col">' + contentList[i].adminId + '</div>';
+               	content += '<div>' + contentList[i].subject + '</div>';
+               	content += '<div>' + contentList[i].content + '</div>';
+               	content += '<div class="small-col">' + formatDate(contentList[i++].indate) + '</div>';
+               	content += '</div>';
+               	content += '</li>';
+               	content += '</a>';
             });
             document.querySelector("#notice-list").innerHTML = content;
             
@@ -150,8 +189,8 @@ function asynGetContent() {
                pagination += '<a class="page-link">Next</a>';
                pagination += '</li>';
             }
-            document.querySelector("#pagination").innerHTML = pagination;            
-            document.querySelector("#pagdInfo").innerHTML = paging.currentPage + ' / ' + paging.realEnd;
+            document.querySelector("#pagination").innerHTML = pagination;
+            document.querySelector("#pageInfo").innerHTML = paging.currentPage + ' / ' + paging.realEnd;
             
             addPagingEvent();
          } else {

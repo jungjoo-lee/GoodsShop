@@ -9,7 +9,7 @@
 <title>공지사항</title>
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/admin/index.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/notice/notice.css'/>">
 </head>
 <body class="sb-nav-fixed">
  		<div id="layoutSidenav_content" style="width:100%; align-items:center; justify-content:center;">
@@ -39,35 +39,35 @@
 				<div>
 					<div>
 						<ul>
-		                    <li class="li-header">
-		                       <div class="d-flex">
-		                          <div class="small-col">번호</div>
-		                          <div class="small-col">작성자</div>
-		                          <div>제목</div>
-		                          <div>내용</div>
-		                          <div class="small-col">작성일자</div>
-		                          <div class="small-col"><input class="form-check-input" type="checkbox" id="checkAll"></div>
-		                       </div>
-		                    </li>
+				            <li class="notice-header">
+				               <div class="d-flex">
+				                  <div class="small-col">번호</div>
+				                  <div class="small-col">작성자</div>
+				                  <div>제목</div>
+				                  <div>내용</div>
+				                  <div class="small-col">작성일자</div>
+				               </div>
+				            </li>
 						</ul>
 					</div>								
 				</div>
-               	<div>
-               		<ul id="notice-list">
+				<div>
+				   	<ul id="notice-list">
 						<c:forEach var="notice" items="${noticeList}">
-							<li class="li-item">
-								<div class="d-flex justify-content-center align-items-center">
-									<div class="small-col"><a href="<c:url value='/gshop.do?command=noticeView&nseq=${notice.nseq}'/>">${notice.nseq}</a></div>
-			                        <div class="small-col"><a href="<c:url value='/gshop.do?command=noticeView&nseq=${notice.nseq}'/>">${notice.adminId}</a></div>
-			                        <div><a href="<c:url value='/gshop.do?command=noticeView&nseq=${notice.nseq}'/>">${notice.subject}</a></div>
-			                        <div><a href="<c:url value='/gshop.do?command=noticeView&nseq=${notice.nseq}'/>">${notice.content}</a></div>
-									<div class="small-col"><fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-									<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${notice.nseq}"></div>
-		                      </div>
-			               </li>
+							<a class="link" href="<c:url value='/gshop.do?command=noticeView&nseq=${notice.nseq}'/>">
+								<li class="notice-item">
+									<div class="small-col">${notice.nseq}</div>
+							        <div class="small-col">${notice.adminId}</div>
+							        <div>${notice.subject}</div>
+							        <div>${notice.content}</div>
+									<div class="small-col">
+										<fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" />
+									</div>
+								</li>
+				           	</a>
 						</c:forEach>
-               		</ul>
-               	</div>
+				   	</ul>
+				</div>
                	<div class="d-flex col align-items-center"  style="width:100%; align-items:center; justify-content:center;">
                		<jsp:include page="paging.jsp">
 			    		<jsp:param value="${paging}" name=""/>
@@ -77,8 +77,7 @@
 			</div>
 		</div>
 	</div>
-<script type="text/javascript" src="<c:url value='/resources/js/admin/notice.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/resources/js/admin/fix.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/resources/js/notice/notice.js'/>"></script>
 </body>
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>
 </html>

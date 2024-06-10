@@ -5,6 +5,7 @@ let paging;
 let myPaging;
 let selectAmount = document.querySelector("#selectAmount");
 let pages = document.querySelectorAll('.all-page-link');
+let myPages = document.querySelectorAll('.my-page-link');
 let search = document.querySelector('#search');
 let searchValue = search.value;
 let keywordInput = document.querySelector("#keyword");
