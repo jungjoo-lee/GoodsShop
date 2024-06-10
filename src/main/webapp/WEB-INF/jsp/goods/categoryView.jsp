@@ -22,7 +22,7 @@
 								<div class="product-image">					
 									<c:choose>
 									<c:when test="${cgseq eq 0}">
-										<img alt="조건식먹히는거임?" src="<c:url value='/gshop.do?command=imageWrite&folder=${categoryList.gseq}${categoryList.gname}&realName=${categoryList.imageList[0].realname}'/>">
+										<img alt="" src="<c:url value='/gshop.do?command=imageWrite&folder=${categoryList.gseq}${categoryList.gname}&realName=${categoryList.imageList[0].realname}'/>">
 									</c:when>
 									<c:otherwise>
 										<img alt="${categoryList.realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${categoryList.gseq}${categoryList.gname}&realName=${categoryList.realname}'/>">

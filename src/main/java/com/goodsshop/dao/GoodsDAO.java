@@ -116,7 +116,9 @@ public class GoodsDAO {
 		List<GoodsVO> list = new ArrayList<GoodsVO>();
 		
 		con = DB.getConnection();
-		String sql = "select * from newlist_view limit 8";
+		String sql = "select * from newlist_view n1 inner join (select gseq, min(giseq) as min_giseq from newlist_view group by gseq) n2 "
+				+ " on n1.gseq = n2.gseq and n1.giseq = n2.min_giseq "
+				+ " order by n1.gseq desc limit 8 ";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
