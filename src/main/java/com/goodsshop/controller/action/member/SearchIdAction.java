@@ -21,9 +21,6 @@ public class SearchIdAction implements Action {
         	String userCode = request.getParameter("securityCodeInput"); // 사용자가 입력한 인증번호
             String randomCode = (String) request.getSession().getAttribute("verificationCode"); // 세션에 저장된 인증번호
 
-            System.out.println(name);
-            System.out.println(email);
-
             if (userCode.equals(randomCode)) { // 사용자 입력과 저장된 인증번호 비교
                 MemberDao mdao = MemberDao.getInstance();
                 List<MemberVO> members = mdao.getMembersByNameAndEmail(name, email);
@@ -33,14 +30,11 @@ public class SearchIdAction implements Action {
                     String userid = member.getUserid(); // 회원 아이디를 가져옴
 
                     // JavaScript로 새로운 창을 열어서 아이디를 보여줌
-                    String script = "<script>alert('회원 아이디는 " + userid + " 입니다.');";
+                    String script = "<script>alert('회원님의 아이디는 " + userid + " 입니다.');";
                     script += "window.location.href='gshop.do?command=loginForm';</script>";
                     response.getWriter().print(script);
                 } else {
                     // 해당하는 회원을 찾을 수 없는 경우에 대한 처리
-                    System.out.println("비어있다");
-                    System.out.println(name);
-                    System.out.println(email);
                     request.setAttribute("errorMessage", "해당하는 회원을 찾을 수 없습니다.");
                     request.getRequestDispatcher("jsp/member/loginForm.jsp").forward(request, response);
                 }

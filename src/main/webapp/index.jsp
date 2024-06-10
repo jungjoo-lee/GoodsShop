@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 
-<% response.sendRedirect("gshop.do?command=index"); %>
+<% response.sendRedirect("gshop.do?command=adminLogin"); %>
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>

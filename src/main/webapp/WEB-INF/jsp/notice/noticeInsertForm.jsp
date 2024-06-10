@@ -19,8 +19,6 @@
         	<jsp:include page="../fix/admin/sidemenu.jsp"/>
         	<form id="layoutSidenav_content"  method="post" action="<c:url value='/gshop.do?command=noticeInsert&nseq=${vo.nseq}'/>" >
         		<div class="container-fluid px-4">
-        			번호 : ${vo.nseq}<br/>
-					작성자 : ${vo.adminId}<br/>
 					 <div class="field"><label>제목</label><input type="text" name="subject" />${vo.subject}</div>
        				 <div class="field"><label>내용</label><textarea name="content">${vo.content}</textarea></div>
 					작성일자 : <fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:SS" /><br/>
