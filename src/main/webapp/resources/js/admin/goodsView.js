@@ -140,6 +140,32 @@ function category_view() {
 category_view();
 
 
+function preventSubmit(){
+	let form = document.querySelector("#goodsViewForm");
+	form.addEventListener("keypress", (e)=>{
+		if(e.key === "Enter"){
+			e.preventDefault();
+		}	
+	})	
+}
+
+preventSubmit();
+
+
+function enter_Search(){
+	let input = document.querySelector("#searchKey");
+	
+	input.addEventListener("keypress", (e)=>{
+		if(e.key === "Enter"){
+			document.goodsViewForm.action = "gshop.do?command=adminGoodsSearch&page=1";
+			document.goodsViewForm.method = "post";
+			document.goodsViewForm.submit();
+		}
+	})	
+}
+
+enter_Search();
+
 
 
 function pageClick(num, url) {
@@ -151,3 +177,9 @@ function pageClick(num, url) {
 	document.goodsViewForm.method = "post";
 	document.goodsViewForm.submit();
 }
+
+
+
+
+
+preventSubmit();

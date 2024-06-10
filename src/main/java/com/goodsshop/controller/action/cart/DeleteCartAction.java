@@ -2,6 +2,7 @@ package com.goodsshop.controller.action.cart;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.goodsshop.controller.action.Action;
 import com.goodsshop.dto.MemberVO;
@@ -28,23 +29,12 @@ public class DeleteCartAction implements Action {
 		for(String gseq : gseqs) {
 			int gseqInt = Integer.parseInt(gseq);
 			
-			GoodsDAO gdao = new GoodsDAO();
-			GoodsVO gvo = gdao.getGoods(gseqInt);
+			CartVO deleteTo = cartlist.stream()
+					.filter(obj -> obj.getGseq() == gseqInt)
+					.findFirst().orElse(null);
 			
-			int quantity = Integer.parseInt(request.getParameter("quantity"));
+			cartlist.remove(deleteTo);
 			
-			CartVO cvo = new CartVO();
-			cvo.setUserid(mvo.getUserid());
-			cvo.setUsername(mvo.getName());
-			cvo.setQuantity(quantity);
-			cvo.setGseq(gvo.getGseq());
-			cvo.setGoodsname(gvo.getGname());
-			cvo.setSprice(gvo.getSprice());
-			cvo.setTotalprice(gvo.getSprice() * quantity);
-			cvo.setThum(gdao.getThumbnail(gseqInt));
-			cvo.setRealname(gvo.getRealname());
-					
-			cartlist.remove(cvo);		
 		}	
 		
 		

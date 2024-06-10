@@ -4,12 +4,31 @@ function goOrder (){
 	if(go_order!=null){
 		go_order.addEventListener("click", function(){
 			
-			let num = document.orderpageform.numberOfGoods.value
-			let totalp = document.orderpageform.orderTotalPrice.value
+			let checkboxes = document.querySelectorAll('input[type="checkbox"][name="gseq"]:checked');
+			let totalQuantity = 0;
+			let totalPrice = 0;
+			
+			checkboxes.forEach(function(checkbox){
+				let quantity = parseInt(checkbox.parentElement.querySelector('input[name="quantity"]').value);
+				let price = parseInt(checkbox.parentElement.querySelector('input[name="totalprice"]').value);
+				
+				totalQuantity += quantity;
+				totalPrice += quantity * price;
+				
+			})
+			
+			console.log(totalQuantity);
+			console.log(totalPrice)
 			
 			
-			let ans = confirm("총 " + num + " 개의 상품 (총 주문금액 : " + totalp + ") 를 주문합니다. 확인을 누르시면 결제페이지로 이동합니다.");
+			
+			let ans = confirm("총 " + totalQuantity + " 개의 상품 (총 주문금액 : " + totalPrice + ") 를 주문합니다. 확인을 누르시면 결제페이지로 이동합니다.");
+			
 			if (ans){
+				
+				document.orderpageform.numberOfGoods.value = totalQuantity;
+				document.orderpageform.orderTotalPrice.value = totalPrice;
+				
 				document.orderpageform.action = "gshop.do?command=getPayment";
 				document.orderpageform.method = "post";
 				document.orderpageform.submit();
@@ -21,3 +40,22 @@ function goOrder (){
 }
 
 goOrder();
+
+function check_all() {
+	let checkAll = document.querySelector("#checkAll");
+
+	if (checkAll != null) {
+		checkAll.addEventListener("click", () => {
+			const checkboxes = document.querySelectorAll("#checkboxes");
+			if (checkboxes.length > 0) {
+				Array.from(checkboxes).forEach((checkbox) => {
+					checkbox.checked = checkAll.checked;
+				});
+			} else {
+				console.log("No checkboxes found with the name 'gseq'");
+			}
+		})
+	}
+}
+
+check_all();

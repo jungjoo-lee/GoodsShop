@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/admin/admingoods.css'/>">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
@@ -24,7 +25,7 @@
 	<div id="layoutSidenav">
 		<!-- side -->
 		<jsp:include page="../fix/admin/sidemenu.jsp" />
-	<form name="goodsViewForm">
+	<form name="goodsViewForm" id="goodsViewForm">
 		<div id="layoutSidenav_content">
 			<div class="admin-goods-container">
 				<div class="container-title">
@@ -32,9 +33,9 @@
 				</div>
 				
 
-				<div class="row w-100">
-					<div class="col d-flex"> <!-- 목록 선택 -->
-				      		<select class="form-select w-50 me-3" name="selectCategory" id="selectCategory">
+				<div class="search-row">
+					<div class="search-select"> <!-- 목록 선택 -->
+				      		<select class="" name="selectCategory" id="selectCategory">
 				      			<c:choose>
 				      				<c:when test="${not empty categoryList}">
 										<option value="0">카테고리별</option>
@@ -62,32 +63,29 @@
 									
 									</c:otherwise>
 								</c:choose>
-							</select>
+						</select>
 				    </div>
-					<div class="col d-flex justify-content-end">
+					<div class="search-form">
 						<!-- 검색 폼 -->
-						<div class="d-flex">
 							<c:choose>
 								<c:when test="${not empty key}">
-									<div class="input-button">
-										<input class="form-control me-2" name="searchKey" id="searchKey"
+									<div class="search-button">
+										<input class="" name="searchKey" id="searchKey"
 											type="text" placeholder="상품명을 입력하세요">
 										<input type="hidden" name="searchKeySave" value="${key}">								
 									</div>
 								</c:when>
 								<c:otherwise>
-									<div class="input-button">
-										<input class="form-control me-2" name="searchKey" id="searchKey"
+									<div class="search-button">
+										<input class="" name="searchKey" id="searchKey"
 											type="text" placeholder="상품명을 입력하세요">
 										<input type="hidden" name="searchKeySave" value="">
 									</div>														
 								</c:otherwise>
 							</c:choose>
-						
-						</div>
-						<div class="d-flex" id="goSearch">
+						<div class="search-button" id="goSearch">
 							<input type="button" value="검색" onclick="pageClick(1, 'gshop.do?command=adminGoodsSearch')">
-						</div>
+						</div>						
 					</div>
 				</div>
 

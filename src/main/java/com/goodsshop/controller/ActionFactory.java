@@ -6,6 +6,7 @@ import com.goodsshop.controller.action.IndexAction;
 import com.goodsshop.controller.action.admin.AdminIndexAction;
 import com.goodsshop.controller.action.admin.AdminLoginAction;
 import com.goodsshop.controller.action.admin.AdminLoginFormAction;
+import com.goodsshop.controller.action.admin.AdminLogoutAction;
 import com.goodsshop.controller.action.admin.AdminNoticeListAction;
 import com.goodsshop.controller.action.admin.AdminNoticeViewAction;
 import com.goodsshop.controller.action.admin.AdminQnaListAction;
@@ -105,6 +106,8 @@ public class ActionFactory {
 		// admin
 		else if (command.equals("adminLoginForm")) ac = new AdminLoginFormAction();
 		else if (command.equals("adminLogin")) ac = new AdminLoginAction();
+		else if (command.equals("adminLogout")) ac = new AdminLogoutAction();
+		
 		else if (command.equals("adminIndex")) ac = new AdminIndexAction();
 		else if (command.equals("adminQnaList")) ac = new AdminQnaListAction();
 		else if (command.equals("adminQnaView")) ac = new AdminQnaViewAction();
