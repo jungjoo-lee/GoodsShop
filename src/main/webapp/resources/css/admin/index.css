@@ -1,8 +1,10 @@
 @charset "UTF-8";
+
 .d-flex col{
 	align-content:center;
 	justify-content: center;
 }
+
 ul {
 	list-style-type: none;
 	margin-bottom: 0;
@@ -61,4 +63,25 @@ ul {
 	left: 0;
 	text-decoration: none;
 	color: black;
+}
+
+.page-link {
+  color: #000; 
+  background-color: #fff;
+  border: 1px solid #ccc; 
+}
+
+.page-item.active .page-link {
+ z-index: 1;
+ color: #555;
+ font-weight:bold;
+ background-color: #f1f1f1;
+ border-color: #6c757d;
+ 
+}
+
+.page-link:focus, .page-link:hover {
+  color: #000;
+  background-color: #6c757d; 
+  border-color: #ccc;
 }

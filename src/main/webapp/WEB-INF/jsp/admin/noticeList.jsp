@@ -18,10 +18,10 @@
  		<!-- side -->
  		<jsp:include page="../fix/admin/sidemenu.jsp"/>
  	
- 		<div id="layoutSidenav_content"   style="width:100%; align-items:center; justify-content:center;">
- 			<div class="container-fluid px-4"   style="width:100%; align-items:center; justify-content:center;">
-         		<h1 class="mt-4">공지사항</h1><br/> <!-- 제목 -->
-            	<div class="row w-100">
+ 		<div id="layoutSidenav_content">
+ 			<div class="container-fluid px-4">
+         		<h1 class="mt-4">공지사항</h1> <!-- 제목 -->
+            	<div class="row w-100 mt-4">
 					<div class="col d-flex">
 						<select class="form-select w-25 me-3" name="selectAmount" id="selectAmount">
 							<option value=0 selected>목록</option>
@@ -29,7 +29,7 @@
 							<option value=30>30</option>
 							<option value=50>50</option>
 						</select>
-						<input type="button" name="noticeInsert" value="공지사항 등록" onClick="return insertNotice();"/>
+						<input type="button" class="btn btn-outline-secondary" name="noticeInsert" value="공지사항 등록" onClick="return insertNotice();"/>
 					</div>
 					<div class="col d-flex justify-content-end">
 						<select class="form-select w-25 me-1" name="search" id="search">
@@ -42,8 +42,7 @@
 						</div>
 					</div>
 				</div>
-				<br/>
-				<div>
+				<div class="mt-4">
 					<div>
 						<ul>
 		                    <li class="li-header">
@@ -62,26 +61,30 @@
                	<div>
                		<ul id="notice-list">
 						<c:forEach var="notice" items="${noticeList}">
-							<li class="li-item">
-								<div class="d-flex justify-content-center align-items-center">
-									<div class="small-col"><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">${notice.nseq}</a></div>
-			                        <div class="small-col"><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">${notice.adminId}</a></div>
-			                        <div><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">${notice.subject}</a></div>
-			                        <div><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">${notice.content}</a></div>
-									<div class="small-col"><fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-									<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${notice.nseq}"></div>
-		                      </div>
-			               </li>
+							<a class="link" href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">
+								<li class="li-item">
+									<div class="d-flex justify-content-center align-items-center">
+										<div class="small-col">${notice.nseq}</div>
+								        <div class="small-col">${notice.adminId}</div>
+								        <div>${notice.subject}</div>
+								        <div>${notice.content}</div>
+										<div class="small-col">
+											<fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" />
+										</div>
+										<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${notice.nseq}"></div>
+									</div>
+								</li>
+				           	</a>
 						</c:forEach>
                		</ul>
                	</div>
-               	<div class="d-flex col align-items-center"   style="width:100%; align-items:center; justify-content:center;">
+               	<div class="d-flex col align-items-center mt-4">
                		<jsp:include page="paging.jsp">
 			    		<jsp:param value="${paging}" name=""/>
 			    	</jsp:include>
-			    	<span id="pageInfo">${paging.currentPage} / ${paging.realEnd}</span>
+			    	<span class="ms-3" id="pageInfo">${paging.currentPage} / ${paging.realEnd}</span>
 			    	<div class="col d-flex justify-content-end" style="width:50px;">
-				    	<input type="button" id="deleteBtn" value="삭제"/>
+				    	<input type="button" class="btn btn-secondary me-3" id="deleteBtn" value="삭제"/>
 			    	</div>
                	</div>
 			</div>

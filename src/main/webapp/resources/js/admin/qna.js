@@ -38,6 +38,7 @@ function contentList(qnaList) {
 	let i = 0;
 	
 	qnaList.forEach(() => {
+		content += '<a class="link" href="/GoodsShop/gshop.do?command=adminQnaView&qseq=' + qnaList[i].qseq + '">';
 		content += '<li class="li-item">';
 		content += '<div class="d-flex justify-content-center align-items-center">';
 		content += '<div class="small-col">';
@@ -46,13 +47,14 @@ function contentList(qnaList) {
 		else
 			content += '(답변완료)';
 		content += '</div>';
-		content += '<div><a href="/GoodsShop/gshop.do?command=adminQnaView&qseq=' + qnaList[i].qseq + '">' + qnaList[i].subject + '</a></div>';
+		content += '<div>' + qnaList[i].subject + '</div>';
 		content += '<div>' + qnaList[i].content + '</div>';
 		content += '<div class="small-col">' + qnaList[i].userid + '</div>';
 		content += '<div class="small-col">' + formatDate(qnaList[i].indate) + '</div>';
 		content += '<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="' + qnaList[i++].qseq + '"></div>';
 		content += '</div>';
 		content += '</li>';
+		content += '</a>';
 	});
 	document.querySelector("#qna-list").innerHTML = content;
 }

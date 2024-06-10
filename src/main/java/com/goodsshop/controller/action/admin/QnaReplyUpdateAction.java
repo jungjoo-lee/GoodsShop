@@ -15,10 +15,10 @@ public class QnaReplyUpdateAction implements Action {
 		AdminDAO dao = AdminDAO.getInstance();
 		
 		int qseq = Integer.parseInt(request.getParameter("qseq"));
-		String replyText = request.getParameter("replytext");
+		String reply = request.getParameter("reply");
+
+		dao.writeUpdateReply(reply, qseq);
 		
-		dao.writeUpdateReply(replyText, qseq);
-		
-		response.sendRedirect("gshop.do?command=qnaView&qseq=" + qseq);
+		response.sendRedirect("gshop.do?command=adminQnaView&qseq=" + qseq);
 	}
 }
