@@ -197,6 +197,7 @@ public class ReviewDAO {
 						.category(rs.getString(5))
 						.gname(rs.getString(6))
 						.subject(rs.getString(7))
+						.content(rs.getString(8))
 						.indate(rs.getTimestamp(9))
 						.giseq(rs.getInt(10))
 						.realName(rs.getString(11))
