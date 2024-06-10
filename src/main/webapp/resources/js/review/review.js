@@ -1,10 +1,14 @@
+let param = {
+    table: "review_view",
+};
+let category = [];
 let paging;
 let myPaging;
 let selectAmount = document.querySelector("#selectAmount");
 let pages = document.querySelectorAll('.all-page-link');
 let myPages = document.querySelectorAll('.my-page-link');
-let searchType = document.querySelector('#search');
-let search = searchType.options[searchType.selectedIndex].value;
+let search = document.querySelector('#search');
+let searchValue = search.value;
 let keywordInput = document.querySelector("#keyword");
 let keyword = '';
 
@@ -23,32 +27,54 @@ document.addEventListener('DOMContentLoaded', () => {
         
     });
     
-    myTab.addEventListener('click', () => {
-        allTab.classList.remove('active');
-        myTab.classList.add('active');
-        allReview.classList.remove('show', 'active');
-        myReview.classList.add('show', 'active');
-    });
+    if (myTab != null) {
+	    myTab.addEventListener('click', () => {
+	        allTab.classList.remove('active');
+	        myTab.classList.add('active');
+	        allReview.classList.remove('show', 'active');
+	        myReview.classList.add('show', 'active');
+	    });
+    }
     
+    param['command'] = "pageInfo";
     getPageInfo();
+    delete param['command'];
 });
 
-keywordInput.addEventListener("keydown", (e) => {
+document.querySelector("#keyword").addEventListener("keydown", (e) => {
 	keyword = keywordInput.value;
 	
 	if (e.keyCode === 13) {
-		asynGetContent("my");
 		asynGetContent("all");
+		asynGetContent("my");
+		
 	}
 });
 
-keywordInput.addEventListener("input", (e) => {
-	keyword = keywordInput.value;
+function searchKeyword() {
+	Object.keys(param).forEach(key => {
+        if (key !== 'table' && key !== 'category') {
+            delete param[key];
+        }
+    });
+    
+	if (searchValue === "sc") {
+        param.subject = keyword;
+        param.content = keyword;
+    } else if (searchValue) {
+        param[searchValue] = keyword;
+    }
+}
+
+document.getElementById('search').addEventListener('change', () => {
+	searchValue = search.value;
+	searchKeyword();
 });
 
-searchType.addEventListener("change", () => {
-	search = searchType.options[searchType.selectedIndex].value;
-})
+keywordInput.addEventListener("input", () => {
+	keyword = document.querySelector("#keyword").value;
+	searchKeyword();
+});
 
 function getPageInfo() {	
 	fetch('/GoodsShop/gshop.do?command=asyn', {
@@ -56,7 +82,7 @@ function getPageInfo() {
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
 		},
-			body: JSON.stringify({"command" : "pageInfo", "table" : "review_view"})
+			body: JSON.stringify(param)
 		})
 		.then(response => response.json())
 		.then(jsonResult => {
@@ -153,12 +179,9 @@ function formatDate(dateString) {
 }
 
 function asynGetContent(tab) {
-	let param = {
-		"command" : "getContent",
-		"table" : "review_view",
-		"search" : search,
-		"keyword" : keyword,
-	};
+	param.command = "getContent";
+	param.amount = paging.amount;
+	param.page = paging.currentPage;
 		
 	if (tab == "my") {
 		param.my = "";
@@ -175,6 +198,7 @@ function asynGetContent(tab) {
 			.then(response => response.json())
 			.then(jsonResult => {
 				if (jsonResult.status == true) {
+					delete param.my;
 					let contentList = jsonResult.content;
 					let content = '';
 					let i = 0;

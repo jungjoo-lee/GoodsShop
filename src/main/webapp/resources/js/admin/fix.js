@@ -28,7 +28,6 @@ function searchKeyword() {
     } else if (searchValue) {
         param[searchValue] = keyword;
     }
-    console.log(param);
 }
 
 document.getElementById('search').addEventListener('change', () => {

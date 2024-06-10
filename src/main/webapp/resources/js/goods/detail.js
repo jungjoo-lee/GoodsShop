@@ -236,8 +236,8 @@ function liFactory(li, vo) {
 	deleteButton.appendChild(idelete);
 	deleteButton.classList.add("btn", "btn-danger", "btn-sm", "reviewDeleteBtn");
 	deleteButton.addEventListener("click", (e) => {
-	    reviewDelete(e)
-	    reviewList.removeChild(li);
+	    reviewDelete(e);
+	    asynGetContent();
 	});
 	buttonsdiv.appendChild(editButton);
 	buttonsdiv.appendChild(deleteButton);

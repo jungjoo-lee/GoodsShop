@@ -58,8 +58,19 @@ public class SqlBuilder {
             String key = entry.getKey();
             Object value = entry.getValue();
 
-            if (/*key.equalsIgnoreCase("type") || */key.equalsIgnoreCase("table") || key.equalsIgnoreCase("page") || key.equalsIgnoreCase("amount") || key.equalsIgnoreCase("category")) {
+            if (key.equalsIgnoreCase("table") || key.equalsIgnoreCase("page") || key.equalsIgnoreCase("amount") || key.equalsIgnoreCase("category")) {
                 continue;
+            }
+            
+            if (key.equals("my")) {
+            	if (firstCondition) {
+            		sql.append(" where ");
+                    firstCondition = false;
+            	} else {
+            		sql.append(" and ");
+            	}
+            	sql.append("userid").append(" = '").append(map.get("my")).append("'");
+            	continue;
             }
 
             if (value instanceof String) {
