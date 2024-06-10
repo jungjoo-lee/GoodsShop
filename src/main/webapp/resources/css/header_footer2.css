@@ -47,12 +47,16 @@ body{
     font-size: 90%;
     text-decoration: none;
     color: black;
+    transition: color 0.3s;
+}
+
+.gnb a:hover{
+	color: #c3c3c3;
 }
 
 #logo {
     width: 100%;
-    height: 200px;
-    
+    height: 200px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,10 +70,15 @@ body{
     font-size: 90%;
     border-top: 1px solid #e2e2e2;
     border-bottom: 1px solid #e2e2e2;
+    transition: color 0.3s;
 }
 
 .menu_bar div{
     cursor: pointer;
+}
+
+.menu_bar div:hover{
+	color: #c3c3c3;
 }
 
 

@@ -62,3 +62,51 @@ ul {
 	text-decoration: none;
 	color: black;
 }
+
+#switchBtn {
+    background-color: black;
+    color: white;
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 100%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+    line-height: 20px;
+}
+
+#switchBtn:hover{
+	background-color: #939393;
+}
+
+#discardBtn {
+    background-color: #c74747;
+	color: #fff;
+    width: 120px;
+    height: 40px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    font-size: 100%;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    line-height: 20px;
+}
+
+#discardBtn:hover{
+	background-color: #d58181;
+}

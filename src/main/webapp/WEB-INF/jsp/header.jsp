@@ -27,7 +27,7 @@
 							</c:when>
 							<c:otherwise>
 								<a href="#">${loginUser.name}(${loginUser.userid})</a>
-								<a href="gshop.do?command=logout">Logout</a>
+								<a href="gshop.do?command=logout">로그아웃</a>
 								<a href="gshop.do?command=updateMemberForm">정보수정</a>
 								<a href="gshop.do?command=viewCartlist">장바구니</a>
 								<a href="gshop.do?command=viewWishlist">찜목록</a>
