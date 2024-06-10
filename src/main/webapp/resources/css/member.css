@@ -1,40 +1,46 @@
 @charset "UTF-8";
-#wrap {
-   width:100%;
-   max-width: 1024px;
-   margin: 0 auto;
-   border: 1px solid red;
-   display: flex; flex-direction: column;
-}
-a{text-decoration:none;}
 
-#join{
+a{
+	text-decoration: none;
+}
+
+#joinPage{
 	width: 100%;
 	text-align: center;
+	font-family: "Noto Sans KR", sans-serif;
+}
+#join{
+	display: flex;
+	flex-direction: column;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    width: 100%;    
 }
 
 #popup{
-	   display: flex;
-	   flex-direction: column;
-	   justify-content: center;
-	   text-align: center;
-	   align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
+	font-family: "Noto Sans KR", sans-serif;
 }
 #res{
-		display: flex;
-	   flex-direction: column;
-	   justify-content: center;
-	   align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 #search, #use{
-	background-color: ivory;
+    background-color: #3a3a3a;
+    color: #fff;
 	width: 15%;
 	height: 33px;
 	line-height: 33px;
 	border-radius: 3px 3px 3px 3px;
-	border: 1px solid black;
+	border: none;
 	font-size: 90%;
-	font-weight: bold;
 	margin-top: 3px;
 }
 
@@ -43,10 +49,11 @@ a{text-decoration:none;}
 	height: 45px;
 	line-height: 45px;
 	display: flex;
+	margin-left: 240px;
 }
 
-input[type="text"], input[type="password"] {
-	width: 30%;
+.field input[type="text"], input[type="password"] {
+	width: 25%;
 	height: 20px;
 	padding: 8px;
 	margin-bottom: 10px;
@@ -54,21 +61,26 @@ input[type="text"], input[type="password"] {
 	border-radius : 3px 3px 3px 3px;
 }
 
-input[type="button"] {
- 	background-color: ivory;
+.field input[type="button"] {
+    background-color: #3a3a3a;
+    color: #fff;
 	width: 10%;
 	height: 33px;
 	line-height: 33px;
-	border-radius: 3px 3px 3px 3px;
-	border: 1px solid black;
+	border-radius: 5px;
+	border: none;
 	font-size: 90%;
-	font-weight: bold;
-	margin-left: 40px;
+	margin-left: 30px;
 	margin-top: 3px;
+	cursor: pointer;
+ }
+ .field input[type="button"]:hover,
+ #regi:hover {
+ 	background-color: #868686; /* 호버 시 배경색 변경 */
+ 	
  }
 
 .label{
-	font-weight: bold;
 	display: flex;
 	margin-left: 160px;
 	width: 150px;
@@ -83,25 +95,25 @@ input[type="button"] {
 }
 
 .check{
-	width: 70%;
+	width: 60%;
 	height: 200px;
 	border: 1px solid #c0c0c0;
 	overflow-y: scroll;
 	font-size: 70%;
 	color: gray;
-	background-color: ivory;
+	background-color: rgb(240, 240, 240);
 	text-align: left;
 }
 
 #m_confirm{
-	background-color: ivory;
+    background-color: #3a3a3a;
+    color: #fff;
 	width: 15%;
 	height: 35px;
 	line-height: 33px;
-	border-radius: 3px 3px 3px 3px;
-	border: 1px solid black;
+	border-radius: 5px;
+	border: none;
 	font-size: 80%;
-	font-weight: bold;
 	margin-left: 10px;
 	margin-top: 5px;
 }
@@ -119,9 +131,4 @@ input[type="button"] {
 	border: none;
 	cursor: pointer;
 	margin-bottom: 20px;
-}
-
-footer{
-	background-color: ivory;
-	color: gray;
 }

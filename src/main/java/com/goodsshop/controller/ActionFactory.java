@@ -57,6 +57,7 @@ import com.goodsshop.controller.action.mypage.DeleteMemberAction;
 import com.goodsshop.controller.action.mypage.OrderDetailViewAction;
 import com.goodsshop.controller.action.mypage.ViewOrderAction;
 import com.goodsshop.controller.action.notice.NoticeInsertAction;
+import com.goodsshop.controller.action.notice.NoticeListAction;
 import com.goodsshop.controller.action.notice.NoticeUpdateFormAction;
 import com.goodsshop.controller.action.notice.insertNoticeFormAction;
 import com.goodsshop.controller.action.qna.QnaListAction;
@@ -88,6 +89,7 @@ public class ActionFactory {
 		else if (command.equals("noticeInsert")) ac = new NoticeInsertAction();
 		else if (command.equals("noticeDelete")) ac = new NoticeDeleteAction();
 		else if (command.equals("noticeUpdate")) ac = new NoticeUpdateAction();
+		else if (command.equals("noticeList")) ac = new NoticeListAction();
 		else if (command.equals("noticeUpdateForm")) ac = new NoticeUpdateFormAction();
 		else if (command.equals("insertNoticeForm")) ac = new insertNoticeFormAction();
 
