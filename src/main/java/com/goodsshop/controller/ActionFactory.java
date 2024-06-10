@@ -112,8 +112,6 @@ public class ActionFactory {
 		else if (command.equals("adminNoticeView")) ac = new AdminNoticeViewAction();
 
 		//멤버 로그인
-		else if (command.equals("switchYN")) ac = new SwitchYNAction();
-		else if (command.equals("discardMember")) ac = new DiscardMemberAction();
 		else if (command.equals("adminReviewList")) ac = new AdminReviewListAction();
 		
 		//멤버

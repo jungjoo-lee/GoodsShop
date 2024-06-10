@@ -74,7 +74,6 @@ public class IndexAction implements Action {
 				
 				vo.setSprice(newPrice);
 			}
-
 		}
 		
         if (session.getAttribute("imageMap") == null) {
