@@ -12,7 +12,7 @@
 <body>
 
 <div class="product-detail">
-<input type="hidden" name="userid" id="userid" value="${loginUser.userid}">
+	<input type="hidden" name="userid" id="userid" value="${loginUser.userid}">
 	<form method="post" name="goodsform">
 		<input type="hidden" name="gseq" id="gseq" value="${goodsDetail.gseq}">
 		<div class="detail-container">
@@ -91,7 +91,7 @@
 					            <div class="item-header">
 					                <div class="num"><span class="item-num">no.${vo.rseq}</span></div>
 					                <div class="subject"><span class="item-subject">${vo.subject}</span></div>
-					                <div class="author"><span class="item-author">${vo.grade}, ${vo.userid}</span></div>
+					                <div class="author"><span class="item-author"><img src="<c:url value='/resources/image/badge/${vo.grade}.png'/>">${vo.userid}</span></div>
 					                <div class="time"><span class="item-time"><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:SS" /></span></div>
 					                <div class="buttons">
 					                	<c:if test="${loginUser.userid eq vo.userid}">

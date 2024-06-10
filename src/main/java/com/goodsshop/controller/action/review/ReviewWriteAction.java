@@ -9,6 +9,7 @@ import com.goodsshop.controller.action.FatchAction;
 import com.goodsshop.dao.ReviewDAO;
 import com.goodsshop.dto.MemberVO;
 import com.goodsshop.dto.ReviewVO;
+import com.goodsshop.util.Paging;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,10 +30,15 @@ public class ReviewWriteAction implements FatchAction {
 			dao.reviewWrite(rVO);
 			rVO.setRseq(dao.lastID());
 			ObjectMapper mapper = new ObjectMapper();
-	        String jsonString = mapper.writeValueAsString(rVO);
+	        String jsonRvo = mapper.writeValueAsString(rVO);
+	        
+	        int total = dao.getGoodsReviewTotal(rVO.getGseq());
+	        Paging paging = new Paging(1, 10, total);
+	        String jsonPaging = mapper.writeValueAsString(paging);
 	        
 			json.put("status", true);
-			json.put("vo", new JSONObject(jsonString));
+			json.put("vo", new JSONObject(jsonRvo));
+			json.put("paging", new JSONObject(jsonPaging));
 		} catch (Exception e) {
 			e.printStackTrace();
 			json.put("status", false);
