@@ -169,7 +169,7 @@ function asynGetContent(tab) {
 		param.content = keyword;
 
 	if (tab == "my") {
-		param.userid = "";
+		param.my = "";
 		param.amount = myPaging.amount;
 		param.page = myPaging.currentPage;
 		
