@@ -237,7 +237,7 @@ function liFactory(li, vo) {
 	deleteButton.classList.add("btn", "btn-danger", "btn-sm", "reviewDeleteBtn");
 	deleteButton.addEventListener("click", (e) => {
 	    reviewDelete(e)
-	    reviewList.removeChild(li);
+	    asynGetContent();
 	});
 	buttonsdiv.appendChild(editButton);
 	buttonsdiv.appendChild(deleteButton);
@@ -261,43 +261,49 @@ function liFactory(li, vo) {
 
 let reviewList = document.querySelector('#reviewList');
 let reviewWriteBtn = document.querySelector('#reviewWriteBtn');
-reviewWriteBtn.addEventListener("click", () => {
-	if(confirm("리뷰 작성하시겠습니까?")) {
-		fetch('/GoodsShop/gshop.do?command=asyn', {
-			method : 'POST',
-			headers: {
-				'Content-Type': 'application/json;charset=utf-8'
-			},
-				body: JSON.stringify({
-					"command" : "reviewWrite",
-					"gseq" : gseq.value,
-					"subject" : subject.value,
-					"content" : content.value,
+
+if (reviewWriteBtn != null) {
+	reviewWriteBtn.addEventListener("click", () => {
+		if(confirm("리뷰 작성하시겠습니까?")) {
+			fetch('/GoodsShop/gshop.do?command=asyn', {
+				method : 'POST',
+				headers: {
+					'Content-Type': 'application/json;charset=utf-8'
+				},
+					body: JSON.stringify({
+						"command" : "reviewWrite",
+						"gseq" : gseq.value,
+						"subject" : subject.value,
+						"content" : content.value,
+					})
 				})
-			})
-			.then(response => response.json())
-			.then(jsonResult => {				
-				if (jsonResult.status == true) {
-					let vo = jsonResult.vo;
-					let li = document.createElement("li");
-					
-					li = liFactory(li, vo);
-					
-					reviewList.prepend(li);
-					document.querySelector('#subject').value = '';
-					document.querySelector('#content').value = '';
-					
-					if (reviewList.children.length > 10) {
-					    reviewList.removeChild(reviewList.lastElementChild);
+				.then(response => response.json())
+				.then(jsonResult => {				
+					if (jsonResult.status == true) {
+						let vo = jsonResult.vo;
+						let li = document.createElement("li");
+						
+						li = liFactory(li, vo);
+						
+						reviewList.prepend(li);
+						document.querySelector('#subject').value = '';
+						document.querySelector('#content').value = '';
+						
+						if (reviewList.children.length > 10) {
+						    reviewList.removeChild(reviewList.lastElementChild);
+						}
+						
+						editPaging(jsonResult.paging);
+						addPagingEvent();
+					} else {
+						alert(jsonResult.message);
 					}
-				} else {
-					alert(jsonResult.message);
-				}
-		});
-	} else {
-		return;
-	}
-});
+			});
+		} else {
+			return;
+		}
+	});	
+}
 
 function getRseq(e) {
     let target = e.target;
@@ -440,6 +446,48 @@ function addPagingEvent() {
 }
 addPagingEvent();
 
+function editPaging(json) {
+	paging = json;
+	let pagination = '';
+	
+	if (paging.prev) {
+		pagination += '<li class="page-item">';
+		pagination += '<a class="page-link" data-value="prev">Prev</a>';
+		pagination += '</li>';
+	} else {
+		pagination += '<li class="page-item disabled">';
+		pagination += '<a class="page-link">Prev</a>';
+		pagination += '</li>';
+	}
+	
+	for(let j = paging.startPage; j <= paging.endPage; j++) {
+		if(paging.currentPage == j) {
+			pagination += '<li class="page-item active">';
+			pagination += '<a class="page-link" data-value="' + j + '">';
+			pagination += j;
+			pagination += '</a>';
+			pagination += '</li>';
+		} else {
+			pagination += '<li class="page-item">';
+			pagination += '<a class="page-link" data-value="' + j + '">';
+			pagination += j;
+			pagination += '</a>';
+			pagination += '</li>';
+		}
+	}
+	
+	if (paging.next) {
+		pagination += '<li class="page-item">';
+		pagination += '<a class="page-link" data-value="next">Next</a>';
+		pagination += '</li>';
+	} else {
+		pagination += '<li class="page-item disabled">';
+		pagination += '<a class="page-link">Next</a>';
+		pagination += '</li>';
+	}
+	document.querySelector("#pagination").innerHTML = pagination;	
+}
+
 function asynGetContent() {
 	param.command = "getContent";
 	param.amount = 10;
@@ -480,46 +528,7 @@ function asynGetContent() {
 				document.querySelector("#reviewList").innerHTML = content;
 				addEvent();
 				
-				paging = jsonResult.paging;
-				let pagination = '';
-				
-				if (paging.prev) {
-					pagination += '<li class="page-item">';
-					pagination += '<a class="page-link" data-value="prev">Prev</a>';
-					pagination += '</li>';
-				} else {
-					pagination += '<li class="page-item disabled">';
-					pagination += '<a class="page-link">Prev</a>';
-					pagination += '</li>';
-				}
-				
-				for(let j = paging.startPage; j <= paging.endPage; j++) {
-					if(paging.currentPage == j) {
-						pagination += '<li class="page-item active">';
-						pagination += '<a class="page-link" data-value="' + j + '">';
-						pagination += j;
-						pagination += '</a>';
-						pagination += '</li>';
-					} else {
-						pagination += '<li class="page-item">';
-						pagination += '<a class="page-link" data-value="' + j + '">';
-						pagination += j;
-						pagination += '</a>';
-						pagination += '</li>';
-					}
-				}
-				
-				if (paging.next) {
-					pagination += '<li class="page-item">';
-					pagination += '<a class="page-link" data-value="next">Next</a>';
-					pagination += '</li>';
-				} else {
-					pagination += '<li class="page-item disabled">';
-					pagination += '<a class="page-link">Next</a>';
-					pagination += '</li>';
-				}
-				document.querySelector("#pagination").innerHTML = pagination;
-				
+				editPaging(jsonResult.paging);
 				addPagingEvent();
 			} else {
 				alert(jsonResult.message);

@@ -51,8 +51,8 @@ public class GetContentAction implements FatchAction {
 		
 		try {
 			if (json.has("my")) {
-				json.remove("my");
-				json.put("userid", vo.getUserid());
+//				json.remove("my");
+				json.put("my", vo.getUserid());
 				sql = sb.build(0, json);
 				total = dao.getTotalMyQna(sql);
 				currentPage = json.getInt("page");
@@ -107,8 +107,8 @@ public class GetContentAction implements FatchAction {
 		
 		try {
 			if (json.has("my")) {
-				json.remove("my");
-				json.put("userid", vo.getUserid());
+//				json.remove("my");
+				json.put("my", vo.getUserid());
 				sql = sb.build(0, json);
 				total = dao.getTotalMyReview(sql);
 				currentPage = json.getInt("page");

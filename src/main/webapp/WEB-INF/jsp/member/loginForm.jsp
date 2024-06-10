@@ -19,6 +19,7 @@
 					<input type="button" value="아이디 찾기" onClick="return findIdForm();">
 					<input type="button" value="비밀번호 찾기" onClick="return findPwdForm();"><br/>
 				</div>
+				<div style="font-size:80%; font-weight:bold">${message}</div>
 				<div class="join-box"><br/>
 					<div class="join-message">
 					아직 회원이 아니라면? <br>
@@ -28,7 +29,7 @@
 				</div>
 			</div>
 			</form>
-			<div style="font-size:80%; font-weight:bold">${message}</div>
+			
 		</article>
 </section>
 </div>
