@@ -43,7 +43,7 @@ public class GoodsDetailViewAction implements Action {
 			gvo.setSprice(newPrice);
 		}	
 		
-		ReviewDAO  rDAO = ReviewDAO.getInstance();
+		ReviewDAO rDAO = ReviewDAO.getInstance();
 		int total = rDAO.getGoodsReviewTotal(gseq);
 		int currentPage = 1;
 		
