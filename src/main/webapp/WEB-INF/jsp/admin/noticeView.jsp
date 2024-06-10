@@ -25,19 +25,19 @@
 		                <div class="detail-container">
 		                    <h4 class="mb-3">Notice Details</h4>
 		                    <div class="detail-item">
-		                        <strong>번호:</strong> <span>${vo.nseq}</span>
+		                        <strong>번호:</strong><span>${vo.nseq}</span>
 		                    </div>
 		                    <div class="detail-item">
-		                        <strong>작성자:</strong> <span>${vo.adminId}</span>
+		                        <strong>작성자:</strong><span>${vo.adminId}</span>
 		                    </div>
 		                    <div class="detail-item">
-		                        <strong>제목:</strong> <span>${vo.subject}</span>
+		                        <strong>제목:</strong><span>${vo.subject}</span>
 		                    </div>
 		                    <div class="detail-item">
-		                        <strong>내용:</strong> <span>${vo.content}</span>
+		                        <strong>내용:</strong><pre><span>${vo.content}</span></pre>
 		                    </div>
 		                    <div class="detail-item">
-		                        <strong>작성일자:</strong> <span><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+		                        <strong>작성일자:</strong><span><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 		                    </div>
 		                    <div class="btn-group">
 		                        <a class="btn btn-primary btn-custom" href="<c:url value='/gshop.do?command=noticeUpdateForm&nseq=${vo.nseq}'/>">수정</a>

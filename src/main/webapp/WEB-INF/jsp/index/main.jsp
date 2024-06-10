@@ -64,10 +64,9 @@
 			</div>
 			<br><br><br><br>
 		</div>
-		<script type="text/javascript" src='<c:url value = "/resources/js/goods/main.js"/>'></script>
-	
+			
 		<!-- 공지사항 -->
-		<div class="card w-100 ms-3 me-2">
+		<div class="card w-100 mt-3">
 		 	<div class="card-header d-flex justify-content-between">
 				<div>공지사항</div>
 				<div>
@@ -76,40 +75,40 @@
 		  	</div>
 			<ul class="list-group list-group-flush">
 				<c:forEach var="notice" items="${noticeList}">
-				<li class="list-group-item list-group-item-action d-flex">
-					<div>${notice.nseq}</div>
-		        	<div>${notice.adminId}</div>
-		        	<div>
-		           		<a href="">
-		           		<c:choose>
-							<c:when test="${fn:length(notice.subject) gt 26}">
-								<c:out value="${fn:substring(notice.subject, 0, 25)}">...</c:out>
-							</c:when>
-							<c:otherwise>
-								<c:out value="${notice.subject}"/>
-							</c:otherwise>
-						</c:choose>
-						</a>
-					</div>
-					<div>
-		         		<c:choose>
-		              		<c:when test="${fn:length(notice.content) gt 26}">
-		                 		<c:out value="${fn:substring(notice.content, 0, 25)}">...</c:out>
-		              		</c:when>
-		              		<c:otherwise>
-		                 		<c:out value="${notice.content}"/>
-		              		</c:otherwise>
-		        		 </c:choose>
-		      		</div>
-		      		<div><fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-				</li>
+					<a class="link" href="<c:url value='/gshop.do?command=noticeView&nseq=${notice.nseq}'/>">
+						<li class="list-group-item list-group-item-action d-flex li-item">
+							<div class="small-col">${notice.nseq}</div>
+				        	<div class="small-col">${notice.adminId}</div>
+				        	<div>
+				           		<c:choose>
+									<c:when test="${fn:length(notice.subject) gt 26}">
+										<c:out value="${fn:substring(notice.subject, 0, 25)}">...</c:out>
+									</c:when>
+									<c:otherwise>
+										<c:out value="${notice.subject}"/>
+									</c:otherwise>
+								</c:choose>
+							</div>
+							<div>
+				         		<c:choose>
+				              		<c:when test="${fn:length(notice.content) gt 26}">
+				                 		<c:out value="${fn:substring(notice.content, 0, 25)}">...</c:out>
+				              		</c:when>
+				              		<c:otherwise>
+				                 		<c:out value="${notice.content}"/>
+				              		</c:otherwise>
+				        		 </c:choose>
+				      		</div>
+				      		<div class="small-col"><fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" /></div>
+						</li>
+					</a>
 		     	</c:forEach>
 		  	</ul>
 		</div>
 
-		<div class="d-flex col">
+		<div class="d-flex col mt-3 justify-content-between">
 			<!-- Q&A -->
-			<div class="card w-50 ms-3 me-2">
+			<div class="card w-50 me-2">
 				<div class="card-header d-flex justify-content-between">
 			  		<div>Q&A</div>
 					<div>
@@ -118,30 +117,30 @@
 			  	</div>
 			  	<ul class="list-group list-group-flush">
 			  		<c:forEach var="qna" items="${qnaList}">
-			  		<li class="list-group-item list-group-item-action d-flex">
-			  			<div>${qna.qseq}</div>
-			  			<div>
-				  			<a href="">
-				  				<c:choose>
-					        		<c:when test="${fn:length(qna.subject) gt 26}">
-					        			<c:out value="${fn:substring(qna.subject, 0, 25)}">...</c:out>
-					        		</c:when>
-					        		<c:otherwise>
-					        			<c:out value="${qna.subject}"/>
-					        		</c:otherwise>
-								</c:choose>
-								<c:if test="${not empty qna.replyDate}"><i class="bi bi-clipboard-check"></i></c:if>
-							</a>
-						</div>
-						<div>${qna.userid}</div>
-						<div><fmt:formatDate value="${qna.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-					</li>
+				  		<a class="link" href="<c:url value='/gshop.do?command=qnaView&qseq=${qna.qseq}'/>">
+					  		<li class="list-group-item list-group-item-action d-flex li-item">
+					  			<div class="small-col">${qna.qseq}</div>
+					  			<div>
+						  				<c:choose>
+							        		<c:when test="${fn:length(qna.subject) gt 26}">
+							        			<c:out value="${fn:substring(qna.subject, 0, 25)}">...</c:out>
+							        		</c:when>
+							        		<c:otherwise>
+							        			<c:out value="${qna.subject}"/>
+							        		</c:otherwise>
+										</c:choose>
+										<c:if test="${not empty qna.replyDate}"><i class="bi bi-clipboard-check"></i></c:if>
+								</div>
+								<div class="small-col">${qna.userid}</div>
+								<div class="small-col"><fmt:formatDate value="${qna.indate}" type="both" pattern="yyyy-MM-dd" /></div>
+							</li>
+						</a>
 			  		</c:forEach>
 				</ul>
 			</div>
 	
 			<!-- review -->
-			<div class="card w-50 ms-2 me-3">
+			<div class="card w-50 ms-2">
 				<div class="card-header d-flex justify-content-between">
 					<div>Review</div>
 					<div>
@@ -150,23 +149,32 @@
 				</div>
 				<ul class="list-group list-group-flush">
 			  		<c:forEach var="rev" items="${reviewList}">
-					<li class="list-group-item list-group-item-action d-flex">
-						<div>${rev.gname}</div>
-						<div>
-							<a href="#">
-							<c:choose>
-					        	<c:when test="${fn:length(rev.subject) gt 14}">
-					        		<c:out value="${fn:substring(rev.subject, 0, 13)}"/>...
-					        	</c:when>
-					        	<c:otherwise>
-					        		<c:out value="${rev.subject}"/>
-					        	</c:otherwise>
-							</c:choose>
-							</a>
-						</div>
-						<div>${rev.userid}</div>
-						<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-					</li>
+				  		<a class="link" href="<c:url value='/gshop.do?command=goodsDetailView&gseq=${rev.gseq}'/>">
+							<li class="list-group-item list-group-item-action d-flex li-item">
+								<div>
+									<c:choose>
+							        	<c:when test="${fn:length(rev.gname) gt 16}">
+							        		<c:out value="${fn:substring(rev.gname, 0, 15)}"/>...
+							        	</c:when>
+							        	<c:otherwise>
+							        		<c:out value="${rev.gname}"/>
+							        	</c:otherwise>
+									</c:choose>
+								</div>
+								<div>
+									<c:choose>
+							        	<c:when test="${fn:length(rev.subject) gt 18}">
+							        		<c:out value="${fn:substring(rev.subject, 0, 17)}">...</c:out>
+							        	</c:when>
+							        	<c:otherwise>
+							        		<c:out value="${rev.subject}"/>
+							        	</c:otherwise>
+									</c:choose>
+								</div>
+								<div class="small-col">${rev.userid}</div>
+								<div class="middle-col"><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
+							</li>
+						</a>
 					</c:forEach>
 				</ul>
 			</div>

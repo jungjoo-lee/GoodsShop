@@ -27,16 +27,16 @@
 					    </div>
 					    <div class="card-body">
 					        <div class="card-item">
-					            <strong>작성자:</strong> <span>${vo.userid}</span>
+					            <strong>작성자:</strong><span>${vo.userid}</span>
 					        </div>
 					        <div class="card-item">
-					            <strong>제목:</strong> <span>${vo.subject}</span>
+					            <strong>제목:</strong><span>${vo.subject}</span>
 					        </div>
 					        <div class="card-item">
-					            <strong>내용:</strong> <span>${vo.content}</span>
+					            <strong>내용:</strong><pre><span>${vo.content}</span></pre>
 					        </div>
 					        <div class="card-item">
-					            <strong>작성일자:</strong> <span><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+					            <strong>작성일자:</strong><span><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 					        </div>
 					        <c:if test="${not empty vo.reply}">
 					            <div class="card-item" id="replytext">

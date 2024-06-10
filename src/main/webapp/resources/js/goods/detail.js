@@ -251,6 +251,7 @@ function liFactory(li, vo) {
 	contentspan.classList.add("item-content-text");
 	contentspan.textContent = vo.content;
 	let pre = document.createElement("pre");
+	pre.classList.add("pre-styled");
 	pre.appendChild(contentspan);
 	contentdiv.appendChild(pre);
 	
@@ -527,7 +528,7 @@ function asynGetContent() {
 					}
 					content += '</div>';
 					content += '</div>';
-					content += '<div class="item-content"><pre><span class="item-content-text">'+ reviewList[i++].content + '</span></pre></div>';
+					content += '<div class="item-content"><pre class="pre-styled"><span class="item-content-text">'+ reviewList[i++].content + '</span></pre></div>';
 					content += '</li>';
 				})
 				document.querySelector("#reviewList").innerHTML = content;
