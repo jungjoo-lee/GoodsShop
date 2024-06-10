@@ -3,10 +3,61 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/index/index.css'/>">
 <%-- <link rel="stylesheet" href="<c:url value='/resources/css/index/rightSideMenu.css'/>"> --%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div id="container">
+		<div class="section">
+			<div class="section-title"> New </div>
+			<div class="product-row">
+			<c:forEach items="${newlist}" var="gvo" varStatus="status">
+				<div class="product-box">
+					<div class="product-info">
+						<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
+							<div class="product-image">
+								<img alt="${gvo.imageList[0].realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.imageList[0].realname}'/>">
+							</div>
+							${gvo.gname} - ${gvo.sprice}
+						</a>
+					</div>
+				</div>
+			</c:forEach>
+			</div>
+		</div>
+		
+		<div class="section">
+			<div class="section-title"> Best 20 </div>
+			<div class="product-row">
+				<c:forEach items="${bestlist}" var="gvo" varStatus="status">
+					<c:if test="${status.index < 8}">
+						<div class="product-box">
+							<div class="product-info">
+								<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
+									<div class="product-image">
+										<img alt="${gvo.imageList[0].realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.imageList[0].realname}'/>">
+									</div>
+									${gvo.gname} - ${gvo.sprice}
+								</a>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
+			<br><br>
+			<div class="view-all">
+				<a href="">전체보기</a>
+			</div>
+			<br><br><br><br>
+		</div>
+		
 
 <ul class="best-list">
 	<c:forEach items="${bestlist}" var="gvo" varStatus="status">            
@@ -182,17 +233,8 @@
 			</c:forEach>
 		</ul>
 	</div>
-</div>
 
-<div id="side">
-	<div>검색</div>
-	<div>장바구니</div>
-	<div>찜한 상품</div>
-	<div>주문조회</div>
-	<div id="controll">
-		<div>위로</div>
-		<div>아래로</div>
-	</div>
-</div>
-</div>
+<script type="text/javascript" src='<c:url value = "/resources/js/goods/main.js"/>'></script>
+</body>
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>
+</html>

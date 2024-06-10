@@ -1,43 +1,64 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<link rel="stylesheet" href="resources/css/footer.css">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+		<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-	<div class="clear">
-		<footer id="footer">
-				<div id="leftOne">
-					<div id="copy">CUSTOMER CENTER</div>
-						<div>010-1234-1234</div>
-						<div>평일 오전 11:00 ~ 오후 18:00</div>
-						<div>점심시간 오후 12:00 ~ 오후 13:00</div>
-						<div>토 / 일 / 공휴일 휴무</div>
-				</div>
-				<div id=a></div>
-				<div id="leftTwo">
-					<div id="copy">ACCONT INFO</div>
-						<div>국민은행</div>
-						<div>우리은행</div>
-						<div>인터넷 뱅킹 바로가기</div>
+			<footer class="footer">
+				<div class="footer_nav">
+					<div class="w-5"></div>
+					<div class="footer_nav_wrap">
+						<a href="#">회사소개</a>
+						<a href="#">이용약관</a>
+						<a href="#">개인정보처리방침</a>
+						<a href="#">이용안내</a>
+						<a href="#">제휴문의</a>
 					</div>
-				<div id=a></div>
-				<div id="rightOne">
-					<div id="copy">FAVORITE MENU</div>
-						<div><a href="gshop.do?command=loginForm">로그인</a></div>
-						<div><a href="gshop.do?command=joinPage">회원가입</a></div>
-						<div><a href="gshop.do?command=viewWishlist">관심상품</a></div>
-						<div><a href="gshop.do?command=viewCartlist">장바구니</a></div>
-						<div><a href="gshop.do?command=viewOrderList">주문조회</a></div>
-						<div><a href="gshop.do?command=updateMemberForm">마이페이지</a></div>
 				</div>
-				<div id=a></div>
-				<div id="rightTwo">
-					<div id="copy">RETURN/EXCHANGE</div>
-						<div>서울시 은평구 진관동 은평우체국</div>
-						<div>자세한 교환＊반품 절차 안내는 문의란 및 공지사항을 참고해주세요</div><br/>
+				<div class="footer_content">
+					<div class="footer_contentbox flex-2">
+						<div class="footer_titlebox-1">
+							<a href="gshop.do?command=index">
+								<img src="<c:url value='/resources/image/logo_.png'/>">
+							</a>
+						</div>
+						<div class="footer_text">
+						</div>
+					</div>
+					<div class="footer_contentbox flex-1">
+						<div class="footer_titlebox">
+							CS CENTER
+						</div>
+						<div class="footer_text">
+							<br>
+							TEL : 010-0000-0000
+							<br><br>
+							평일 09:00 ~ 18:00 <br>
+							점심시간 12:00 ~ 13:00 <br>
+							토 / 일 / 공휴일 휴무 <br>
+						</div>
+					</div>
+					<div class="footer_contentbox flex-1">
+						<div class="footer_titlebox">
+							ABOUT US
+						</div>
+						<div class="footer_text">
+							<br>
+							개인정보처리방침 <br>
+							이용약관 <br>
+							사이트맵 <br>
+						</div>
+					</div>										
+				</div>
+				<div class="footer_info">
+					상호: 하이컴퍼니 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 사업자 등록번호 : 000-00-00000 <br>
+					주소: 00000 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 서울특별시 종로구 인사동11가 A 203호 <br>
+					대표전화: 010-0000-0000 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 이메일: offlower@naver.com <br>
+					통신판매업 신고: 제0000-00-00000호 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보관리책임자: 김일이 (aaaaaaa@gmail.com) <br>
+
+				</div>
+			</footer>
+
+			</div>
+			</body>
+
+			</html>
 						<div><a href="gshop.do?command=adminLogin">admin</a></div>
-				</div>
-		</footer>
-		</div>
-</div> 
-</body>
-</html>

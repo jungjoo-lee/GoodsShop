@@ -49,5 +49,6 @@ function startTimer(count, display){
 	};
 
 </script>
+<script src="<c:url value='/resources/js/member/newID.js'/>"></script>
 </body>
 </html>

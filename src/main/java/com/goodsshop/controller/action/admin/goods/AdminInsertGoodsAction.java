@@ -63,7 +63,10 @@ public class AdminInsertGoodsAction implements Action {
 						uploadDir = new File(uploadPath);
 
 						if (!uploadDir.exists()) {
-							uploadDir.mkdir();
+						    // 기존 mkdir() 대신 mkdirs() 사용
+						    if (!uploadDir.mkdirs()) {
+						        throw new IOException("Failed to create directory: " + uploadPath);
+						    }
 						}
 
 						// 파일 크기
@@ -79,7 +82,11 @@ public class AdminInsertGoodsAction implements Action {
 						System.out.println("File Size: " + fileSize + " bytes");
 
 						// 파일 저장
-						p.write(uploadPath + realname);
+						try {
+		                    p.write(uploadPath + realname);
+		                } catch (IOException e) {
+		                    throw new IOException("Error writing file: " + uploadPath + realname, e);
+		                }
 
 						// 파일 저장한 정보를 givo 에 담기
 						GoodsImageVO givo = new GoodsImageVO();

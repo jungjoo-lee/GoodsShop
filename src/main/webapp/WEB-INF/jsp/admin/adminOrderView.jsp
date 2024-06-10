@@ -20,30 +20,59 @@
         	<!-- side -->
         	<jsp:include page="../fix/admin/sidemenu.jsp"/>
         	
+	      	<form name="adminOrderForm" id="adminOrderForm" method="post">
         	<div id="layoutSidenav_content">
         		<div class="container-fluid px-4">
                 	<h1 class="mt-4">  </h1><br/> <!-- 제목 -->
 					<div class="row w-100">
-				    	<div class="col d-flex"> <!-- 목록 선택 -->
-							<div class="btn-group">
-				                <button type="button" class="btn btn-outline-secondary active" id="all"><i class="bi bi-list"></i></button>
-				                <button type="button" class="btn btn-outline-secondary" id="notnull"><i class="bi bi-check-circle"></i></button>
-				            	<button type="button" class="btn btn-outline-secondary" id="null"><i class="bi bi-x-circle"></i></button>
-				            </div>
-				    	</div>
 				    	<div class="col d-flex justify-content-end"> <!-- 검색 폼 -->
-				    		<select class="form-select w-25 me-1" name="searchBy" id="searchBy">
-						  		<option value="userid" selected>주문인 ID</option>
-						  		<option value="username">주문인 성명</option>
-						  		<option value="gname">상품명</option>
+				    	
+ 				    		<select class="form-select w-25 me-1" name="searchBy" id="searchBy">
+ 				    		
+				      			<c:choose>
+				      				<c:when test="${not empty searchBy}">
+											<c:choose>
+												<c:when test="${searchBy == 'gname'}">
+											  		<option value="gname" selected>상품명</option>
+											  		<option value="userid">주문인 ID</option>
+											  		<option value="name">주문인 성명</option>											  		
+												</c:when>
+												<c:when test="${searchBy == 'userid'}">
+											  		<option value="gname" >상품명</option>
+											  		<option value="userid" selected>주문인 ID</option>
+											  		<option value="name">주문인 성명</option>											  		
+												</c:when>												
+												<c:otherwise>
+											  		<option value="gname" >상품명</option>
+											  		<option value="userid" >주문인 ID</option>
+											  		<option value="name" selected>주문인 성명</option>		
+												</c:otherwise>
+											</c:choose>
+									</c:when>
+									<c:otherwise>
+							  		<option value="gname" selected>상품명</option>
+							  		<option value="userid">주문인 ID</option>
+							  		<option value="name">주문인 성명</option>	
+									</c:otherwise>
+								</c:choose> 				    		
 							</select>
 				      		<div class="d-flex">
-					      		<input class="form-control me-2" name="searchKey" id="searchKey" type="text" placeholder="Search">
+					      		<c:choose>
+						      		<c:when test="${not empty key}">
+						      			<input class="form-control me-2" name="searchKey" type="text" value="${key}">
+						      		</c:when>
+						      		<c:otherwise>					      		
+										<input class="form-control me-2" name="searchKey" type="text" placeholder="search">						      		
+						      		</c:otherwise>
+						      	</c:choose>
 					    	</div>
+						<div class="d-flex" id="goSearch">
+							<input type="button" value="검색">
+						</div>					    	
 				    	</div>
 					</div>
 					<br/>
-					<form name="adminOrderForm">
+					
 					<div class="row w-100"> <!--  목록 테이블 -->
 				  		<table class="table table-hover">
 				  			<thead class="text-center table-light">
@@ -95,7 +124,7 @@
 											${ord.status}
 				  						</td>
 										<td>
-											<input type="checkbox" id="checkboxes" name="gseq"
+											<input type="checkbox" id="checkboxes" name="oseq"
 											value="${ord.oseq}" />
 										</td>
 								</tr>
@@ -113,12 +142,50 @@
 						</select> <input type="button" id="changeStat" value="변경"> 
 					</div>
 				</div>
-				</form>
 
 
-            	</div>
-        	</div>            
+				
+			<c:if test="${paging.totalCount > paging.displayRow}">				
+				<ul class="pagination justify-content-center" id="pagination">
+					<!-- 이전 버튼 -->
+						<c:if test="${paging.prev}">
+							<li class="page-item">
+								<div class="page-link" onclick="pageClick(${paging.beginPage-1}, ${url})">prev</div>
+							</li>
+						</c:if>
+					<!-- 페이지 번호 -->
+					<c:forEach var="num" begin="${paging.beginPage}"
+						end="${paging.endPage}">
+						
+						<c:if test="${num == paging.page}">
+							<li class="page-item active">
+								<div class="page-link" onclick="pageClick(${num}, '${url}')" data-value="${num}">
+									${num}
+								</div>
+							</li>
+						</c:if>
+						<c:if test="${num != paging.page}">
+							<li class="page-item" id="nextbtn">
+								<div class="page-link" onclick="pageClick(${num}, '${url}')" data-value="${num}">
+									${num}
+								</div>
+							</li>
+						</c:if>
+					</c:forEach>
+					<!-- 다음 버튼 -->
+						<c:if test="${paging.next}">
+							<li class="page-item">
+								<div class="page-link" onclick="pageClick(${paging.endPage+1}, ${url})">next</div>
+							</li>
+						</c:if>
+				</ul>
+			</c:if>
+
+			</div>
+        	</div>   
+        	 </form>         
         </div>
+       
 	<script type="text/javascript" src="<c:url value='/resources/js/admin/admin.js'/>"></script>
 	<script type="text/javascript" src="<c:url value='/resources/js/admin/adminOrder.js'/>"></script>
     </body>

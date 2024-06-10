@@ -46,6 +46,7 @@ public class GoOrderAction implements Action {
 			cvo.setSprice(ovo.getTotalprice() / ovo.getQuantity());
 			cvo.setTotalprice(ovo.getTotalprice());
 			cvo.setThum(gdao.getThumbnail(ovo.getGseq()));
+			cvo.setRealname(ovo.getRealname());
 			
 			if(cartlist != null) {
 				cartlist.remove(cvo);	

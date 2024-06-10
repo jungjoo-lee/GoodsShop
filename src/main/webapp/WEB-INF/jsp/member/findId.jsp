@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title></title>
 </head>
 <body>
 	<form method="post" name="findIdForm" action="gshop.do?command=findId">
@@ -20,4 +20,5 @@
 <script src="resources/js/member/userLogin.js"></script>
 </form>
 </body>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>
 </html>

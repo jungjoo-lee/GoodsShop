@@ -35,6 +35,7 @@ public class CartDAO {
 				cvo.setSprice(rs.getInt("s_price"));
 				cvo.setUserid(userid);
 				cvo.setUsername(rs.getString("name"));
+				cvo.setRealname(rs.getString("realname"));
 				
 				list.add(cvo);
 			}
@@ -83,6 +84,34 @@ public class CartDAO {
 		} finally {
 			DB.close(con, pstmt, rs);
 		}	
+	}
+
+	public int selectWish(String userid, GoodsVO gvo) {
+		int count = 0;
+		
+		con = DB.getConnection();
+		String sql = "select count(*) as cnt from cart_view where userid = ? and gseq = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, userid);
+			pstmt.setInt(2, gvo.getGseq());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DB.close(con, pstmt, rs);
+		}
+		
+		System.out.println(count);
+		
+		return count;
 	}
 
 

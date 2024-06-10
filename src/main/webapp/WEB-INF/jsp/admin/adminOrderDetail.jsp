@@ -71,7 +71,8 @@
 								<option value="4">배송완료</option>
 							</select> <input type="button" id="changeStat" value="변경">
 						</div>
-
+							
+						<input type="hidden" name="oseq" value="${orderDetailList[0].oseq}">
 					</form>
 				</div>
 			</div>
