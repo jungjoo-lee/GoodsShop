@@ -76,10 +76,8 @@ public class IndexAction implements Action {
 			}
 		}
 		
-        if (session.getAttribute("imageMap") == null) {
-			loadImageIntoBuffer(bestlist);
-	        loadImageIntoBuffer(newlist);
-        }
+		loadImageIntoBuffer(bestlist);
+	    loadImageIntoBuffer(newlist);
 		
 		List<CartVO> cartlist = new ArrayList<CartVO>();
 		
