@@ -430,6 +430,8 @@ button:not(:disabled),
 
 textarea {
   resize: vertical;
+  width:70%;
+  height:300px;
 }
 
 fieldset {
@@ -1993,6 +1995,8 @@ progress {
 }
 .form-label {
   margin-bottom: 0.5rem;
+  align-items:center;
+  
 }
 
 .col-form-label {
