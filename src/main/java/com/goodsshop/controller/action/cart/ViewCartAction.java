@@ -45,12 +45,9 @@ public class ViewCartAction implements Action {
 					cvo.setRealname(gvo.getRealname());
 					
 				}
-
-				session.setAttribute("cartlist", cartlist);			
-				request.getRequestDispatcher("jsp/goods/cartlistView.jsp").forward(request, response);
+				session.setAttribute("cartlist", cartlist);
 			}
-	
-
+			request.getRequestDispatcher("WEB-INF/jsp/goods/cartlistView.jsp").forward(request, response);
 		}
 	}
 }

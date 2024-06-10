@@ -21,7 +21,7 @@ public class OrderDetailViewAction implements Action {
 		List<OrderVO> orderDetailList = odao.selectOrderDetail(oseq);
 		
 		request.setAttribute("orderDetailList", orderDetailList);	
-		request.getRequestDispatcher("jsp/mypage/orderDetailView.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/jsp/mypage/orderDetailView.jsp").forward(request, response);
 	}
 
 }

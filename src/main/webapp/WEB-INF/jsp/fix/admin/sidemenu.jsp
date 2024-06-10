@@ -21,7 +21,7 @@
                         <a class="nav-link" href="gshop.do?command=adminGoodsView">상품 목록</a>
                     </nav>
                 </div>
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="<c:url value='/gshop.do?command=adminOrderView'/>">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-sack-dollar"></i></div>
                     주문관리
                 </a>
