@@ -61,8 +61,6 @@ public class FindIdAction implements Action {
 	                session.setAttribute("verificationCodeExpiration", System.currentTimeMillis() + CODE_EXPIRATION_DURATION);
 	                session.setAttribute("name", name);
 	                session.setAttribute("email", email);
-					
-					System.out.println(verificationCode);
 
 		            // 이메일 인증 페이지로 이동
 		            request.getRequestDispatcher(url).forward(request, response);

@@ -10,7 +10,6 @@
 
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/index/index.css'/>">
-<%-- <link rel="stylesheet" href="<c:url value='/resources/css/index/rightSideMenu.css'/>"> --%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>

@@ -17,4 +17,6 @@ public class NoticeVO {
 	private Timestamp indate;
 	
 	public NoticeVO() {}
+
+
 }

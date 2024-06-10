@@ -194,15 +194,10 @@
 						</c:if>
 					</c:if>
 				</ul>
-				
-				
-				
-				<script type="text/javascript" src="<c:url value='/resources/js/admin/admin.js'/>"></script>
-				<script type="text/javascript" src="<c:url value='/resources/js/admin/goodsView.js'/>"></script>	
 			</div>
 		</div>
 	</form>
 	</div>
-
+<script type="text/javascript" src="<c:url value='/resources/js/admin/goodsView.js'/>"></script>
 </body>
 </html>

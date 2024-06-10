@@ -1,8 +1,0 @@
-@charset "UTF-8";
-.clear{width:1400px; justify-content: space-between; border-top:2px solid #ddd; margin:0 auto; margin-top:20px;}
-#footer{ width:1400px; height:190px; font-size: 14px; display:flex; justify-content: space-between; align-items:center; padding: 10px 100px;}
-#a{ border-right:2px solid #ddd; height:10px; padding:40px 0; }
-#copy{font-size: 14px; font-family: normal; font-weight: bold;}
-#leftOne:nth{display: flex; width:200px; flex:3;}
-#leftOne:nth-child(2){ border-bottom:1px solid #ddd; width:5px;}
-#rightOne{text-decoration: none;}

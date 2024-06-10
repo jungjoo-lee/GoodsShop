@@ -23,12 +23,25 @@ form label {
     font-weight: bold;
     align-self: center;
     flex:1;
+    margin-bottom:5px;
 }
 .field input[type="text"]{
 	width:50%;
+	height:25px;
+	border: none; 
+	border-bottom:1px solid #bbb;
 }
 .field input[type="password"]{
 	width:50%;
+	height:25px;
+	border: none; 
+	border-bottom:1px solid #bbb;
+}
+#address input[type="button"]{
+	height:30px;
+	width:30px;
+	justify-content: center; 
+	align-items: center;
 }
 .btn1{
 	text-align:center;
@@ -44,4 +57,18 @@ form label {
 	cursor: pointer; 
 	margin-top:10px;
 	margin-bottom: 5px; }
+	
+.btn2 input[type="button"]{
+	justify-content: center; 
+	align-items: center; 
+	width: 90%; 
+	padding: 10px; 
+	background-color: black; 
+	color:white;
+	border: none; 
+	cursor: pointer; 
+	margin-top:10px;
+	margin-left:19px;
+	margin-bottom: 5px; }
+	
 

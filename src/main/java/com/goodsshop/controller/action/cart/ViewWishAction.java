@@ -41,10 +41,7 @@ public class ViewWishAction implements Action {
 				newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
 				
 				cvo.setSprice(newPrice);
-				request.setAttribute("wishlist", wishlist);
-				request.getRequestDispatcher("jsp/goods/wishlistView.jsp").forward(request, response);
 			}
-			
 			
 			request.setAttribute("wishlist", wishlist);
 			request.getRequestDispatcher("/WEB-INF/jsp/goods/wishlistView.jsp").forward(request, response);

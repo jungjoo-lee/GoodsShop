@@ -54,7 +54,7 @@ function contentList(qnaList) {
 		content += '</div>';
 		content += '</li>';
 	});
-	document.querySelector("#qna-list").innerHTML = content;	
+	document.querySelector("#qna-list").innerHTML = content;
 }
 
 function numCheck(e) {

@@ -11,13 +11,11 @@ import com.goodsshop.controller.action.admin.AdminNoticeViewAction;
 import com.goodsshop.controller.action.admin.AdminQnaListAction;
 import com.goodsshop.controller.action.admin.AdminQnaViewAction;
 import com.goodsshop.controller.action.admin.AdminReviewListAction;
-import com.goodsshop.controller.action.admin.DiscardMemberAction;
 import com.goodsshop.controller.action.admin.NoticeDeleteAction;
 import com.goodsshop.controller.action.admin.NoticeUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyDeleteAction;
 import com.goodsshop.controller.action.admin.QnaReplyUpdateAction;
 import com.goodsshop.controller.action.admin.QnaReplyWriteAction;
-import com.goodsshop.controller.action.admin.SwitchYNAction;
 import com.goodsshop.controller.action.admin.goods.AdminBestGoodsAction;
 import com.goodsshop.controller.action.admin.goods.AdminCategoryViewAction;
 import com.goodsshop.controller.action.admin.goods.AdminDeleteGoodsAction;
@@ -87,6 +85,7 @@ public class ActionFactory {
 		if( command.equals("index") ) ac = new IndexAction();
 		//notice
 		else if (command.equals("noticeInsert")) ac = new NoticeInsertAction();
+		else if (command.equals("noticeList")) ac = new NoticeListAction();
 		else if (command.equals("noticeDelete")) ac = new NoticeDeleteAction();
 		else if (command.equals("noticeUpdate")) ac = new NoticeUpdateAction();
 		else if (command.equals("noticeList")) ac = new NoticeListAction();

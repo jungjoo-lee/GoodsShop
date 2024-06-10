@@ -20,8 +20,6 @@ public class SearchPwdAction implements Action {
         String userCode = request.getParameter("securityCodeInput"); // 사용자가 입력한 인증번호
         String randomCode = (String) request.getSession().getAttribute("verificationCode"); // 세션에 저장된 인증번호
         
-        System.out.println(userid);
-        System.out.println(email);
         
         if (userCode.equals(randomCode)) { 
         MemberDao mdao = MemberDao.getInstance();
@@ -32,13 +30,11 @@ public class SearchPwdAction implements Action {
             String pwd = member.getPwd(); // 회원 아이디를 가져옴
 
             // JavaScript로 새로운 창을 열어서 아이디를 보여줌
-            String script = "<script>alert('회원 비밀민호는 " + pwd + " 입니다.');";
+            String script = "<script>alert('회원 비밀번호는 " + pwd + " 입니다.');";
             script += "window.location.href='gshop.do?command=loginForm';</script>";
             response.getWriter().print(script);
         } else {
             // 해당하는 회원을 찾을 수 없는 경우에 대한 처리
-            System.out.println(userid);
-            System.out.println(email); 
             String script = "<script>alert( '해당하는 회원을 찾을 수 없습니다.');";
             request.getRequestDispatcher("/WEB-INF/jsp/member/loginForm.jsp").forward(request, response);
         	}

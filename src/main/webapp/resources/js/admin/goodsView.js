@@ -26,7 +26,6 @@ function toggle_best() {
 
 	if (best != null) {
 		best.addEventListener("click", () => {
-
 			let count = 0;
 			let gseq = document.goodsViewForm.gseq;
 

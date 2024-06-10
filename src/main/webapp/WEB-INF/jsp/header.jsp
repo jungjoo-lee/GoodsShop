@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Of Flower</title>
-<script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
 <link rel="stylesheet" href="resources/css/header_footer2.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,5 +66,4 @@
 		</div>
 	</header>
 <script src="<c:url value='/resources/js/goods/header.js'/>"></script>
-<script type="text/javascript" src='<c:url value="/resources/js/header.js"/>'></script>
 </body>

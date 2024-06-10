@@ -5,24 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import com.goodsshop.controller.action.goods.MPaging;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
 import com.goodsshop.dto.ReviewVO;
-import com.goodsshop.properties.Env;
 import com.goodsshop.util.DB;
-import com.goodsshop.util.Paging;
-
 
 public class GoodsDAO {
-	
 	Connection con = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
-	
 	
 	public List<GoodsImageVO> getImageList(int gseq) {
 		List<GoodsImageVO> list = new ArrayList<GoodsImageVO>();
@@ -163,8 +157,8 @@ public class GoodsDAO {
 				gvo.setBestyn(rs.getInt("bestyn"));
 				gvo.setUseyn(rs.getInt("useyn"));
 				gvo.setIndate(rs.getDate("indate"));
-//				gvo.setCgseq(rs.getInt("cgseq"));
-//				gvo.setCategory(rs.getString("category"));
+				gvo.setCgseq(rs.getInt("cgseq"));
+				gvo.setCategory(rs.getString("category"));
 				gvo.setGiseq(rs.getInt("giseq"));
 				gvo.setRealname(rs.getString("realname"));
 			}

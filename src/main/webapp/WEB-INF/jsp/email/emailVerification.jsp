@@ -1,17 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    <%@ include file="/WEB-INF/jsp/header.jsp"%>
+<link rel="stylesheet" href="<c:url value='/resources/css/email.css'/>">
 <div id="popup">
 		<form method="post" name="formm" action="gshop.do?command=searchId">
 		   	<input type="hidden" name="name" value="<%= session.getAttribute("name") %>">
         	<input type="hidden" name="email" value="<%= session.getAttribute("email") %>">
 						<label>본인 인증 코드&nbsp;&nbsp;&nbsp;</label>
 						<input type="text" name="securityCodeInput" id="securityCodeInput">
-						<input type="submit" value="인증" onClick="return codeOK();"/>
+						<div><input type="submit" value="인증" onClick="return codeOK();"/></div>
 						<div style="font-size:80%; font-weight:bold">${message}</div>
 						<div id="timer"></div>
 		</form>	
 </div>
+<%@ include file="/WEB-INF/jsp/footer.jsp"%>
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
 <script>
     // 3분 타이머 함수

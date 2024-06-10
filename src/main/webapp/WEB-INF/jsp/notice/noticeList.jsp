@@ -25,7 +25,6 @@
                        <option value=30>30</option>
                        <option value=50>50</option>
                   </select>
-                  <input type="button" name="noticeInsert" onClick="return insertNotice();"/>
                </div>
                <div class="col d-flex justify-content-end">
                    <select class="form-select w-25 me-1" name="search" id="search">
@@ -50,11 +49,11 @@
                     </li>
                     <div id="notice-list">
                <c:forEach var="notice" items="${noticeList}">
-               <li class="notice-item">
+               <li class="notice-item" href="<c:url value='gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">
                   <div class="d-flex justify-content-center align-items-center">
                      <div>${notice.nseq}</div>
                          <div>${notice.adminId}</div>
-                         <div><a href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">${notice.subject}</a></div>
+                         <div>${notice.subject}</a></div>
                          <div>${notice.content}</div>
                          <div><fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" /></div>
                       </div>

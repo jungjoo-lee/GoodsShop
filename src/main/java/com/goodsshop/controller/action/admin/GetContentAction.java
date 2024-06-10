@@ -22,7 +22,7 @@ public class GetContentAction implements FatchAction {
 	public JSONObject execute(HttpServletRequest request, HttpServletResponse response, JSONObject json) {
 		json.remove("command");
 		JSONObject jsonResult = new JSONObject();
-		System.out.println(json.toString());
+		
 		switch ((String)json.get("table")) {
 			case "qna" -> jsonResult = returnQna(request, json);
 			case "review_view" -> jsonResult = returnReview(request, json);
