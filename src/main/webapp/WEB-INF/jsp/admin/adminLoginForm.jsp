@@ -36,7 +36,6 @@
 			                    		<input type="password" class="form-control" name="pwd">
 			                  		</div>
 			                	</div>
-			                	${message}
 			                	<div class="text-center">
 			                  		<button type="submit" class="btn btn-primary">로그인</button>
 			                  		<button type="reset" class="btn btn-secondary">리셋</button>

@@ -50,8 +50,7 @@ public class FindPwdAction implements Action {
 			 		request.setAttribute("message", "등록된 회원이 아닙니다");
 			 		 request.getRequestDispatcher("jsp/member/findPwdForm.jsp").forward(request, response);
 			 	}	else if (mvo.getEmail() == null || mvo.getUserid() == null || !mvo.getEmail().equals(email) || !mvo.getUserid().equals(userid)) {
-			 		System.out.println(userid);
-					System.out.println(email);
+
 		            request.setAttribute("message", "등록된 회원이 아닙니다");
 		            request.getRequestDispatcher("jsp/member/findPwdForm.jsp").forward(request, response);
 		        } else if (mvo.getEmail().equals(email) && mvo.getUserid().equals(userid)) {
@@ -70,9 +69,7 @@ public class FindPwdAction implements Action {
 	                session.setAttribute("verificationCodeExpiration", System.currentTimeMillis() + CODE_EXPIRATION_DURATION);
 	                session.setAttribute("userid", userid);
 	                session.setAttribute("email", email);
-	             
 
-		            System.out.println(verificationCode);
 
 		            // 이메일 인증 페이지로 이동
 		            request.getRequestDispatcher(url).forward(request, response);
