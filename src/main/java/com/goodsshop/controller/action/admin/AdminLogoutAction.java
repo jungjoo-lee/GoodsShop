@@ -3,22 +3,18 @@ package com.goodsshop.controller.action.admin;
 import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.dao.AdminDAO;
-import com.goodsshop.dao.NoticeDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
-public class AdminNoticeViewAction implements Action {
+public class AdminLogoutAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		NoticeDAO dao = NoticeDAO.getInstance();
-		
-		request.setAttribute("vo", dao.getNotice(Integer.parseInt(request.getParameter("nseq"))));
-		request.getRequestDispatcher("/WEB-INF/jsp/admin/noticeView.jsp").forward(request, response);
-
+		HttpSession session = request.getSession();
+		session.removeAttribute("loginAdmin");
+		response.sendRedirect("gshop.do?command=adminIndex");
 	}
-
 }

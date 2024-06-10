@@ -6,6 +6,7 @@ import com.goodsshop.controller.action.IndexAction;
 import com.goodsshop.controller.action.admin.AdminIndexAction;
 import com.goodsshop.controller.action.admin.AdminLoginAction;
 import com.goodsshop.controller.action.admin.AdminLoginFormAction;
+import com.goodsshop.controller.action.admin.AdminLogoutAction;
 import com.goodsshop.controller.action.admin.AdminNoticeListAction;
 import com.goodsshop.controller.action.admin.AdminNoticeViewAction;
 import com.goodsshop.controller.action.admin.AdminQnaListAction;
@@ -57,6 +58,7 @@ import com.goodsshop.controller.action.mypage.ViewOrderAction;
 import com.goodsshop.controller.action.notice.NoticeInsertAction;
 import com.goodsshop.controller.action.notice.NoticeListAction;
 import com.goodsshop.controller.action.notice.NoticeUpdateFormAction;
+import com.goodsshop.controller.action.notice.NoticeViewAction;
 import com.goodsshop.controller.action.notice.insertNoticeFormAction;
 import com.goodsshop.controller.action.qna.QnaListAction;
 import com.goodsshop.controller.action.qna.QnaViewAction;
@@ -91,7 +93,8 @@ public class ActionFactory {
 		else if (command.equals("noticeList")) ac = new NoticeListAction();
 		else if (command.equals("noticeUpdateForm")) ac = new NoticeUpdateFormAction();
 		else if (command.equals("insertNoticeForm")) ac = new insertNoticeFormAction();
-
+		else if (command.equals("noticeView")) ac = new NoticeViewAction();
+		
 		// qna
 		else if (command.equals("qnaList")) ac = new QnaListAction();
 		else if (command.equals("qnaView")) ac = new QnaViewAction();
@@ -103,6 +106,8 @@ public class ActionFactory {
 		// admin
 		else if (command.equals("adminLoginForm")) ac = new AdminLoginFormAction();
 		else if (command.equals("adminLogin")) ac = new AdminLoginAction();
+		else if (command.equals("adminLogout")) ac = new AdminLogoutAction();
+		
 		else if (command.equals("adminIndex")) ac = new AdminIndexAction();
 		else if (command.equals("adminQnaList")) ac = new AdminQnaListAction();
 		else if (command.equals("adminQnaView")) ac = new AdminQnaViewAction();

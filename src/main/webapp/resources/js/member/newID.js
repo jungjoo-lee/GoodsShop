@@ -38,6 +38,8 @@ function find_zip(){
 
 /* 회원가입 창 빈칸 채우기 */
 function go_save(){
+
+	
 	if( document.JoinPage.userid.value == ""){
 		alert("아이디가 입력되지 않았습니다!");
 		document.JoinPage.userid.focus();
@@ -49,7 +51,7 @@ function go_save(){
 		document.JoinPage.pwd.focus();
 	}else if( document.JoinPage.pwd.value != document.JoinPage.pwdCheck.value){
 		alert("비밀번호 확인이 일치하지 않습니다!");
-		document.JoinPage.pwd.focus();
+		document.JoinPage.pwdCheck.focus();
 	}else if( document.JoinPage.name.value == ""){
 		alert("이름을 입력해주세요.");
 		document.JoinPage.name.focus();
@@ -59,6 +61,11 @@ function go_save(){
 	}else if( document.JoinPage.email.value == ""){
 		alert("이메일을 입력해주세요.");
 		document.JoinPage.email.focus();
+	}else if(!emailVerified){
+		alert("이메일 인증을 진행해주세요!");
+		document.JoinPage.email.focus();
+	}else if( document.JoinPage.zip_code.value == ""){
+		alert("배송받으실 주소를 입력해주세요!");
 	}else if( document.JoinPage.yno[1].checked == true){
 		alert("약관 동의를 해주셔야 가입이 가능합니다!");
 	}else{
@@ -100,6 +107,7 @@ function verify(){
 
 }
 
+var emailVerified = false;
 function m_confirm(verificationCode){
 	var vemail = document.getElementById('vemail').value;		// id가 있어야 그걸 받아오겠지...?
 	if(verificationCode != vemail){
@@ -107,6 +115,7 @@ function m_confirm(verificationCode){
 		document.getElementById('vemail').focus();
 	}else{
 		alert("인증 성공! 회원가입을 계속 진행해주세요.")
+		opener.emailVerified = true;
 		self.close();
 	}
 }

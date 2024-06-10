@@ -22,7 +22,11 @@
 					<div class="product-info">
 						<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
 							<div class="product-image">
-								<img alt="${gvo.imageList[0].realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.imageList[0].realname}'/>">
+								<c:forEach var="image" items="${gvo.imageList}">
+					                <c:set var="key" value="${gvo.gseq}${gvo.gname}${image.realname}"/>
+					                <img alt="${image.realname}" src="data:image/jpeg;base64,${imageMap[key]}"/>
+					            </c:forEach>
+								<%-- <img alt="${gvo.imageList[0].realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.imageList[0].realname}'/>"> --%>
 							</div>
 							${gvo.gname} - ${gvo.sprice}
 						</a>
@@ -41,7 +45,11 @@
 							<div class="product-info">
 								<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
 									<div class="product-image">
-										<img alt="${gvo.imageList[0].realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.imageList[0].realname}'/>">
+										<c:forEach var="image" items="${gvo.imageList}">
+							                <c:set var="key" value="${gvo.gseq}${gvo.gname}${image.realname}"/>
+							                <img alt="${image.realname}" src="data:image/jpeg;base64,${imageMap[key]}"/>
+							            </c:forEach>
+										<%-- <img alt="${gvo.imageList[0].realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.imageList[0].realname}'/>"> --%>
 									</div>
 									${gvo.gname} - ${gvo.sprice}
 								</a>
@@ -55,76 +63,6 @@
 				<a href="gshop.do?command=viewCategory&cgseq=0">전체보기</a>
 			</div>
 			<br><br><br><br>
-		</div>
-		
-
-		<ul class="best-list">
-			<c:forEach items="${bestlist}" var="gvo" varStatus="status">            
-				<li class="item">
-					<div class="image-container" data-gseq="${gvo.gseq}">
-				    	<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-				            <c:forEach var="image" items="${gvo.imageList}">
-				                <c:set var="key" value="${gvo.gseq}${gvo.gname}${image.realname}"/>
-				                <img alt="${image.realname}" src="data:image/jpeg;base64,${imageMap[key]}"/>
-				            </c:forEach>
-				    	</a>
-				    </div>
-				    <div class="item-info">
-						<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-							<div>
-								<c:choose>
-				              		<c:when test="${fn:length(gvo.gname) gt 15}">
-				                 		<c:out value="${fn:substring(gvo.gname, 0, 15)}">...</c:out>
-				              		</c:when>
-				              		<c:otherwise>
-				                 		<c:out value="${gvo.gname}"/>
-				              		</c:otherwise>
-				        		</c:choose>
-				        	</div>
-							<div><fmt:formatNumber value="${gvo.sprice}" type="currency" currencySymbol="￦" /></div>
-					    </a>
-					</div>
-				</li>
-			</c:forEach>
-		</ul>
-
-		<div id="best">
-			<div>
-				<h3>BEST ITEMS</h3>
-			</div>
-			<div id="bestItems">
-				<div id="best20">
-					<c:forEach items="${bestlist}" var="gvo" varStatus="status">
-						<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-							<c:forEach var="image" items="${gvo.imageList}">
-								<c:set var="key" value="${gvo.gseq}${gvo.gname}${image.realname}"/>
-		           				<img alt="${image.realname}" src="data:image/jpeg;base64,${imageMap[key]}"/>
-							</c:forEach>
-						</a>
-						<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">${gvo.gname} - ${gvo.sprice}</a>
-					</c:forEach>
-				</div>
-			</div>
-		</div>
-		<div id="new">
-			<div>
-				<h3>신상품</h3>
-			</div>
-			<c:forEach items="${newlist}" var="gvo" varStatus="status">
-				<div>
-					<div>
-						<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-							<c:forEach var="image" items="${gvo.imageList}">
-								<c:set var="key" value="${gvo.gseq}${gvo.gname}${image.realname}"/>
-		         						<img alt="${image.realname}" src="data:image/jpeg;base64,${imageMap[key]}"/>
-							</c:forEach>
-						</a>
-						<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-							${gvo.gname} - ${gvo.sprice}
-						</a>
-					</div>
-				</div>
-			</c:forEach>
 		</div>
 		<script type="text/javascript" src='<c:url value = "/resources/js/goods/main.js"/>'></script>
 	

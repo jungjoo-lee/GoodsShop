@@ -20,7 +20,9 @@ public class CartDAO {
 	public List<CartVO> getWishList(String userid) {
 		List<CartVO> list = new ArrayList<CartVO>();
 		con = DB.getConnection();
-		String sql = "select*from cart_view where userid = ?";
+		String sql = "select*from cart_view c1 inner join (select gseq, min(giseq) as min_giseq from cart_view group by gseq) c2 "
+				+ " on c1.gseq = c2.gseq and c1.giseq = c2.min_giseq "
+				+ " where userid = ? order by c1.cseq desc";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
