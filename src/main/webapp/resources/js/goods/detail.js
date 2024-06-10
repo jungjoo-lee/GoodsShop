@@ -125,6 +125,35 @@ function delete_Goods(){
 delete_Goods();
 
 // review
+let param = {
+    table: "review_view",
+};
+let paging;
+let pages = document.querySelectorAll('.page-link');
+
+document.addEventListener('DOMContentLoaded', () => {
+    getPageInfo();
+});
+
+function getPageInfo() {
+	param['command'] = "pageInfo";
+	
+	fetch('/GoodsShop/gshop.do?command=asyn', {
+		method : 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		},
+			body: JSON.stringify(param)
+		})
+		.then(response => response.json())
+		.then(jsonResult => {
+			if (jsonResult.status == true) {
+				paging = jsonResult.paging;
+			}
+	});
+	delete param['command'];
+}
+
 function currentTime() {
 	let now = new Date();
 	let formattedTime = now.getFullYear() + '-' +
@@ -133,7 +162,101 @@ function currentTime() {
                     String(now.getHours()).padStart(2, '0') + ':' +
                     String(now.getMinutes()).padStart(2, '0') + ':' +
                     String(now.getSeconds()).padStart(2, '0');
+                    
 	return formattedTime;
+}
+
+function formatDate(dateString) {
+    let date = new Date(dateString);
+    let year = date.getFullYear();
+    let month = String(date.getMonth() + 1).padStart(2, '0');
+    let day = String(date.getDate()).padStart(2, '0');
+    let hour = String(date.getHours()).padStart(2, '0');
+    let minute = String(date.getMinutes()).padStart(2, '0');
+    let second = String(date.getSeconds()).padStart(2, '0');
+    
+    return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
+}
+
+function liFactory(li, vo) {
+	li.classList.add("list-item");
+	
+	let header = document.createElement("div");
+	header.classList.add("item-header");
+	let numdiv = document.createElement("div");
+	numdiv.classList.add("num");
+	let subjectdiv = document.createElement("div");
+	subjectdiv.classList.add("subject");
+	let authordiv = document.createElement("div");
+	authordiv.classList.add("author");
+	let timediv = document.createElement("div");
+	timediv.classList.add("time");
+	let buttonsdiv = document.createElement("div");
+	buttonsdiv.classList.add("buttons");
+	let contentdiv = document.createElement("div");
+	contentdiv.classList.add("item-content");
+	
+	let numspan = document.createElement("span");
+	numspan.classList.add("item-num");
+	numspan.textContent = 'no.' + vo.rseq;
+	numdiv.appendChild(numspan);
+	
+	let subjectspan = document.createElement("span");
+	subjectspan.classList.add("item-subject");
+	subjectspan.textContent = vo.subject;
+	subjectdiv.appendChild(subjectspan);
+	
+	let authorspan = document.createElement("span");
+	let img = document.createElement("img");
+	img.src = '/GoodsShop/resources/image/badge/' + vo.grade + '.png';
+	authorspan.classList.add("item-author");
+	let text = document.createTextNode(vo.userid);
+	authorspan.appendChild(img);
+	authorspan.appendChild(text);
+	authordiv.appendChild(authorspan);
+	
+	let timespan = document.createElement("span");
+	timespan.classList.add("item-time");
+	timespan.textContent = currentTime();
+	timediv.appendChild(timespan);
+	
+	let editButton = document.createElement("button");
+	let iedit = document.createElement("i");
+	iedit.classList.add("bi", "bi-pen-fill");
+	editButton.appendChild(iedit);
+	editButton.classList.add("btn", "btn-primary", "btn-sm", "reviewUpdateBtn");
+	editButton.addEventListener("click", (e) => {
+	    reviewUpdate(e);
+	    asynGetContent();
+	});
+	
+	let deleteButton = document.createElement("button");
+	let idelete= document.createElement("i");
+	idelete.classList.add("bi", "bi-x-square-fill");
+	deleteButton.appendChild(idelete);
+	deleteButton.classList.add("btn", "btn-danger", "btn-sm", "reviewDeleteBtn");
+	deleteButton.addEventListener("click", (e) => {
+	    reviewDelete(e)
+	    reviewList.removeChild(li);
+	});
+	buttonsdiv.appendChild(editButton);
+	buttonsdiv.appendChild(deleteButton);
+	
+	header.appendChild(numdiv);
+	header.appendChild(subjectdiv);
+	header.appendChild(authordiv);
+	header.appendChild(timediv);
+	header.appendChild(buttonsdiv);
+	
+	let contentspan = document.createElement("span");
+	contentspan.classList.add("item-content-text");
+	contentspan.textContent = vo.content;
+	contentdiv.appendChild(contentspan);
+	
+	li.appendChild(header);
+	li.appendChild(contentdiv);
+	
+	return li;
 }
 
 let reviewList = document.querySelector('#reviewList');
@@ -158,27 +281,7 @@ reviewWriteBtn.addEventListener("click", () => {
 					let vo = jsonResult.vo;
 					let li = document.createElement("li");
 					
-					li.textContent = vo.rseq + ', ' + vo.userid + ', ' + vo.grade + ', ' + vo.subject + ', ' + vo.content + ', ' + currentTime();
-					
-					let editButton = document.createElement("button");
-					editButton.textContent = "수정";
-					editButton.classList.add("btn", "btn-primary", "btn-sm");
-					editButton.addEventListener("click", () => {
-						// 작성
-					    reviewUpdate();
-					});
-					
-					let deleteButton = document.createElement("button");
-					deleteButton.textContent = "삭제";
-					deleteButton.classList.add("btn", "btn-danger", "btn-sm");
-					deleteButton.addEventListener("click", (e) => {
-					    // 작성
-					    reviewDelete(e)
-					    reviewList.removeChild(li);
-					});
-					
-					li.appendChild(editButton);
-					li.appendChild(deleteButton);
+					li = liFactory(li, vo);
 					
 					reviewList.prepend(li);
 					document.querySelector('#subject').value = '';
@@ -209,18 +312,13 @@ function getRseq(e) {
 }
 
 let reviewUpdateBtn = document.querySelectorAll('.reviewUpdateBtn');
-if (reviewUpdateBtn != null) {
-	reviewUpdateBtn.forEach(btn => {
-		btn.addEventListener("click", (e) => {
-			reviewUpdate(e);
-		});
-	});
-}
+let reviewDeleteBtn = document.querySelectorAll('.reviewDeleteBtn');
 
 function reviewUpdate(e) {
 	let listItem = e.target.closest('.list-item');
     let subjectElement = listItem.querySelector('.item-subject');
     let contentElement = listItem.querySelector('.item-content-text');
+    let timeElement = listItem.querySelector('.item-time');
     let titleText = subjectElement.textContent;
     let contentText = contentElement.textContent;
 	
@@ -235,31 +333,66 @@ function reviewUpdate(e) {
     saveBtn.textContent = '저장';
     saveBtn.classList.add('btn', 'btn-success', 'btn-sm', 'save-btn');
     saveBtn.addEventListener('click', () => {
-        let newTitle = subjectElement.querySelector('input').value;
-        let newContent = contentElement.querySelector('textarea').value;
+        let editSubject = subjectElement.querySelector('input').value;
+        let editContent = contentElement.querySelector('textarea').value;
 
         if(confirm("리뷰 내용을 수정하시겠습니까?")) {
-			alert("수정되었습니다.");
+			timeElement.innerHTML = currentTime();
+			let rseq = getRseq(e);
+
+			fetch('/GoodsShop/gshop.do?command=asyn', {
+				method : 'POST',
+				headers: {
+					'Content-Type': 'application/json;charset=utf-8'
+				},
+					body: JSON.stringify({
+						"command" : "reviewUpdate",
+						"rseq" : rseq,
+						"subject" : editSubject,
+						"content" : editContent,
+					})
+				})
+				.then(response => response.json())
+				.then(jsonResult => {				
+					if (jsonResult.status == true) {
+						alert(jsonResult.message);
+					} else {
+						alert(jsonResult.message);
+					}
+			});
 		} else {
 			return;
 		}
 
-        subjectElement.textContent = newTitle;
-        contentElement.textContent = newContent;
+        subjectElement.textContent = editSubject;
+        contentElement.textContent = editContent;
         saveBtn.remove();
     });
 
     listItem.querySelector('.buttons').appendChild(saveBtn);
 }
 
-let reviewDeleteBtn = document.querySelectorAll('.reviewDeleteBtn');
-if (reviewDeleteBtn != null) {
-	reviewDeleteBtn.forEach(btn => {
-		btn.addEventListener("click", (e) => {
-			reviewDelete(e);
+function addEvent() {
+	reviewUpdateBtn = document.querySelectorAll('.reviewUpdateBtn');
+	if (reviewUpdateBtn != null) {
+		reviewUpdateBtn.forEach(btn => {
+			btn.addEventListener("click", (e) => {
+				reviewUpdate(e);
+			});
 		});
-	});
+	}
+	
+	reviewDeleteBtn = document.querySelectorAll('.reviewDeleteBtn');
+	if (reviewDeleteBtn != null) {
+		reviewDeleteBtn.forEach(btn => {
+			btn.addEventListener("click", (e) => {
+				reviewDelete(e);
+			});
+		});
+	}
 }
+
+addEvent();
 
 function reviewDelete(e) {
 	if(confirm("정말로 삭제하시겠습니까?")) {
@@ -278,6 +411,7 @@ function reviewDelete(e) {
 			.then(response => response.json())
 			.then(jsonResult => {				
 				if (jsonResult.status == true) {
+					asynGetContent();
 					alert(jsonResult.message);
 				} else {
 					alert(jsonResult.message);
@@ -286,4 +420,109 @@ function reviewDelete(e) {
 	} else {
 		return;
 	}
+}
+
+function addPagingEvent() {
+	pages = document.querySelectorAll('.page-link');
+	
+	pages.forEach(page => {
+		page.addEventListener("click", (e) => {
+			if (e.target.getAttribute('data-value') == "prev") {
+				paging.currentPage = parseInt(paging.startPage - 10);
+			} else if (e.target.getAttribute('data-value') == "next") {
+				paging.currentPage = parseInt(paging.startPage + 10);
+			} else {
+				paging.currentPage = parseInt(e.target.getAttribute('data-value'));
+			}
+			asynGetContent();
+		});
+	});
+}
+addPagingEvent();
+
+function asynGetContent() {
+	param.command = "getContent";
+	param.amount = 10;
+	param.page = paging.currentPage;
+	param.gseq = gseq.value;
+
+	fetch('/GoodsShop/gshop.do?command=asyn', {
+		method : 'POST',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8'
+		},
+			body: JSON.stringify(param)
+		})
+		.then(response => response.json())
+		.then(jsonResult => {
+			if (jsonResult.status == true) {
+				let reviewList = jsonResult.content;
+				let i = 0;
+				let content = '';
+				
+				reviewList.forEach(() => {
+					content += '<li class="list-item">';
+					content += '<div class="item-header">';
+					content += '<div class="num"><span class="item-num">no.' + reviewList[i].rseq + '</span></div>';
+					content += '<div class="subject"><span class="item-subject">' + reviewList[i].subject + '</span></div>';
+					content += '<div class="author"><span class="item-author"><img src="/GoodsShop/resources/image/badge/' + reviewList[i].grade + '.png">' + reviewList[i].userid + '</span></div>';
+					content += '<div class="time"><span class="item-time">' + formatDate(reviewList[i].indate) + '</span></div>';
+					content += '<div class="buttons">';
+					if (reviewList[i].userid == userid.value) {
+						content += '<button type="button" class="btn btn-primary btn-sm reviewUpdateBtn"><i class="bi bi-pen-fill"></i></button>';
+						content += '<button type="button" class="btn btn-danger btn-sm reviewDeleteBtn"><i class="bi bi-x-square-fill"></i></button>';
+					}
+					content += '</div>';
+					content += '</div>';
+					content += '<div class="item-content"><span class="item-content-text">'+ reviewList[i++].content + '</span></div>';
+					content += '</li>';
+				})
+				document.querySelector("#reviewList").innerHTML = content;
+				addEvent();
+				
+				paging = jsonResult.paging;
+				let pagination = '';
+				
+				if (paging.prev) {
+					pagination += '<li class="page-item">';
+					pagination += '<a class="page-link" data-value="prev">Prev</a>';
+					pagination += '</li>';
+				} else {
+					pagination += '<li class="page-item disabled">';
+					pagination += '<a class="page-link">Prev</a>';
+					pagination += '</li>';
+				}
+				
+				for(let j = paging.startPage; j <= paging.endPage; j++) {
+					if(paging.currentPage == j) {
+						pagination += '<li class="page-item active">';
+						pagination += '<a class="page-link" data-value="' + j + '">';
+						pagination += j;
+						pagination += '</a>';
+						pagination += '</li>';
+					} else {
+						pagination += '<li class="page-item">';
+						pagination += '<a class="page-link" data-value="' + j + '">';
+						pagination += j;
+						pagination += '</a>';
+						pagination += '</li>';
+					}
+				}
+				
+				if (paging.next) {
+					pagination += '<li class="page-item">';
+					pagination += '<a class="page-link" data-value="next">Next</a>';
+					pagination += '</li>';
+				} else {
+					pagination += '<li class="page-item disabled">';
+					pagination += '<a class="page-link">Next</a>';
+					pagination += '</li>';
+				}
+				document.querySelector("#pagination").innerHTML = pagination;
+				
+				addPagingEvent();
+			} else {
+				alert(jsonResult.message);
+			}
+	});
 }
