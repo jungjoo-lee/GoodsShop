@@ -50,8 +50,6 @@ public class IndexAction implements Action {
 			
 			List<GoodsImageVO> bestImageList = gdao1.getImageList(vo.getGseq());
 			vo.setImageList(bestImageList);
-			String thum = gdao1.getThumbnail(vo.getGseq());
-			vo.setThum(thum);
 			
 			if (loginUser != null) {
 				int oldPrice = vo.getSprice();		
@@ -67,8 +65,6 @@ public class IndexAction implements Action {
 			GoodsDAO gdao1 = new GoodsDAO();
 			List<GoodsImageVO> newImageList = gdao1.getImageList(vo.getGseq());
 			vo.setImageList(newImageList);
-			String thum = gdao1.getThumbnail(vo.getGseq());
-			vo.setThum(thum);
 			
 			if (loginUser != null) {
 				int oldPrice = vo.getSprice();		

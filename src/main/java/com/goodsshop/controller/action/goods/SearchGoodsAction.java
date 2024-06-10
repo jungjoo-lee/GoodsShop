@@ -15,12 +15,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class ViewCategoryAction implements Action {
+public class SearchGoodsAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String cgseq = request.getParameter("cgseq");
+		String key = request.getParameter("key");
 		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
 		
@@ -40,26 +40,19 @@ public class ViewCategoryAction implements Action {
 		paging.setDisplayRow(20);
 		
 		GoodsDAO gdao = new GoodsDAO();
-		int count = gdao.getAllCount("cgseq", cgseq);
+		int count = gdao.getAllCount("gseq", "");
 		paging.setTotalCount(count);
 		
-		List<GoodsVO> categoryList = new ArrayList<GoodsVO>();
-		
-		if(cgseq.equals("0")) {
-			//best 50
-			categoryList = gdao.getBestList();					
-		} else {
-			//나머지 카테고리들
-			categoryList = gdao.getCategoryList(cgseq, paging);			
-		}
+		List<GoodsVO> searchList = new ArrayList<GoodsVO>();
+		searchList = gdao.getAllGoods(key, paging);
 				
 
 		
-		for (GoodsVO vo : categoryList) {
+		for (GoodsVO vo : searchList) {
 				GoodsDAO gdao1 = new GoodsDAO();
 
-				List<GoodsImageVO> categoryImageList = gdao1.getImageList(vo.getGseq());
-				vo.setImageList(categoryImageList);
+				List<GoodsImageVO> searchImageList = gdao1.getImageList(vo.getGseq());
+				vo.setImageList(searchImageList);
 
 				// 사용자별 가격표시
 				if (loginUser != null) {
@@ -73,11 +66,10 @@ public class ViewCategoryAction implements Action {
 		}
 
 		
-		request.setAttribute("categoryList", categoryList);
-		request.setAttribute("cgseq", cgseq);
+		request.setAttribute("categoryList", searchList);
 		request.setAttribute("paging", paging);			
-		request.getRequestDispatcher("WEB-INF/jsp/goods/categoryView.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("WEB-INF/jsp/goods/categoryView.jsp").forward(request, response);		
+
 	}
 
 }

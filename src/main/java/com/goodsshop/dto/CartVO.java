@@ -16,4 +16,5 @@ public class CartVO {
 	private int sprice;
 	private int totalprice;	
 	private String thum;
+	private String realname;
 }

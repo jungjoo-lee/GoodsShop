@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dao.OrderDAO;
 import com.goodsshop.dto.OrderVO;
 
@@ -20,11 +19,6 @@ public class OrderDetailViewAction implements Action {
 		
 		OrderDAO odao = new OrderDAO();
 		List<OrderVO> orderDetailList = odao.selectOrderDetail(oseq);
-		
-		for (OrderVO ovo : orderDetailList) {
-			GoodsDAO gdao = new GoodsDAO();
-			ovo.setThum(gdao.getThumbnail(ovo.getGseq()));
-		}
 		
 		request.setAttribute("orderDetailList", orderDetailList);	
 		request.getRequestDispatcher("jsp/mypage/orderDetailView.jsp").forward(request, response);

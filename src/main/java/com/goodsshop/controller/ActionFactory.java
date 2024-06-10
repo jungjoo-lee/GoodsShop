@@ -21,6 +21,7 @@ import com.goodsshop.controller.action.admin.SwitchYNAction;
 import com.goodsshop.controller.action.admin.goods.AdminBestGoodsAction;
 import com.goodsshop.controller.action.admin.goods.AdminCategoryViewAction;
 import com.goodsshop.controller.action.admin.goods.AdminDeleteGoodsAction;
+import com.goodsshop.controller.action.admin.goods.AdminGoodsSearchAction;
 import com.goodsshop.controller.action.admin.goods.AdminGoodsViewAction;
 import com.goodsshop.controller.action.admin.goods.AdminInsertGoodsAction;
 import com.goodsshop.controller.action.admin.goods.AdminInsertGoodsFormAction;
@@ -29,6 +30,7 @@ import com.goodsshop.controller.action.admin.goods.AdminUpdateGoodsFormAction;
 import com.goodsshop.controller.action.admin.goods.AdminUseYNGoodsAction;
 import com.goodsshop.controller.action.admin.order.AdminOrderDetailViewAction;
 import com.goodsshop.controller.action.admin.order.AdminOrderListAction;
+import com.goodsshop.controller.action.admin.order.AdminOrderSearchAction;
 import com.goodsshop.controller.action.admin.order.AdminUpdateOrderStatAction;
 import com.goodsshop.controller.action.cart.DeleteCartAction;
 import com.goodsshop.controller.action.cart.DeleteWishAction;
@@ -43,6 +45,7 @@ import com.goodsshop.controller.action.cart.ViewWishAction;
 import com.goodsshop.controller.action.cart.WishToCartAction;
 import com.goodsshop.controller.action.email.FindIdOKAction;
 import com.goodsshop.controller.action.goods.GoodsDetailViewAction;
+import com.goodsshop.controller.action.goods.SearchGoodsAction;
 import com.goodsshop.controller.action.goods.ViewCategoryAction;
 import com.goodsshop.controller.action.member.GetEmailAction;
 import com.goodsshop.controller.action.member.IDCheckAction;
@@ -165,6 +168,7 @@ public class ActionFactory {
 		else if(command.equals("orderDetailView")) ac = new OrderDetailViewAction();
 		
 		else if(command.equals("viewCategory")) ac = new ViewCategoryAction();
+		else if(command.equals("searchGoods")) ac = new SearchGoodsAction();
 		
 		
 		//admin-goods		
@@ -183,6 +187,7 @@ public class ActionFactory {
 		else if(command.equals("adminOrderView")) ac = new AdminOrderListAction();
 		else if(command.equals("adminOrderDetailView")) ac = new AdminOrderDetailViewAction();
 		else if(command.equals("adminUpdateOrderStatus")) ac = new AdminUpdateOrderStatAction();
+		else if(command.equals("adminSearchOrder")) ac = new AdminOrderSearchAction();
 
 		
 		

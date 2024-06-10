@@ -1,6 +1,7 @@
 package com.goodsshop.controller.action.admin.order;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.goodsshop.controller.action.Action;
@@ -14,23 +15,16 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-public class AdminOrderListAction implements Action {
+public class AdminOrderSearchAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		String searchBy = request.getParameter("searchBy");
+		String key = request.getParameter("searchKey");
+		OrderDAO odao = new OrderDAO();
 		
-		
-		String key = "";
-		
-		if (request.getParameter("key") != null) {
-			key = request.getParameter("key");
-			session.setAttribute("key", key);
-		} else if (session.getAttribute("key") != null) {
-			key = (String) session.getAttribute("key");
-		} else {
-			session.removeAttribute("key");
-		}
+		List<OrderVO> orderList = new ArrayList<OrderVO>();
 		
 		int page = 1;
 		
@@ -46,18 +40,38 @@ public class AdminOrderListAction implements Action {
 		MPaging paging = new MPaging();
 		paging.setPage(page);
 		
-		OrderDAO odao = new OrderDAO();
-		int count = odao.getAllCount("", "oseq");
-		paging.setTotalCount(count);
-		
-		List<OrderVO> orderList = odao.getAllOrderList("", paging);
-		
-		
-		request.setAttribute("orderList", orderList);
-		request.setAttribute("url", "gshop.do?command=adminOrderView");		
-		request.setAttribute("paging", paging);		
-		request.getRequestDispatcher("WEB-INF/jsp/admin/adminOrderView.jsp").forward(request, response);
 
+		int count = 0;
+		
+		String url = "gshop.do?command=adminSearchOrder";
+		
+		 if (searchBy.equals("gname")) {
+			
+			count = odao.getAllCount(key, "gname");
+			paging.setTotalCount(count);
+			orderList = odao.getAllOrderList(key, paging);
+			
+		} else if (searchBy.equals("userid")) {
+			
+			count = odao.getAllCount(key, "userid");
+			paging.setTotalCount(count);
+			orderList = odao.getAllOrderListById(key, paging);		
+			
+		} else if (searchBy.equals("name")) {
+			
+			count = odao.getAllCount(key, "name");
+			paging.setTotalCount(count);			
+			orderList = odao.getAllOrderListByName(key, paging);
+			
+		}
+		
+
+		request.setAttribute("orderList", orderList);
+		request.setAttribute("searchBy", searchBy);
+		request.setAttribute("key", key);
+		request.setAttribute("url", url);
+		request.setAttribute("paging", paging);		
+		request.getRequestDispatcher("WEB-INF/jsp/admin/adminOrderView.jsp").forward(request, response);		
 	}
 
 }

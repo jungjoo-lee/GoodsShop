@@ -3,39 +3,63 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="<c:url value='/resources/css/listView.css'/>">
+</head>
+<body>
+<div class="view-container">
+	<div class="container-title"> 장바구니 보기 </div>
 	<form name="cartlistform" method="post">
-		<label> 전체 선택/해제</label>
-		<input type="checkbox" id="checkAll">
+
+		<div class="titlerow">
+            <div class="titlefield">상품</div>
+            <div class="titlefield">상품명</div>
+            <div class="titlefield">수량</div>
+            <div class="titlefield">금액</div>
+            <div class="titlefield">
+                <input type="checkbox" id="checkAll">
+            </div>
+        </div>
+
 		<c:choose>
 			<c:when test="${empty cartlist}">
-				<h1>텅~</h1>
+				<div>
+					상품이 존재하지 않습니다.
+				</div>
 			</c:when>
-			<c:otherwise>
-				<c:forEach items="${cartlist}" var="cvo">
-					<div>
-						<div>
-							<img
-								src='<c:url value="/resources/image/goods/${cvo.thum}.png"/>'>
-						</div>
-						<div>상품명 : ${cvo.goodsname}</div>
-						<div>수량 : ${cvo.quantity} 개</div>
-						<div>금액 : ${cvo.totalprice} 원</div>
-						<div>
-							<input type="checkbox" id="checkboxes" name="gseq" value="${cvo.gseq}" />
-							<input type="hidden" name="quantity" value="${cvo.quantity}">
-						</div>
-						<hr>
-					</div>
-				</c:forEach>
-			</c:otherwise>
+            <c:otherwise>
+                <ul class="listbox">
+                    <c:forEach items="${cartlist}" var="cvo">
+                        <li class="list-row">
+                            <div class="list-imgbox">
+                                <img src="<c:url value='/gshop.do?command=imageWrite&folder=${cvo.gseq}${cvo.goodsname}&realName=${cvo.realname}'/>">
+                            </div>
+                            <div class="listfield">${cvo.goodsname}</div>
+                            <div class="listfield">${cvo.quantity} 개</div>
+                            <div class="listfield">${cvo.totalprice} 원</div>
+                            <div class="listfield">
+                                <input type="checkbox" id="checkboxes" name="gseq" value="${cvo.gseq}" />
+                                <input type="hidden" name="quantity" value="${cvo.quantity}">
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
+            </c:otherwise>
 		</c:choose>
 
-		<div>
-			<input id="go_main" type="button" value="메인으로"> 
-			<input id="cart_delete" type="button" value="선택상품 삭제">
-			<input id="cart_order" type="button" value="선택상품 주문">
-		</div>
+        <div class="input-button">
+            <input id="go_main" type="button" value="메인으로"> 
+            <input id="cart_delete" type="button" value="선택상품 삭제">
+            <input id="cart_order" type="button" value="선택상품 주문">
+        </div>
 	</form>
+</div>	
+	
+	
 <script type="text/javascript" src='<c:url value="/resources/js/goods/cartlist.js"/>'></script>
+</body>
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>
+</html>
