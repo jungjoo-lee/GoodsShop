@@ -12,7 +12,7 @@
 			<label>이메일</label><input name="email" type="text" id="email"/>
 	</div>
 		<input type="submit" value="이메일 인증 받기" onClick="return findId();"/>
-		<div style="font-size:80%; font-weight:bold">${message}</div>
+		<div style="font-size:80%; font-weight:bold; margin-left:20px;">${message}</div>
 </form>
 </article>
 <script src="<c:url value='/resources/js/member/userLogin.js'/>"></script>
