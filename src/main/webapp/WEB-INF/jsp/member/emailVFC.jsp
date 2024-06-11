@@ -13,7 +13,8 @@
 <div id="popup">
 		<h2>이메일 인증번호 입력</h2>
 		2분 이내에 이메일로 전송된 인증번호를 입력해주세요!!<br/>
-		<input type="text" id="vemail" name="vemail" size="16"  placeholder="6자리 코드 입력">
+		<input type="text" id="vemail" name="vemail" size="16"  placeholder="6자리 코드 입력"
+			style="height: 25px; margin: 10px auto;">
 		<input type="button" value="인증하기"  id="m_confirm" onClick="m_confirm(${verificationCode})">
 		<div id="timer" style="margin-left: 10px; font-weight: bold"></div>		
 </div>
@@ -35,9 +36,8 @@ function startTimer(count, display){
 				clearInterval(intervalid);
 				document.getElementById('vemail'),disabled = true;
 				document.querySelector('input[type="button"]').disabled = true;
-				document.querySelector('input[type="button"]').value = 
-					"세션 만료";
-				style.display=none;
+				document.querySelector('input[type="button"]').value = "세션 만료";
+            	display.style.display = 'none'; 
 			}
 		},1000);
 	}
