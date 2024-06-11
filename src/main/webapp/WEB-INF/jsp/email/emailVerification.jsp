@@ -9,7 +9,7 @@
 						<label>본인 인증 코드&nbsp;&nbsp;&nbsp;</label>
 						<input type="text" name="securityCodeInput" id="securityCodeInput">
 						<div><input type="submit" value="인증" onClick="return codeOK();"/></div>
-						<div style="font-size:80%; font-weight:bold">${message}</div>
+						<div id="message" style="font-size:80%; font-weight:bold">${message}</div>
 						<div id="timer"></div>
 		</form>	
 </div>
@@ -34,6 +34,7 @@
                 document.getElementById('securityCodeInput').disabled = true;
                 document.querySelector('input[type="submit"]').disabled = true;
                 document.querySelector('input[type="submit"]').value = "인증시간 만료";
+                document.querySelector('#message').style.display = 'none';
             }
         }, 1000);
     }
