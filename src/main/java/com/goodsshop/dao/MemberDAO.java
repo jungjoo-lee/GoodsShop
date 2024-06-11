@@ -11,10 +11,10 @@ import com.goodsshop.dto.AddressVO;
 import com.goodsshop.dto.MemberVO;
 import com.goodsshop.util.DB;
 
-public class MemberDao {
-	private MemberDao() {}
-	private static MemberDao itc = new MemberDao();
-	public static MemberDao getInstance()	{return itc;}
+public class MemberDAO {
+	private MemberDAO() {}
+	private static MemberDAO itc = new MemberDAO();
+	public static MemberDAO getInstance()	{return itc;}
 	
 	Connection con = null;
 	PreparedStatement pstmt = null;

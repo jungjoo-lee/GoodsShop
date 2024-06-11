@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.dao.MemberDao;
+import com.goodsshop.dao.MemberDAO;
 import com.goodsshop.dto.MemberVO;
 
 import jakarta.servlet.ServletException;
@@ -22,7 +22,7 @@ public class SearchPwdAction implements Action {
         
         
         if (userCode.equals(randomCode)) { 
-        MemberDao mdao = MemberDao.getInstance();
+        MemberDAO mdao = MemberDAO.getInstance();
         List<MemberVO> member1 = mdao.checkMemberPwd(userid, email);
 
         if (!member1.isEmpty()) {

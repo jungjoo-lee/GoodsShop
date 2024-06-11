@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
 import com.goodsshop.dto.MemberVO;
-import com.goodsshop.dao.MemberDao;
+import com.goodsshop.dao.MemberDAO;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class DeleteMemberAction implements Action {
 		if( mvo==null ) {
 			response.sendRedirect("gshop.do?command=loginForm");
 		}else {
-			MemberDao mdao = MemberDao.getInstance();
+			MemberDAO mdao = MemberDAO.getInstance();
 			mdao.deleteMember(mvo.getUserid());
 			
 			session.removeAttribute("loginUser");

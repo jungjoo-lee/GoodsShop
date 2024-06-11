@@ -3,7 +3,7 @@ package com.goodsshop.controller.action.member;
 import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.dao.MemberDao;
+import com.goodsshop.dao.MemberDAO;
 import com.goodsshop.dto.MemberVO;
 
 import jakarta.servlet.ServletException;
@@ -15,7 +15,7 @@ public class IDCheckAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userid = request.getParameter("userid");
-		MemberDao mdao = MemberDao.getInstance();
+		MemberDAO mdao = MemberDAO.getInstance();
 		MemberVO mvo = mdao.getMember(userid);
 		
 		if( mvo == null ) request.setAttribute("result", -1);		// 사용 가능

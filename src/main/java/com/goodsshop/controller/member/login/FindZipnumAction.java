@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.dao.MemberDao;
+import com.goodsshop.dao.MemberDAO;
 import com.goodsshop.dto.AddressVO;
 
 import jakarta.servlet.ServletException;
@@ -18,7 +18,7 @@ public class FindZipnumAction implements Action {
 		String dong = request.getParameter("dong");
 		if(dong != null) {
 			if(dong.equals("") == false) {
-				MemberDao mdao = MemberDao.getInstance();
+				MemberDAO mdao = MemberDAO.getInstance();
 				ArrayList<AddressVO> list = mdao.selectAddressByDong(dong);
 				request.setAttribute("addressList", list);
 			}

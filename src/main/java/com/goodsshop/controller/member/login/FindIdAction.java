@@ -14,7 +14,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.dao.MemberDao;
+import com.goodsshop.dao.MemberDAO;
 import com.goodsshop.dto.MemberVO;
 import com.goodsshop.properties.Env;
 
@@ -35,7 +35,7 @@ public class FindIdAction implements Action {
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		// dao 불러오기
-		MemberDao mdao = MemberDao.getInstance();
+		MemberDAO mdao = MemberDAO.getInstance();
 		MemberVO mvo = mdao.checkMember(name, email);
 		String url="/WEB-INF/jsp/email/emailVerification.jsp";
 		 try {

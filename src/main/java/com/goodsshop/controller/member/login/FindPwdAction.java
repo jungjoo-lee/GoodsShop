@@ -22,7 +22,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.dao.MemberDao;
+import com.goodsshop.dao.MemberDAO;
 import com.goodsshop.dto.MemberVO;
 import com.goodsshop.properties.Env;
 
@@ -42,7 +42,7 @@ public class FindPwdAction implements Action {
 		String email = request.getParameter("email");
 		
 		// dao 불러오기
-		MemberDao mdao = MemberDao.getInstance();
+		MemberDAO mdao = MemberDAO.getInstance();
 		MemberVO mvo = mdao.checkMembers(userid, email);
 		String url="/WEB-INF/jsp/email/PwdEmail.jsp";
 		 try {

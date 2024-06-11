@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.goodsshop.controller.action.Action;
-import com.goodsshop.dao.MemberDao;
+import com.goodsshop.dao.MemberDAO;
 import com.goodsshop.dto.MemberVO;
 
 import jakarta.servlet.ServletException;
@@ -22,7 +22,7 @@ public class SearchIdAction implements Action {
             String randomCode = (String) request.getSession().getAttribute("verificationCode"); // 세션에 저장된 인증번호
 
             if (userCode.equals(randomCode)) { // 사용자 입력과 저장된 인증번호 비교
-                MemberDao mdao = MemberDao.getInstance();
+                MemberDAO mdao = MemberDAO.getInstance();
                 List<MemberVO> members = mdao.getMembersByNameAndEmail(name, email);
 
                 if (!members.isEmpty()) {

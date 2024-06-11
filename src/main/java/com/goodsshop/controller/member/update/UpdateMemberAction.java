@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import com.goodsshop.controller.action.Action;
 
-import com.goodsshop.dao.MemberDao;
+import com.goodsshop.dao.MemberDAO;
 import com.goodsshop.dto.MemberVO;
 
 import jakarta.servlet.ServletException;
@@ -31,7 +31,7 @@ public class UpdateMemberAction implements Action {
 					mvo1.setAddress(request.getParameter("address"));
 					mvo1.setD_address(request.getParameter("d_address"));
 					
-					MemberDao mdao = MemberDao.getInstance();
+					MemberDAO mdao = MemberDAO.getInstance();
 					mdao.updateMember(mvo1);
 					
 					session.setAttribute("loginUser", mvo1);
