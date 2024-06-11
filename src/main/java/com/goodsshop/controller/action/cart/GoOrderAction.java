@@ -37,19 +37,13 @@ public class GoOrderAction implements Action {
 			GoodsDAO gdao = new GoodsDAO();
 			odao1.insertOrderDetail(ovo, oseq);
 			
-			CartVO cvo = new CartVO();
-			cvo.setUserid(ovo.getUserid());
-			cvo.setUsername(ovo.getName());
-			cvo.setQuantity(ovo.getQuantity());
-			cvo.setGseq(ovo.getGseq());
-			cvo.setGoodsname(ovo.getGname());
-			cvo.setSprice(ovo.getTotalprice() / ovo.getQuantity());
-			cvo.setTotalprice(ovo.getTotalprice());
-			cvo.setThum(gdao.getThumbnail(ovo.getGseq()));
-			cvo.setRealname(ovo.getRealname());
 			
 			if(cartlist != null) {
-				cartlist.remove(cvo);	
+				CartVO deleteTo = cartlist.stream()
+						.filter(obj -> obj.getGseq() == ovo.getGseq())
+						.findFirst().orElse(null);
+				
+				cartlist.remove(deleteTo);	
 			}
 	
 		}

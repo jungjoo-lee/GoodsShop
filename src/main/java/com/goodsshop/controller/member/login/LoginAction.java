@@ -32,6 +32,8 @@ public class LoginAction implements Action {
 			    url = "gshop.do?command=index";
 			    HttpSession session = request.getSession();
 			    session.setAttribute("loginUser", mvo);
+			    
+			    session.removeAttribute("loginAdmin");
 			 } else {
 				 request.setAttribute("message", "해당 계정은 휴면상태이거나 탈퇴상태입니다");
 			 }
