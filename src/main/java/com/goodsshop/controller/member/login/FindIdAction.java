@@ -41,10 +41,10 @@ public class FindIdAction implements Action {
 		 try {
 			 	if(mvo== null){ 
 			 		request.setAttribute("message", "등록된 회원이 아닙니다");
-			 		 request.getRequestDispatcher("jsp/member/findIdForm.jsp").forward(request, response);
+			 		 request.getRequestDispatcher("WEB-INF/jsp/member/findIdForm.jsp").forward(request, response);
 			 	}	else if (mvo.getEmail() == null || mvo.getName() == null || !mvo.getEmail().equals(email) || !mvo.getName().equals(name)) {
 		            request.setAttribute("message", "등록된 회원이 아닙니다");
-		            request.getRequestDispatcher("jsp/member/findIdForm.jsp").forward(request, response);
+		            request.getRequestDispatcher("WEB-INF/jsp/member/findIdForm.jsp").forward(request, response);
 		        } else if (mvo.getEmail().equals(email) && mvo.getName().equals(name)) {
 		        	request.setAttribute("message", "인증번호가 전송되었습니다");
 		            // 랜덤한 인증 코드 생성
