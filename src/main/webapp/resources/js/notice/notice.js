@@ -63,31 +63,25 @@ function searchKeyword() {
             delete param[key];
         }
     });
-    
-	if (searchValue === "sc") {
-        param.subject = keyword;
-        param.content = keyword;
-    } else if (searchValue) {
-        param[searchValue] = keyword;
-    }
+    param[searchValue] = keyword;
 }
 
 keywordInput.addEventListener("keydown", (e) => {
 	keyword = keywordInput.value;
 	
 	if (e.keyCode === 13) {
-		searchKeyword();
 		asynGetContent();
 	}
 });
 
 keywordInput.addEventListener("input", () => {
 	keyword = document.querySelector("#keyword").value;
+	searchKeyword();
 });
 
 document.getElementById('search').addEventListener('change', () => {
-	searchKeyword();
 	searchValue = search.value;
+	searchKeyword();
 });
 
 

@@ -354,14 +354,14 @@ function reviewUpdate(e) {
     let subjectElement = listItem.querySelector('.item-subject');
     let contentElement = listItem.querySelector('.item-content-text');
     let timeElement = listItem.querySelector('.item-time');
-    let titleText = subjectElement.textContent;
+    let subjectText = subjectElement.textContent;
     let contentText = contentElement.textContent;
 	
 	if (listItem.querySelector('.save-btn')) {
 	    return;
 	}
 
-    subjectElement.innerHTML = `<input type="text" class="form-control" value="${titleText}">`;
+    subjectElement.innerHTML = `<input type="text" class="form-control" value="${subjectText}">`;
     contentElement.innerHTML = `<textarea class="form-control">${contentText}</textarea>`;
 
     let saveBtn = document.createElement('button');
@@ -371,37 +371,40 @@ function reviewUpdate(e) {
         let editSubject = subjectElement.querySelector('input').value;
         let editContent = contentElement.querySelector('textarea').value;
 
-        if(confirm("리뷰 내용을 수정하시겠습니까?")) {
-			timeElement.innerHTML = currentTime();
-			let rseq = getRseq(e);
-
-			fetch('/GoodsShop/gshop.do?command=asyn', {
-				method : 'POST',
-				headers: {
-					'Content-Type': 'application/json;charset=utf-8'
-				},
-					body: JSON.stringify({
-						"command" : "reviewUpdate",
-						"rseq" : rseq,
-						"subject" : editSubject,
-						"content" : editContent,
+		if ((editSubject.trim() !== '' && editContent.trim() !== '') && (subjectText !== editSubject && contentText !== editContent)) {
+	        if(confirm("리뷰 내용을 수정하시겠습니까?")) {
+				timeElement.innerHTML = currentTime();
+				let rseq = getRseq(e);
+	
+				fetch('/GoodsShop/gshop.do?command=asyn', {
+					method : 'POST',
+					headers: {
+						'Content-Type': 'application/json;charset=utf-8'
+					},
+						body: JSON.stringify({
+							"command" : "reviewUpdate",
+							"rseq" : rseq,
+							"subject" : editSubject,
+							"content" : editContent,
+						})
 					})
-				})
-				.then(response => response.json())
-				.then(jsonResult => {				
-					if (jsonResult.status == true) {
-						alert(jsonResult.message);
-					} else {
-						alert(jsonResult.message);
-					}
-			});
+					.then(response => response.json())
+					.then(jsonResult => {				
+						if (jsonResult.status == true) {
+							alert(jsonResult.message);
+						} else {
+							alert(jsonResult.message);
+						}
+				});
+				subjectElement.textContent = editSubject;
+		        contentElement.textContent = editContent;
+		        saveBtn.remove();
+			} else {
+				return;
+			}
 		} else {
-			return;
+			alert("제목과 내용을 수정해주세요");
 		}
-
-        subjectElement.textContent = editSubject;
-        contentElement.textContent = editContent;
-        saveBtn.remove();
     });
 
     listItem.querySelector('.buttons').appendChild(saveBtn);

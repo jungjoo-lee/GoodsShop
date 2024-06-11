@@ -25,17 +25,11 @@ document.querySelector("#keyword").addEventListener("keydown", (e) => {
 
 function searchKeyword() {
 	Object.keys(param).forEach(key => {
-        if (key !== 'table' && key !== 'category') {
+        if (key !== 'table') {
             delete param[key];
         }
     });
-    
-	if (searchValue === "sc") {
-        param.subject = keyword;
-        param.content = keyword;
-    } else if (searchValue) {
-        param[searchValue] = keyword;
-    }
+    param[searchValue] = keyword;
 }
 
 document.getElementById('search').addEventListener('change', () => {
@@ -155,12 +149,6 @@ function asynGetContent() {
 	param.command = "getContent";
 	param.amount = paging.amount;
 	param.page = paging.currentPage;
-	if (searchValue === "sc") {
-        param.subject = keyword;
-        param.content = keyword;
-    } else if (searchValue) {
-        param[searchValue] = keyword;
-    }
 
 	fetch('/GoodsShop/gshop.do?command=asyn', {
 		method : 'POST',

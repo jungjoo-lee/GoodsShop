@@ -54,11 +54,22 @@ public class SqlBuilder {
             }
         }
         
+        if (map.containsKey("sc")) {
+	        if (firstCondition) {
+	            sql.append(" where ");
+	            firstCondition = false;
+	        } else {
+	            sql.append(" and ");
+	        }
+	        sql.append("(").append("subject LIKE CONCAT('%', '").append(map.get("sc")).append("', '%')").append(" or ");
+	        sql.append("content LIKE CONCAT('%', '").append(map.get("sc")).append("', '%'))");
+        }
+        
         for (Map.Entry<String, ?> entry : map.entrySet()) {
             String key = entry.getKey();
             Object value = entry.getValue();
 
-            if (key.equalsIgnoreCase("table") || key.equalsIgnoreCase("page") || key.equalsIgnoreCase("amount") || key.equalsIgnoreCase("category")) {
+            if (key.equalsIgnoreCase("table") || key.equalsIgnoreCase("page") || key.equalsIgnoreCase("amount") || key.equalsIgnoreCase("category") || key.equalsIgnoreCase("sc")) {
                 continue;
             }
             
