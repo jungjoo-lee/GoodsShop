@@ -3,16 +3,24 @@ document.addEventListener("DOMContentLoaded", () => {
 	let qseq;
 		
 	function writeupdate(command) {
+		let param = {
+			"command": command,
+			"subject": subject.value,
+			"content": content.value,
+		}
+		
 		if (command == "qnaUpdate") {
 			qseqText = document.querySelector('#qseq');
 			qseq = parseInt(qseqText.innerHTML);
+			param.qseq = qseq;
 		}
+		
 		fetch('/GoodsShop/gshop.do?command=asyn', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
-				body: JSON.stringify({"command": command, "qseq": qseq, "subject": subject.value, "content": content.value})
+				body: JSON.stringify(param)
 			})
 			.then(response => response.json())
 			.then(jsonResult => {

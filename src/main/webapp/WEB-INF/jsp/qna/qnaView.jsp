@@ -16,11 +16,11 @@
 	        번호: <span id="qseq">${vo.qseq}</span>
 	    </div>
 	    <div class="card-body">
-	        <div class="card-item">
-	            <strong>작성자:</strong><span>${vo.userid}</span>
+	    	<div class="card-item">
+	            <strong>제목:</strong><span>${vo.subject}</span>
 	        </div>
 	        <div class="card-item">
-	            <strong>제목:</strong><span>${vo.subject}</span>
+	            <strong>작성자:</strong><span>${vo.userid}</span>
 	        </div>
 	        <div class="card-item">
 	            <strong>내용:</strong><pre class="pre-styled"><span>${vo.content}</span></pre>
