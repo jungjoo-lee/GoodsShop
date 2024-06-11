@@ -16,25 +16,24 @@ function goOrder (){
 				totalPrice += quantity * price;
 				
 			})
-			
-			console.log(totalQuantity);
-			console.log(totalPrice)
-			
-			
-			
-			let ans = confirm("총 " + totalQuantity + " 개의 상품 (총 주문금액 : " + totalPrice + ") 를 주문합니다. 확인을 누르시면 결제페이지로 이동합니다.");
-			
-			if (ans){
+		
+			if(totalQuantity < 1){
+				alert("주문할 상품을 선택해주세요");
+			} else {	
+				let ans = confirm("총 " + totalQuantity + " 개의 상품 (총 주문금액 : " + totalPrice + ") 를 주문합니다. 확인을 누르시면 결제페이지로 이동합니다.");
 				
-				document.orderpageform.numberOfGoods.value = totalQuantity;
-				document.orderpageform.orderTotalPrice.value = totalPrice;
-				
-				document.orderpageform.action = "gshop.do?command=getPayment";
-				document.orderpageform.method = "post";
-				document.orderpageform.submit();
-			} else {
-				alert("주문을 취소합니다.");
-			}					
+				if (ans){
+					
+					document.orderpageform.numberOfGoods.value = totalQuantity;
+					document.orderpageform.orderTotalPrice.value = totalPrice;
+					
+					document.orderpageform.action = "gshop.do?command=getPayment";
+					document.orderpageform.method = "post";
+					document.orderpageform.submit();
+				} else {
+					alert("주문을 취소합니다.");
+				}					
+			}
 		})	
 	}
 }
