@@ -13,12 +13,12 @@
 <body>
 <div id="popup">
 	<h2>주소 검색</h2>
-   <form method="post" name="formm" action="gshop.do?command=findZipnum">
-      동 이름 입력 : <input name="dong" type="text">
+   <form method="post" name="formm" action="gshop.do?command=findZipnum" style="width:100%; margin-bottom: 15px;">
+      동 이름 입력 : <input name="dong" type="text" style="height: 25px;">
       <input type="submit" value="찾기" id="search" class="submit">
       
    </form>
-  <table id="zipcode" border="1">
+  <table id="zipcode" border="1" style="width: 70%; margin: 0 auto;">
       <tr><th width="100">우편번호</th><th>주소</th></tr>
       <c:forEach items="${addressList}" var="add">
          <tr>
