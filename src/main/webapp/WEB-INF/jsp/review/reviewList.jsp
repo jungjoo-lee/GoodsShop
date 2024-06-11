@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/review/review.css'/>">
 </head>
 <body>
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center mb-4">
 	<div class="col-lg-6 w-75">
 		<div class="card">
         	<div class="card-body">

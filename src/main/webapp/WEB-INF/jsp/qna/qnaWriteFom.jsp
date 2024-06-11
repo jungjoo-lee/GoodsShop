@@ -48,7 +48,7 @@
 		        </div>
 	        </c:if>
 	    </div>
-	    <div class="card-footer d-flex justify-content-end">
+	    <div class="card-footer d-flex justify-content-end pb-3">
 			<c:choose>
 				<c:when test="${not empty vo}">
 					<button class="btn btn-secondary" name="updateBtn" id="updateBtn">수정</button>

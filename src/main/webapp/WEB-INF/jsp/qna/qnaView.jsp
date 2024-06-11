@@ -37,7 +37,7 @@
 	            </div>
 	        </c:if>
 	    </div>
-	    <div class="card-footer d-flex justify-content-end">
+	    <div class="card-footer d-flex justify-content-end pb-3">
 	    	<c:if test="${vo.userid eq loginUser.userid && empty vo.reply}">
 				<a class="btn btn-light me-2" href="gshop.do?command=qnaWriteForm&qseq=${vo.qseq}">수정</a>
 			</c:if>
