@@ -328,3 +328,15 @@ body{
     }
 
 }
+
+.footer_adminbox{
+	width: 100%;
+    height: 50px;
+    background-color: #fafafa;
+}
+
+.footer_adminbox img{
+    width: 30px;
+    opacity: 50%;
+    margin-left: 20px;
+}

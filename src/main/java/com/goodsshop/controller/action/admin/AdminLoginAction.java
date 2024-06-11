@@ -26,6 +26,8 @@ public class AdminLoginAction implements Action {
 			url = "gshop.do?command=adminIndex";
 			HttpSession session = request.getSession();
 			session.setAttribute("loginAdmin", vo);
+			
+			session.removeAttribute("loginUser");
 		}
 		request.getRequestDispatcher(url).forward(request, response);;
 	}

@@ -55,6 +55,10 @@
 					통신판매업 신고: 제0000-00-00000호 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보관리책임자: 김일이 (aaaaaaa@gmail.com) <br>
 
 				</div>
-				<div class="footer_adminbox"><a href="gshop.do?command=adminLogin"><img src=""></a></div>
+				<div class="footer_adminbox">
+					<a href="gshop.do?command=adminLogin">
+						<img src="<c:url value='/resources/image/adminlogo.png'/>">
+					</a>
+				</div>
 			</footer>
 
