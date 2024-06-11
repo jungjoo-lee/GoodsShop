@@ -8,7 +8,7 @@ if (deleteBtn != null) {
 function deletefn() {
 	if (confirm("정말로 삭제하시겠습니까?")) {
 		let qseqText = document.querySelector('#qseq');
-		let qseq = parseInt(qseqText.innerHTML);
+		let qseq = parseInt(qseqText.innerText);
 		
 		fetch('/GoodsShop/gshop.do?command=asyn', {
 			method: 'POST',
