@@ -45,7 +45,6 @@ keywordInput.addEventListener("keydown", (e) => {
 	keyword = keywordInput.value;
 	
 	if (e.keyCode === 13) {
-		searchKeyword();
 		asynGetContent("all");
 		asynGetContent("my");
 	}
@@ -57,13 +56,7 @@ function searchKeyword() {
             delete param[key];
         }
     });
-    
-	if (searchValue === "sc") {
-        param.subject = keyword;
-        param.content = keyword;
-    } else if (searchValue) {
-        param[searchValue] = keyword;
-    }
+    param[searchValue] = keyword;
 }
 
 keywordInput.addEventListener("input", () => {
@@ -185,14 +178,6 @@ function formatDate(dateString) {
 
 function asynGetContent(tab) {
 	param.command = "getContent";
-	
-	if (search.value == "sc") {
-		param.subject = keyword;
-		param.content = keyword;
-	} else if (search.value == "subject")
-		param.subject = keyword;
-	else
-		param.content = keyword;
 
 	if (tab == "my" && document.querySelector('#my-tab') != null) {
 		param.my = "";
