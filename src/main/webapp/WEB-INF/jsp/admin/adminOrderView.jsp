@@ -117,7 +117,7 @@
 				  						</td>
 				  						<td class="text-center">
 				  							<a href="<c:url value='/gshop.do?command=adminOrderDetailView&oseq=${ord.oseq}'/>">
-				  								${ord.totalprice}
+				  								<fmt:formatNumber type="currency" value="${ord.totalprice}"></fmt:formatNumber>
 				  							</a>
 				  						</td>
 				  						<td class="text-center">

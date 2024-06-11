@@ -143,6 +143,8 @@
     margin-top: 50px;
     font-size: 180%;
     margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
 }
 
 

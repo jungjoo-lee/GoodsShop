@@ -42,7 +42,7 @@
 										<img src="<c:url value='/gshop.do?command=imageWrite&folder=${cvo.gseq}${cvo.goodsname}&realName=${cvo.realname}'/>">
 									</div>
 									<div class="listfield">${cvo.goodsname}</div>
-									<div class="listfield">${cvo.sprice} 원</div>
+									<div class="listfield"><fmt:formatNumber type="currency" value="${cvo.sprice}"></fmt:formatNumber></div>
 									<div class="listfield">
 										<input type="checkbox" id="checkboxes" name="gseq" value="${cvo.gseq}" />
 									</div>

@@ -186,7 +186,7 @@ public class GoodsDAO {
 		con = DB.getConnection();
 		String sql = "select * from goods_view g1 inner join (select gseq, min(giseq) as min_giseq from goods_view group by gseq) g2 "
 				+ " on g1.gseq = g2.gseq and g1.giseq = g2.min_giseq "
-				+ " where cgseq = ? limit ? offset ?";
+				+ " where g1.cgseq = ? and g1.useyn = 1 limit ? offset ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -421,6 +421,7 @@ public class GoodsDAO {
 		
 		try {
 			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, gseq);
 			
 			int result = pstmt.executeUpdate();
 
@@ -431,6 +432,7 @@ public class GoodsDAO {
 			DB.close(con, pstmt, rs);
 		}		
 	}
+	
 
 	public void insertGoods(GoodsVO gvo) {
 		con = DB.getConnection();

@@ -13,6 +13,13 @@
 <div class="view-container">
 	<div class="container-title"> 장바구니 보기 </div>
 	<form name="cartlistform" method="post">
+		<c:choose>
+			<c:when test="${empty cartlist}">
+				<div>
+					상품이 존재하지 않습니다.
+				</div>
+			</c:when>
+            <c:otherwise>
 
 		<div class="titlerow">
             <div class="titlefield">상품</div>
@@ -24,13 +31,6 @@
             </div>
         </div>
 
-		<c:choose>
-			<c:when test="${empty cartlist}">
-				<div>
-					상품이 존재하지 않습니다.
-				</div>
-			</c:when>
-            <c:otherwise>
                 <ul class="listbox">
                     <c:forEach items="${cartlist}" var="cvo">
                         <li class="list-row">
@@ -39,7 +39,7 @@
                             </div>
                             <div class="listfield">${cvo.goodsname}</div>
                             <div class="listfield">${cvo.quantity} 개</div>
-                            <div class="listfield">${cvo.totalprice} 원</div>
+                            <div class="listfield"><fmt:formatNumber type="currency" value="${cvo.totalprice}"></fmt:formatNumber></div>
                             <div class="listfield">
                                 <input type="checkbox" id="checkboxes" name="gseq" value="${cvo.gseq}" />
                                 <input type="hidden" name="quantity" value="${cvo.quantity}">
