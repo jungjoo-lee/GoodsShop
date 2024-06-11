@@ -8,27 +8,40 @@
 <title>공지사항 수정</title>
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/admin/notice.css'/>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 	<body class="sb-nav-fixed">
         <!-- header -->
         <jsp:include page="../fix/admin/header.jsp"/>
         
-       	<div id="layoutSidenav">
+        <div id="layoutSidenav">
         	<!-- side -->
         	<jsp:include page="../fix/admin/sidemenu.jsp"/>
         	
-		    <form id="layoutSidenav_content" method="post" action="<c:url value='/gshop.do?command=noticeUpdate&nseq=${vo.nseq}'/>">
-		        번호 : ${vo.nseq}<br/>
-		        작성자 : ${vo.adminId}<br/>
-		        <div class="field"><label>제목</label><input type="text" name="subject" value="${vo.subject}"/></div>
-		        <div class="field"><label>내용</label><textarea name="content">${vo.content}</textarea></div>
-		        작성일자 : <fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:SS" /><br/>
-		        <button type="submit" class="btn btn-secondary">수정완료</button>
-		        <a class="btn btn-light" href="<c:url value='/gshop.do?command=adminNoticeList'/>">목록</a>
-		    </form>
-		</div>
-
-    <script type="text/javascript" src="<c:url value='/resources/js/notice/notice.js'/>"></script>
+        	<div id="layoutSidenav_content">
+                <div class="card">
+                	<form method="post" action="<c:url value='/gshop.do?command=noticeUpdate&nseq=${vo.nseq}'/>">
+						<div class="card-header">
+					        <strong>No.</strong><span>${vo.nseq}</span>
+					    </div>
+					    <div class="card-body">
+					        <div class="card-item mb-1">
+			        			<strong>제목</strong>
+			        			<input class="form-control" type="text" name="subject" id="subject" placeholder="제목" value="${vo.subject}"/>
+					        </div>
+					        <div class="card-item">
+			        			<strong>내용</strong>
+			        			<textarea class="form-control" name="content" id="content" rows="10" cols="100" placeholder="내용">${vo.content}</textarea>
+					        </div>
+					    </div>
+					    <div class="card-footer d-flex justify-content-end pb-3">
+							<button type="submit" class="btn btn-secondary me-2">수정</button>
+							<a class="btn btn-light" href="<c:url value='/gshop.do?command=adminNoticeList'/>">목록</a>
+						</div>
+					</form>
+                </div>
+        	</div>
+        </div>
 	</body>
 </html>

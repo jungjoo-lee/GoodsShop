@@ -8,7 +8,7 @@
 <title>공지사항 상세보기</title>
 <link rel="stylesheet" href="<c:url value='/resources/css/bootstrap.min.css'/>">
 <link rel="stylesheet" href="<c:url value='/resources/css/admin.css'/>">
-<link rel="stylesheet" href="<c:url value='/resources/css/noticeView.css'/>">
+<link rel="stylesheet" href="<c:url value='/resources/css/admin/notice.css'/>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 	<body class="sb-nav-fixed">
@@ -20,35 +20,33 @@
         	<jsp:include page="../fix/admin/sidemenu.jsp"/>
         	
         	<div id="layoutSidenav_content">
-		        <div class="row justify-content-center">
-		            <div class="col-lg-8 col-md-10">
-		                <div class="detail-container">
-		                    <h4 class="mb-3">Notice Details</h4>
-		                    <div class="detail-item">
-		                        <strong>번호:</strong><span>${vo.nseq}</span>
-		                    </div>
-		                    <div class="detail-item">
-		                        <strong>작성자:</strong><span>${vo.adminId}</span>
-		                    </div>
-		                    <div class="detail-item">
-		                        <strong>제목:</strong><span>${vo.subject}</span>
-		                    </div>
-		                    <div class="detail-item">
-		                        <strong>내용:</strong><pre><span>${vo.content}</span></pre>
-		                    </div>
-		                    <div class="detail-item">
-		                        <strong>작성일자:</strong><span><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:ss" /></span>
-		                    </div>
-		                    <div class="btn-group">
-		                        <a class="btn btn-primary btn-custom" href="<c:url value='/gshop.do?command=noticeUpdateForm&nseq=${vo.nseq}'/>">수정</a>
-		                        <a class="btn btn-danger btn-custom" href="<c:url value='/gshop.do?command=noticeDelete&nseq=${vo.nseq}'/>">삭제</a>
-		                        <a class="btn btn-secondary" href="<c:url value='/gshop.do?command=adminNoticeList'/>">목록</a>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
+                <div class="card">
+                	<form method="post" action="<c:url value='/gshop.do?command=noticeInsert'/>">
+						<div class="card-header">
+					        <strong>No.</strong><span>${vo.nseq}</span>
+					    </div>
+					    <div class="card-body">
+					        <div class="card-item mb-1">
+			        			<strong>작성자</strong><span>${vo.adminId}</span>
+					        </div>
+					        <div class="card-item mb-1">
+			        			<strong>제목</strong><span>${vo.subject}</span>
+					        </div>
+					        <div class="card-item mb-1">
+			        			<strong>내용</strong><pre class="pre-styled"><span>${vo.content}</span></pre>
+					        </div>
+					        <div class="card-item mb-1">
+			        			<strong>작성일자</strong><span><fmt:formatDate value="${vo.indate}" type="both" pattern="yyyy-MM-dd HH:mm:ss" /></span>
+					        </div>
+					    </div>
+					    <div class="card-footer d-flex justify-content-end pb-3">
+							<a class="btn btn-secondary me-2" href="<c:url value='/gshop.do?command=noticeUpdateForm&nseq=${vo.nseq}'/>">수정</a>
+		                    <a class="btn btn-light me-2" href="<c:url value='/gshop.do?command=noticeDelete&nseq=${vo.nseq}'/>">삭제</a>
+		                    <a class="btn btn-light" href="<c:url value='/gshop.do?command=adminNoticeList'/>">목록</a>
+						</div>
+					</form>
+                </div>
+        	</div>
         </div>
-    <script type="text/javascript" src="<c:url value='/resources/js/admin/qnaView.js'/>"></script>
 	</body>
 </html>

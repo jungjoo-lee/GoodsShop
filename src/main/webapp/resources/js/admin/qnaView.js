@@ -2,9 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let writeBtn = document.getElementById("writeBtn");
     let updateBtn = document.querySelector("#updateBtn");
     let deleteBtn = document.querySelector("#deleteBtn");
-    let container = document.getElementById("replyContainer");
-    let reply = document.querySelector("#reply");
-	let replydate = document.querySelector("#replydate");
 	
 	if (writeBtn != null) {
 	    writeBtn.addEventListener("click", () => {
