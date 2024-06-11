@@ -38,16 +38,18 @@ function contentList(noticeList) {
 	let i = 0;
 	
 	noticeList.forEach(() => {
+		content += '<a class="link" href="/GoodsShop/gshop.do?command=adminNoticeView&nseq=' + noticeList[i].nseq + '">';
 		content += '<li class="li-item">';
 		content += '<div class="d-flex justify-content-center align-items-center">';
 		content += '<div class="small-col">' + noticeList[i].nseq + '</div>';
 		content += '<div class="small-col">' + noticeList[i].adminId + '</div>';
-		content += '<div><a href="/GoodsShop/gshop.do?command=adminNoticeView&nseq=' + noticeList[i].nseq + '">' + noticeList[i].subject + '</a></div>';
-		content += '<div>' + noticeList[i].content + '</div>';
+		content += '<div>' + truncateText(noticeList[i].subject, 35) + '</div>';
+		content += '<div>' + truncateText(noticeList[i].content, 35) + '</div>';
 		content += '<div class="small-col">' + formatDate(noticeList[i].indate) + '</div>';
 		content += '<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="' + noticeList[i++].nseq + '"></div>';
 		content += '</div>';
 		content += '</li>';
+		content += '</a>';
 	});
 	document.querySelector("#notice-list").innerHTML = content;	
 }

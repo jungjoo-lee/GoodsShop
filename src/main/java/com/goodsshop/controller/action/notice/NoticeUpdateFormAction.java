@@ -23,7 +23,5 @@ public class NoticeUpdateFormAction implements Action {
 		
 		request.setAttribute("vo", vo);
 		request.getRequestDispatcher("/WEB-INF/jsp/notice/noticeUpdateForm.jsp").forward(request, response);
-
 	}
-
 }

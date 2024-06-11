@@ -22,8 +22,8 @@
         	
         	<div id="layoutSidenav_content">
         		<div class="container-fluid px-4">
-                	<h1 class="mt-4">Q&A</h1><br/> <!-- 제목 -->
-					<div class="row w-100">
+                	<h1 class="mt-4">Q&A</h1> <!-- 제목 -->
+					<div class="row w-100 mt-4">
 				    	<div class="col d-flex"> <!-- 목록 선택 -->
 				      		<select class="form-select w-25 me-3" name="selectAmount" id="selectAmount">
 						  		<option value=0 selected>목록</option>
@@ -47,8 +47,7 @@
 					    	</div>
 				    	</div>
 					</div>
-					<br/>
-					<div>
+					<div class="mt-4">
 						<div>
 							<ul>
 		               			<li class="li-header">
@@ -66,27 +65,47 @@
 		               	<div>
 		               		<ul id="qna-list">
 								<c:forEach var="qna" items="${qnaList}">
-									<li class="li-item">
-										<div class="d-flex justify-content-center align-items-center">
-											${qna.reply}
-											<div class="small-col">
-												<c:choose>
-						  							<c:when test="${empty qna.replyDate}">(미처리)</c:when>
-						  							<c:otherwise>(답변완료)</c:otherwise>
-						  						</c:choose>
-											</div>
-			               					<div><a href="<c:url value='/gshop.do?command=adminQnaView&qseq=${qna.qseq}'/>">${qna.subject}</a></div>
-			               					<div>${qna.content}</div>
-			               					<div class="small-col">${qna.userid}</div>
-											<div class="small-col"><fmt:formatDate value="${qna.indate}" type="both" pattern="yyyy-MM-dd" /></div>
-			               					<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${qna.qseq}"></div>
-		               					</div>
-									</li>
+									<a class="link" href="<c:url value='/gshop.do?command=adminQnaView&qseq=${qna.qseq}'/>">
+										<li class="li-item">
+											<div class="d-flex justify-content-center align-items-center">
+												${qna.reply}
+												<div class="small-col">
+													<c:choose>
+							  							<c:when test="${empty qna.replyDate}">(미처리)</c:when>
+							  							<c:otherwise>(답변완료)</c:otherwise>
+							  						</c:choose>
+												</div>
+				               					<div>
+				               						<c:choose>
+														<c:when test="${fn:length(qna.subject) gt 30}">
+															<c:out value="${fn:substring(qna.subject, 0, 29)}"/>...
+														</c:when>
+														<c:otherwise>
+															<c:out value="${qna.subject}"/>
+														</c:otherwise>
+													</c:choose>
+												</div>
+				               					<div>
+				               						<c:choose>
+														<c:when test="${fn:length(qna.content) gt 30}">
+															<c:out value="${fn:substring(qna.content, 0, 29)}"/>...
+														</c:when>
+														<c:otherwise>
+															<c:out value="${qna.content}"/>
+														</c:otherwise>
+													</c:choose>
+												</div>
+				               					<div class="small-col">${qna.userid}</div>
+												<div class="small-col"><fmt:formatDate value="${qna.indate}" type="both" pattern="yyyy-MM-dd" /></div>
+				               					<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${qna.qseq}"></div>
+			               					</div>
+										</li>
+									</a>
 								</c:forEach>
 							</ul>
 		               	</div>
                		</div>
-					<div class="row w-100">
+					<div class="row w-100 mt-4">
 						<div class="col d-flex align-items-center"> <!-- page 정보 출력 -->
 							<input class="form-control w-25 me-3" type="text" name="quickMove" id="quickMove" placeholder="Page Num">
 							<span id="pageInfo">${paging.currentPage} / ${paging.realEnd}</span>
@@ -96,7 +115,7 @@
 							<jsp:include page="paging.jsp">
 					    		<jsp:param value="${paging}" name=""/>
 					    	</jsp:include>
-					    	<input type="button" id="deleteBtn" value="삭제"/>
+					    	<input type="button" class="btn btn-secondary ms-3" id="deleteBtn" value="삭제"/>
 						</div>
 					</div>
             	</div>

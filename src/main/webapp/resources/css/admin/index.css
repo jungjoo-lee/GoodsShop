@@ -1,8 +1,10 @@
 @charset "UTF-8";
+
 .d-flex col{
 	align-content:center;
 	justify-content: center;
 }
+
 ul {
 	list-style-type: none;
 	margin-bottom: 0;
@@ -109,4 +111,25 @@ ul {
 
 #discardBtn:hover{
 	background-color: #d58181;
+}
+
+.page-link {
+  color: #000; 
+  background-color: #fff;
+  border: 1px solid #ccc; 
+}
+
+.page-item.active .page-link {
+ z-index: 1;
+ color: white;
+ font-weight:bold;
+ background-color: #3a3a3a;
+ border-color: #6c757d;
+ 
+}
+
+.page-link:focus, .page-link:hover {
+  color: white;
+  background-color: #6c757d; 
+  border-color: #ccc;
 }

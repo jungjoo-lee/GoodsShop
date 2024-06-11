@@ -21,8 +21,8 @@
       	
        	<div id="layoutSidenav_content">
        		<div class="container-fluid px-4">
-       			<h1 class="mt-4">리뷰</h1><br/>
-       			<div class="row w-100 justify-content-between">
+       			<h1 class="mt-4">리뷰</h1>
+       			<div class="row w-100 justify-content-between mt-4">
 			    	<div class="col d-flex"> <!-- 목록 선택 -->
 			      		<select class="form-select w-25 me-3" name="selectAmount" id="selectAmount">
 					  		<option value=0 selected>목록</option>
@@ -59,7 +59,7 @@
 				    	</div>
 			    	</div>
 				</div>
-       			<div class="row w-100">
+       			<div class="row w-100 mt-4">
        				<div>
 						<ul>
 							<li class="li-header">
@@ -85,8 +85,26 @@
 										<div class="small-col">${rev.rseq}</div>
 		               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
 		               					<div class="small-col">[${rev.category}]</div>
-		               					<div>${rev.gname}</div>
-		               					<div>${rev.subject}</div>
+		               					<div>
+		               						<c:choose>
+												<c:when test="${fn:length(rev.gname) gt 18}">
+													<c:out value="${fn:substring(rev.gname, 0, 17)}"/>...
+												</c:when>
+												<c:otherwise>
+													<c:out value="${rev.gname}"/>
+												</c:otherwise>
+											</c:choose>
+										</div>
+		               					<div>
+		               						<c:choose>
+												<c:when test="${fn:length(rev.subject) gt 18}">
+													<c:out value="${fn:substring(rev.subject, 0, 17)}"/>...
+												</c:when>
+												<c:otherwise>
+													<c:out value="${rev.subject}"/>
+												</c:otherwise>
+											</c:choose>
+										</div>
 		               					<div><img id="badge" src="<c:url value='/resources/image/badge/${rev.grade}.png'/>"> ${rev.userid}</div>
 		               					<div><fmt:formatDate value="${rev.indate}" type="both" pattern="yyyy-MM-dd" /></div>
 		               					<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="${rev.rseq}"></div>
@@ -97,13 +115,13 @@
 						</ul>
 					</div>
        			</div>
-       			<div class="d-flex col align-items-center">
+       			<div class="d-flex col align-items-center mt-4 mb-5">
                		<jsp:include page="paging.jsp">
 			    		<jsp:param value="${paging}" name=""/>
 			    	</jsp:include>
-			    	<span id="pageInfo">${paging.currentPage} / ${paging.realEnd}</span>
-			    	<div class="col d-flex justify-content-end">
-				    	<input type="button" id="deleteBtn" value="삭제"/>
+			    	<span class="ms-3" id="pageInfo">${paging.currentPage} / ${paging.realEnd}</span>
+			    	<div class="col d-flex justify-content-end me-4">
+				    	<input type="button" class="btn btn-secondary" id="deleteBtn" value="삭제"/>
 			    	</div>
                	</div>
 			</div>

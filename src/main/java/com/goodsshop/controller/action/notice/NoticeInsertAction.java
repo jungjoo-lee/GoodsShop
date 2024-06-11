@@ -25,11 +25,8 @@ public class NoticeInsertAction implements Action {
 		vo.setContent(request.getParameter("content"));
 		vo.setAdminId(avo.getAdminId());
 
-		
 		nDao.insertNotice(vo);
-		
-		 response.sendRedirect(request.getContextPath() + "/gshop.do?command=adminNoticeList");
-
+		response.sendRedirect(request.getContextPath() + "/gshop.do?command=adminNoticeList");
 	}
 
 }

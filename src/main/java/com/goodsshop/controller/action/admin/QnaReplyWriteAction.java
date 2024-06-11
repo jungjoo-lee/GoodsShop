@@ -18,6 +18,6 @@ public class QnaReplyWriteAction implements Action {
 		
 		dao.writeUpdateReply(reply, qseq);
 		
-		response.sendRedirect("gshop.do?command=qnaView&qseq=" + qseq);
+		response.sendRedirect("gshop.do?command=adminQnaView&qseq=" + qseq);
 	}
 }

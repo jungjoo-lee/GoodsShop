@@ -68,22 +68,20 @@
 				</div>
 		</div>
 	</form>
-</div>
-		
-	</div>
-	<div class="row d-flex justify-content-center">
+	<div class="row d-flex justify-content-center mb-5">
 		<div class="col-lg-6 w-100">
 			<div class="card">
 	        	<div class="card-body">
-	            	<h5 class="card-title">리뷰</h5>
-					<div class="row">
-						<c:if test="${not empty loginUser}">
-							<button type="button" class="btn btn-primary" id="reviewWriteBtn">리뷰 쓰기</button>
+	        		<div class="d-flex justify-content-between align-items-center">
+	            		<h5 class="card-title">리뷰</h5>
+	            		<c:if test="${not empty loginUser}">
+							<button type="button" class="btn btn-secondary" id="reviewWriteBtn">리뷰 쓰기</button>
 						</c:if>
-						<input type="text" name="subject" id="subject" placeholder="제목">
-						<textarea rows="10" cols="100" name="content" id="content" placeholder="내용"></textarea>
 					</div>
-					<br/>
+					<div class="row mt-3">
+						<input type="text" class="form-control mb-2" name="subject" id="subject" placeholder="제목">
+						<textarea class="form-control mb-2" rows="10" cols="100" name="content" id="content" placeholder="내용"></textarea>
+					</div>
 					<div>
 						<ul class="list-group" id="reviewList">
 							<c:forEach var="vo" items="${reviewList}">
@@ -100,7 +98,7 @@
 					                    </c:if>
 					                </div>
 					            </div>
-					            <div class="item-content"><span class="item-content-text">${vo.content}</span></div>
+					            <div class="item-content"><pre class="pre-styled"><span class="item-content-text">${vo.content}</span></pre></div>
 					        </li>
 					        </c:forEach>
 					    </ul>
@@ -149,5 +147,6 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src='<c:url value = "/resources/js/goods/detail.js"/>'></script>
+</div>
+<script type="text/javascript" src='<c:url value = "/resources/js/goods/detail.js"/>'></script>
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>

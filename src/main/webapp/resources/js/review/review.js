@@ -101,10 +101,9 @@ function getPageInfo() {
 
 selectAmount.addEventListener("change", () => {
 	paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
-	myPaging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
 	
 	let realEnd = Math.ceil(paging.total / paging.amount);
-	let myRealEnd = Math.ceil(myPaging.total / myPaging.amount);
+	let myRealEnd = 0;
 	
 	if (realEnd < paging.currentPage) {
 		if (realEnd <= 0) {
@@ -114,23 +113,29 @@ selectAmount.addEventListener("change", () => {
 		}
 	}
 	
-	if (myRealEnd < myPaging.currentPage) {
-		if (myRealEnd <= 0) {
-			myPaging.currentPage = 1;
-		} else {
-			myPaging.currentPage = myRealEnd;
-		}
-	}
-	
 	if (paging.amount == 0) {
 		return;
 	} else {
 		asynGetContent("all");
 	}
-	if (myPaging.amount == 0) {
-		return;
-	} else {
-		asynGetContent("my");
+
+	if (document.querySelector('#my-tab') != null) {
+		myPaging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
+		myRealEnd = Math.ceil(myPaging.total / myPaging.amount);
+		
+		if (myRealEnd < myPaging.currentPage) {
+			if (myRealEnd <= 0) {
+				myPaging.currentPage = 1;
+			} else {
+				myPaging.currentPage = myRealEnd;
+			}
+		}
+		
+		if (myPaging.amount == 0) {
+			return;
+		} else {
+			asynGetContent("my");
+		}
 	}
 })
 
@@ -180,10 +185,8 @@ function formatDate(dateString) {
 
 function asynGetContent(tab) {
 	param.command = "getContent";
-	param.amount = paging.amount;
-	param.page = paging.currentPage;
 		
-	if (tab == "my") {
+	if (tab == "my" && document.querySelector('#my-tab') != null) {
 		param.my = "";
 		param.amount = myPaging.amount;
 		param.page = myPaging.currentPage;

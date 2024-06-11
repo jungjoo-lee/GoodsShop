@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="<c:url value='/resources/css/qna/qna.css'/>">
 </head>
 <body>
-<div class="row d-flex justify-content-center">
+<div class="row d-flex justify-content-center mb-5">
 	<div class="col-lg-6 w-75">
 		<div class="card">
         	<div class="card-body">
@@ -199,8 +199,12 @@
 						</nav>
                 	</div>
               	</div>
+              	<div class="d-flex justify-content-end">
+	              	<c:if test="${not empty loginUser}">
+							<a class="btn btn-secondary" href="<c:url value='gshop.do?command=qnaWriteForm'/>">작성하기</a>
+					</c:if>
+				</div>
             </div>
-            <a class="btn btn-primary" href="<c:url value='gshop.do?command=qnaWriteForm'/>">작성하기</a>
     	</div>
 	</div>
 </div>

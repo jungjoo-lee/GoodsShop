@@ -57,8 +57,8 @@ function contentList(reviewList) {
 		content += '<div class="small-col">' + reviewList[i].rseq + '</div>';
 		content += '<div><img src="/GoodsShop/gshop.do?command=imageWrite&folder=' + reviewList[i].gseq + reviewList[i].gname + '&realName=' + reviewList[i].realName + '"></div>';
 		content += '<div class="small-col">[' + reviewList[i].category + ']</div>';
-		content += '<div>' + reviewList[i].gname + '</div>';
-		content += '<div>' + reviewList[i].subject + '</div>';
+		content += '<div>' + truncateText(reviewList[i].gname, 18) + '</div>';
+		content += '<div>' + truncateText(reviewList[i].subject, 18) + '</div>';
 		content += '<div><img id="badge" src="/GoodsShop/resources/image/badge/' + reviewList[i].grade + '.png"> ' + reviewList[i].userid + '</div>';
 		content += '<div>' + formatDate(reviewList[i].indate) + '</div>';
 		content += '<div class="small-col"><input class="form-check-input" type="checkbox" name="check" value="' + reviewList[i++].rseq + '"></div>';

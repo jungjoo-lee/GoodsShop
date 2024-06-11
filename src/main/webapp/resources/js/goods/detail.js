@@ -250,7 +250,6 @@ function liFactory(li, vo) {
 	editButton.classList.add("btn", "btn-primary", "btn-sm", "reviewUpdateBtn");
 	editButton.addEventListener("click", (e) => {
 	    reviewUpdate(e);
-	    asynGetContent();
 	});
 	
 	let deleteButton = document.createElement("button");
@@ -274,7 +273,10 @@ function liFactory(li, vo) {
 	let contentspan = document.createElement("span");
 	contentspan.classList.add("item-content-text");
 	contentspan.textContent = vo.content;
-	contentdiv.appendChild(contentspan);
+	let pre = document.createElement("pre");
+	pre.classList.add("pre-styled");
+	pre.appendChild(contentspan);
+	contentdiv.appendChild(pre);
 	
 	li.appendChild(header);
 	li.appendChild(contentdiv);
@@ -287,43 +289,47 @@ let reviewWriteBtn = document.querySelector('#reviewWriteBtn');
 
 if (reviewWriteBtn != null) {
 	reviewWriteBtn.addEventListener("click", () => {
-		if(confirm("리뷰 작성하시겠습니까?")) {
-			fetch('/GoodsShop/gshop.do?command=asyn', {
-				method : 'POST',
-				headers: {
-					'Content-Type': 'application/json;charset=utf-8'
-				},
-					body: JSON.stringify({
-						"command" : "reviewWrite",
-						"gseq" : gseq.value,
-						"subject" : subject.value,
-						"content" : content.value,
+		if (subject.value !== '' && content.value !== '') {
+			if(confirm("리뷰 작성하시겠습니까?")) {
+				fetch('/GoodsShop/gshop.do?command=asyn', {
+					method : 'POST',
+					headers: {
+						'Content-Type': 'application/json;charset=utf-8'
+					},
+						body: JSON.stringify({
+							"command" : "reviewWrite",
+							"gseq" : parseInt(gseq.value),
+							"subject" : subject.value,
+							"content" : content.value,
+						})
 					})
-				})
-				.then(response => response.json())
-				.then(jsonResult => {				
-					if (jsonResult.status == true) {
-						let vo = jsonResult.vo;
-						let li = document.createElement("li");
-						
-						li = liFactory(li, vo);
-						
-						reviewList.prepend(li);
-						document.querySelector('#subject').value = '';
-						document.querySelector('#content').value = '';
-						
-						if (reviewList.children.length > 10) {
-						    reviewList.removeChild(reviewList.lastElementChild);
+					.then(response => response.json())
+					.then(jsonResult => {				
+						if (jsonResult.status == true) {
+							let vo = jsonResult.vo;
+							let li = document.createElement("li");
+							
+							li = liFactory(li, vo);
+							
+							reviewList.prepend(li);
+							document.querySelector('#subject').value = '';
+							document.querySelector('#content').value = '';
+							
+							if (reviewList.children.length > 10) {
+							    reviewList.removeChild(reviewList.lastElementChild);
+							}
+							
+							editPaging(jsonResult.paging);
+							addPagingEvent();
+						} else {
+							alert(jsonResult.message);
 						}
-						
-						editPaging(jsonResult.paging);
-						addPagingEvent();
-					} else {
-						alert(jsonResult.message);
-					}
-			});
+				});
+			} else {
+				return;
+			}
 		} else {
-			return;
+			alert("리뷰를 작성하세요.");
 		}
 	});	
 }
@@ -434,14 +440,14 @@ function reviewDelete(e) {
 			},
 				body: JSON.stringify({
 					"command" : "reviewDelete",
-					"rseq" : rseq,
+					"rseq" : parseInt(rseq),
 				})
 			})
 			.then(response => response.json())
 			.then(jsonResult => {				
 				if (jsonResult.status == true) {
-					asynGetContent();
 					alert(jsonResult.message);
+					asynGetContent();
 				} else {
 					alert(jsonResult.message);
 				}
@@ -515,7 +521,7 @@ function asynGetContent() {
 	param.command = "getContent";
 	param.amount = 10;
 	param.page = paging.currentPage;
-	param.gseq = gseq.value;
+	param.gseq = parseInt(gseq.value);
 
 	fetch('/GoodsShop/gshop.do?command=asyn', {
 		method : 'POST',
@@ -545,7 +551,7 @@ function asynGetContent() {
 					}
 					content += '</div>';
 					content += '</div>';
-					content += '<div class="item-content"><span class="item-content-text">'+ reviewList[i++].content + '</span></div>';
+					content += '<div class="item-content"><pre class="pre-styled"><span class="item-content-text">'+ reviewList[i++].content + '</span></pre></div>';
 					content += '</li>';
 				})
 				document.querySelector("#reviewList").innerHTML = content;

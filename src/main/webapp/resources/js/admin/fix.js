@@ -7,6 +7,14 @@ let keyword = '';
 let checkAll = document.querySelector("#checkAll");
 let checkBoxes = document.querySelectorAll("div.small-col input[type='checkbox'][name='check']");
 
+function truncateText(text, maxLength) {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength - 1) + "...";
+    } else {
+        return text;
+    }
+}
+
 document.querySelector("#keyword").addEventListener("keydown", (e) => {
 	keyword = document.querySelector("#keyword").value;
 	
@@ -147,6 +155,12 @@ function asynGetContent() {
 	param.command = "getContent";
 	param.amount = paging.amount;
 	param.page = paging.currentPage;
+	if (searchValue === "sc") {
+        param.subject = keyword;
+        param.content = keyword;
+    } else if (searchValue) {
+        param[searchValue] = keyword;
+    }
 
 	fetch('/GoodsShop/gshop.do?command=asyn', {
 		method : 'POST',

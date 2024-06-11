@@ -1,10 +1,13 @@
+let param = {
+    table: "qna",
+};
 let paging;
 let myPaging;
 let selectAmount = document.querySelector("#selectAmount");
 let pages = document.querySelectorAll('.all-page-link');
 let myPages = document.querySelectorAll('.my-page-link');
-let searchType = document.querySelector('#search');
-let search = searchType.options[searchType.selectedIndex].value;
+let search = document.querySelector('#search');
+let searchValue = search.value;
 let keywordInput = document.querySelector("#keyword");
 let keyword = '';
 let tab;
@@ -24,33 +27,54 @@ document.addEventListener('DOMContentLoaded', () => {
         tab = "all";
     });
     
-    myTab.addEventListener('click', () => {
-        allTab.classList.remove('active');
-        myTab.classList.add('active');
-        allQna.classList.remove('show', 'active');
-        myQna.classList.add('show', 'active');
-        tab = "my";
-    });
+    if (myTab != null) {
+	    myTab.addEventListener('click', () => {
+	        allTab.classList.remove('active');
+	        myTab.classList.add('active');
+	        allQna.classList.remove('show', 'active');
+	        myQna.classList.add('show', 'active');
+	    });
+    }
     
+    param['command'] = "pageInfo";
     getPageInfo();
+    delete param['command'];
 });
 
 keywordInput.addEventListener("keydown", (e) => {
 	keyword = keywordInput.value;
 	
 	if (e.keyCode === 13) {
-		asynGetContent("my");
+		searchKeyword();
 		asynGetContent("all");
+		asynGetContent("my");
 	}
 });
 
-keywordInput.addEventListener("input", (e) => {
-	keyword = keywordInput.value;
+function searchKeyword() {
+	Object.keys(param).forEach(key => {
+        if (key !== 'table') {
+            delete param[key];
+        }
+    });
+    
+	if (searchValue === "sc") {
+        param.subject = keyword;
+        param.content = keyword;
+    } else if (searchValue) {
+        param[searchValue] = keyword;
+    }
+}
+
+keywordInput.addEventListener("input", () => {
+	keyword = document.querySelector("#keyword").value;
+	searchKeyword();
 });
 
-searchType.addEventListener("change", () => {
-	search = searchType.options[searchType.selectedIndex].value;
-})
+document.getElementById('search').addEventListener('change', () => {
+	searchValue = search.value;
+	searchKeyword();
+});
 
 function getPageInfo() {	
 	fetch('/GoodsShop/gshop.do?command=asyn', {
@@ -58,7 +82,7 @@ function getPageInfo() {
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
 		},
-			body: JSON.stringify({"command" : "pageInfo", "table" : "qna"})
+			body: JSON.stringify(param)
 		})
 		.then(response => response.json())
 		.then(jsonResult => {
@@ -77,10 +101,9 @@ function getPageInfo() {
 
 selectAmount.addEventListener("change", () => {
 	paging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
-	myPaging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
 	
 	let realEnd = Math.ceil(paging.total / paging.amount);
-	let myRealEnd = Math.ceil(myPaging.total / myPaging.amount);
+	let myRealEnd = 0;
 	
 	if (realEnd < paging.currentPage) {
 		if (realEnd <= 0) {
@@ -90,23 +113,29 @@ selectAmount.addEventListener("change", () => {
 		}
 	}
 	
-	if (myRealEnd < myPaging.currentPage) {
-		if (myRealEnd <= 0) {
-			myPaging.currentPage = 1;
-		} else {
-			myPaging.currentPage = myRealEnd;
-		}
-	}
-	
 	if (paging.amount == 0) {
 		return;
 	} else {
 		asynGetContent("all");
 	}
-	if (myPaging.amount == 0) {
-		return;
-	} else {
-		asynGetContent("my");
+	
+	if (document.querySelector('#my-tab') != null) {
+		myPaging.amount = parseInt(selectAmount.options[selectAmount.selectedIndex].value);
+		myRealEnd = Math.ceil(myPaging.total / myPaging.amount);
+		
+		if (myRealEnd < myPaging.currentPage) {
+			if (myRealEnd <= 0) {
+				myPaging.currentPage = 1;
+			} else {
+				myPaging.currentPage = myRealEnd;
+			}
+		}
+		
+		if (myPaging.amount == 0) {
+			return;
+		} else {
+			asynGetContent("my");
+		}
 	}
 })
 
@@ -155,20 +184,17 @@ function formatDate(dateString) {
 }
 
 function asynGetContent(tab) {
-	let param = {
-		"command" : "getContent",
-		"table" : "qna",
-	};
+	param.command = "getContent";
 	
-	if (search == "sc") {
+	if (search.value == "sc") {
 		param.subject = keyword;
 		param.content = keyword;
-	} else if (search == "subject")
+	} else if (search.value == "subject")
 		param.subject = keyword;
 	else
 		param.content = keyword;
 
-	if (tab == "my") {
+	if (tab == "my" && document.querySelector('#my-tab') != null) {
 		param.my = "";
 		param.amount = myPaging.amount;
 		param.page = myPaging.currentPage;
@@ -183,6 +209,7 @@ function asynGetContent(tab) {
 			.then(response => response.json())
 			.then(jsonResult => {
 				if (jsonResult.status == true) {
+					delete param.my;
 					let contentList = jsonResult.content;
 					let content = '';
 					let i = 0;
@@ -209,7 +236,6 @@ function asynGetContent(tab) {
 					document.querySelector("#my-qna-list").innerHTML = content;
 					
 					myPaging = jsonResult.paging;
-					console.log(jsonResult.paging);
 					let pagination = '';
 					
 					if (myPaging.prev) {

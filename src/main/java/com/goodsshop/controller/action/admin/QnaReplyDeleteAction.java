@@ -17,6 +17,6 @@ public class QnaReplyDeleteAction implements Action {
 		
 		dao.deleteReply(qseq);
 		
-		response.sendRedirect("gshop.do?command=qnaView&qseq=" + qseq);
+		response.sendRedirect("gshop.do?command=adminQnaView&qseq=" + qseq);
 	}
 }
