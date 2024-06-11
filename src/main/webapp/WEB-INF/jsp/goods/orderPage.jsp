@@ -41,7 +41,7 @@
 								</div>
 								<div class="listfield">${ovo.gname}</div>
 								<div class="listfield">${ovo.quantity} 개</div>
-								<div class="listfield">${ovo.totalprice} 원</div>
+								<div class="listfield"><fmt:formatNumber type="currency" value="${ovo.totalprice}"></fmt:formatNumber></div>
 								<div class="listfield">
 									<input type="checkbox" id="checkboxes" name="gseq" value="${ovo.gseq}" />
 									<input type="hidden" name="quantity" value="${ovo.quantity}">

@@ -14,23 +14,40 @@ goMain();
 
 //add_cart
 function addCart() {
-
-	let addcart = document.querySelector("#add_cart");
-
-	if (addcart != null) {
-
-		addcart.addEventListener("click", function() {
-			if (document.goodsform.input_quantity.value == "") {
-				alert("수량을 입력하세요");
-			} else {
-				document.goodsform.action = "gshop.do?command=addCart";
-				document.goodsform.method = "post";
-				document.goodsform.submit();
-			}
-		})
-	}
+    let addcart = document.querySelector("#add_cart");
+    
+    if (addcart !== null) {
+        addcart.addEventListener("click", function() {
+            let quantity = parseInt(document.goodsform.input_quantity.value);
+            
+            if (isNaN(quantity) || quantity < 1) {
+                alert("장바구니 최소수량은 1개입니다.");
+            } else {
+                document.goodsform.action = "gshop.do?command=addCart";
+                document.goodsform.method = "post";
+                document.goodsform.submit();
+            }
+        });
+    }
 }
 addCart();
+
+
+//input_quantity
+function inputOnlyNum(){
+	let quantity = document.querySelector("#input_quantity");
+	
+	if(quantity != null ){
+		quantity.addEventListener("keydown", (e)=>{
+			let key = e.key || e.which;
+			
+			if((key < "0" || key > "9") && (key !== "Backspace" && key !== "Delete" && key !== "ArrowLeft" && key !== "ArrowRight" && key !== "Tab" && key !== "Enter")){
+				e.preventDefault();
+			}			
+		})
+	}	
+}
+inputOnlyNum();
 
 
 //add_wishlist
@@ -52,13 +69,19 @@ addWishlist();
 //go_order
 function goOrder() {
 	let ordernow = document.querySelector("#purchase_now");
+	let quantity = parseInt(document.goodsform.input_quantity.value);	
 
 	if (ordernow != null) {
 		ordernow.addEventListener("click", () => {
-			document.goodsform.action = "gshop.do?command=orderNow";
-			document.goodsform.method = "post";
-			document.goodsform.submit();
-
+            let quantity = parseInt(document.goodsform.input_quantity.value);
+            
+            if (isNaN(quantity) || quantity < 1) {
+                alert("주문 최소수량은 1개입니다.");
+            } else {
+                document.goodsform.action = "gshop.do?command=addCart";
+                document.goodsform.method = "post";
+                document.goodsform.submit();
+            }
 		})
 	}
 }

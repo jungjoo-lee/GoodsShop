@@ -39,7 +39,7 @@
                             </div>
                             <div class="listfield">${cvo.goodsname}</div>
                             <div class="listfield">${cvo.quantity} 개</div>
-                            <div class="listfield">${cvo.totalprice} 원</div>
+                            <div class="listfield"><fmt:formatNumber type="currency" value="${cvo.totalprice}"></fmt:formatNumber></div>
                             <div class="listfield">
                                 <input type="checkbox" id="checkboxes" name="gseq" value="${cvo.gseq}" />
                                 <input type="hidden" name="quantity" value="${cvo.quantity}">

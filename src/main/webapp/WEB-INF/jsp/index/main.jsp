@@ -28,7 +28,7 @@
 					            </c:forEach>
 								<%-- <img alt="${gvo.imageList[0].realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.imageList[0].realname}'/>"> --%>
 							</div>
-							${gvo.gname} - ${gvo.sprice}
+							${gvo.gname} - <fmt:formatNumber type="currency" value="${gvo.sprice}"></fmt:formatNumber>
 						</a>
 					</div>
 				</div>
@@ -51,7 +51,7 @@
 							            </c:forEach>
 										<%-- <img alt="${gvo.imageList[0].realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.imageList[0].realname}'/>"> --%>
 									</div>
-									${gvo.gname} - ${gvo.sprice}
+									${gvo.gname} - <fmt:formatNumber type="currency" value="${gvo.sprice}"></fmt:formatNumber>
 								</a>
 							</div>
 						</div>

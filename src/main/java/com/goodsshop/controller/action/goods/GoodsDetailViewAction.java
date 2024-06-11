@@ -31,8 +31,6 @@ public class GoodsDetailViewAction implements Action {
 		GoodsVO gvo = gdao.getGoods(gseq);
 		List<GoodsImageVO> image = gdao.getImageList(gseq);
 		gvo.setImageList(image);
-		String thum = gdao.getThumbnail(gseq);
-		gvo.setThum(thum);
 		
 		if (loginUser != null) {
 			int oldPrice = gvo.getSprice();		

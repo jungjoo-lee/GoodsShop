@@ -74,6 +74,22 @@
     overflow: hidden; /* 이미지가 넘치는 부분을 숨김 */
 }
 
+.category-image{
+    width: 100%; /* 부모 요소에 맞추기 위해 100%로 설정 */
+    height: 0; /* 높이를 0으로 설정하여 이미지가 보이지 않도록 함 */
+    padding-top: 100%; /* 높이를 width 값에 맞추기 위해 너비의 비율인 100%로 설정 */
+    position: relative; /* 포지션을 상대적으로 설정하여 내부 내용의 위치를 조정하기 위해 */
+    overflow: hidden; /* 이미지가 넘치는 부분을 숨김 */	
+}
+
+.category-image img{
+	position: absolute; /* 이미지를 상위 요소에 대해 절대 위치로 설정하여 부모 요소의 크기에 맞게 조정 */
+    width: 100%; /* 부모 요소에 맞춰 크기 조절 */
+    height: auto; /* 높이 자동 조절 */
+	top: 0; /* 상단으로 정렬 */
+    left: 0; /* 왼쪽으로 정렬 */	
+}
+
 /* 썸네일 이미지 스타일 */
 .product-image img {
 	position: absolute; /* 이미지를 상위 요소에 대해 절대 위치로 설정하여 부모 요소의 크기에 맞게 조정 */

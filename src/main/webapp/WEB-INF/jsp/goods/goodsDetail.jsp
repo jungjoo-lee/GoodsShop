@@ -27,7 +27,7 @@
 			<div class="detail-infobox">
 				<div class="detail-infotext">
 					<div class="detail-title">${goodsDetail.gname}</div>
-					<div class="detail-field">가격 : ${goodsDetail.sprice} 원</div>
+					<div class="detail-field">가격 : <fmt:formatNumber type="currency" value="${goodsDetail.sprice}"></fmt:formatNumber></div>
 					<div class="detail-field">
 						수량 : <input id="input_quantity" name="input_quantity" type="number"
 							min="1" value="1">

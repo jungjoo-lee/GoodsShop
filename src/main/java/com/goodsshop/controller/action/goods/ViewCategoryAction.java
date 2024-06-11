@@ -56,20 +56,24 @@ public class ViewCategoryAction implements Action {
 
 		
 		for (GoodsVO vo : categoryList) {
-				GoodsDAO gdao1 = new GoodsDAO();
+			GoodsDAO gdao1 = new GoodsDAO();
 
-				List<GoodsImageVO> categoryImageList = gdao1.getImageList(vo.getGseq());
-				vo.setImageList(categoryImageList);
+			List<GoodsImageVO> categoryImageList = gdao1.getImageList(vo.getGseq());
+			vo.setImageList(categoryImageList);
 
-				// 사용자별 가격표시
-				if (loginUser != null) {
-					int oldPrice = vo.getSprice();		
-					int newPrice = 0;
-					
-					newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
-					
-					vo.setSprice(newPrice);
-				}
+			/*
+			 * for (GoodsImageVO givo : categoryImageList) { System.out.println(givo); }
+			 */
+
+			// 사용자별 가격표시
+			if (loginUser != null) {
+				int oldPrice = vo.getSprice();
+				int newPrice = 0;
+
+				newPrice = (int) Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
+
+				vo.setSprice(newPrice);
+			}
 		}
 
 		

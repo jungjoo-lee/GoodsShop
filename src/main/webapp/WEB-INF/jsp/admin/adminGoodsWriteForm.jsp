@@ -104,9 +104,6 @@
 								<div class="labelfield">판매가</div>
 								<div class="labelfield">마진</div>
 								<div class="labelfield">상세설명</div>
-								<!-- <div class="labelfield">
-									<input type="checkbox" id="checkAll">
-								</div> -->
 								<div class="labelfield">카테고리</div>
 								<div class="labelfield">베스트YN</div>
 								<div class="labelfield">판매중YN</div>

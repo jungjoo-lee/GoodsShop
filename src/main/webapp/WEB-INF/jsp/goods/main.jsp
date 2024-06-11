@@ -39,7 +39,7 @@
 						<img alt="${gvo.thum}.png" src='<c:url value="/resources/image/goods/${gvo.thum}.png"/>'>	
 					</a>
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-						${gvo.gname} - ${gvo.sprice}					
+						${gvo.gname} - <fmt:formatNumber type="currency" value="${gvo.sprice}"></fmt:formatNumber>					
 					</a>
 				</div>
 			</div>
@@ -55,7 +55,7 @@
 						<img alt="${gvo.thum}.png" src='<c:url value="/resources/image/goods/${gvo.thum}.png"/>'>	
 					</a>		
 					<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
-						${gvo.gname} - ${gvo.sprice}					
+						${gvo.gname} - <fmt:formatNumber type="currency" value="${gvo.sprice}"></fmt:formatNumber>					
 					</a>		
 				</div>
 			</div>
