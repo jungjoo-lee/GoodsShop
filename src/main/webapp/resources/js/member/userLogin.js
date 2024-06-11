@@ -86,23 +86,23 @@ function codeOK(){
 
 /* 회원 정보 수정 */
 function go_updateMember(){
-	 if(document.updateMemberForm.pwd.value == "") {
+	 if(document.formm.pwd.value == "") {
    alert("비밀번호를 입력해 주세요.");
-   document.updateMemberForm.pwd.focus();
-   } else if(document.updateMemberForm.pwd.value != document.updateMemberForm.pwdCheck.value) {
+   document.formm.pwd.focus();
+   } else if(document.formm.pwd.value != document.formm.pwdCheck.value) {
    alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-   document.updateMemberForm.pwd.focus();
-   } else if(document.updateMemberForm.name.value == "") {
+   document.formm.pwd.focus();
+   } else if(document.formm.name.value == "") {
    alert("이름을 입력해 주세요.");
-   document.updateMemberForm.name.focus();
-   } else if(document.updateMemberForm.phone.value == "") {
+   document.formm.name.focus();
+   } else if(document.formm.phone.value == "") {
    alert("전화번호를 입력해 주세요.");
-   document.updateMemberForm.phone.focus();
-   }else if(document.updateMemberForm.email.value == "") {
+   document.formm.phone.focus();
+   }else if(document.formm.email.value == "") {
    alert("이메일을 입력해 주세요.");
-   document.updateMemberForm.email.focus();
+   document.formm.email.focus();
    }  else{
-   document.updateMemberForm.submit();
+   document.formm.submit();
    }
   }
 /* 주소 찾기 창*/
@@ -114,8 +114,8 @@ function post_zip(){
 
 /* 주소 찾기*/
 function addressOK(zip_code , sido, gugun, dong){
-   opener.updateMemberForm.zip_code.value =zip_code;
-   opener.updateMemberForm.address.value = sido+" " + gugun + " " + dong ;
+   opener.formm.zip_code.value =zip_code;
+   opener.formm.address.value = sido+" " + gugun + " " + dong ;
    self.close();
 }
 
@@ -153,12 +153,4 @@ function setPlaceholder(input, placeholder) {
         input.classList.add('placeholder-visible');
         input.type = "text";
     }
-}
-
-// 페이지 로드 시 실행하여 초기 상태를 설정합니다.
-window.onload = function() {
-    var passwordField = document.getElementById("password");
-    // 초기에 입력된 값이 "비밀번호"인 경우에만 클래스를 추가하여 플레이스홀더 텍스트를 보이게 합니다.
-	passwordField.classList.add('placeholder-visible');
- 
-};     
+}    

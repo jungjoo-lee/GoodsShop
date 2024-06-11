@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <section id="section">
 		<article id="article">
-			<form action="gshop.do?command=updateMember" method="post" name="updateMemberForm" id="updateForm">
+			<form action="gshop.do?command=updateMember" method="post" name="formm" id="updateForm">
 			<h3>회원정보 수정</h3>
 			<div class="field">
 				<label>아이디</label><input type="text" name="userid" value="${loginUser.userid}" readonly>
@@ -32,8 +32,8 @@
 			<h3>주소 수정</h3>
 			<div class="field">
 				<label>우편번호 검색</label>
-					<input type="text" name="zip_code" readonly " >
-					<input type="button" id="address"  onClick="post_zip();" value="우편번호 찾기">
+					<input type="text" name="zip_code" readonly/>
+					<input type="button" id="findAddressBtn"  onClick="post_zip();" value="우편번호 찾기"/>
 			</div>
 			<div class="field">
 				<label>주소</label><input type="text" name="address" value="${loginUser.address}" readonly>

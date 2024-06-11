@@ -89,6 +89,5 @@
 		</c:if>
 		</div>
 	</div>
-	<script type="text/javascript"
-		src='<c:url value = "/resources/js/goods/orderlistview.js"/>'></script>
+
 <%@ include file="/WEB-INF/jsp/footer.jsp"%>

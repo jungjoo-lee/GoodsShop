@@ -61,8 +61,9 @@ public class AdminGoodsViewAction implements Action {
 			request.setAttribute("paging", paging);		
 			
 			url = "WEB-INF/jsp/admin/adminGoodsView.jsp";			
-			request.getRequestDispatcher(url).forward(request, response);
 		}
+		
+		request.getRequestDispatcher(url).forward(request, response);
 		
 	}
 }

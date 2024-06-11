@@ -3,23 +3,23 @@
 
 /* 아이디 중복 확인*/
 function idcheck(){
-	var uid = document.JoinPage.userid.value;
+	var uid = document.formm.userid.value;
 	if(uid==""){
 		alert("아이디를 입력하고 중복체크를 진행해주세요!");
-		document.JoinPage.userid.focus();
+		document.formm.userid.focus();
 		return;
 	}
-	var url = "gshop.do?command=IDCheck&userid=" + document.JoinPage.userid.value;
+	var url = "gshop.do?command=IDCheck&userid=" + document.formm.userid.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 	window.open(url, "IDCheck", opt);
 }
 /* 약관동의 */
 function go_next(){
 	
-	if( document.JoinPage.okon[1].checked == true){
+	if( document.formm.okon[1].checked == true){
 		alert("약관에 동의하지 않으면 가입하실 수 없습니다!!");
 	}else{
-		document.JoinPage.submit();
+		document.formm.submit();
 	}
 }
 /* 주소 찾기 창*/
@@ -40,52 +40,53 @@ function find_zip(){
 function go_save(){
 
 	
-	if( document.JoinPage.userid.value == ""){
+	if( document.formm.userid.value == ""){
 		alert("아이디가 입력되지 않았습니다!");
-		document.JoinPage.userid.focus();
-	}else if( document.JoinPage.reid.value != document.JoinPage.userid.value){
+		document.formm.userid.focus();
+	}else if( document.formm.reid.value != document.formm.userid.value){
 		alert("아이디 중복확인을 해주세요.");
-		document.JoinPage.userid.focus();
-	}else if( document.JoinPage.pwd.value == ""){
+		document.formm.userid.focus();
+	}else if( document.formm.pwd.value == ""){
 		alert("비밀번호가 입력되지 않았습니다!");
-		document.JoinPage.pwd.focus();
-	}else if( document.JoinPage.pwd.value != document.JoinPage.pwdCheck.value){
+		document.formm.pwd.focus();
+	}else if( document.formm.pwd.value != document.formm.pwdCheck.value){
 		alert("비밀번호 확인이 일치하지 않습니다!");
-		document.JoinPage.pwdCheck.focus();
-	}else if( document.JoinPage.name.value == ""){
+		document.formm.pwdCheck.focus();
+	}else if( document.formm.name.value == ""){
 		alert("이름을 입력해주세요.");
-		document.JoinPage.name.focus();
-	}else if( document.JoinPage.phone.value == ""){
+		document.formm.name.focus();
+	}else if( document.formm.phone.value == ""){
 		alert("전화번호가 입력되지 않았습니다!");
-		document.JoinPage.phone.focus();
-	}else if( document.JoinPage.email.value == ""){
+		document.formm.phone.focus();
+	}else if( document.formm.email.value == ""){
 		alert("이메일을 입력해주세요.");
-		document.JoinPage.email.focus();
+		document.formm.email.focus();
 	}else if(!emailVerified){
 		alert("이메일 인증을 진행해주세요!");
-		document.JoinPage.email.focus();
-	}else if( document.JoinPage.zip_code.value == ""){
+		document.formm.email.focus();
+	}else if( document.formm.zip_code.value == ""){
 		alert("배송받으실 주소를 입력해주세요!");
-	}else if( document.JoinPage.yno[1].checked == true){
+	}else if( document.formm.yno[1].checked == true){
 		alert("약관 동의를 해주셔야 가입이 가능합니다!");
 	}else{
-		document.JoinPage.submit();
+		document.formm.submit();
 	}
 }
 
 function idok(userid){
-	opener.JoinPage.userid.value = userid;
-	opener.JoinPage.reid.value = userid;
+	opener.formm.userid.value = userid;
+	opener.formm.reid.value = userid;
 	self.close();
 }
 
 function addressOK( zip_num, sido, gugun, dong ){
-	opener.document.JoinPage.zip_code.value=zip_num;
-	opener.document.JoinPage.address.value=sido+" "+gugun+" "+dong;
+	opener.document.formm.zip_code.value=zip_num;
+	opener.document.formm.address.value=sido+" "+gugun+" "+dong;
 	self.close();
 }
+
 function verify(){
-	var inp = document.JoinPage.email.value;
+	var inp = document.formm.email.value;
 	var emform = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	if(inp==""||emform.test(inp)==false){
 	alert("이메일 형식이 올바르지 않습니다! ")

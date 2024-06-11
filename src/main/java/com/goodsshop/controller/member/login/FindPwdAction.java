@@ -48,11 +48,11 @@ public class FindPwdAction implements Action {
 		 try {
 			 	if(mvo== null){ 
 			 		request.setAttribute("message", "등록된 회원이 아닙니다");
-			 		 request.getRequestDispatcher("jsp/member/findPwdForm.jsp").forward(request, response);
+			 		 request.getRequestDispatcher("/WEB-INF/jsp/member/findPwdForm.jsp").forward(request, response);
 			 	}	else if (mvo.getEmail() == null || mvo.getUserid() == null || !mvo.getEmail().equals(email) || !mvo.getUserid().equals(userid)) {
 
 		            request.setAttribute("message", "등록된 회원이 아닙니다");
-		            request.getRequestDispatcher("jsp/member/findPwdForm.jsp").forward(request, response);
+		            request.getRequestDispatcher("/WEB-INF/jsp/member/findPwdForm.jsp").forward(request, response);
 		        } else if (mvo.getEmail().equals(email) && mvo.getUserid().equals(userid)) {
 		        	request.setAttribute("message", "인증번호가 전송되었습니다");
 		            // 랜덤한 인증 코드 생성
