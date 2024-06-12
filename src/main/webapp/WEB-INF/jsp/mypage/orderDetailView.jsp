@@ -48,7 +48,7 @@
 						<div class="titlefield"> ${ovo.odseq}</div>
 						<div class="titlefield"> ${ovo.gname}</div>
 						<div class="titlefield"> ${ovo.quantity} 개</div>
-						<div class="titlefield"> ${ovo.totalprice} 원</div>
+						<div class="titlefield"> <fmt:formatNumber value="${ovo.totalprice}"></fmt:formatNumber> </div>
 					</div>
 				</div>
 			</c:forEach>

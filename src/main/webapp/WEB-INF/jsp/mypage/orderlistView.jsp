@@ -36,7 +36,7 @@
 									<div class="listfield">${ovo.oseq}</div>
 									<div class="listfield">${ovo.gname} 포함 ${ovo.quantity} 개</div>
 									<div class="listfield">${ovo.indate}</div>
-									<div class="listfield">${ovo.totalprice}</div>
+									<div class="listfield"> <fmt:formatNumber value="${ovo.totalprice}"></fmt:formatNumber> </div>
 									<div class="listfield">${ovo.status}</div>
 
 									<input type="hidden" name="oseq" value="${ovo.oseq}">
