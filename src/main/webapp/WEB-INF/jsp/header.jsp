@@ -50,13 +50,13 @@
 			</div>
 			<div class="menu_bar">
 				<div id="categories_0">BEST50</div>
-				<div id="categories_1">헤어악세서리</div>
+				<div id="categories_1">목걸이</div>
 				<div id="categories_2">반지</div>
-				<div id="categories_3">목걸이</div>
+				<div id="categories_3">팔찌</div>
 				<div id="categories_4">귀걸이</div>
-				<div id="categories_5">팔찌</div>
-				<div id="categories_6">브로치</div>
-				<div id="categories_7">모자</div>
+				<div id="categories_5">키링</div>
+				<div id="categories_6">인형</div>
+				<div id="categories_7">기타</div>
 			</div>
 			<div class="header_searchbar">
 				<input type="text" id="search_key" class="search-input" placeholder="상품 이름을 입력해주세요">

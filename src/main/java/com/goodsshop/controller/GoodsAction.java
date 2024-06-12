@@ -326,7 +326,6 @@ public class GoodsAction {
 				gvo.setSprice(newPrice);
 				
 				ovo.setTotalprice(gvo.getSprice() * 1);
-				ovo.setThum(gdao.getThumbnail(gseqInt));
 				
 				list.add(ovo);		
 			}
