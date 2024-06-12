@@ -37,6 +37,17 @@ form label {
 	border: none; 
 	border-bottom:1px solid #bbb;
 }
+.field input[type="button"]{
+	justify-content: center; 
+	align-items: center; 
+	padding: 10px; 
+	background-color: #393937; 
+	color:white;
+	border: none; 
+	cursor: pointer; 
+	margin-top:10px;
+	margin-bottom: 5px; 
+}
 #address input[type="button"]{
 	height:30px;
 	width:30px;

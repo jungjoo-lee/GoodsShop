@@ -73,20 +73,23 @@ public class MemberDAO {
 	}
 
 
-	public void deleteMember(String userid) {
+	public  int deleteMember(String userid) {
+		int result = 0;
 		con = DB.getConnection();
 		String sql = "delete from member where userid=?";
-		con = DB.getConnection();
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, userid);
-			pstmt.executeUpdate();
+			result = pstmt.executeUpdate();
 		} catch (SQLException e) { e.printStackTrace();
 		} finally { DB.close(con, pstmt, rs); }
+		
+		return result;
 	}
 	
 	
-	public void updateMember(MemberVO mvo) {
+	public int updateMember(MemberVO mvo) {
+		int result = 0;
 	     con = DB.getConnection();
 	      String sql = "update member set pwd=?, name=?, zip_code=?, address=?, "
 	      		+ "d_address=?, email=?, phone=? where userid=?";
@@ -100,10 +103,11 @@ public class MemberDAO {
 	         pstmt.setString(6, mvo.getEmail());
 	         pstmt.setString(7, mvo.getPhone());
 	         pstmt.setString(8, mvo.getUserid());
-	         pstmt.executeUpdate();
+	     	 result = pstmt.executeUpdate();
 	      } catch (SQLException e) { e.printStackTrace();
 	      } finally {DB.close(con, pstmt, rs);
 	      }
+	      return result;
 	}
 
 	public ArrayList<AddressVO> selectAddressByDong(String dong) {

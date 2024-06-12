@@ -1,6 +1,7 @@
 package com.goodsshop.controller.member.update;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import com.goodsshop.controller.action.Action;
 
@@ -32,11 +33,14 @@ public class UpdateMemberAction implements Action {
 					mvo1.setD_address(request.getParameter("d_address"));
 					
 					MemberDAO mdao = MemberDAO.getInstance();
-					mdao.updateMember(mvo1);
+					int result = mdao.updateMember(mvo1);
 					
+					if(result == 1) {
 					session.setAttribute("loginUser", mvo1);
-					
-					response.sendRedirect("gshop.do?command=index");
+					PrintWriter out = response.getWriter();
+					out.print("<script>alert('정상 수정 되었습니다.');</script>");
+					out.print("<script>location.href='gshop.do?command=index'</script>");
+					}
 				}
 				
 			}

@@ -20,7 +20,7 @@
 				<label>비밀번호 확인</label><input type="password" name="pwdCheck">
 			</div>
 			<div class="field">
-				<label>이름</label><input type="text" name="name" value="${loginUser.name}">
+				<label>이름</label><input type="text" 	name="name" value="${loginUser.name}">
 			</div>
 			<div class="field">
 				<label>핸드폰</label><input type="text" name="phone" value="${loginUser.phone}">
@@ -46,7 +46,7 @@
 				<input type="button" value="회원정보 수정" onClick="return go_updateMember()"/>
 			</div>
 			<div class="btn2">
-				<input type="button" value="회원 탈퇴하기" onClick="goodbye()">
+				<input type="button" value="회원 탈퇴하기" onClick="goodbye(${loginUser.pwd})">
 			</div>
 		</form>
 		</article>
