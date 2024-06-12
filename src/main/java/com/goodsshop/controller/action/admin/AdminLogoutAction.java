@@ -15,6 +15,6 @@ public class AdminLogoutAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginAdmin");
-		response.sendRedirect("gshop.do?command=adminIndex");
+		response.sendRedirect("gshop.do?command=adminLogin");
 	}
 }
