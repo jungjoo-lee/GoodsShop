@@ -46,7 +46,7 @@
 				<input type="button" value="회원정보 수정" onClick="return go_updateMember()"/>
 			</div>
 			<div class="btn2">
-				<input type="button" value="회원 탈퇴하기" onClick="goodbye(${loginUser.pwd})">
+				<input type="button" value="회원 탈퇴하기" onClick="goodbye('${loginUser.pwd}')">
 			</div>
 		</form>
 		</article>

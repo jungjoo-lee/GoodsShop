@@ -4,7 +4,7 @@ function gomain(){
 	
 	if(main != null){
 		main.addEventListener("click", ()=>{
-			location.href="/main.do";
+			location.href="main.do";
 		})
 	}
 }

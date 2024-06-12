@@ -64,7 +64,7 @@ public class AdminAction {
 		AdminVO loginAdmin = (AdminVO)session.getAttribute("loginAdmin");
 		AdminDAO dao = AdminDAO.getInstance();
 		
-		if (loginAdmin == null) {
+		if (loginAdmin != null) {
 			int total = dao.getTotalMember();
 			int currentPage = 1;
 			int amount = 10;
