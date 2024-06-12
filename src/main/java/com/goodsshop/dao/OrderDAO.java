@@ -196,7 +196,6 @@ public class OrderDAO {
 				ovo.setTotalprice(rs.getInt("totalprice"));
 				ovo.setOsseq(rs.getInt("osseq"));
 				ovo.setStatus(rs.getString("status"));
-				ovo.setRealname(rs.getString("realname"));
 				
 				list.add(ovo);
 			}
@@ -244,7 +243,6 @@ public class OrderDAO {
 				ovo.setGname(rs.getString("gname"));
 				ovo.setOsseq(rs.getInt("osseq"));
 				ovo.setStatus(rs.getString("status"));		
-				ovo.setRealname(rs.getString("realname"));
 				
 				
 				ovo.setQuantity(selectOrderRows(rs.getInt("oseq")));
@@ -291,7 +289,6 @@ public class OrderDAO {
 				ovo.setGname(rs.getString("gname"));
 				ovo.setOsseq(rs.getInt("osseq"));
 				ovo.setStatus(rs.getString("status"));		
-				ovo.setRealname(rs.getString("realname"));
 				
 				
 				ovo.setQuantity(selectOrderRows(rs.getInt("oseq")));
@@ -341,7 +338,6 @@ public class OrderDAO {
 				ovo.setGname(rs.getString("gname"));
 				ovo.setOsseq(rs.getInt("osseq"));
 				ovo.setStatus(rs.getString("status"));		
-				ovo.setRealname(rs.getString("realname"));
 				
 				
 				ovo.setQuantity(selectOrderRows(rs.getInt("oseq")));
