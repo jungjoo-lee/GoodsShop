@@ -370,11 +370,15 @@ public class MemberAction {
 			mvo1.setD_address(request.getParameter("d_address"));
 			
 			MemberDAO mdao = MemberDAO.getInstance();
-			mdao.updateMember(mvo1);
+			int result = mdao.updateMember(mvo1);
 			
-			session.setAttribute("loginUser", mvo1);
+			if (result == 1) {
+				session.setAttribute("loginUser", mvo1);
+			}
 			
-			response.sendRedirect("index.do");
+			PrintWriter out = response.getWriter();
+			out.print("<script>alert('정상 수정 되었습니다.');</script>");
+			out.print("<script>location.href='main.do'</script>");
 		}
 	}
 
@@ -386,12 +390,17 @@ public class MemberAction {
 			response.sendRedirect("loginForm.do");
 		}else {
 			MemberDAO mdao = MemberDAO.getInstance();
-			mdao.deleteMember(mvo.getUserid());
+			int result = mdao.deleteMember(mvo.getUserid());
 			
-			session.removeAttribute("loginUser");
+			if (result == 1) {
+				session.removeAttribute("loginUser");
+				PrintWriter out = response.getWriter();
+				out.print("<script>alert('정상 탈퇴 처리되었습니다.');</script>");
+				out.print("<script>location.href='main.do'</script>");
+			}
 			
 			//session.setAttribute("message", "정상 탈퇴 처리되었습니다.");
-			response.sendRedirect("loginForm.do");
+			response.sendRedirect("updateMemberForm.do");
 		}
 	}
 
