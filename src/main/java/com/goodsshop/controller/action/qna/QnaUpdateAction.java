@@ -27,7 +27,7 @@ public class QnaUpdateAction implements FatchAction {
 			dao.updateQna(qVO);
 			jsonResult.put("status", true);
 			jsonResult.put("message", "Q&A 수정 성공");
-			jsonResult.put("url", "/GoodsShop/gshop.do?command=qnaView&qseq=" + qVO.getQseq());
+			jsonResult.put("url", "/GoodsShop/qnaView.do&qseq=" + qVO.getQseq());
 		} catch (Exception e) {
 			e.printStackTrace();
 			jsonResult.put("status", false);

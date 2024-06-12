@@ -68,7 +68,7 @@ public class SearchGoodsAction implements Action {
 		
 		request.setAttribute("categoryList", searchList);
 		request.setAttribute("paging", paging);			
-		request.getRequestDispatcher("WEB-INF/jsp/goods/categoryView.jsp").forward(request, response);		
+		request.getRequestDispatcher("WEB-INF/jsp/goods/categoryView.jsp").forward(request, response);	
 
 	}
 

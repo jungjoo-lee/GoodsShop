@@ -21,7 +21,7 @@ public class QnaDeleteAction implements FatchAction {
 			dao.deleteQna(jsonObj.getInt("qseq"));
 			jsonResult.put("status", true);
 			jsonResult.put("message", "삭제 성공");
-			jsonResult.put("url", "/GoodsShop/gshop.do?command=qnaList");
+			jsonResult.put("url", "/GoodsShop/qnaList.do");
 		} catch (Exception e) {
 			e.printStackTrace();
 			jsonResult.put("status", false);

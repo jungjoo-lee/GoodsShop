@@ -71,7 +71,7 @@ public class AdminOrderSearchAction implements Action {
 		request.setAttribute("key", key);
 		request.setAttribute("url", url);
 		request.setAttribute("paging", paging);		
-		request.getRequestDispatcher("WEB-INF/jsp/admin/adminOrderView.jsp").forward(request, response);		
+		request.getRequestDispatcher("WEB-INF/jsp/admin/adminOrderView.jsp").forward(request, response);
 	}
 
 }

@@ -21,7 +21,6 @@ public class AdminInsertGoodsAction implements Action {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		GoodsVO gvo = new GoodsVO();
-
 		gvo.setGname(request.getParameter("gname"));
 		gvo.setCgseq(Integer.parseInt(request.getParameter("cgseq")));
 		gvo.setOprice(Integer.parseInt(request.getParameter("oprice")));
@@ -37,12 +36,9 @@ public class AdminInsertGoodsAction implements Action {
 		//직전에 추가한 goods 테이블의 gseq 가져오기
 		int gseq = gdao.lookupMaxGseq();
 		
-		
 		// 파일업로드
-
 		String uploadPath = "C:\\upload\\" + gseq + gvo.getGname() + "\\";
 		File uploadDir;
-
 		String oriname = "";
 		String realname = "";
 
@@ -51,15 +47,11 @@ public class AdminInsertGoodsAction implements Action {
 			long fileSize = 0;
 
 			for (String content : p.getHeader("content-disposition").split(";")) {
-
 				if (content.trim().startsWith("filename")) {
-
 					oriname = content.substring(content.indexOf("=") + 2, content.length() - 1);
 
 					if (!oriname.equals("")) {
-
 						realname = String.valueOf(System.currentTimeMillis());
-
 						uploadDir = new File(uploadPath);
 
 						if (!uploadDir.exists()) {
@@ -101,7 +93,5 @@ public class AdminInsertGoodsAction implements Action {
 				}
 			}
 		}
-
 	}
-
 }

@@ -5,11 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import com.goodsshop.controller.GoodsShopServlet;
-import com.goodsshop.dto.QnaVO;
 import com.goodsshop.dto.ReviewVO;
 import com.goodsshop.properties.Env;
 import com.goodsshop.util.DB;

@@ -39,7 +39,7 @@ public class DeleteCartAction implements Action {
 		
 		
 		session.setAttribute("cartlist", cartlist);
-		response.sendRedirect("gshop.do?command=viewCartlist");		
+		response.sendRedirect("gshop.do?command=viewCartlist");	
 
 	}
 

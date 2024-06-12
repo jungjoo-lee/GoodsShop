@@ -43,7 +43,6 @@ public class AdminUpdateGoodsFormAction implements Action {
 			url = "WEB-INF/jsp/admin/adminGoodsWriteForm.jsp";
 		}	
 		
-		
 		request.getRequestDispatcher(url).forward(request, response);
 	}
 }

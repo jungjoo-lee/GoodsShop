@@ -22,29 +22,29 @@
 					<div class="left-links">
 						<c:choose>
 							<c:when test="${empty loginUser}">
-								<a href="gshop.do?command=loginForm">로그인</a>
-								<a href="gshop.do?command=joinPage">회원가입</a>
+								<a href="loginForm.do">로그인</a>
+								<a href="joinPage.do">회원가입</a>
 							</c:when>
 							<c:otherwise>
 								<a href="#">${loginUser.name}(${loginUser.userid})</a>
-								<a href="gshop.do?command=logout">로그아웃</a>
-								<a href="gshop.do?command=updateMemberForm">정보수정</a>
-								<a href="gshop.do?command=viewCartlist">장바구니</a>
-								<a href="gshop.do?command=viewWishlist">찜목록</a>
-								<a href="gshop.do?command=viewOrderList">주문목록</a>
+								<a href="logout.do">로그아웃</a>
+								<a href="updateMemberForm.do">정보수정</a>
+								<a href="viewCartlist.do">장바구니</a>
+								<a href="viewWishlist.do">찜목록</a>
+								<a href="viewOrderList.do">주문목록</a>
 							</c:otherwise>
 						</c:choose>
 					</div>
 					<div class="right-links">
-						<a href="gshop.do?command=noticeList">NOTICE</a> <a
-							href="gshop.do?command=qnaList">Q&A</a> <a
-							href="gshop.do?command=reviewList">REVIEW</a>
+						<a href="noticeList.do">NOTICE</a> <a
+							href="qnaList.do">Q&A</a> <a
+							href="reviewList.do">REVIEW</a>
 					</div>
 					<div class="w-5"></div>
 				</div>
 			</div>
 			<div id="logo">
-				<a href="gshop.do?command=index"> <img
+				<a href="main.do"> <img
 					src="<c:url value='/resources/image/logo_.png'/>" alt="">
 				</a>
 			</div>

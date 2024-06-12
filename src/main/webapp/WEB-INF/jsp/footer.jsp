@@ -16,7 +16,7 @@
 				<div class="footer_content">
 					<div class="footer_contentbox flex-2">
 						<div class="footer_titlebox-1">
-							<a href="gshop.do?command=index">
+							<a href="main.do">
 								<img src="<c:url value='/resources/image/logo_.png'/>">
 							</a>
 						</div>
@@ -56,7 +56,7 @@
 
 				</div>
 				<div class="footer_adminbox">
-					<a href="gshop.do?command=adminLogin">
+					<a href="adminLogin.do">
 						<img src="<c:url value='/resources/image/adminlogo.png'/>">
 					</a>
 				</div>

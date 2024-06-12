@@ -4,7 +4,7 @@ function gomain(){
 	
 	if(main != null){
 		main.addEventListener("click", ()=>{
-			location.href="gshop.do?command=index";
+			location.href="/main.do";
 		})
 	}
 }

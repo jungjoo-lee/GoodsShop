@@ -19,8 +19,6 @@ public class AdminOrderListAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
-		
 		String key = "";
 		
 		if (request.getParameter("key") != null) {

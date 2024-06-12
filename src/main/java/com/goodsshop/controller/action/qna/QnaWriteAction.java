@@ -28,7 +28,7 @@ public class QnaWriteAction implements FatchAction {
 			jsonResult.put("status", true);
 			jsonResult.put("message", "Q&A 작성 성공");
 			int qseq = dao.lastID();
-			jsonResult.put("url", "/GoodsShop/gshop.do?command=qnaView&qseq=" + qseq);
+			jsonResult.put("url", "/GoodsShop/qnaView.do&qseq=" + qseq);
 		} catch (Exception e) {
 			e.printStackTrace();
 			jsonResult.put("status", false);

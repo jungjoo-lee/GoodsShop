@@ -5,7 +5,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">회원관리</div>
-                <a class="nav-link" href="<c:url value='gshop.do?command=adminIndex'/>">
+                <a class="nav-link" href="<c:url value='/adminIndex.do'/>">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-users"></i></div>
                     회원목록
                 </a>

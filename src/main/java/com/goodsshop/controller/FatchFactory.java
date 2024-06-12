@@ -23,12 +23,16 @@ public class FatchFactory {
 		
 		if (command.equals("pageInfo")) fa = new PageInfoAction();
 		else if (command.equals("getContent")) fa = new GetContentAction();
+		// member
 		else if (command.equals("switchYN")) fa = new SwitchYNAction();
 		else if (command.equals("discardMember")) fa = new DiscardMemberAction();
+		// util
 		else if (command.equals("checkDelete")) fa = new CheckDeleteAction();
+		// qna
 		else if (command.equals("qnaWrite")) fa = new QnaWriteAction();
 		else if (command.equals("qnaUpdate")) fa = new QnaUpdateAction();
 		else if (command.equals("qnaDelete")) fa = new QnaDeleteAction();
+		// review
 		else if (command.equals("reviewWrite")) fa = new ReviewWriteAction();
 		else if (command.equals("reviewUpdate")) fa = new ReviewUpdateAction();
 		else if (command.equals("reviewDelete")) fa = new ReviewDeleteAction();
