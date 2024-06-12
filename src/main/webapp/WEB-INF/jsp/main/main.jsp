@@ -20,13 +20,12 @@
 			<c:forEach items="${newlist}" var="gvo" varStatus="status">
 				<div class="product-box">
 					<div class="product-info">
-						<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
+						<a href="goodsDetailView.do?gseq=${gvo.gseq}">
 							<div class="product-image">
 								<c:forEach var="image" items="${gvo.imageList}">
 					                <c:set var="key" value="${gvo.gseq}${gvo.gname}${image.realname}"/>
 					                <img alt="${image.realname}" src="data:image/jpeg;base64,${imageMap[key]}"/>
 					            </c:forEach>
-								<%-- <img alt="${gvo.imageList[0].realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.imageList[0].realname}'/>"> --%>
 							</div>
 							${gvo.gname} - <fmt:formatNumber type="currency" value="${gvo.sprice}"></fmt:formatNumber>
 						</a>
@@ -43,13 +42,12 @@
 					<c:if test="${status.index < 8}">
 						<div class="product-box">
 							<div class="product-info">
-								<a href="gshop.do?command=goodsDetailView&gseq=${gvo.gseq}">
+								<a href="goodsDetailView.do?gseq=${gvo.gseq}">
 									<div class="product-image">
 										<c:forEach var="image" items="${gvo.imageList}">
 							                <c:set var="key" value="${gvo.gseq}${gvo.gname}${image.realname}"/>
 							                <img alt="${image.realname}" src="data:image/jpeg;base64,${imageMap[key]}"/>
 							            </c:forEach>
-										<%-- <img alt="${gvo.imageList[0].realname}" src="<c:url value='/gshop.do?command=imageWrite&folder=${gvo.gseq}${gvo.gname}&realName=${gvo.imageList[0].realname}'/>"> --%>
 									</div>
 									${gvo.gname} - <fmt:formatNumber type="currency" value="${gvo.sprice}"></fmt:formatNumber>
 								</a>
@@ -60,7 +58,7 @@
 			</div>
 			<br><br>
 			<div class="view-all">
-				<a href="gshop.do?command=viewCategory&cgseq=0">전체보기</a>
+				<a href="viewCategory.do?cgseq=0">전체보기</a>
 			</div>
 			<br><br><br><br>
 		</div>
@@ -70,12 +68,12 @@
 		 	<div class="card-header d-flex justify-content-between">
 				<div>공지사항</div>
 				<div>
-					<a href="<c:url value='/gshop.do?command=noticeList'/>"><i class="bi bi-plus-circle"></i> 전체보기</a>
+					<a href="<c:url value='/noticeList.do'/>"><i class="bi bi-plus-circle"></i> 전체보기</a>
 				</div>
 		  	</div>
 			<ul class="list-group list-group-flush">
 				<c:forEach var="notice" items="${noticeList}">
-					<a class="link" href="<c:url value='/gshop.do?command=noticeView&nseq=${notice.nseq}'/>">
+					<a class="link" href="<c:url value='/noticeView.do?nseq=${notice.nseq}'/>">
 						<li class="list-group-item list-group-item-action d-flex li-item">
 							<div class="small-col">${notice.nseq}</div>
 				        	<div class="small-col">${notice.adminId}</div>
@@ -112,12 +110,12 @@
 				<div class="card-header d-flex justify-content-between">
 			  		<div>Q&A</div>
 					<div>
-			    		<a href="<c:url value='/gshop.do?command=qnaList'/>"><i class="bi bi-plus-circle"></i> 전체보기</a>
+			    		<a href="<c:url value='/qnaList.do'/>"><i class="bi bi-plus-circle"></i> 전체보기</a>
 					</div>
 			  	</div>
 			  	<ul class="list-group list-group-flush">
 			  		<c:forEach var="qna" items="${qnaList}">
-				  		<a class="link" href="<c:url value='/gshop.do?command=qnaView&qseq=${qna.qseq}'/>">
+				  		<a class="link" href="<c:url value='/qnaView.do?qseq=${qna.qseq}'/>">
 					  		<li class="list-group-item list-group-item-action d-flex li-item">
 					  			<div class="small-col">${qna.qseq}</div>
 					  			<div>
@@ -144,12 +142,12 @@
 				<div class="card-header d-flex justify-content-between">
 					<div>Review</div>
 					<div>
-						<a href="<c:url value='/gshop.do?command=reviewList'/>"><i class="bi bi-plus-circle"></i> 전체보기</a>
+						<a href="<c:url value='/reviewList.do'/>"><i class="bi bi-plus-circle"></i> 전체보기</a>
 					</div>
 				</div>
 				<ul class="list-group list-group-flush">
 			  		<c:forEach var="rev" items="${reviewList}">
-				  		<a class="link" href="<c:url value='/gshop.do?command=goodsDetailView&gseq=${rev.gseq}'/>">
+				  		<a class="link" href="<c:url value='/goodsDetailView.do?gseq=${rev.gseq}'/>">
 							<li class="list-group-item list-group-item-action d-flex li-item">
 								<div>
 									<c:choose>

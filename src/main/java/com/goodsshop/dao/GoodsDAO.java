@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.goodsshop.controller.action.goods.MPaging;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
 import com.goodsshop.dto.ReviewVO;
 import com.goodsshop.util.DB;
+import com.goodsshop.util.MPaging;
 
 public class GoodsDAO {
 	Connection con = null;

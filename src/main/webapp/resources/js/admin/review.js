@@ -18,10 +18,9 @@ document.querySelectorAll('.btn-check').forEach(checkbox => {
 let deleteBtn = document.querySelector("#deleteBtn");
 deleteBtn.addEventListener("click", () => {
 	if (confirm("삭제하시겠습니까?")) {
-		param.command = "checkDelete";
 		param.checkList = checkBoxChecked();
 		
-		fetch('/GoodsShop/gshop.do?command=asyn', {
+		fetch('/GoodsShop/checkDelete.do', {
 			method : 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
@@ -51,11 +50,11 @@ function contentList(reviewList) {
 	let i = 0;
 	
 	reviewList.forEach(() => {
-		content += '<a class="link" href="/GoodsShop/gshop.do?command=goodsDetailView&gseq=' + reviewList[i].gseq + '">';
+		content += '<a class="link" href="/GoodsShop/goodsDetailView.do?gseq=' + reviewList[i].gseq + '">';
 		content += '<li class="li-item">';
 		content += '<div class="d-flex justify-content-center align-items-center">';
 		content += '<div class="small-col">' + reviewList[i].rseq + '</div>';
-		content += '<div><img src="/GoodsShop/gshop.do?command=imageWrite&folder=' + reviewList[i].gseq + reviewList[i].gname + '&realName=' + reviewList[i].realName + '"></div>';
+		content += '<div><img src="/GoodsShop/imageWrite.do?folder=' + reviewList[i].gseq + reviewList[i].gname + '&realName=' + reviewList[i].realName + '"></div>';
 		content += '<div class="small-col">[' + reviewList[i].category + ']</div>';
 		content += '<div>' + truncateText(reviewList[i].gname, 18) + '</div>';
 		content += '<div>' + truncateText(reviewList[i].subject, 18) + '</div>';

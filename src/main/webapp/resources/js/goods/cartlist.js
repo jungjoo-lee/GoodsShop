@@ -37,7 +37,7 @@ function deletecart(){
 			if(count == 0){
 				alert("삭제할 상품을 선택해주세요");			
 			} else {
-				document.cartlistform.action = "gshop.do?command=deleteCart";
+				document.cartlistform.action = "deleteCart.do";
 				document.cartlistform.method = "post";
 				document.cartlistform.submit();
 			}			
@@ -71,7 +71,7 @@ function goorder(){
 			if(count == 0){
 				alert("주문할 상품을 선택하세요");			
 			} else {
-				document.cartlistform.action = "gshop.do?command=orderFromCart";
+				document.cartlistform.action = "orderFromCart.do";
 				document.cartlistform.method = "post";
 				document.cartlistform.submit();
 			}				

@@ -62,7 +62,7 @@
                	<div>
                		<ul id="notice-list">
 						<c:forEach var="notice" items="${noticeList}">
-							<a class="link" href="<c:url value='/gshop.do?command=adminNoticeView&nseq=${notice.nseq}'/>">
+							<a class="link" href="<c:url value='/adminNoticeView.do?nseq=${notice.nseq}'/>">
 								<li class="li-item">
 									<div class="d-flex justify-content-center align-items-center">
 										<div class="small-col">${notice.nseq}</div>

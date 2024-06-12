@@ -84,7 +84,7 @@
 								</c:otherwise>
 							</c:choose>
 						<div class="search-button" id="goSearch">
-							<input type="button" value="검색" onclick="pageClick(1, 'gshop.do?command=adminGoodsSearch')">
+							<input type="button" value="검색" onclick="pageClick(1, 'adminGoodsSearch.do')">
 						</div>						
 					</div>
 				</div>
@@ -118,7 +118,7 @@
 										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.gseq}</div>
 										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.gname}</div>
 										<div class="admin-goods-thumbnail" onclick="viewGoodsDetail(${agvo.gseq})" >
-											<img src="<c:url value='/gshop.do?command=imageWrite&folder=${agvo.gseq}${agvo.gname}&realName=${agvo.realname}'/>">
+											<img src="<c:url value='/imageWrite.do?folder=${agvo.gseq}${agvo.gname}&realName=${agvo.realname}'/>">
 										</div>
 										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.oprice}</div>
 										<div class="listfield" onclick="viewGoodsDetail(${agvo.gseq})">${agvo.sprice}</div>

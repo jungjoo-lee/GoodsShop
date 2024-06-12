@@ -23,7 +23,7 @@ function addCart() {
             if (isNaN(quantity) || quantity < 1) {
                 alert("장바구니 최소수량은 1개입니다.");
             } else {
-                document.goodsform.action = "gshop.do?command=addCart";
+                document.goodsform.action = "addCart.do";
                 document.goodsform.method = "post";
                 document.goodsform.submit();
             }
@@ -56,7 +56,7 @@ function addWishlist(){
 	
 	if (addwish != null){
 		addwish.addEventListener("click", function(){
-			document.goodsform.action = "gshop.do?command=addWish";
+			document.goodsform.action = "addWish.do";
 			document.goodsform.method = "post";
 			document.goodsform.submit();			
 		})			
@@ -78,7 +78,7 @@ function goOrder() {
             if (isNaN(quantity) || quantity < 1) {
                 alert("주문 최소수량은 1개입니다.");
             } else {
-                document.goodsform.action = "gshop.do?command=addCart";
+                document.goodsform.action = "addCart.do";
                 document.goodsform.method = "post";
                 document.goodsform.submit();
             }
@@ -94,7 +94,7 @@ function viewGoodsList (){
 	
 	if (goodslist != null){
 		goodslist.addEventListener("click", ()=>{
-			document.goodsform.action = "gshop.do?command=adminGoodsView";
+			document.goodsform.action = "adminGoodsView.do";
 			document.goodsform.method = "post";
 			document.goodsform.submit();
 			
@@ -110,7 +110,7 @@ function update_Goods(){
 	
 	if(updateGoods != null){
 		updateGoods.addEventListener("click", ()=>{
-			document.goodsform.action = "gshop.do?command=adminGoodsUpdateForm";
+			document.goodsform.action = "adminGoodsUpdateForm.do";
 			document.goodsform.method = "post";
 			document.goodsform.submit();
 		})
@@ -123,7 +123,7 @@ function update_Goods(){
 	
 	if(updateGoods != null){
 		updateGoods.addEventListener("click", ()=>{
-			document.goodsform.action = "gshop.do?command=adminGoodsUpdateForm";
+			document.goodsform.action = "adminGoodsUpdateForm.do";
 			document.goodsform.method = "post";
 			document.goodsform.submit();
 		})
@@ -138,7 +138,7 @@ function delete_Goods(){
 	
 	if(deleteGoods != null){
 		deleteGoods.addEventListener("click", ()=>{
-			document.goodsform.action = "gshop.do?command=adminGoodsDelete";
+			document.goodsform.action = "adminGoodsDelete.do";
 			document.goodsform.method = "post";
 			document.goodsform.submit();
 		})		
@@ -159,9 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function getPageInfo() {
-	param['command'] = "pageInfo";
-	
-	fetch('/GoodsShop/gshop.do?command=asyn', {
+	fetch('/GoodsShop/pageInfo.do', {
 		method : 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
@@ -291,13 +289,12 @@ if (reviewWriteBtn != null) {
 	reviewWriteBtn.addEventListener("click", () => {
 		if (subject.value !== '' && content.value !== '') {
 			if(confirm("리뷰 작성하시겠습니까?")) {
-				fetch('/GoodsShop/gshop.do?command=asyn', {
+				fetch('/GoodsShop/reviewWrite.do', {
 					method : 'POST',
 					headers: {
 						'Content-Type': 'application/json;charset=utf-8'
 					},
 						body: JSON.stringify({
-							"command" : "reviewWrite",
 							"gseq" : parseInt(gseq.value),
 							"subject" : subject.value,
 							"content" : content.value,
@@ -376,13 +373,12 @@ function reviewUpdate(e) {
 				timeElement.innerHTML = currentTime();
 				let rseq = getRseq(e);
 	
-				fetch('/GoodsShop/gshop.do?command=asyn', {
+				fetch('/GoodsShop/reviewUpdate.do', {
 					method : 'POST',
 					headers: {
 						'Content-Type': 'application/json;charset=utf-8'
 					},
 						body: JSON.stringify({
-							"command" : "reviewUpdate",
 							"rseq" : rseq,
 							"subject" : editSubject,
 							"content" : editContent,
@@ -436,13 +432,12 @@ function reviewDelete(e) {
 	if(confirm("정말로 삭제하시겠습니까?")) {
 		let rseq = getRseq(e);
 
-		fetch('/GoodsShop/gshop.do?command=asyn', {
+		fetch('/GoodsShop/reviewDelete.do', {
 			method : 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
 				body: JSON.stringify({
-					"command" : "reviewDelete",
 					"rseq" : parseInt(rseq),
 				})
 			})
@@ -521,12 +516,11 @@ function editPaging(json) {
 }
 
 function asynGetContent() {
-	param.command = "getContent";
 	param.amount = 10;
 	param.page = paging.currentPage;
 	param.gseq = parseInt(gseq.value);
 
-	fetch('/GoodsShop/gshop.do?command=asyn', {
+	fetch('/GoodsShop/getContent.do', {
 		method : 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'

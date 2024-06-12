@@ -20,7 +20,6 @@ import javax.mail.internet.MimeMessage;
 
 import org.json.JSONObject;
 
-import com.goodsshop.controller.member.MemberDao;
 import com.goodsshop.dao.AdminDAO;
 import com.goodsshop.dao.MemberDAO;
 import com.goodsshop.dto.AddressVO;
@@ -46,7 +45,7 @@ public class MemberAction {
 		String userid = request.getParameter("userid");
 		String pwd = request.getParameter("pwd");
 
-		MemberDao mdao = MemberDao.getInstance();
+		MemberDAO mdao = MemberDAO.getInstance();
 		MemberVO mvo = mdao.getMember(userid);
 
 		String url = "/loginForm.do";
@@ -74,7 +73,7 @@ public class MemberAction {
 	public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginUser");
-		response.sendRedirect("/main.do");
+		response.sendRedirect("main.do");
 	}
 
 	public String findIdForm(HttpServletRequest request, HttpServletResponse response) {
@@ -189,7 +188,7 @@ public class MemberAction {
 
 				// JavaScript로 새로운 창을 열어서 아이디를 보여줌
 				String script = "<script>alert('회원님의 아이디는 " + userid + " 입니다.');";
-				script += "window.location.href='/loginForm.do';</script>";
+				script += "window.location.href='loginForm.do';</script>";
 				response.getWriter().print(script);
 			} else {
 				// 해당하는 회원을 찾을 수 없는 경우에 대한 처리
@@ -266,17 +265,17 @@ public class MemberAction {
 
 				// JavaScript로 새로운 창을 열어서 아이디를 보여줌
 				String script = "<script>alert('회원 비밀번호는 " + pwd + " 입니다.');";
-				script += "window.location.href='/loginForm.do';</script>";
+				script += "window.location.href='loginForm.do';</script>";
 				response.getWriter().print(script);
 			} else {
 				// 해당하는 회원을 찾을 수 없는 경우에 대한 처리
-				String script = "<script>alert( '해당하는 회원을 찾을 수 없습니다.');";
+				String script = "<script>alert( '해당하는 회원을 찾을 수 없습니다.');</script>";
 				request.getRequestDispatcher("/WEB-INF/jsp/member/loginForm.jsp").forward(request, response);
 			}
 		} else {
 			// 인증번호가 일치하지 않는 경우에 대한 처리
 			String script = "<script>alert('인증번호 불일치');";
-			script += "window.location.href='/loginForm.do';</script>";
+			script += "window.location.href='loginForm.do';</script>";
 			response.getWriter().print(script);
 		}
 	}
@@ -302,7 +301,7 @@ public class MemberAction {
 		else
 			session.setAttribute("message", "관리자에게 문의하세요");
 
-		response.sendRedirect("/loginForm.do");
+		response.sendRedirect("loginForm.do");
 	}
 
 	public String joinPage(HttpServletRequest request, HttpServletResponse response) {
@@ -358,7 +357,7 @@ public class MemberAction {
 		HttpSession session = request.getSession();
 		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
 		if(mvo==null) {
-			response.sendRedirect("/loginForm.do");
+			response.sendRedirect("loginForm.do");
 		} else {
 			MemberVO mvo1 = new MemberVO();
 			mvo1.setUserid(request.getParameter("userid"));
@@ -375,7 +374,7 @@ public class MemberAction {
 			
 			session.setAttribute("loginUser", mvo1);
 			
-			response.sendRedirect("/index.do");
+			response.sendRedirect("index.do");
 		}
 	}
 
@@ -384,7 +383,7 @@ public class MemberAction {
 		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
 		
 		if( mvo==null ) {
-			response.sendRedirect("/loginForm.do");
+			response.sendRedirect("loginForm.do");
 		}else {
 			MemberDAO mdao = MemberDAO.getInstance();
 			mdao.deleteMember(mvo.getUserid());
@@ -392,7 +391,7 @@ public class MemberAction {
 			session.removeAttribute("loginUser");
 			
 			//session.setAttribute("message", "정상 탈퇴 처리되었습니다.");
-			response.sendRedirect("/loginForm.do");
+			response.sendRedirect("loginForm.do");
 		}
 	}
 
@@ -422,7 +421,7 @@ public class MemberAction {
 
         // 인증 코드가 없거나 이미 만료된 경우
         if (verificationCode == null || verificationCodeExpiration == null || System.currentTimeMillis() > verificationCodeExpiration) {
-        	out.print("<script>alert('인증 코드가 만료되었습니다. 다시 시도해주세요.'); window.location.href='/findIdForm.do';</script>");
+        	out.print("<script>alert('인증 코드가 만료되었습니다. 다시 시도해주세요.'); window.location.href='findIdForm.do';</script>");
             out.close();
             return;
         }
@@ -433,7 +432,7 @@ public class MemberAction {
             session.removeAttribute("verificationCode"); // 세션에서 인증 코드 제거
             session.removeAttribute("verificationCodeExpiration"); // 세션에서 인증 코드 만료 시간 제거
         } else {
-            out.print("<script>alert('잘못된 인증 코드입니다.'); window.location.href='/findIdForm.do';</script>");
+            out.print("<script>alert('잘못된 인증 코드입니다.'); window.location.href='findIdForm.do';</script>");
         }
         out.close();
 	}

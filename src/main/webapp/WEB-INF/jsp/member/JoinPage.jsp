@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="resources/css/member.css">
 
 <article id="joinPage">
-	<form method="post" action="gshop.do?command=join"  name="formm">
+	<form method="post" action="join.do"  name="formm">
 		<table>
 			<div id="join">
 				<div class="box">

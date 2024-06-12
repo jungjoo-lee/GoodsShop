@@ -4,7 +4,7 @@
 <div>
 <section id="loginForm">
 		<article id="login">
-			<form method="post" action="gshop.do?command=login" name="loginForm">
+			<form method="post" action="login.do" name="loginForm">
 			<h2>LOGIN</h2>
 			<div class="loginbox">
 				<div class="logininput">
@@ -25,7 +25,7 @@
 					아직 회원이 아니라면? <br>
 					오브플라워에 가입하고, 더욱 다양한 혜택을 만나보세요! <br>
 					</div>
-					<input type="button" value="회원가입하기" onclick="location.href='gshop.do?command=joinPage'">
+					<input type="button" value="회원가입하기" onclick="location.href='joinPage.do'">
 				</div>
 			</div>
 			</form>

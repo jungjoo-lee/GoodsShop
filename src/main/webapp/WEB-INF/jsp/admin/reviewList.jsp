@@ -79,11 +79,11 @@
 					<div>
 						<ul id="review-list">
 							<c:forEach var="rev" items="${reviewList}">
-							<a class="link" href="<c:url value='/gshop.do?command=goodsDetailView&gseq=${rev.gseq}'/>">
+							<a class="link" href="<c:url value='/goodsDetailView.do?gseq=${rev.gseq}'/>">
 								<li class="li-item">
 									<div class="d-flex justify-content-center align-items-center">
 										<div class="small-col">${rev.rseq}</div>
-		               					<div><img src="<c:url value='/gshop.do?command=imageWrite&folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
+		               					<div><img src="<c:url value='/imageWrite.do?folder=${rev.gseq}${rev.gname}&realName=${rev.realName}'/>"></div>
 		               					<div class="small-col">[${rev.category}]</div>
 		               					<div>
 		               						<c:choose>

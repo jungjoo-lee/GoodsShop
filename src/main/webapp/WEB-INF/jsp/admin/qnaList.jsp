@@ -65,7 +65,7 @@
 		               	<div>
 		               		<ul id="qna-list">
 								<c:forEach var="qna" items="${qnaList}">
-									<a class="link" href="<c:url value='/gshop.do?command=adminQnaView&qseq=${qna.qseq}'/>">
+									<a class="link" href="<c:url value='/adminQnaView.do?qseq=${qna.qseq}'/>">
 										<li class="li-item">
 											<div class="d-flex justify-content-center align-items-center">
 												${qna.reply}

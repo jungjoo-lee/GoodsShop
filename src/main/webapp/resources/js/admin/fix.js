@@ -91,13 +91,11 @@ selectAmount.addEventListener("change", () => {
 })
 
 document.addEventListener('DOMContentLoaded', () => {
-	param['command'] = "pageInfo";
     getPageInfo();
-    delete param['command'];
 });
 
 function getPageInfo() {	
-	fetch('/GoodsShop/gshop.do?command=asyn', {
+	fetch('/GoodsShop/pageInfo.do', {
 		method : 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
@@ -146,11 +144,10 @@ function formatDate(dateString) {
 }
 
 function asynGetContent() {
-	param.command = "getContent";
 	param.amount = paging.amount;
 	param.page = paging.currentPage;
 
-	fetch('/GoodsShop/gshop.do?command=asyn', {
+	fetch('/GoodsShop/getContent.do', {
 		method : 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'

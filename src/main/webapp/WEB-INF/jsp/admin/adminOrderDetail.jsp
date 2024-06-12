@@ -50,7 +50,7 @@
 								<c:forEach items="${orderDetailList}" var="ovo">
 									<div>
 										<div class="thumbnail">
-											<img class="thumbnailimg" src="<c:url value='/gshop.do?command=imageWrite&folder=${ovo.gseq}${ovo.gname}&realName=${ovo.realname}'/>">
+											<img class="thumbnailimg" src="<c:url value='/imageWrite.do?folder=${ovo.gseq}${ovo.gname}&realName=${ovo.realname}'/>">
 										</div>
 										<div>상품별 주문번호 : ${ovo.odseq}</div>
 										<div>상품명 : ${ovo.gname}</div>

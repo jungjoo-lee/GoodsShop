@@ -7,13 +7,12 @@ let discardBtn = document.querySelector("#discardBtn");
 
 switchBtn.addEventListener("click", () => {
 	if (confirm("선택한 회원(들)의 상태를 변경할까요?")) {
-		fetch('/GoodsShop/gshop.do?command=asyn', {
+		fetch('/GoodsShop/switchYN.do', {
 			method : 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
 				body: JSON.stringify({
-					"command" : "switchYN",
 					"checkList" : checkBoxChecked(),
 				})
 			})
@@ -35,7 +34,7 @@ switchBtn.addEventListener("click", () => {
 
 discardBtn.addEventListener("click", () => {
 	if (confirm("선택한 회원(들)을 탈퇴처리합니다. 이 동작은 되돌릴 수 없습니다. 진행할까요?")) {
-		fetch('/GoodsShop/gshop.do?command=asyn', {
+		fetch('/GoodsShop/discardMember.do', {
 			method : 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'

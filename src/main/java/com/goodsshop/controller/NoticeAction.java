@@ -44,7 +44,7 @@ public class NoticeAction {
 		vo.setAdminId(avo.getAdminId());
 
 		nDao.insertNotice(vo);
-		response.sendRedirect("/adminNoticeList.do");
+		response.sendRedirect("adminNoticeList.do");
 	}
 
 	public void noticeDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -53,7 +53,7 @@ public class NoticeAction {
 
 		dao.deleteNotice(nseq);
 
-		response.sendRedirect("/adminNoticeList.do");
+		response.sendRedirect("adminNoticeList.do");
 	}
 
 	public void noticeUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -67,7 +67,7 @@ public class NoticeAction {
 	
 		dao.updateNotice(vo);
 	
-		response.sendRedirect("/adminNoticeView.do&nseq=" + vo.getNseq());
+		response.sendRedirect("adminNoticeView.do&nseq=" + vo.getNseq());
 	}
 
 	public String noticeUpdateForm(HttpServletRequest request, HttpServletResponse response) {

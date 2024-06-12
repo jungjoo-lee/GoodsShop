@@ -9,7 +9,7 @@ function idcheck(){
 		document.formm.userid.focus();
 		return;
 	}
-	var url = "gshop.do?command=IDCheck&userid=" + document.formm.userid.value;
+	var url = "IDCheck.do?userid=" + document.formm.userid.value;
 	var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 	window.open(url, "IDCheck", opt);
 }
@@ -24,13 +24,13 @@ function go_next(){
 }
 /* 주소 찾기 창*/
 function post_zip(){
-	 var url = "gshop.do?command=findZipnum";
+	 var url = "findZipnum.do";
   	 var opt = "menubar=no,scrollbars=no,width=550,height=300,top=300,left=300";
    window.open(url, "findZipNum",opt);
 }
 
 function find_zip(){
-	var url = "gshop.do?command=findZipnum";
+	var url = "findZipnum.do";
 	var opt = "menubar=no, scrollbars=no, width=550, height=300, top=300, left=300";
 	window.open(url, "findZipnum", opt);
 }
@@ -99,7 +99,7 @@ function verify(){
 	var ans = confirm("입력하신 이 주소가 맞나요?");
 		if (ans){
 		alert("입력하신 이메일로 인증번호가 전송되었습니다.");
-		var url = "gshop.do?command=getEmail&email="+inp;
+		var url = "getEmail.do?email="+inp;
 		var opt = "toolbar=no, menubar=no, resizable=no, width=500, height=250, scrollbars=no";
 		window.open(url, "getEmail", opt);
 		}

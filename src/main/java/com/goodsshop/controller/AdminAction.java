@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.goodsshop.controller.action.goods.MPaging;
 import com.goodsshop.dao.AdminDAO;
 import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dao.NoticeDAO;
@@ -18,6 +17,7 @@ import com.goodsshop.dto.AdminVO;
 import com.goodsshop.dto.GoodsImageVO;
 import com.goodsshop.dto.GoodsVO;
 import com.goodsshop.dto.OrderVO;
+import com.goodsshop.util.MPaging;
 import com.goodsshop.util.Paging;
 
 import jakarta.servlet.ServletException;
@@ -45,13 +45,13 @@ public class AdminAction {
 			request.setAttribute("message", "성공");
 			session.removeAttribute("loginUser");
 		}
-		response.sendRedirect("/adminLoginForm.do");
+		response.sendRedirect("adminIndex.do");
 	}
 	
 	public void adminLogout(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginAdmin");
-		response.sendRedirect("/adminIndex.do");
+		response.sendRedirect("adminIndex.do");
 	}
 	
 	public String adminIndex(HttpServletRequest request, HttpServletResponse response) {
@@ -114,7 +114,7 @@ public class AdminAction {
 		
 		dao.writeUpdateReply(reply, qseq);
 		
-		response.sendRedirect("/adminQnaView&qseq=" + qseq);
+		response.sendRedirect("adminQnaView&qseq=" + qseq);
 	}
 
 	public void qnaReplyUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -125,7 +125,7 @@ public class AdminAction {
 
 		dao.writeUpdateReply(reply, qseq);
 		
-		response.sendRedirect("/adminQnaView&qseq=" + qseq);
+		response.sendRedirect("adminQnaView&qseq=" + qseq);
 	}
 	
 	public void qnaReplyDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -134,7 +134,7 @@ public class AdminAction {
 		
 		dao.deleteReply(qseq);
 		
-		response.sendRedirect("/adminQnaView&qseq=" + qseq);
+		response.sendRedirect("adminQnaView&qseq=" + qseq);
 	}
 
 	public String adminNoticeList(HttpServletRequest request, HttpServletResponse response) {
@@ -227,7 +227,7 @@ public class AdminAction {
 			
 			System.out.println(paging);
 
-			request.setAttribute("url", "/adminGoodsView.do");				
+			request.setAttribute("url", "adminGoodsView.do");				
 			request.setAttribute("adminGoodsList", adminGoodsList);	
 			request.setAttribute("paging", paging);		
 			
@@ -345,7 +345,7 @@ public class AdminAction {
 			}		
 		}
 		
-		response.sendRedirect("/adminGoodsView.do");
+		response.sendRedirect("adminGoodsView.do");
 	}
 	
 	public void adminInsertGoodsForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -451,7 +451,7 @@ public class AdminAction {
 			gdao.deleteGoods(gseq);
 		}
 		
-		response.sendRedirect("/adminGoodsView.do");
+		response.sendRedirect("adminGoodsView.do");
 	}
 	
 	public void adminBestToggle(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -462,7 +462,7 @@ public class AdminAction {
 			gdao.bestToggle(gseq);
 		}
 		
-		response.sendRedirect("/adminGoodsView.do");
+		response.sendRedirect("adminGoodsView.do");
 	}
 	
 	public void adminUseYnToggle(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -473,7 +473,7 @@ public class AdminAction {
 			gdao.useYnToggle(gseq);
 		}
 		
-		response.sendRedirect("/adminGoodsView.do");
+		response.sendRedirect("adminGoodsView.do");
 	}
 	
 	public void adminCategoryView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -521,7 +521,7 @@ public class AdminAction {
 			request.setAttribute("cgseq", cgseq);
 			request.setAttribute("adminGoodsList", adminGoodsList);	
 			request.setAttribute("loginAdmin", loginAdmin);
-			request.setAttribute("url", "gshop.do?command=adminCategoryView");		
+			request.setAttribute("url", "adminCategoryView.do");		
 			
 			System.out.println(paging);
 			
@@ -573,7 +573,7 @@ public class AdminAction {
 			request.setAttribute("adminGoodsList", adminGoodsList);	
 			request.setAttribute("key", keyword);
 			request.setAttribute("paging", paging);				
-			request.setAttribute("url", "/adminGoodsSearch.do");			
+			request.setAttribute("url", "adminGoodsSearch.do");			
 			
 			url = "/admin/adminGoodsView.jsp";								
 			request.getRequestDispatcher(url).forward(request, response);
@@ -616,7 +616,7 @@ public class AdminAction {
 		
 		
 		request.setAttribute("orderList", orderList);
-		request.setAttribute("url", "/adminOrderView.do");		
+		request.setAttribute("url", "adminOrderView.do");		
 		request.setAttribute("paging", paging);		
 		request.getRequestDispatcher("/admin/adminOrderView.jsp").forward(request, response);
 	}
@@ -645,7 +645,7 @@ public class AdminAction {
 			odao.updateOrderStatus(oseq, osseq);
 		}
 		
-		response.sendRedirect("/adminOrderView.do");
+		response.sendRedirect("adminOrderView.do");
 	}
 	
 	public void adminSearchOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -670,32 +670,26 @@ public class AdminAction {
 		MPaging paging = new MPaging();
 		paging.setPage(page);
 		
-
 		int count = 0;
-		
-		String url = "/adminSearchOrder.do";
+		String url = "adminSearchOrder.do";
 		
 		 if (searchBy.equals("gname")) {
-			
 			count = odao.getAllCount(key, "gname");
 			paging.setTotalCount(count);
 			orderList = odao.getAllOrderList(key, paging);
 			
 		} else if (searchBy.equals("userid")) {
-			
 			count = odao.getAllCount(key, "userid");
 			paging.setTotalCount(count);
 			orderList = odao.getAllOrderListById(key, paging);		
 			
 		} else if (searchBy.equals("name")) {
-			
 			count = odao.getAllCount(key, "name");
 			paging.setTotalCount(count);			
 			orderList = odao.getAllOrderListByName(key, paging);
 			
 		}
 		
-
 		request.setAttribute("orderList", orderList);
 		request.setAttribute("searchBy", searchBy);
 		request.setAttribute("key", key);

@@ -3,7 +3,7 @@
     <%@ include file="/WEB-INF/jsp/header.jsp"%>
 <link rel="stylesheet" href="<c:url value='/resources/css/email.css'/>">
 <div id="popup">
-		<form method="post" name="formm" action="gshop.do?command=searchId">
+		<form method="post" name="formm" action="searchId.do">
 		   	<input type="hidden" name="name" value="<%= session.getAttribute("name") %>">
         	<input type="hidden" name="email" value="<%= session.getAttribute("email") %>">
 						<label>본인 인증 코드&nbsp;&nbsp;&nbsp;</label>

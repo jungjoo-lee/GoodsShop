@@ -21,7 +21,7 @@
         	
         	<div id="layoutSidenav_content">
                 <div class="card">
-                	<form method="post" action="<c:url value='/gshop.do?command=noticeInsert'/>">
+                	<form method="post" action="<c:url value='/noticeInsert.do'/>">
 						<div class="card-header">
 					        <strong>No.</strong><span>${vo.nseq}</span>
 					    </div>
@@ -40,9 +40,9 @@
 					        </div>
 					    </div>
 					    <div class="card-footer d-flex justify-content-end pb-3">
-							<a class="btn btn-secondary me-2" href="<c:url value='/gshop.do?command=noticeUpdateForm&nseq=${vo.nseq}'/>">수정</a>
-		                    <a class="btn btn-light me-2" href="<c:url value='/gshop.do?command=noticeDelete&nseq=${vo.nseq}'/>">삭제</a>
-		                    <a class="btn btn-light" href="<c:url value='/gshop.do?command=adminNoticeList'/>">목록</a>
+							<a class="btn btn-secondary me-2" href="<c:url value='/noticeUpdateForm.do?nseq=${vo.nseq}'/>">수정</a>
+		                    <a class="btn btn-light me-2" href="<c:url value='/noticeDelete.do?nseq=${vo.nseq}'/>">삭제</a>
+		                    <a class="btn btn-light" href="<c:url value='/adminNoticeList.do'/>">목록</a>
 						</div>
 					</form>
                 </div>

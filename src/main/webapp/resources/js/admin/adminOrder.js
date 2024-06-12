@@ -24,7 +24,7 @@ function change_status(){
     osseqSelect.addEventListener("change", function() {
         if (osseqSelect.value != '0') {
             changeSt.addEventListener("click", ()=>{
-                document.adminOrderForm.action = "gshop.do?command=adminUpdateOrderStatus";
+                document.adminOrderForm.action = "adminUpdateOrderStatus.do";
                 document.adminOrderForm.method = "post";
                 document.adminOrderForm.submit();
             });
@@ -41,7 +41,7 @@ function search_by(){
 	let goSearch = document.querySelector("#goSearch");
 	
 	goSearch.addEventListener("click",()=>{
-		document.adminOrderForm.action = "gshop.do?command=adminSearchOrder";
+		document.adminOrderForm.action = "adminSearchOrder.do";
 		document.adminOrderForm.method = "post";
 		document.adminOrderForm.submit();
 	})
@@ -53,7 +53,7 @@ function enter_Search(){
 	
 	input.addEventListener("keypress", (e)=>{
 		if(e.key === "Enter"){
-			document.adminOrderForm.action = "gshop.do?command=adminSearchOrder";
+			document.adminOrderForm.action = "adminSearchOrder.do";
 			document.adminOrderForm.method = "post";
 			document.adminOrderForm.submit();
 		}

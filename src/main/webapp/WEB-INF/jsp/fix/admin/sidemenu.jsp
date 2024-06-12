@@ -17,11 +17,11 @@
                 </a>
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
-                        <a class="nav-link" href="gshop.do?command=adminInsertGoodsForm">상품 등록</a>
-                        <a class="nav-link" href="gshop.do?command=adminGoodsView">상품 목록</a>
+                        <a class="nav-link" href="adminInsertGoodsForm.do">상품 등록</a>
+                        <a class="nav-link" href="adminGoodsView.do">상품 목록</a>
                     </nav>
                 </div>
-                <a class="nav-link" href="<c:url value='/gshop.do?command=adminOrderView'/>">
+                <a class="nav-link" href="<c:url value='/adminOrderView.do'/>">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-sack-dollar"></i></div>
                     주문관리
                 </a>
@@ -39,11 +39,11 @@
                         </a>
                         <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="<c:url value='/gshop.do?command=adminQnaList'/>">Q&A</a>
-                                <a class="nav-link" href="<c:url value='/gshop.do?command=adminReviewList'/>">리뷰</a>
+                                <a class="nav-link" href="<c:url value='/adminQnaList.do'/>">Q&A</a>
+                                <a class="nav-link" href="<c:url value='/adminReviewList.do'/>">리뷰</a>
                             </nav>
                         </div>
-	                    <a class="nav-link" href="<c:url value='/gshop.do?command=adminNoticeList'/>">공지사항</a>
+	                    <a class="nav-link" href="<c:url value='/adminNoticeList.do'/>">공지사항</a>
                     </nav>
                 </div>
             </div>

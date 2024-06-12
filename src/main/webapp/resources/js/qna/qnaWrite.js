@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			param.qseq = qseq;
 		}
 		
-		fetch('/GoodsShop/gshop.do?command=asyn', {
+		fetch('/GoodsShop/'+command+'.do', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'

@@ -39,12 +39,12 @@
 	    </div>
 	    <div class="card-footer d-flex justify-content-end pb-3">
 	    	<c:if test="${vo.userid eq loginUser.userid && empty vo.reply}">
-				<a class="btn btn-light me-2" href="gshop.do?command=qnaWriteForm&qseq=${vo.qseq}">수정</a>
+				<a class="btn btn-light me-2" href="qnaWriteForm.do?qseq=${vo.qseq}">수정</a>
 			</c:if>
 			<c:if test="${vo.userid eq loginUser.userid}">
 				<button class="btn btn-secondary me-2" name="deleteBtn" id="deleteBtn">삭제</button>
 			</c:if>
-			<a class="btn btn-light" href="<c:url value='/gshop.do?command=qnaList'/>">목록</a>
+			<a class="btn btn-light" href="<c:url value='/qnaList.do'/>">목록</a>
 	    </div>
     </div>
 <script type="text/javascript" src="<c:url value='/resources/js/qna/qnaView.js'/>"></script>

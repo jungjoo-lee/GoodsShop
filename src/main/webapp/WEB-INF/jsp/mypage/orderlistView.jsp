@@ -31,7 +31,7 @@
 
 				<ul class="listbox">			
 					<c:forEach items="${orderList}" var="ovo">
-						<a href="gshop.do?command=orderDetailView&oseq=${ovo.oseq}">
+						<a href="orderDetailView.do?oseq=${ovo.oseq}">
 							<li class="list-row">
 									<div class="listfield">${ovo.oseq}</div>
 									<div class="listfield">${ovo.gname} 포함 ${ovo.quantity} 개</div>
@@ -54,7 +54,7 @@
 			<!-- 이전 버튼 -->
 			<c:if test="${paging.prev}">
 				<div class="page-item">
-					<a href="gshop.do?command=viewOrderList&page=${paging.beginPage-1}">
+					<a href="viewOrderList.do?page=${paging.beginPage-1}">
 						prev
 					</a>
 				</div>
@@ -65,14 +65,14 @@
 
 				<c:if test="${num == paging.page}">
 					<div class="page-item-active">
-						<a href="gshop.do?command=viewOrderList&page=${num}">
+						<a href="viewOrderList.do?page=${num}">
 							${num}
 						</a>
 					</div>
 				</c:if>
 				<c:if test="${num != paging.page}">
 					<div class="page-item">
-						<a href="gshop.do?command=viewOrderList&page=${num}">
+						<a href="viewOrderList.do?page=${num}">
 							${num}
 						</a>
 					</div>
@@ -81,7 +81,7 @@
 			<!-- 다음 버튼 -->
 			<c:if test="${paging.next}">
 				<div class="page-item">
-					<a href="gshop.do?command=viewOrderList&page=${paging.endPage+1}">
+					<a href="viewOrderList.do?page=${paging.endPage+1}">
 							next
 					</a>
 				</div>

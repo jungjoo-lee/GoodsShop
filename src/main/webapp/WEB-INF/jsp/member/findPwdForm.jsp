@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 <link rel="stylesheet" href="<c:url value='/resources/css/findId_PwdForm.css'/>">
 <article id="article">
-	<form method="post" name="findPwdForm" action="gshop.do?command=findPwd";>
+	<form method="post" name="findPwdForm" action="findPwd.do";>
 	<h2>비밀번호 찾기</h2>
 		<div class="field">
 			<label>아이디</label><input name="userid" type="text"/>

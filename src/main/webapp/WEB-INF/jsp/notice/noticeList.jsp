@@ -51,7 +51,7 @@
 					<div class="mb-3">
 					   	<ul id="notice-list">
 							<c:forEach var="notice" items="${noticeList}">
-								<a class="link" href="<c:url value='/gshop.do?command=noticeView&nseq=${notice.nseq}'/>">
+								<a class="link" href="<c:url value='/noticeView.do?nseq=${notice.nseq}'/>">
 									<li class="notice-item">
 										<div class="small-col">${notice.nseq}</div>
 								        <div class="small-col">${notice.adminId}</div>

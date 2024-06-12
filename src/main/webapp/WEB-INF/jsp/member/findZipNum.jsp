@@ -13,7 +13,7 @@
 <body>
 <div id="popup">
 	<h2>주소 검색</h2>
-   <form method="post" name="formm" action="gshop.do?command=findZipnum" style="width:100%; margin-bottom: 15px;">
+   <form method="post" name="formm" action="findZipnum.do" style="width:100%; margin-bottom: 15px;">
       동 이름 입력 : <input name="dong" type="text" style="height: 25px;">
       <input type="submit" value="찾기" id="search" class="submit">
       

@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.goodsshop.controller.action.IndexAction;
 import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dao.NoticeDAO;
 import com.goodsshop.dao.QnaDAO;

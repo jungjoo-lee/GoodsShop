@@ -39,7 +39,7 @@
 							<c:forEach items="${wishlist}" var="cvo">
 								<li class="list-row">
 									<div class="list-imgbox">
-										<img src="<c:url value='/gshop.do?command=imageWrite&folder=${cvo.gseq}${cvo.goodsname}&realName=${cvo.realname}'/>">
+										<img src="<c:url value='/imageWrite.do?folder=${cvo.gseq}${cvo.goodsname}&realName=${cvo.realname}'/>">
 									</div>
 									<div class="listfield">${cvo.goodsname}</div>
 									<div class="listfield"><fmt:formatNumber type="currency" value="${cvo.sprice}"></fmt:formatNumber></div>

@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <section id="section">
 		<article id="article">
-			<form action="gshop.do?command=updateMember" method="post" name="formm" id="updateForm">
+			<form action="updateMember.do" method="post" name="formm" id="updateForm">
 			<h3>회원정보 수정</h3>
 			<div class="field">
 				<label>아이디</label><input type="text" name="userid" value="${loginUser.userid}" readonly>

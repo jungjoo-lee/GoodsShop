@@ -4,7 +4,7 @@ function login() {
 	if (login != null) {
 
 		login.addEventListener("click", function() {
-			location.href = "gshop.do?command=login";
+			location.href = "login.do";
 		})
 	}
 }
@@ -17,7 +17,7 @@ function gocart() {
 	if (gocart != null) {
 
 		gocart.addEventListener("click", function() {
-			location.href = "gshop.do?command=viewCartlist";
+			location.href = "viewCartlist.do";
 		});
 	}
 }
@@ -29,7 +29,7 @@ function gowishlist(){
 	
 	if (gowish != null) {
 		gowish.addEventListener("click", ()=>{
-			location.href = "gshop.do?command=viewWishlist";
+			location.href = "viewWishlist.do";
 		})
 	}
 }

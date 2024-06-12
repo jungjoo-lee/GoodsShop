@@ -57,7 +57,7 @@
 					<button class="btn btn-secondary" name="writeBtn" id="writeBtn">작성하기</button>
 				</c:otherwise>
 			</c:choose>
-			<a class="btn btn-light" href="<c:url value='/gshop.do?command=qnaList'/>">목록</a>
+			<a class="btn btn-light" href="<c:url value='/qnaList.do'/>">목록</a>
 		</div>
 	</div>
 <script type="text/javascript" src="<c:url value='/resources/js/qna/qnaWrite.js'/>"></script>

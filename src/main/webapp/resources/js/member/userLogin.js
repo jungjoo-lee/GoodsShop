@@ -15,7 +15,7 @@ function loginCheck(){
 }
 /* 아이디 찾기 창으로 이동*/
 function findIdForm(){
-	location.href="gshop.do?command=findIdForm"
+	location.href="findIdForm.do"
 }
 
 /* 아이디찾기 */
@@ -36,7 +36,7 @@ function findId(){
 }
 /* 비밀번호 찾기 창으로 이동*/
 function findPwdForm(){
-	location.href="gshop.do?command=findPwdForm"
+	location.href="findPwdForm.do"
 }
 
 function findPwd(){
@@ -107,7 +107,7 @@ function go_updateMember(){
   }
 /* 주소 찾기 창*/
 function post_zip(){
-	 var url = "gshop.do?command=findZipnum";
+	 var url = "findZipnum.do";
   	 var opt = "menubar=no,scrollbars=no,width=550,height=300,top=300,left=300";
    window.open(url, "findZipNum",opt);
 }
@@ -120,12 +120,12 @@ function addressOK(zip_code , sido, gugun, dong){
 }
 
 function Join(){
-	location.href="gshop.do?command=joinPage";
+	location.href="joinPage.do";
 }
 function goodbye(){
 	var ans = confirm("정말 탈퇴하시겠어요?")
 	if(ans){
-		location.href="gshop.do?command=deleteMember";
+		location.href="deleteMember.do";
 		alert("정상적으로 탈퇴가 완료되었습니다.")
 	}
 }

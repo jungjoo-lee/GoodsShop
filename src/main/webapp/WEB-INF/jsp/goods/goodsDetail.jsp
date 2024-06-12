@@ -20,7 +20,7 @@
 			<div class="detail-imagebox">
 				<div class="imgbox">
 				<img alt="${goodsDetail.imageList[0].realname}"
-					src="<c:url value='/gshop.do?command=imageWrite&folder=${goodsDetail.gseq}${goodsDetail.gname}&realName=${goodsDetail.imageList[0].realname}'/>">
+					src="<c:url value='/imageWrite.do?folder=${goodsDetail.gseq}${goodsDetail.gname}&realName=${goodsDetail.imageList[0].realname}'/>">
 				</div>
 			</div>
 
@@ -62,7 +62,7 @@
 				<div>
 					<c:forEach items="${goodsDetail.imageList}" var="img">
 						<div>
-							<img src="<c:url value='/gshop.do?command=imageWrite&folder=${goodsDetail.gseq}${goodsDetail.gname}&realName=${img.realname}'/>">
+							<img src="<c:url value='/imageWrite.do?folder=${goodsDetail.gseq}${goodsDetail.gname}&realName=${img.realname}'/>">
 						</div>
 					</c:forEach>
 				</div>

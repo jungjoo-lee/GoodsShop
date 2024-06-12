@@ -10,13 +10,11 @@ let keywordInput = document.querySelector("#keyword");
 let keyword = '';
 
 document.addEventListener('DOMContentLoaded', () => {   
-    param['command'] = "pageInfo";
     getPageInfo();
-    delete param['command'];
 });
 
 function getPageInfo() {   
-   fetch('/GoodsShop/gshop.do?command=asyn', {
+   fetch('/GoodsShop/pageInfo.do', {
       method : 'POST',
       headers: {
          'Content-Type': 'application/json;charset=utf-8'
@@ -112,11 +110,10 @@ function formatDate(dateString) {
 }
 
 function asynGetContent() {
-	param.command = "getContent";
 	param.amount = paging.amount;
 	param.page = paging.currentPage;
 
-   fetch('/GoodsShop/gshop.do?command=asyn', {
+   fetch('/GoodsShop/getContent.do', {
       method : 'POST',
       headers: {
          'Content-Type': 'application/json;charset=utf-8'
@@ -131,7 +128,7 @@ function asynGetContent() {
             let i = 0;
             
             contentList.forEach(() => {
-				content += '<a class="link" href="/GoodsShop/gshop.do?command=noticeView&nseq=' + contentList[i].nseq + '">';
+				content += '<a class="link" href="/GoodsShop/noticeView.do?nseq=' + contentList[i].nseq + '">';
                	content += '<li class="notice-item">';
                	content += '<div class="d-flex justify-content-center align-items-center">';
                	content += '<div class="small-col">' + contentList[i].nseq + '</div>';
@@ -194,5 +191,5 @@ function asynGetContent() {
 }
 
 function insertNotice(){
-	location.href="gshop.do?command=insertNoticeForm";
+	location.href="insertNoticeForm.do";
 }

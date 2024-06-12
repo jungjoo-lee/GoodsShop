@@ -5,10 +5,9 @@ let param = {
 let deleteBtn = document.querySelector("#deleteBtn");
 deleteBtn.addEventListener("click", () => {
 	if (confirm("삭제하시겠습니까?")) {
-		param.command = "checkDelete";
 		param.checkList = checkBoxChecked();
 		
-		fetch('/GoodsShop/gshop.do?command=asyn', {
+		fetch('/GoodsShop/checkDelete.do', {
 			method : 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
@@ -37,7 +36,7 @@ function contentList(qnaList) {
 	let i = 0;
 	
 	qnaList.forEach(() => {
-		content += '<a class="link" href="/GoodsShop/gshop.do?command=adminQnaView&qseq=' + qnaList[i].qseq + '">';
+		content += '<a class="link" href="/GoodsShop/adminQnaView.do?qseq=' + qnaList[i].qseq + '">';
 		content += '<li class="li-item">';
 		content += '<div class="d-flex justify-content-center align-items-center">';
 		content += '<div class="small-col">';

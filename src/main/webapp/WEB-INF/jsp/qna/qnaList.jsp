@@ -67,7 +67,7 @@
                   		<div>
                   			<ul id="qna-list">
 							<c:forEach var="qna" items="${qnaList}">
-							<a class="link" href="<c:url value='/gshop.do?command=qnaView&qseq=${qna.qseq}'/>">
+							<a class="link" href="<c:url value='/qnaView.do?qseq=${qna.qseq}'/>">
 								<li class="qna-item">
 									<div class="d-flex justify-content-center align-items-center">
 										<div>${qna.qseq}</div>
@@ -142,7 +142,7 @@
                   		<div>
                   			<ul id="my-qna-list">
 								<c:forEach var="qna" items="${qnaMyList}">
-								<a class="link" href="<c:url value='/gshop.do?command=qnaView&qseq=${qna.qseq}'/>">
+								<a class="link" href="<c:url value='/qnaView.do?qseq=${qna.qseq}'/>">
 									<li class="qna-item">
 										<div class="d-flex justify-content-center align-items-center">
 											<div>${qna.qseq}</div>
@@ -201,7 +201,7 @@
               	</div>
               	<div class="d-flex justify-content-end">
 	              	<c:if test="${not empty loginUser}">
-							<a class="btn btn-secondary" href="<c:url value='gshop.do?command=qnaWriteForm'/>">작성하기</a>
+							<a class="btn btn-secondary" href="<c:url value='qnaWriteForm.do'/>">작성하기</a>
 					</c:if>
 				</div>
             </div>

@@ -5,10 +5,9 @@ let param = {
 let deleteBtn = document.querySelector("#deleteBtn");
 deleteBtn.addEventListener("click", () => {
 	if (confirm("삭제하시겠습니까?")) {
-		param.command = "checkDelete";
 		param.checkList = checkBoxChecked();
 		
-		fetch('/GoodsShop/gshop.do?command=asyn', {
+		fetch('/GoodsShop/checkDelete.do', {
 			method : 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
@@ -38,7 +37,7 @@ function contentList(noticeList) {
 	let i = 0;
 	
 	noticeList.forEach(() => {
-		content += '<a class="link" href="/GoodsShop/gshop.do?command=adminNoticeView&nseq=' + noticeList[i].nseq + '">';
+		content += '<a class="link" href="/GoodsShop/adminNoticeView.do?nseq=' + noticeList[i].nseq + '">';
 		content += '<li class="li-item">';
 		content += '<div class="d-flex justify-content-center align-items-center">';
 		content += '<div class="small-col">' + noticeList[i].nseq + '</div>';
@@ -55,5 +54,5 @@ function contentList(noticeList) {
 }
 
 function insertNotice(){
-	location.href="gshop.do?command=insertNoticeForm";
+	location.href="insertNoticeForm.do";
 }

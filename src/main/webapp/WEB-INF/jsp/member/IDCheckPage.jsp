@@ -11,7 +11,7 @@
 <body>
 <div id="popup">
 	<h2> ID 중복 확인</h2>
-	<form method="post" name="IDCheckPage" action="gshop.do?command=IDCheck">
+	<form method="post" name="IDCheckPage" action="IDCheck.do">
 			User ID &nbsp; <input type="text" name="userid" value="${userid}">
 			<input type="submit" id="search" value="검색"><br><br><br>
 	</form>

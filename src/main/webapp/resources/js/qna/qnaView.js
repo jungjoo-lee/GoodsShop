@@ -10,12 +10,12 @@ function deletefn() {
 		let qseqText = document.querySelector('#qseq');
 		let qseq = parseInt(qseqText.innerText);
 		
-		fetch('/GoodsShop/gshop.do?command=asyn', {
+		fetch('/GoodsShop/qnaDelete.do', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
-				body: JSON.stringify({"command": "qnaDelete", "qseq": qseq})
+				body: JSON.stringify({"qseq": qseq})
 			})
 			.then(response => response.json())
 			.then(jsonResult => {

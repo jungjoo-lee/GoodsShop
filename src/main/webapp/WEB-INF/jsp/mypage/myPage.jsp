@@ -4,6 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 
-<a href="gshop.do?command=loginForm">LOGIN</a>
-<a href="gshop.do?command=logout">LOGOUT</a>
-<a href="gshop.do?command=updateMemberForm">정보 수정</a>
+<a href="loginForm.do">LOGIN</a>
+<a href="logout.do">LOGOUT</a>
+<a href="updateMemberForm.do">정보 수정</a>

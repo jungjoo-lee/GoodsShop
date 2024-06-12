@@ -1,4 +1,4 @@
-package com.goodsshop.controller.action.goods;
+package com.goodsshop.util;
 
 public class MPaging {
 	

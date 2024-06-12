@@ -8,7 +8,7 @@
 <title></title>
 </head>
 <body>
-	<form method="post" name="findIdForm" action="gshop.do?command=findId">
+	<form method="post" name="findIdForm" action="findId.do">
 	<h2>아이디 찾기</h2>
 		<div class="field">
 			<label>이름</label><input name="name" type="text"/>

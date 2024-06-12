@@ -36,9 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	    });
     }
     
-    param['command'] = "pageInfo";
     getPageInfo();
-    delete param['command'];
 });
 
 keywordInput.addEventListener("keydown", (e) => {
@@ -70,7 +68,7 @@ document.getElementById('search').addEventListener('change', () => {
 });
 
 function getPageInfo() {	
-	fetch('/GoodsShop/gshop.do?command=asyn', {
+	fetch('/GoodsShop/pageInfo.do', {
 		method : 'POST',
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8'
@@ -177,14 +175,12 @@ function formatDate(dateString) {
 }
 
 function asynGetContent(tab) {
-	param.command = "getContent";
-
 	if (tab == "my" && document.querySelector('#my-tab') != null) {
 		param.my = "";
 		param.amount = myPaging.amount;
 		param.page = myPaging.currentPage;
 		
-		fetch('/GoodsShop/gshop.do?command=asyn', {
+		fetch('/GoodsShop/getContent.do', {
 			method : 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
@@ -200,7 +196,7 @@ function asynGetContent(tab) {
 					let i = 0;
 					
 					contentList.forEach(() => {
-						content += '<a class="link" href="/GoodsShop/gshop.do?command=qnaView&qseq=' + contentList[i].qseq + '">';
+						content += '<a class="link" href="/GoodsShop/qnaView.do?qseq=' + contentList[i].qseq + '">';
 						content += '<li class="qna-item">';
 						content += '<div class="d-flex justify-content-center align-items-center">';
 						content += '<div>' + contentList[i].qseq + '</div>';
@@ -270,7 +266,7 @@ function asynGetContent(tab) {
 		param.amount = paging.amount;
 		param.page = paging.currentPage;
 		
-		fetch('/GoodsShop/gshop.do?command=asyn', {
+		fetch('/GoodsShop/getContent.do', {
 			method : 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
@@ -285,7 +281,7 @@ function asynGetContent(tab) {
 					let i = 0;
 					
 					contentList.forEach(() => {
-						content += '<a class="link" href="/GoodsShop/gshop.do?command=qnaView&qseq=' + contentList[i].qseq + '">';
+						content += '<a class="link" href="/GoodsShop/qnaView.do?qseq=' + contentList[i].qseq + '">';
 						content += '<li class="qna-item">';
 						content += '<div class="d-flex justify-content-center align-items-center">';
 						content += '<div>' + contentList[i].qseq + '</div>';

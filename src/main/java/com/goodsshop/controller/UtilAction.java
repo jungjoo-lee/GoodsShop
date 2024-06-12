@@ -227,7 +227,6 @@ public class UtilAction {
 		BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream()));
 		String jsonStr = in.readLine();
 		JSONObject json = new JSONObject(jsonStr);
-		json.remove("command");
 		JSONObject jsonResult = new JSONObject();
 
 		switch ((String) json.get("table")) {
@@ -258,7 +257,6 @@ public class UtilAction {
 
 		try {
 			if (json.has("my")) {
-//			json.remove("my");
 				json.put("my", vo.getUserid());
 				sql = sb.build(0, json);
 				total = dao.getTotalMyQna(sql);
@@ -314,7 +312,6 @@ public class UtilAction {
 
 		try {
 			if (json.has("my")) {
-//			json.remove("my");
 				json.put("my", vo.getUserid());
 				sql = sb.build(0, json);
 				total = dao.getTotalMyReview(sql);

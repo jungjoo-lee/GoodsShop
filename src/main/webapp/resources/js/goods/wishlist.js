@@ -24,7 +24,7 @@ function wishtocart(){
 			if(count == 0){
 				alert("장바구니에 추가할 상품을 선택하세요");			
 			} else {
-				document.wishlistform.action = "gshop.do?command=wishToCart";
+				document.wishlistform.action = "wishToCart.do";
 				document.wishlistform.method = "post";
 				document.wishlistform.submit();
 			}			
@@ -57,7 +57,7 @@ function deletewish(){
 			if(count == 0){
 				alert("찜목록에서 삭제할 상품을 선택하세요");			
 			} else {
-				document.wishlistform.action = "gshop.do?command=deleteWish";
+				document.wishlistform.action = "deleteWish.do";
 				document.wishlistform.method = "post";
 				document.wishlistform.submit();
 			}				

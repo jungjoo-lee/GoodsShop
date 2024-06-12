@@ -35,7 +35,7 @@ function go_update() {
 			} else if (form.cgseq.value == "0") {
 				alert("카테고리를 선택해주세요");
 			} else {
-				document.goodsWriteForm.action = "gshop.do?command=adminUpdateGoods";
+				document.goodsWriteForm.action = "adminUpdateGoods.do";
 				document.goodsWriteForm.method = "post";
 				document.goodsWriteForm.submit();
 
@@ -70,7 +70,7 @@ function go_insert() {
 			} else if (form.cgseq.value == "0") {
 				alert("카테고리를 선택해주세요");
 			} else {
-				document.goodsWriteForm.action = "gshop.do?command=adminInsertGoods";
+				document.goodsWriteForm.action = "adminInsertGoods.do";
 				document.goodsWriteForm.method = "post";
 				document.goodsWriteForm.submit();
 			}

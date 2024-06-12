@@ -37,7 +37,7 @@
 						<c:forEach items="${orderProductList}" var="ovo">
 							<li class="list-row">
 								<div class="list-imgbox">
-									<img src="<c:url value='/gshop.do?command=imageWrite&folder=${ovo.gseq}${ovo.gname}&realName=${ovo.realname}'/>">
+									<img src="<c:url value='/imageWrite.do?folder=${ovo.gseq}${ovo.gname}&realName=${ovo.realname}'/>">
 								</div>
 								<div class="listfield">${ovo.gname}</div>
 								<div class="listfield">${ovo.quantity} 개</div>

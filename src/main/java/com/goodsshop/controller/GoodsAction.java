@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.goodsshop.controller.action.goods.MPaging;
 import com.goodsshop.dao.CartDAO;
 import com.goodsshop.dao.GoodsDAO;
 import com.goodsshop.dao.OrderDAO;
@@ -16,6 +15,7 @@ import com.goodsshop.dto.GoodsVO;
 import com.goodsshop.dto.MemberVO;
 import com.goodsshop.dto.OrderVO;
 import com.goodsshop.dto.ReviewVO;
+import com.goodsshop.util.MPaging;
 import com.goodsshop.util.Paging;
 
 import jakarta.servlet.ServletException;
@@ -65,7 +65,7 @@ public class GoodsAction {
 		if (loginUser == null) {
 			PrintWriter out = response.getWriter();			
 			out.print("<script>alert('로그인을 먼저 진행해주세요');</script>");
-			out.print("<script>location.href='gshop.do?command=loginForm';</script>");
+			out.print("<script>location.href='loginForm.do';</script>");
 		} else {
 			
 			List<CartVO> wishlist = null;
@@ -127,7 +127,7 @@ public class GoodsAction {
 		}
 		session.setAttribute("cartlist", cartlist);
 		
-		response.sendRedirect("/viewCartlist.do");
+		response.sendRedirect("viewCartlist.do");
 	}
 	
 	public void deleteCart(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -150,7 +150,7 @@ public class GoodsAction {
 		}	
 
 		session.setAttribute("cartlist", cartlist);
-		response.sendRedirect("/viewCartlist.do");
+		response.sendRedirect("viewCartlist.do");
 	}
 	
 	public void viewWishlist(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -161,7 +161,7 @@ public class GoodsAction {
 		if (loginUser == null) {
 			PrintWriter out = response.getWriter();			
 			out.print("<script>alert('로그인을 먼저 진행해주세요');</script>");
-			out.print("<script>location.href='gshop.do?command=loginForm';</script>");
+			out.print("<script>location.href='loginForm.do';</script>");
 		} else {
 			
 			List<CartVO> wishlist = null;
@@ -201,7 +201,7 @@ public class GoodsAction {
 
 		} else {		
 			cdao.insertWish(userid, gvo);		
-			response.sendRedirect("/viewWishlist.do");
+			response.sendRedirect("viewWishlist.do");
 		}
 	}
 
@@ -232,7 +232,7 @@ public class GoodsAction {
 			cdao.deleteWish(gseqInt);
 		}	
 		session.setAttribute("cartlist", cartlist);
-		response.sendRedirect("/viewCartlist.do");
+		response.sendRedirect("viewCartlist.do");
 	}
 	
 	public void deleteWish(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -246,7 +246,7 @@ public class GoodsAction {
 			
 		}			
 
-		response.sendRedirect("/viewWishlist.do");
+		response.sendRedirect("viewWishlist.do");
 	}
 	
 	public void viewOrderList(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -256,7 +256,7 @@ public class GoodsAction {
 		if (mvo == null) {
 			PrintWriter out = response.getWriter();
 			out.print("<script>alert('로그인을 먼저 진행해주세요');</script>");
-			out.print("<script>location.href='gshop.do?command=loginForm';</script>");
+			out.print("<script>location.href='loginForm.do';</script>");
 		} else {
 
 			int page = 1;
@@ -292,7 +292,7 @@ public class GoodsAction {
 		if (mvo == null) {
 			PrintWriter out = response.getWriter();			
 			out.print("<script>alert('로그인을 먼저 진행해주세요');</script>");
-			out.print("<script>location.href='gshop.do?command=loginForm';</script>");
+			out.print("<script>location.href='loginForm.do';</script>");
 		} else {
 			String[] gseqs = request.getParameterValues("gseq");
 			String[] quantity = request.getParameterValues("quantity");		
@@ -342,7 +342,7 @@ public class GoodsAction {
 		if (mvo == null) {
 			PrintWriter out = response.getWriter();			
 			out.print("<script>alert('로그인을 먼저 진행해주세요');</script>");
-			out.print("<script>location.href='gshop.do?command=loginForm';</script>");
+			out.print("<script>location.href='loginForm.do';</script>");
 		} else {
 			int gseq = Integer.parseInt(request.getParameter("gseq")); 
 			GoodsDAO gdao = new GoodsDAO();
@@ -415,7 +415,7 @@ public class GoodsAction {
 
 		session.setAttribute("cartlist", cartlist);
 		session.removeAttribute("orderProductList");
-		response.sendRedirect("/viewOrderList.do");
+		response.sendRedirect("viewOrderList.do");
 	}
 	
 	public String orderDetailView(HttpServletRequest request, HttpServletResponse response) {

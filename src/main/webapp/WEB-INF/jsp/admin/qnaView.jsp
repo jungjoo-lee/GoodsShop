@@ -51,25 +51,25 @@
 					    <div class="card-footer">
 					        <c:choose>
 					            <c:when test="${empty vo.reply}">
-					                <form id="writeForm" method="post" action="<c:url value='/gshop.do?command=qnaReplyWrite&qseq=${vo.qseq}'/>">
+					                <form id="writeForm" method="post" action="<c:url value='/qnaReplyWrite.do?qseq=${vo.qseq}'/>">
 					                    <div id="replyContainer">
 					                        <textarea cols="400" name="reply" id="reply" placeholder="답변을 입력하세요" class="form-control"></textarea>
 					                    </div>
 					                    <input type="button" class="btn btn-secondary" id="writeBtn" value="작성"/>
-					        			<a class="btn btn-light" href="<c:url value='/gshop.do?command=adminQnaList'/>">목록</a>
+					        			<a class="btn btn-light" href="<c:url value='/adminQnaList.do'/>">목록</a>
 					                </form>
 					            </c:when>
 					            <c:otherwise>
-					                <form id="updateForm" method="post" action="<c:url value='/gshop.do?command=qnaReplyUpdate&qseq=${vo.qseq}'/>">
+					                <form id="updateForm" method="post" action="<c:url value='/qnaReplyUpdate.do?qseq=${vo.qseq}'/>">
 					                    <div id="replyContainer">
 					                        <textarea cols="400" name="reply" id="reply" placeholder="답변을 수정하세요" class="form-control">${vo.reply}</textarea>
 					                    </div>
 					                </form>
-					                <form id="deleteForm" method="post" action="<c:url value='/gshop.do?command=qnaReplyDelete&qseq=${vo.qseq}'/>">
+					                <form id="deleteForm" method="post" action="<c:url value='/qnaReplyDelete.do?qseq=${vo.qseq}'/>">
 					                </form>
 					                <input type="button" class="btn btn-secondary" id="updateBtn" value="수정"/>
 					                <input type="button" class="btn btn-secondary" id="deleteBtn" value="삭제"/>
-					                <a class="btn btn-light" href="<c:url value='/gshop.do?command=adminQnaList'/>">목록</a>
+					                <a class="btn btn-light" href="<c:url value='/adminQnaList.do'/>">목록</a>
 					            </c:otherwise>
 					        </c:choose>
 					    </div>

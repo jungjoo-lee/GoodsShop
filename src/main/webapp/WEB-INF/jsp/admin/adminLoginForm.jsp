@@ -23,7 +23,7 @@
 			            <div class="card-body">
 			              	<h5 class="card-title">Login Form</h5>
 			              	
-			              	<form method="post" action="<c:url value='/gshop.do?command=adminLogin'/>">
+			              	<form method="post" action="<c:url value='/adminLogin.do'/>">
 			                	<div class="row mb-3">
 			                  		<label for="inputEmail3" class="col-sm-2 col-form-label">Admin ID</label>
 			                  		<div class="col-sm-10">

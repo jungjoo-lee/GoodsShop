@@ -91,32 +91,32 @@
 				  				<c:forEach var="ord" items="${orderList}">
 				  					<tr>
 				  						<td>
-				  							<a href="<c:url value='/gshop.do?command=adminOrderDetailView&oseq=${ord.oseq}'/>">
+				  							<a href="<c:url value='/adminOrderDetailView.do?oseq=${ord.oseq}'/>">
 				  								${ord.oseq}
 				  							</a>
 				  						</td>
 				  						<td class="text-center">
-				  							<a href="<c:url value='/gshop.do?command=adminOrderDetailView&oseq=${ord.oseq}'/>">
+				  							<a href="<c:url value='/adminOrderDetailView.do?oseq=${ord.oseq}'/>">
 				  								${ord.userid}
 				  							</a>				  						
 				  						</td>
 				  						<td class="text-center">
-				  							<a href="<c:url value='/gshop.do?command=adminOrderDetailView&oseq=${ord.oseq}'/>">
+				  							<a href="<c:url value='/adminOrderDetailView.do?oseq=${ord.oseq}'/>">
 				  								${ord.name}
 				  							</a>				  						
 				  						</td>				  						
 				  						<td class="text-center">
-				  							<a href="<c:url value='/gshop.do?command=adminOrderDetailView&oseq=${ord.oseq}'/>">
+				  							<a href="<c:url value='/adminOrderDetailView.do?oseq=${ord.oseq}'/>">
 				  								${ord.gname} 포함 ${ord.quantity} 건
 				  							</a>
 				  						</td>
 				  						<td class="text-center">
-				  							<a href="<c:url value='/gshop.do?command=adminOrderDetailView&oseq=${ord.oseq}'/>">
+				  							<a href="<c:url value='/adminOrderDetailView.do?oseq=${ord.oseq}'/>">
 				  								${ord.indate}
 				  							</a>
 				  						</td>
 				  						<td class="text-center">
-				  							<a href="<c:url value='/gshop.do?command=adminOrderDetailView&oseq=${ord.oseq}'/>">
+				  							<a href="<c:url value='/adminOrderDetailView.do?oseq=${ord.oseq}'/>">
 				  								<fmt:formatNumber type="currency" value="${ord.totalprice}"></fmt:formatNumber>
 				  							</a>
 				  						</td>

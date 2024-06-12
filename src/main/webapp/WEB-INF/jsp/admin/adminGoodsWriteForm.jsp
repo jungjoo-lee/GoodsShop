@@ -174,7 +174,7 @@
 										<c:forEach items="${updateGoods.imageList}" var="img" varStatus="imgIdx">	
 											<div class="img-use-container">	
 												<div class="update-imgbox">
-													<img src="<c:url value='/gshop.do?command=imageWrite&folder=${updateGoods.gseq}${updateGoods.gname}&realName=${img.realname}'/>">
+													<img src="<c:url value='/imageWrite.do?folder=${updateGoods.gseq}${updateGoods.gname}&realName=${img.realname}'/>">
 												</div>
 												<div class="update-checkbox">
 													<input type="checkbox" name="giseq" value="${img.giseq}"> 	
