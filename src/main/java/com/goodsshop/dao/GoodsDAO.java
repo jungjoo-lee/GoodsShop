@@ -139,7 +139,9 @@ public class GoodsDAO {
 	public GoodsVO getGoods(int gseq) {
 		GoodsVO gvo = null;
 		con = DB.getConnection();
-		String sql = "select * from goods_view where gseq = ?";
+		String sql = "select * from goods_view g1 inner join (select gseq, min(giseq) as min_giseq from goods_view group by gseq) g2"
+				+ " on g1.gseq = g2.gseq and g1.giseq = g2.min_giseq "
+				+ " where g1.gseq = ?";
 		
 		try {
 			pstmt = con.prepareStatement(sql);

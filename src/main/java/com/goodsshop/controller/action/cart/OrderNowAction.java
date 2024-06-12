@@ -60,7 +60,6 @@ public class OrderNowAction implements Action {
 			gvo.setSprice(newPrice);
 			
 			ovo.setTotalprice(gvo.getSprice() * 1);
-			ovo.setThum(gdao.getThumbnail(gseq));
 			
 			
 			list.add(ovo);

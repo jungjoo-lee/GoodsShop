@@ -63,7 +63,6 @@ public class OrderCartAction implements Action {
 				gvo.setSprice(newPrice);
 				
 				ovo.setTotalprice(gvo.getSprice() * 1);
-				ovo.setThum(gdao.getThumbnail(gseqInt));
 				
 				list.add(ovo);		
 			}

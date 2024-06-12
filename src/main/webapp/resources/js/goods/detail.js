@@ -78,7 +78,7 @@ function goOrder() {
             if (isNaN(quantity) || quantity < 1) {
                 alert("주문 최소수량은 1개입니다.");
             } else {
-                document.goodsform.action = "gshop.do?command=addCart";
+                document.goodsform.action = "gshop.do?command=goOrder";
                 document.goodsform.method = "post";
                 document.goodsform.submit();
             }
