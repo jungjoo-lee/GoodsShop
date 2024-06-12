@@ -39,6 +39,8 @@ public class MemberDAO {
 				mvo.setAddress( rs.getString("address"));
 				mvo.setD_address( rs.getString("d_address"));
 				mvo.setIndate( rs.getTimestamp("indate"));
+				mvo.setGseq(rs.getInt("gseq"));
+				mvo.setGrade(rs.getString("gname"));
 				mvo.setLast_login_time( rs.getTimestamp("last_login_time"));
 				mvo.setIs_login(rs.getInt("is_login"));
 				mvo.setSale(rs.getFloat("sale"));

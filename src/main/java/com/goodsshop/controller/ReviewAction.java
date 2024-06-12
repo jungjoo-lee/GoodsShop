@@ -59,7 +59,7 @@ public class ReviewAction {
 		ReviewDAO dao = ReviewDAO.getInstance();
 		MemberVO mVO = (MemberVO)session.getAttribute("loginUser");
 		ReviewVO rVO = ReviewVO.builder().userid(mVO.getUserid()).grade(mVO.getGseq()).gseq(jsonObj.getInt("gseq")).subject(jsonObj.getString("subject")).content(jsonObj.getString("content")).build();
-		
+		System.out.println(mVO.toString());
 		JSONObject json = new JSONObject();
 
 		try {

@@ -1,11 +1,15 @@
 package com.goodsshop.controller;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONObject;
 
 import com.goodsshop.dao.AdminDAO;
 import com.goodsshop.dao.GoodsDAO;
@@ -19,6 +23,7 @@ import com.goodsshop.dto.GoodsVO;
 import com.goodsshop.dto.OrderVO;
 import com.goodsshop.util.MPaging;
 import com.goodsshop.util.Paging;
+import com.goodsshop.util.ParseList;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -187,6 +192,43 @@ public class AdminAction {
 		request.setAttribute("paging", paging);
 		
 		return "/admin/reviewList.jsp";
+	}
+	
+	public JSONObject checkDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		BufferedReader in = new BufferedReader(new InputStreamReader(request.getInputStream()));
+		String jsonStr = in.readLine();
+		JSONObject jsonObj = new JSONObject(jsonStr);
+		
+		AdminDAO dao = AdminDAO.getInstance();
+		JSONObject jsonResult = new JSONObject();
+		
+		ParseList parse = new ParseList();
+		List<Integer> seqList;
+		
+		try {
+			switch(jsonObj.getString("table")) {
+				case "qna" -> {
+					seqList = parse.parseIntList(jsonObj);
+					dao.deleteQna(seqList);
+				}
+				case "review_view" -> {
+					seqList = parse.parseIntList(jsonObj);
+					dao.deleteReview(seqList);
+				}
+				case "notice" -> {
+					seqList = parse.parseIntList(jsonObj);
+					dao.deleteNotice(seqList);
+				}
+			}		
+			jsonResult.put("status", true);
+			jsonResult.put("message", "처리되었습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			jsonResult.put("status", false);
+			jsonResult.put("message", "실패");
+		}
+		
+		return jsonResult;
 	}
 	
 	//admin-goods

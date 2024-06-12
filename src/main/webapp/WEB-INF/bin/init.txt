@@ -79,6 +79,7 @@
 /adminOrderDetailView.do:com.goodsshop.controller.AdminAction:adminOrderDetailView
 /adminUpdateOrderStatus.do:com.goodsshop.controller.AdminAction:adminUpdateOrderStatus
 /adminSearchOrder.do:com.goodsshop.controller.AdminAction:adminSearchOrder
+/checkDelete.do:com.goodsshop.controller.AdminAction:checkDelete
 /pageInfo.do:com.goodsshop.controller.UtilAction:pageInfo
 /getContent.do:com.goodsshop.controller.UtilAction:getContent
 /imageWrite.do:com.goodsshop.controller.UtilAction:imageWrite

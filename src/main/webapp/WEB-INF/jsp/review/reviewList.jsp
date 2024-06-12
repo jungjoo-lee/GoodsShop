@@ -67,7 +67,7 @@
                   		<div>
 	                  		<ul id="review-list">
 								<c:forEach var="rev" items="${reviewList}">
-								<a class="link" href="<c:url value='/goodsDetailView,do?gseq=${rev.gseq}'/>">
+								<a class="link" href="<c:url value='/goodsDetailView.do?gseq=${rev.gseq}'/>">
 									<li class="review-item">
 										<div class="d-flex justify-content-center align-items-center">
 											<div class="small-col">${rev.rseq}</div>

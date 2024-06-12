@@ -56,7 +56,7 @@
 
 				</div>
 				<div class="footer_adminbox">
-					<a href="adminLogin.do">
+					<a href="adminLoginForm.do">
 						<img src="<c:url value='/resources/image/adminlogo.png'/>">
 					</a>
 				</div>
