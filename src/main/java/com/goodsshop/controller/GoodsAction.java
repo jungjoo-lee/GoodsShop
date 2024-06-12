@@ -164,7 +164,6 @@ public class GoodsAction {
 			out.print("<script>alert('로그인을 먼저 진행해주세요');</script>");
 			out.print("<script>location.href='loginForm.do';</script>");
 		} else {
-			
 			List<CartVO> wishlist = null;
 			String userid = loginUser.getUserid();
 			

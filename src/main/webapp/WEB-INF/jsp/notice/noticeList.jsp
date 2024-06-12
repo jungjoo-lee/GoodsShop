@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -55,8 +56,26 @@
 									<li class="notice-item">
 										<div class="small-col">${notice.nseq}</div>
 								        <div class="small-col">${notice.adminId}</div>
-								        <div>${notice.subject}</div>
-								        <div>${notice.content}</div>
+								        <div>
+								        	<c:choose>
+												<c:when test="${fn:length(notice.subject) gt 20}">
+													<c:out value="${fn:substring(notice.subject, 0, 19)}">...</c:out>
+												</c:when>
+												<c:otherwise>
+													<c:out value="${notice.subject}"/>
+												</c:otherwise>
+											</c:choose>
+										</div>
+								        <div>
+								        	<c:choose>
+												<c:when test="${fn:length(notice.content) gt 20}">
+													<c:out value="${fn:substring(notice.content, 0, 19)}"/>...
+												</c:when>
+												<c:otherwise>
+													<c:out value="${notice.content}"/>
+												</c:otherwise>
+											</c:choose>
+								        </div>
 										<div class="small-col">
 											<fmt:formatDate value="${notice.indate}" type="both" pattern="yyyy-MM-dd" />
 										</div>

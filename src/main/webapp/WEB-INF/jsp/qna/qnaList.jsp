@@ -71,8 +71,26 @@
 								<li class="qna-item">
 									<div class="d-flex justify-content-center align-items-center">
 										<div>${qna.qseq}</div>
-		               					<div>${qna.subject}</div>
-		               					<div>${qna.content}</div>
+		               					<div>
+		               						<c:choose>
+												<c:when test="${fn:length(qna.subject) gt 10}">
+													<c:out value="${fn:substring(qna.subject, 0, 9)}"/>...
+												</c:when>
+												<c:otherwise>
+													<c:out value="${qna.subject}"/>
+												</c:otherwise>
+											</c:choose>
+		               					</div>
+		               					<div>
+		               						<c:choose>
+												<c:when test="${fn:length(qna.content) gt 10}">
+													<c:out value="${fn:substring(qna.content, 0, 9)}"/>...
+												</c:when>
+												<c:otherwise>
+													<c:out value="${qna.content}"/>
+												</c:otherwise>
+											</c:choose>
+		               					</div>
 		               					<div>${qna.userid}</div>
 		               					<div><fmt:formatDate value="${qna.indate}" type="both" pattern="yyyy-MM-dd" /></div>
 		               					<div><fmt:formatDate value="${qna.replyDate}" type="both" pattern="yyyy-MM-dd" /></div>
@@ -146,8 +164,26 @@
 									<li class="qna-item">
 										<div class="d-flex justify-content-center align-items-center">
 											<div>${qna.qseq}</div>
-			               					<div>${qna.subject}</div>
-			               					<div>${qna.content}</div>
+			               					<div>
+			               						<c:choose>
+													<c:when test="${fn:length(qna.subject) gt 10}">
+														<c:out value="${fn:substring(qna.subject, 0, 9)}"/>...
+													</c:when>
+													<c:otherwise>
+														<c:out value="${qna.subject}"/>
+													</c:otherwise>
+												</c:choose>
+			               					</div>
+			               					<div>
+			               						<c:choose>
+													<c:when test="${fn:length(qna.content) gt 10}">
+														<c:out value="${fn:substring(qna.content, 0, 9)}"/>...
+													</c:when>
+													<c:otherwise>
+														<c:out value="${qna.content}"/>
+													</c:otherwise>
+												</c:choose>
+			               					</div>
 			               					<div>${qna.userid}</div>
 			               					<div><fmt:formatDate value="${qna.indate}" type="both" pattern="yyyy-MM-dd" /></div>
 			               					<div><fmt:formatDate value="${qna.replyDate}" type="both" pattern="yyyy-MM-dd" /></div>

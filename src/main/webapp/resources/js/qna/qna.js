@@ -174,6 +174,14 @@ function formatDate(dateString) {
     return `${year}-${month}-${day}`;
 }
 
+function truncateText(text, maxLength) {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength - 1) + "...";
+    } else {
+        return text;
+    }
+}
+
 function asynGetContent(tab) {
 	if (tab == "my" && document.querySelector('#my-tab') != null) {
 		param.my = "";
@@ -200,8 +208,8 @@ function asynGetContent(tab) {
 						content += '<li class="qna-item">';
 						content += '<div class="d-flex justify-content-center align-items-center">';
 						content += '<div>' + contentList[i].qseq + '</div>';
-						content += '<div>' + contentList[i].subject + '</div>';
-						content += '<div>' + contentList[i].content + '</div>';
+						content += '<div>' + truncateText(contentList[i].subject, 10) + '</div>';
+						content += '<div>' + truncateText(contentList[i].content, 10) + '</div>';
 						content += '<div>' + contentList[i].userid + '</div>';
 						content += '<div>' + formatDate(contentList[i].indate) + '</div>';
 						if (contentList[i].replyDate == null) {
@@ -285,8 +293,8 @@ function asynGetContent(tab) {
 						content += '<li class="qna-item">';
 						content += '<div class="d-flex justify-content-center align-items-center">';
 						content += '<div>' + contentList[i].qseq + '</div>';
-						content += '<div>' + contentList[i].subject + '</div>';
-						content += '<div>' + contentList[i].content + '</div>';
+						content += '<div>' + truncateText(contentList[i].subject, 10) + '</div>';
+						content += '<div>' + truncateText(contentList[i].content, 10) + '</div>';
 						content += '<div>' + contentList[i].userid + '</div>';
 						content += '<div>' + formatDate(contentList[i].indate) + '</div>';
 						if (contentList[i].replyDate == null) {

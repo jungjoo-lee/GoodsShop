@@ -40,7 +40,7 @@ public class AdminAction {
 		AdminDAO dao = AdminDAO.getInstance();
 		AdminVO vo = dao.getAdmin(request.getParameter("adminID"));
 		
-		if(vo == null) 
+		if (vo == null) 
 			request.setAttribute("message", "실패");
 		else if(!vo.getPwd().equals(request.getParameter("pwd"))) 
 			request.setAttribute("message", "실패");
@@ -61,26 +61,31 @@ public class AdminAction {
 	
 	public String adminIndex(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession();
+		AdminVO loginAdmin = (AdminVO)session.getAttribute("loginAdmin");
 		AdminDAO dao = AdminDAO.getInstance();
 		
-		int total = dao.getTotalMember();
-		int currentPage = 1;
-		int amount = 10;
-		
-		if(session.getAttribute("currentPage") != null) {
-			currentPage = (Integer)session.getAttribute("currentPage");
-		}
-		if(session.getAttribute("amount") != null) {
-			amount = (Integer)session.getAttribute("amount");
-		}
-		
-		Paging paging = new Paging(currentPage, amount, total);
-		System.out.println(paging.toString());
-		
-		request.setAttribute("memberList", dao.getMemberList(paging.getAmount(), paging.getCurrentPage()));
-		request.setAttribute("paging", paging);
-		
-		return "/admin/index.jsp";
+		if (loginAdmin == null) {
+			int total = dao.getTotalMember();
+			int currentPage = 1;
+			int amount = 10;
+			
+			if(session.getAttribute("currentPage") != null) {
+				currentPage = (Integer)session.getAttribute("currentPage");
+			}
+			if(session.getAttribute("amount") != null) {
+				amount = (Integer)session.getAttribute("amount");
+			}
+			
+			Paging paging = new Paging(currentPage, amount, total);
+			System.out.println(paging.toString());
+			
+			request.setAttribute("memberList", dao.getMemberList(paging.getAmount(), paging.getCurrentPage()));
+			request.setAttribute("paging", paging);
+			
+			return "/admin/index.jsp";
+		} else {
+			return "/admin/adminLoginForm.jsp";
+		}		
 	}
 	
 	public String adminQnaList(HttpServletRequest request, HttpServletResponse response) {
@@ -102,13 +107,14 @@ public class AdminAction {
 		
 		request.setAttribute("qnaList", dao.getQnaList(paging.getAmount(), paging.getCurrentPage()));
 		request.setAttribute("paging", paging);
+		
 		return "/admin/qnaList.jsp";
 	}
 	
 	public String adminQnaView(HttpServletRequest request, HttpServletResponse response) {
 		QnaDAO dao = QnaDAO.getInstance();
-		
 		request.setAttribute("vo", dao.getQna(Integer.parseInt(request.getParameter("qseq"))));
+		
 		return "/admin/qnaView.jsp";
 	}
 	

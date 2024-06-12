@@ -109,6 +109,14 @@ function formatDate(dateString) {
     return `${year}-${month}-${day}`;
 }
 
+function truncateText(text, maxLength) {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength - 1) + "...";
+    } else {
+        return text;
+    }
+}
+
 function asynGetContent() {
 	param.amount = paging.amount;
 	param.page = paging.currentPage;
@@ -133,8 +141,8 @@ function asynGetContent() {
                	content += '<div class="d-flex justify-content-center align-items-center">';
                	content += '<div class="small-col">' + contentList[i].nseq + '</div>';
                	content += '<div class="small-col">' + contentList[i].adminId + '</div>';
-               	content += '<div>' + contentList[i].subject + '</div>';
-               	content += '<div>' + contentList[i].content + '</div>';
+               	content += '<div>' + truncateText(contentList[i].subject, 20) + '</div>';
+               	content += '<div>' + truncateText(contentList[i].content, 20) + '</div>';
                	content += '<div class="small-col">' + formatDate(contentList[i++].indate) + '</div>';
                	content += '</div>';
                	content += '</li>';

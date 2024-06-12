@@ -181,6 +181,14 @@ function formatDate(dateString) {
     return `${year}-${month}-${day}`;
 }
 
+function truncateText(text, maxLength) {
+    if (text.length > maxLength) {
+        return text.substring(0, maxLength - 1) + "...";
+    } else {
+        return text;
+    }
+}
+
 function asynGetContent(tab) {
 	if (tab == "my" && document.querySelector('#my-tab') != null) {
 		param.my = "";
@@ -209,8 +217,8 @@ function asynGetContent(tab) {
 						content += '<div class="small-col">' + contentList[i].rseq + '</div>';
 						content += '<div><img src="/GoodsShop/imageWrite.do?folder=' + contentList[i].gseq + contentList[i].gname + '&realName=' + contentList[i].realName + '"></div>';
 						content += '<div class="small-col">[' + contentList[i].category + ']</div>';
-						content += '<div>' + contentList[i].gname + '</div>';
-						content += '<div>' + contentList[i].subject + '</div>';
+						content += '<div>' + truncateText(contentList[i].gname, 10) + '</div>';
+						content += '<div>' + truncateText(contentList[i].subject, 10) + '</div>';
 						content += '<div><img id="badge" src="/GoodsShop/resources/image/badge/' + contentList[i].grade + '.png"> ' + contentList[i].userid + '</div>';
 						content += '<div>' + formatDate(contentList[i++].indate) + '</div>';
 						content += '</div>';
@@ -290,8 +298,8 @@ function asynGetContent(tab) {
 						content += '<div class="small-col">' + contentList[i].rseq + '</div>';
 						content += '<div><img src="/GoodsShop/imageWrite.do?folder=' + contentList[i].gseq + contentList[i].gname + '&realName=' + contentList[i].realName + '"></div>';
 						content += '<div class="small-col">[' + contentList[i].category + ']</div>';
-						content += '<div>' + contentList[i].gname + '</div>';
-						content += '<div>' + contentList[i].subject + '</div>';
+						content += '<div>' + truncateText(contentList[i].gname, 10) + '</div>';
+						content += '<div>' + truncateText(contentList[i].subject, 10) + '</div>';
 						content += '<div><img id="badge" src="/GoodsShop/resources/image/badge/' + contentList[i].grade + '.png"> ' + contentList[i].userid + '</div>';
 						content += '<div>' + formatDate(contentList[i++].indate) + '</div>';
 						content += '</div>';
