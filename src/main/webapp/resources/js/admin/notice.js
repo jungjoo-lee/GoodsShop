@@ -53,5 +53,5 @@ function contentList(noticeList) {
 }
 
 function insertNotice(){
-	location.href="insertNoticeForm.do";
+	location.href="noticeInsertForm.do";
 }

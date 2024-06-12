@@ -28,10 +28,10 @@
 							<c:otherwise>
 								<a href="#">${loginUser.name}(${loginUser.userid})</a>
 								<a href="logout.do">로그아웃</a>
-								<a href="updateMemberForm.do">정보수정</a>
-								<a href="viewCartlist.do">장바구니</a>
-								<a href="viewWishlist.do">찜목록</a>
-								<a href="viewOrderList.do">주문목록</a>
+								<a href="<c:url value='/updateMemberForm.do'/>">정보수정</a>
+								<a href="<c:url value='/viewCartlist.do'/>">장바구니</a>
+								<a href="<c:url value='/viewWishlist.do'/>">찜목록</a>
+								<a href="<c:url value='/viewOrderList.do'/>">주문목록</a>
 							</c:otherwise>
 						</c:choose>
 					</div>

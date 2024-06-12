@@ -191,5 +191,5 @@ function asynGetContent() {
 }
 
 function insertNotice(){
-	location.href="insertNoticeForm.do";
+	location.href="noticeInsertForm.do";
 }

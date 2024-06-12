@@ -67,7 +67,7 @@ public class NoticeAction {
 	
 		dao.updateNotice(vo);
 	
-		response.sendRedirect("adminNoticeView.do&nseq=" + vo.getNseq());
+		response.sendRedirect("adminNoticeView.do?nseq=" + vo.getNseq());
 	}
 
 	public String noticeUpdateForm(HttpServletRequest request, HttpServletResponse response) {

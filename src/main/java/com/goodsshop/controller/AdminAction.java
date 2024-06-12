@@ -114,7 +114,7 @@ public class AdminAction {
 		
 		dao.writeUpdateReply(reply, qseq);
 		
-		response.sendRedirect("adminQnaView&qseq=" + qseq);
+		response.sendRedirect("adminQnaView.do?qseq=" + qseq);
 	}
 
 	public void qnaReplyUpdate(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -125,7 +125,7 @@ public class AdminAction {
 
 		dao.writeUpdateReply(reply, qseq);
 		
-		response.sendRedirect("adminQnaView&qseq=" + qseq);
+		response.sendRedirect("adminQnaView.do?qseq=" + qseq);
 	}
 	
 	public void qnaReplyDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -134,7 +134,7 @@ public class AdminAction {
 		
 		dao.deleteReply(qseq);
 		
-		response.sendRedirect("adminQnaView&qseq=" + qseq);
+		response.sendRedirect("adminQnaView.do?qseq=" + qseq);
 	}
 
 	public String adminNoticeList(HttpServletRequest request, HttpServletResponse response) {
@@ -185,6 +185,7 @@ public class AdminAction {
 		
 		request.setAttribute("reviewList", dao.getReviewList(paging.getAmount(), paging.getCurrentPage()));
 		request.setAttribute("paging", paging);
+		
 		return "/admin/reviewList.jsp";
 	}
 	
@@ -231,7 +232,7 @@ public class AdminAction {
 			request.setAttribute("adminGoodsList", adminGoodsList);	
 			request.setAttribute("paging", paging);		
 			
-			url = "/admin/adminGoodsView.jsp";			
+			url = "/WEB-INF/jsp/admin/adminGoodsView.jsp";			
 		}
 		
 		request.getRequestDispatcher(url).forward(request, response);
@@ -260,7 +261,7 @@ public class AdminAction {
 		
 			request.setAttribute("updateGoods", gvo);
 			
-			url = "/admin/adminGoodsWriteForm.jsp";
+			url = "/WEB-INF/jsp/admin/adminGoodsWriteForm.jsp";
 		}	
 		
 		request.getRequestDispatcher(url).forward(request, response);
@@ -361,7 +362,7 @@ public class AdminAction {
 			List<GoodsVO> categoryList = gdao.getAllCategories();
 			request.setAttribute("categoryList", categoryList);			
 			
-			url = "/admin/adminGoodsWriteForm.jsp";
+			url = "/WEB-INF/jsp/admin/adminGoodsWriteForm.jsp";
 		}	
 		
 		request.getRequestDispatcher(url).forward(request, response);
@@ -441,6 +442,7 @@ public class AdminAction {
 				}
 			}
 		}
+		response.sendRedirect("adminGoodsView.do");
 	}
 	
 	public void adminGoodsDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -525,7 +527,7 @@ public class AdminAction {
 			
 			System.out.println(paging);
 			
-			url = "/admin/adminGoodsView.jsp";								
+			url = "/WEB-INF/jsp/admin/adminGoodsView.jsp";								
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 	}
@@ -575,7 +577,7 @@ public class AdminAction {
 			request.setAttribute("paging", paging);				
 			request.setAttribute("url", "adminGoodsSearch.do");			
 			
-			url = "/admin/adminGoodsView.jsp";								
+			url = "/WEB-INF/jsp/admin/adminGoodsView.jsp";								
 			request.getRequestDispatcher(url).forward(request, response);
 		}
 	}
@@ -618,7 +620,7 @@ public class AdminAction {
 		request.setAttribute("orderList", orderList);
 		request.setAttribute("url", "adminOrderView.do");		
 		request.setAttribute("paging", paging);		
-		request.getRequestDispatcher("/admin/adminOrderView.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/admin/adminOrderView.jsp").forward(request, response);
 	}
 	
 	public void adminOrderDetailView(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -633,7 +635,7 @@ public class AdminAction {
 		}
 		
 		request.setAttribute("orderDetailList", orderDetailList);	
-		request.getRequestDispatcher("/admin/adminOrderDetail.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/admin/adminOrderDetail.jsp").forward(request, response);
 	}
 	
 	public void adminUpdateOrderStatus(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -695,6 +697,6 @@ public class AdminAction {
 		request.setAttribute("key", key);
 		request.setAttribute("url", url);
 		request.setAttribute("paging", paging);		
-		request.getRequestDispatcher("/admin/adminOrderView.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/admin/adminOrderView.jsp").forward(request, response);
 	}
 }

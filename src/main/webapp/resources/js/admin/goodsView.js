@@ -173,7 +173,7 @@ function pageClick(num, url) {
 		document.goodsViewForm.searchKey.value = document.goodsViewForm.searchKeySave.value
 	}
 	
-	document.goodsViewForm.action = url + "&page=" + num;
+	document.goodsViewForm.action = url + "?page=" + num;
 	document.goodsViewForm.method = "post";
 	document.goodsViewForm.submit();
 }

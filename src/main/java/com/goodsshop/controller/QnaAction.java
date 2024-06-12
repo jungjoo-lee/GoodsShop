@@ -84,7 +84,7 @@ public class QnaAction {
 			jsonResult.put("status", true);
 			jsonResult.put("message", "Q&A 작성 성공");
 			int qseq = dao.lastID();
-			jsonResult.put("url", "/GoodsShop/qnaView.do&qseq=" + qseq);
+			jsonResult.put("url", "/GoodsShop/qnaView.do?qseq=" + qseq);
 		} catch (Exception e) {
 			e.printStackTrace();
 			jsonResult.put("status", false);
@@ -110,7 +110,7 @@ public class QnaAction {
 			dao.updateQna(qVO);
 			jsonResult.put("status", true);
 			jsonResult.put("message", "Q&A 수정 성공");
-			jsonResult.put("url", "/GoodsShop/qnaView.do&qseq=" + qVO.getQseq());
+			jsonResult.put("url", "/GoodsShop/qnaView.do?qseq=" + qVO.getQseq());
 		} catch (Exception e) {
 			e.printStackTrace();
 			jsonResult.put("status", false);

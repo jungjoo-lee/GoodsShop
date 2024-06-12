@@ -80,7 +80,7 @@ function paging_prev(){
 	let url = document.adminOrderForm.url.value;
 	
 	prev.addEventListener("click", ()=>{
-		document.adminOrderForm.action = url + "&page=${paging.beginPage-1}";
+		document.adminOrderForm.action = url + "?page=${paging.beginPage-1}";
 		document.adminOrderForm.method = "post";
 		document.adminOrderForm.submit();		
 		
@@ -93,7 +93,7 @@ paging_prev();
 
 
 function pageClick(num, url) {
-	document.adminOrderForm.action = url + "&page=" + num;
+	document.adminOrderForm.action = url + "?page=" + num;
 	document.adminOrderForm.method = "post";
 	document.adminOrderForm.submit();
 }

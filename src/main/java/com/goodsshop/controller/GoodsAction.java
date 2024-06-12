@@ -58,31 +58,32 @@ public class GoodsAction {
 	}
 	
 	public void viewCartlist(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		HttpSession session = request.getSession();	
+		HttpSession session = request.getSession();
 		MemberVO loginUser = (MemberVO)session.getAttribute("loginUser");
-		CartDAO cdao = new CartDAO();
+		List<CartVO> cartlist = (List<CartVO>)session.getAttribute("cartlist");
+		PrintWriter out = response.getWriter();
 
-		if (loginUser == null) {
-			PrintWriter out = response.getWriter();			
+		if (loginUser == null) {		
 			out.print("<script>alert('로그인을 먼저 진행해주세요');</script>");
 			out.print("<script>location.href='loginForm.do';</script>");
 		} else {
 			
-			List<CartVO> wishlist = null;
-			String userid = loginUser.getUserid();
-			
-			wishlist = cdao.getWishList(userid);
-			
-			for( CartVO cvo : wishlist) {				
-				int oldPrice = cvo.getSprice();		
-				int newPrice = 0;
-				newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
-				
-				cvo.setSprice(newPrice);
+			if(cartlist != null) {
+				for(CartVO cvo : cartlist) {
+					int oldPrice = cvo.getSprice();		
+					int newPrice = 0;
+					newPrice = (int)Math.ceil(oldPrice - (oldPrice * loginUser.getSale()));
+					
+					cvo.setSprice(newPrice);
+					cvo.setTotalprice(cvo.getQuantity() * cvo.getSprice());
+					
+					GoodsDAO gdao = new GoodsDAO();
+					GoodsVO gvo = gdao.getGoods(cvo.getGseq());
+					cvo.setRealname(gvo.getRealname());
+				}
+				session.setAttribute("cartlist", cartlist);
 			}
-			
-			request.setAttribute("wishlist", wishlist);
-			request.getRequestDispatcher("/WEB-INF/jsp/goods/wishlistView.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/jsp/goods/cartlistView.jsp").forward(request, response);
 		}
 	}
 	

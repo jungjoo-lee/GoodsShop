@@ -35,7 +35,7 @@
 	            	<pre class="pre-styled"><span>${vo.content}</span></pre>
 	            </div>
 	        </div>
-	        
+	        <a class="btn btn-light" href="<c:url value='/noticeList.do'/>">목록</a>
 	    </div>
 	</div>
 <script type="text/javascript" src="<c:url value='/resources/js/admin/qnaView.js'/>"></script>

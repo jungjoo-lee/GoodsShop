@@ -18,7 +18,7 @@
                 <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
                         <a class="nav-link" href="adminInsertGoodsForm.do">상품 등록</a>
-                        <a class="nav-link" href="adminGoodsView.do">상품 목록</a>
+                        <a class="nav-link" href="adminGoodsView.do?page=1">상품 목록</a>
                     </nav>
                 </div>
                 <a class="nav-link" href="<c:url value='/adminOrderView.do'/>">
