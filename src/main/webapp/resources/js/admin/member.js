@@ -40,7 +40,6 @@ discardBtn.addEventListener("click", () => {
 				'Content-Type': 'application/json;charset=utf-8'
 			},
 				body: JSON.stringify({
-					"command" : "discardMember",
 					"checkList" : checkBoxChecked(),
 				})
 			})

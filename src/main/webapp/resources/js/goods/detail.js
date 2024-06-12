@@ -172,7 +172,6 @@ function getPageInfo() {
 				paging = jsonResult.paging;
 			}
 	});
-	delete param['command'];
 }
 
 function currentTime() {

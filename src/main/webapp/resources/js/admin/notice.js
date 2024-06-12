@@ -17,7 +17,6 @@ deleteBtn.addEventListener("click", () => {
 			.then(response => response.json())
 			.then(jsonResult => {
 				if (jsonResult.status == true) {
-					delete param.command;
 					delete param.checkList;
 					asynGetContent();
 					alert(jsonResult.message);

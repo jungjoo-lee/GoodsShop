@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		
 	function writeupdate(command) {
 		let param = {
-			"command": command,
 			"subject": subject.value,
 			"content": content.value,
 		}
