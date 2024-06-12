@@ -1,6 +1,7 @@
 package com.goodsshop.controller.action.mypage;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import com.goodsshop.controller.action.Action;
 import com.goodsshop.dto.MemberVO;
@@ -22,12 +23,18 @@ public class DeleteMemberAction implements Action {
 			response.sendRedirect("gshop.do?command=loginForm");
 		}else {
 			MemberDAO mdao = MemberDAO.getInstance();
-			mdao.deleteMember(mvo.getUserid());
+			int result = mdao.deleteMember(mvo.getUserid());
 			
-			session.removeAttribute("loginUser");
+			if (result == 1) {
+				session.removeAttribute("loginUser");
+				PrintWriter out = response.getWriter();
+				out.print("<script>alert('정상 탈퇴 처리되었습니다.');</script>");
+				out.print("<script>location.href='gshop.do?command=index'</script>");
+			}
+			
 			
 			//session.setAttribute("message", "정상 탈퇴 처리되었습니다.");
-			response.sendRedirect("gshop.do?command=loginForm");
+			response.sendRedirect("gshop.do?command=updateMemberForm");
 		}
 
 	}

@@ -122,11 +122,18 @@ function addressOK(zip_code , sido, gugun, dong){
 function Join(){
 	location.href="gshop.do?command=joinPage";
 }
-function goodbye(){
-	var ans = confirm("정말 탈퇴하시겠어요?")
-	if(ans){
-		location.href="gshop.do?command=deleteMember";
-		alert("정상적으로 탈퇴가 완료되었습니다.")
+
+function goodbye(pwd){
+	
+	let input_pwd  =  prompt("비밀번호를 입력해주세요");
+	
+	if(input_pwd == pwd){
+			var ans = confirm("정말 탈퇴하시겠어요?")
+			if(ans){
+			location.href="gshop.do?command=deleteMember";
+			}
+	} else {
+		alert("비밀번호가 일치하지 않습니다.");
 	}
 }
 
