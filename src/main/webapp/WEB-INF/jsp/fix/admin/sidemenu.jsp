@@ -21,7 +21,7 @@
                         <a class="nav-link" href="adminGoodsView.do?page=1">상품 목록</a>
                     </nav>
                 </div>
-                <a class="nav-link" href="<c:url value='/adminOrderView.do'/>">
+                <a class="nav-link" href="<c:url value='/adminOrderView.do?page=1'/>">
                     <div class="sb-nav-link-icon"><i class="fa-solid fa-sack-dollar"></i></div>
                     주문관리
                 </a>
