@@ -27,7 +27,7 @@ public class FindIdAction implements Action {
 
 	private static final String SENDER_EMAIL  =  Env.getSendEmail(); // 보내는 사람 이메일 주소
 	private static final String SENDER_PASSWORD =  Env.getEmailPwd(); // 보내는 사람 이메일 비밀번호
-	private static final long CODE_EXPIRATION_DURATION = 1000;
+	private static final long CODE_EXPIRATION_DURATION = 3 * 60 * 1000; 
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
